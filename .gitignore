@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+#Java
+bin
+/bin
+bin/
+*.class
