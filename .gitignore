@@ -36,3 +36,8 @@ bin
 /bin
 bin/
 *.class
+
+.vscode
+.gradle
+build
+
