@@ -1,6 +1,6 @@
 package edu.odu.cs.cs350;
 
-import java.util.*;
+import java.util.StringTokenizer;
 
 /**
  * 
@@ -9,7 +9,7 @@ import java.util.*;
  */
 
 public class File {
-    private String filePaths;
+    private String filePath;
     private int numOfTokens;
 
 
@@ -18,19 +18,19 @@ public class File {
      * 
      */
     public File() {
-        this.filePaths = "";
+        this.filePath = "";
         this.numOfTokens = 0;
     }
 
     /**
      * Parametized Constructor
-     * @param desireTokens: number of tokens
-     * @param filePaths: absolute file path of the files
+     * 
+     * @param filePath: absolute file path of the File
      *                   with cppExtensions
      */
-    public File(int desireTokens, String filePaths) {
-        this.filePaths = filePaths;
-        this.numOfTokens = desireTokens;
+    public File(String filePath) {
+        this.filePath = filePath;
+        this.numOfTokens = 0;
     }
 
     /**
@@ -38,29 +38,30 @@ public class File {
      * @param src: File objects to be copied
      */
     public File (File src) {
-        this.filePaths = src.filePaths;
+        this.filePath = src.filePath;
         this.numOfTokens = src.numOfTokens;
     }
 
     /**
      * Set the file paths that are being read
-     * @param file: absolute file path of the files
+     * @param file: absolute file path of the File
      *              with cppExtensions
      */
-    public void setfilePaths(String file) {
-        this.filePaths = file;
+    public void setfilePath(String file) {
+        this.filePath = file;
     }
 
     /**
-     * @return: get all the list of file paths
+     * get the file path
+     * @return: the absolute file path of a file
      * 
      */
-    public String getfilePaths() {
-        return this.filePaths;
+    public String getfilePath() {
+        return this.filePath;
     }
 
     /**
-     * set the number of desired tokens
+     * set the number of tokens of input file
      * @param n: the number of tokens
      */
     public void setNumOfTokens(int n) {
@@ -68,11 +69,29 @@ public class File {
     }
 
     /**
-     * @return: get the number of tokens
+     * get the number of tokens
      * 
+     * @return: get the number of tokens of the file
      */
     public int getNumOfTokens() {
         return this.numOfTokens;
+    }
+
+    /**
+     * Count the number of tokens within a file
+     * 
+     * reference: https://docs.oracle.com/javase/7/docs/api/java/util/StringTokenizer.html
+     */
+    public void countTokens() {
+        //this is a placeholder that represents the data of a file
+        String fakeData = "if (x = y) { do this stuff } else { do this }";
+
+        // breaks a string into tokens, but does not distinguish identifiers, numbers, 
+        // quoted strings, nor recognize and skip comments
+        StringTokenizer stringTokens = new StringTokenizer(fakeData);
+
+        // count the number of tokens
+        numOfTokens = stringTokens.countTokens();
     }
 
      /**
@@ -80,12 +99,12 @@ public class File {
      *  
      *  @param rhs object against which to compare equality
      *  
-     *  @return true if two Css objects are equal
+     *  @return true if two File objects are equal
      */
     public boolean equals(Object rhs) {
         File f = (File) rhs;
 
-        return this.filePaths.equals(f.filePaths);
+        return this.filePath.equals(f.filePath);
     }
 
      /**
@@ -95,7 +114,7 @@ public class File {
      */
     public int hashCode() {
         
-        return this.filePaths.hashCode();
+        return this.filePath.hashCode();
     }
 
      /**
@@ -113,7 +132,7 @@ public class File {
      *  @return File object as a string
      */
     public String toString() {
-        return ("filePath: " + filePaths.toString());
+        return ("filePath: " + filePath.toString());
     }
 
 }
