@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 public class File {
     private String filePath;
     private int numOfTokens;
-    private int numRefTokens;
+    private int numRefTokens; //added new members
     private int numOpportunities;
 
 

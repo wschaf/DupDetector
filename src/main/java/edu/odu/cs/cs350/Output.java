@@ -44,7 +44,7 @@ public class Output {
     		// initialize file to pass
     		File F = new File("DupDetector/src/main/data/edu/odu/cs/cs350/boo.cpp");
     		System.out.println("Opportuniy" + F.getOpportunities() + ", " + F.getNumRefTokens());
-    		
+    		//incomplete
     		for (File f : Files) {
     		Scanner fileScanner = new Scanner(F);
     		
