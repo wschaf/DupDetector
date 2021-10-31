@@ -1,4 +1,4 @@
     {
-        "java.project.sourcePaths": ["src\\main\\java"],
+        "java.project.sourcePaths": ["src\\main\\java", "src\\test\\java"],
         "java.project.outputPath": "build\\classes"
     }
