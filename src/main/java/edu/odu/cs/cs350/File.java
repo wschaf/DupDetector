@@ -11,9 +11,6 @@ import java.util.StringTokenizer;
 public class File {
     private String filePath;
     private int numOfTokens;
-    private int numRefTokens; //added new members
-    private int numOpportunities;
-
 
     /**
      * Default Constructor
@@ -79,39 +76,6 @@ public class File {
         return this.numOfTokens;
     }
     
-    /**
-     * set the number of tokens that were Refactored
-     * @param r: the number of Refactored tokens
-     */
-    public void setNumRefTokens(int r) {
-    	this.numRefTokens = r;
-    }
-    
-    /**
-     * get the number of Refactored Tokens
-     * 
-     * @return: get the number of Refactored Tokens
-     */
-    public int getNumRefTokens() {
-    	return this.numRefTokens;
-    }
-    
-    /**
-     * set the number of nSuggestion Opportunities
-     * @param o: the number of Opportunities
-     */
-    public void setOpportunity(int o) {
-    	this.numOpportunities = o;
-    }
-    
-    /**
-     * get the number of Opportunities
-     * 
-     * @return: get the number of Opportunities
-     */
-    public int getOpportunities() {
-    	return this.numOpportunities;
-    }
 
     /**
      * Count the number of tokens within a file
