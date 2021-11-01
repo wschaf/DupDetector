@@ -12,7 +12,6 @@ public class File {
     private String filePath;
     private int numOfTokens;
 
-
     /**
      * Default Constructor
      * 
@@ -76,6 +75,7 @@ public class File {
     public int getNumOfTokens() {
         return this.numOfTokens;
     }
+    
 
     /**
      * Count the number of tokens within a file
@@ -93,6 +93,7 @@ public class File {
         // count the number of tokens
         numOfTokens = stringTokens.countTokens();
     }
+    
 
      /**
      *  Check for equivalence based on name

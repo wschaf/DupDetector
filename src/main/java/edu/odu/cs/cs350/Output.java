@@ -1,6 +1,7 @@
 package edu.odu.cs.cs350;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.List;
 
 
@@ -33,6 +34,31 @@ public class Output {
         for (File f : Files) {
             System.out.println("\t" + f.getfilePath() + ", " + f.getNumOfTokens());
         }
+    }
+    
+    public void printSectionTwo() {
+    	
+    	List<File> Files = new ArrayList<>();
+    	
+    	for(int i = 0; i < 5; i++) {
+    		// initialize file to pass
+    		File F = new File("DupDetector/src/main/data/edu/odu/cs/cs350/boo.cpp");
+    		System.out.println("Opportuniy" + F.getOpportunities() + ", " + F.getNumRefTokens());
+    		//incomplete
+    		for (File f : Files) {
+    		Scanner fileScanner = new Scanner(F);
+    		
+    		int lineNumber = 0;
+            while(fileScanner.hasNextLine()){
+                System.out.println(fileScanner.nextLine());
+                lineNumber++;
+            }
+
+            fileScanner.close();
+            System.out.printf("\t" + f.getfilePath() + ", " + lineNumber);
+            
+    		}
+    }
     }
 
 
