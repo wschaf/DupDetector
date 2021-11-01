@@ -8,4 +8,8 @@ import static org.hamcrest.Matchers.*;
 
 public class TestOutput {
     
+    @Test
+    public void testPrintSectionOne() {
+        
+    }
 }
