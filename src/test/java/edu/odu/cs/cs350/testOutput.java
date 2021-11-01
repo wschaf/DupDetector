@@ -6,10 +6,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 
-public class TestOutput {
+public class testOutput {
     
     @Test
     public void testPrintSectionOne() {
-        
+        assertThat("Trueness", true, is(true));
     }
 }

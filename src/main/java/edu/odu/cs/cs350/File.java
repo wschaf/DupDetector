@@ -136,4 +136,8 @@ public class File {
         return (filePath.toString() + ", " +String.valueOf(numOfTokens));
     }
 
+    public String getOpportunities() {
+        return null;
+    }
+
 }

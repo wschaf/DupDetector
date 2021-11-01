@@ -1,5 +1,9 @@
 package edu.odu.cs.cs350;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 /**
  * 
  * Display the result into two section
@@ -47,10 +51,11 @@ public class Output {
     	for(int i = 0; i < 5; i++) {
     		// initialize file to pass
     		File F = new File("DupDetector/src/main/data/edu/odu/cs/cs350/boo.cpp");
-    		System.out.println("Opportuniy" + F.getOpportunities() + ", " + F.getNumRefTokens());
+    		System.out.println("Opportuniy" + F.getOpportunities() + ", " + F.getNumOfTokens());
     		//incomplete
     		for (File f : Files) {
-    		Scanner fileScanner = new Scanner(F);
+            //Scanner fileScanner = new Scanner(F); scanner doesn't have a constructor
+    		Scanner fileScanner = new Scanner(F.toString());
     		
     		int lineNumber = 0;
             while(fileScanner.hasNextLine()){
