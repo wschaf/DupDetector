@@ -128,7 +128,7 @@ public class SourceFileTest {
     public void testToString() {
         File file = new File(path);
         
-        assertThat(file.toString(), equalTo("filePath: " +path));
+        assertThat(file.toString(), equalTo(file.getfilePath() + ", " +String.valueOf(file.getNumOfTokens())));
     }
 
 
