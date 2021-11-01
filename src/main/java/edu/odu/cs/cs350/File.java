@@ -132,7 +132,7 @@ public class File {
      *  @return File object as a string
      */
     public String toString() {
-        return ("filePath: " + filePath.toString());
+        return (filePath.toString() + ", " +String.valueOf(numOfTokens));
     }
 
 }
