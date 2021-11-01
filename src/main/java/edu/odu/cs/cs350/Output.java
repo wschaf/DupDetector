@@ -1,9 +1,5 @@
 package edu.odu.cs.cs350;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 /**
  * 
  * Display the result into two section
@@ -16,23 +12,32 @@ public class Output {
      * Print section one of the output
      */
     public void printSectionOne() {
+        
+        // Create a ListOfFiles object to add multple files
+        ListOfFiles files = new ListOfFiles();
 
-        // create a list of files
-        List<File> Files = new ArrayList<>();
+        // This is a fake array of files
+        String[] listFiles = {"DupDetector/src/main/data/edu/odu/cs/cs350/boo.cpp",
+                              "DupDetector/src/main/data/edu/odu/cs/cs350/boz.cpp",
+                              "DupDetector/src/main/data/edu/odu/cs/cs350/foo.cpp"};
 
-        for(int i = 0; i < 5; i++) {
-            // initialize a file and pass in the file path
-            File F = new File("DupDetector/src/main/data/edu/odu/cs/cs350/boo.cpp");
-            // count the number of tokens in that file
-            F.countTokens();
-            // add the file to the list of files
-            Files.add(F);
-        }
-            
         System.out.println("Files Scanned:");
-        for (File f : Files) {
-            System.out.println("\t" + f.getfilePath() + ", " + f.getNumOfTokens());
+        for(int i = 0; i < listFiles.length; i++) {
+            // Initialize a file with file path from listFiles
+            File f = new File(listFiles[i]);
+            // count number of tokens in this file
+            f.countTokens();
+            // add the file in files
+            files.addFiles(f);
+            // print the file path and number of tokens of this file
+            // System.out.println(f.getfilePath() + ", " + f.getNumOfTokens());
         }
+
+        // print the file path and number of tokens of each file
+        for(int i = 0; i < files.numFiles(); ++i) {
+            System.out.println(files.getListOfFiles().get(i));
+        }
+        
     }
 
 
