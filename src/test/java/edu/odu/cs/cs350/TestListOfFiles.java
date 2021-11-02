@@ -13,7 +13,7 @@ import static org.hamcrest.Matchers.*;
 
 public class TestListOfFiles {
     
-    ListOfFiles blankList;
+    /*ListOfFiles blankList;
     ListOfFiles nonBlankList;
     File file1;
     File file2;
@@ -68,6 +68,6 @@ public class TestListOfFiles {
         
         assertThat(blankList.getListOfFiles().get(0), equalTo(file1));
         assertThat(blankList.numFiles(), equalTo(1));
-    }
+    }*/
 
 }
