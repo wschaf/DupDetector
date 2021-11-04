@@ -1,37 +1,32 @@
-package edu.odu.cs.cs350;
+package edu.odu.cs.cs350.Mocks;
 
-import edu.odu.cs.cs350.Interfaces.RefactoringInterface;
+import edu.odu.cs.cs350.Interfaces.*;
 
-public class Refactoring implements RefactoringInterface {
+public class MockRefactoring implements RefactoringInterface {
 
-    public int numberOfTokens;
-    public String absolutePath;
-    public int lineNumber;
-    public int columnNumber;
-    public String tokenList;
+    public int numberOfTokens = 6;
+    public String absolutePath = "/home/wgs/src/cs350/DupDetector/src/test/data/hello.cpp";
+    public int lineNumber = 32;
+    public int columnNumber = 64;
+    public String tokenList = "if this then that";
     public int opportunityValue;
-
-    @Override
+    
     public String getNumberOfTokens() {
         return Integer.toString(numberOfTokens);
     }
 
-    @Override
     public String getAbsolutePath() {
         return absolutePath;
     }
 
-    @Override
     public String getLineNumber() {
         return Integer.toString(lineNumber);
     }
 
-    @Override
     public String getColumnNumber() {
         return Integer.toString(columnNumber);
     }
 
-    @Override
     public String getTokenList() {
         return tokenList;
     }

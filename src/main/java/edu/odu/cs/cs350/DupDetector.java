@@ -4,9 +4,7 @@ package edu.odu.cs.cs350;
 public class DupDetector {
     
     public static void main(String[] args) throws Exception {
-        Output outs = new Output();
-        outs.printSectionOne();
-
+        System.out.println("Successfully ran DupDetector.");
+        return;
     }
-    
 }
