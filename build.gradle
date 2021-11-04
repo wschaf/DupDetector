@@ -12,6 +12,7 @@ repositories {
 }
 
 dependencies {
+    testImplementation gradleApi()
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
     testImplementation 'org.hamcrest:hamcrest-library:2.2'
 }
@@ -19,4 +20,8 @@ dependencies {
 test {
     ignoreFailures = true
     useJUnitPlatform()
+    testLogging {
+        // Make sure output from standard out or error is shown in Gradle output.
+        showStandardStreams = true
+    }
 }
