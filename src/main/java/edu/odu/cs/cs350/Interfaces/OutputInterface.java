@@ -2,6 +2,11 @@ package edu.odu.cs.cs350.Interfaces;
 
 import java.util.*;
 
+/**
+ * Output contains all of the functionality to format and print to the console
+ * the complete output of the program. This includes the list of files, their metadata,
+ * the list of suggested refactorings, and their metadata.
+ */
 public abstract interface OutputInterface {
 
 	public int getRefactoringsToPrint();

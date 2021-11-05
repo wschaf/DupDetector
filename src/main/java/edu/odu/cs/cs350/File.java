@@ -2,6 +2,10 @@ package edu.odu.cs.cs350;
 
 import edu.odu.cs.cs350.Interfaces.FileInterface;
 
+/**
+ * A File object contains the data contained in C++ source files
+ * and its associated metadata.
+ */
 public class File implements FileInterface {
 
     private String absolutePath;
