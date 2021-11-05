@@ -2,6 +2,10 @@ package edu.odu.cs.cs350;
 
 import edu.odu.cs.cs350.Interfaces.RefactoringInterface;
 
+/**
+ * A refactoring object contains the information needed by
+ * Output to print the refactoring suggestion and its associated metadata.
+ */
 public class Refactoring implements RefactoringInterface {
 
     public int numberOfTokens;
