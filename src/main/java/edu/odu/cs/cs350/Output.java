@@ -46,33 +46,6 @@ public class Output {
         
     }
     
-<<<<<<< HEAD
-=======
-    public void printSectionTwo() {
-    	
-    	List<File> Files = new ArrayList<>();
-    	
-    	for(int i = 0; i < 5; i++) {
-    		// initialize file to pass
-    		File F = new File("DupDetector/src/main/data/edu/odu/cs/cs350/boo.cpp");
-    		System.out.println("Opportuniy" + F.getOpportunities() + ", " + F.getNumRefTokens());
-    		//incomplete
-    		for (File f : Files) {
-    		Scanner fileScanner = new Scanner(F);
-    		
-    		int lineNumber = 0;
-            while(fileScanner.hasNextLine()){
-                System.out.println(fileScanner.nextLine());
-                lineNumber++;
-            }
-
-            fileScanner.close();
-            System.out.printf("\t" + f.getfilePath() + ", " + lineNumber);
-            
-    		}
-    }
-    }
->>>>>>> 626fe0e603636e42d5c4391ecdb6f4ee3c550836
 
 
 }
