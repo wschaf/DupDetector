@@ -3,12 +3,12 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion(17)
-    targetCompatibility = JavaVersion.toVersion(17)
+    sourceCompatibility = JavaVersion.toVersion(11)     //  Level of Java compatability is at least 11.
+    targetCompatibility = JavaVersion.toVersion(11)
 }
 
 repositories {
-    jcenter()
+    jcenter()                                           //  Use the jcenter repository to pull dependency packages.
 }
 
 dependencies {
@@ -17,6 +17,9 @@ dependencies {
 }
 
 test {
-    ignoreFailures = true
-    useJUnitPlatform()
+ignoreFailures = true                                   //  Continue to build even after failing a unit test
+    useJUnitPlatform()                                  //  Use JUnit for the Unit Test Framework
+    testLogging {
+        showStandardStreams = true                      //  Make sure output from standard out or error is shown in Gradle output.
+    }
 }
