@@ -1,10 +1,10 @@
 package edu.odu.cs.cs350;
 
 public enum TokenType {
-    End_of_input, Op_multiply,  Op_divide, Op_mod, Op_add, Op_subtract,
-    Op_negate, Op_not, Op_less, Op_lessequal, Op_greater, Op_greaterequal,
-    Op_equal, Op_notequal, Op_assign, Op_and, Op_or, Keyword_if,
-    Keyword_else, Keyword_while, Keyword_print, Keyword_putc, Keyword_dereference, LeftParen, RightParen,
-    LeftBrace, RightBrace, LeftBracket, RightBracket, Semicolon, Colon, Comma, Period, Qstn_mark, Identifier, 
-    Integer, String, Hash_symbol, Tilda, At_symbol
+    WHILE, IF, ELSE, ELSE_IF, COUT, CIN, CERR, BREAK, SWITCH, RETURN,
+    ASSIGN, OSTREAM, ISTREAM, INCREMENT, DECREMENT, SUBTRACT, ADD, DIVIDE,
+    MULTIPLY, MODULO, REFERENCE_SYM, LT, GT, LEQ, GEQ, EQ_EQ, AND_SYMBOL,
+    OR_SYMBOL, NOT_EQUAL, QUESTION_MARK, SEMI_COLON, COMMA, PERIOD, HASH_SYMBOL,
+    TILDA, AT_SYMBOL, LEFT_BRACE, RIGHT_BRACE, LEFT_BRACKET, RIGHT_BRACKET,
+    LEFT_PAREN, RIGHT_PAREN, EOF, IDENTIFIER, CONSTANT_NUMBERS, STRING_LITERAL
 }

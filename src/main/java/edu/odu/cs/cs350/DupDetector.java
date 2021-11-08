@@ -21,8 +21,8 @@ public class DupDetector {
                     source += s.nextLine() + "\n";
                 }
                 s.close();
-                Lexer l = new Lexer(source);
-                l.printTokens();
+                // Lexer l = new Lexer(source);
+                // l.printTokens();
             } catch(FileNotFoundException e) {
                 System.out.println(e.getMessage());
             }
