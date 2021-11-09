@@ -1,4 +1,5 @@
 package edu.odu.cs.cs350;
+
 import edu.odu.cs.cs350.Interfaces.TokenInterface;
 
 /**

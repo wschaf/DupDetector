@@ -1,3 +1,7 @@
+/**
+ * Author: T. Kennedy
+ */
+
 #include "Point.h"
 
 #include "utilities.h"

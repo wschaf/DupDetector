@@ -1,10 +1,8 @@
 package edu.odu.cs.cs350;
+
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
+import java.util.*;
 
 /**
  * TokenAnalyzer analyzes each lexemes in the given file
