@@ -15,7 +15,7 @@ repositories {
 sourceSets {
   main {
      jflex {
-       srcDir "src/main/jflex/"
+       srcDir "src/main/jflex"
      }
      java {
        srcDir "$buildDir/generatedSources/jflex"        // directory for generated sources in the build folder

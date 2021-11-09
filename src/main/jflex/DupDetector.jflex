@@ -6,7 +6,7 @@ package edu.odu.cs.cs350;
 %public
 %class LexerAnalyzer
 
-
+%unicode
 %line
 %column
 
@@ -23,8 +23,6 @@ package edu.odu.cs.cs350;
     return new Token(type, yyline+1, yycolumn+1, value);
   }
   
-
-
 %}
 
 /* main character classes */
@@ -37,7 +35,6 @@ WhiteSpace = {LineTerminator} | [ \t\f]
 Comments = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment}
 
 TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
-// Comment can be the last line of the file, without line terminator.
 EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
 DocumentationComment = "/**" {CommentContent} "*"+ "/"
 CommentContent       = ( [^*] | \*+ [^/*] )*
@@ -48,31 +45,36 @@ Identifier = [:jletter:][:jletterdigit:]*
 /* integer literals */
 ConstantNumbers = [0-9][0-9]* | [0-9][_0-9]*[0-9]
 
+/* string literals */
+StringCharacter = [^\r\n\"\\]
+
 /* Strings */
 %state STRING
 
 /* Rules */
 %%
 
+<YYINITIAL> {
 
   /* keywords */
-  "while"                     { return symbol(TokenType.WHILE); }
-  "if"                     { return symbol(TokenType.IF); }
-  "else"                     { return symbol(TokenType.ELSE); }
+  "while"                       { return symbol(TokenType.WHILE); }
+  "if"                          { return symbol(TokenType.IF); }
+  "else"                        { return symbol(TokenType.ELSE); }
   "else if"                     { return symbol(TokenType.ELSE_IF); }
-  "cout"                     { return symbol(TokenType.COUT); }
-  "cin"                     { return symbol(TokenType.CIN); }
-  "cerr"                     { return symbol(TokenType.CERR); }
-  "break"                     { return symbol(TokenType.BREAK); }
-  "switch"                     { return symbol(TokenType.SWITCH); }
-  "return"                     { return symbol(TokenType.RETURN); }
+  "cout"                        { return symbol(TokenType.COUT); }
+  "cin"                         { return symbol(TokenType.CIN); }
+  "cerr"                        { return symbol(TokenType.CERR); }
+  "endl"                        { return symbol(TokenType.ENDL); }
+  "break"                       { return symbol(TokenType.BREAK); }
+  "switch"                      { return symbol(TokenType.SWITCH); }
+  "return"                      { return symbol(TokenType.RETURN); }
 
   /* operators */
-  "="                           { return symbol(TokenType.ASSIGN); }
-  "<<"                           { return symbol(TokenType.OSTREAM); }
-  ">>"                           { return symbol(TokenType.ISTREAM); }
-  "++"                           { return symbol(TokenType.INCREMENT); }
-  "--"                           { return symbol(TokenType.DECREMENT); }
+  "="                           { return symbol(TokenType.ASSIGN_OP); }
+  "<<"                          { return symbol(TokenType.OSTREAM); }
+  ">>"                          { return symbol(TokenType.ISTREAM); }
+  "++"                          { return symbol(TokenType.INCREMENT); }
+  "--"                          { return symbol(TokenType.DECREMENT); }
   "-"                           { return symbol(TokenType.SUBTRACT); }
   "+"                           { return symbol(TokenType.ADD); }
   "/"                           { return symbol(TokenType.DIVIDE); }
@@ -83,12 +85,12 @@ ConstantNumbers = [0-9][0-9]* | [0-9][_0-9]*[0-9]
   /* Boolean Operators */
   "<"                           { return symbol(TokenType.LT); }
   ">"                           { return symbol(TokenType.GT); }
-  "<="                           { return symbol(TokenType.LEQ); }
-  ">="                           { return symbol(TokenType.GEQ); }
-  "=="                           { return symbol(TokenType.EQ_EQ); }
-  "&&"                           { return symbol(TokenType.AND_SYMBOL); }
-  "||"                           { return symbol(TokenType.OR_SYMBOL); }
-  "!="                           { return symbol(TokenType.NOT_EQUAL); }
+  "<="                          { return symbol(TokenType.LEQ); }
+  ">="                          { return symbol(TokenType.GEQ); }
+  "=="                          { return symbol(TokenType.EQ_EQ); }
+  "&&"                          { return symbol(TokenType.AND_SYMBOL); }
+  "||"                          { return symbol(TokenType.OR_SYMBOL); }
+  "!="                          { return symbol(TokenType.NOT_EQUAL); }
   "?"                           { return symbol(TokenType.QUESTION_MARK); }
 
   /* Other Tokens */
@@ -105,29 +107,40 @@ ConstantNumbers = [0-9][0-9]* | [0-9][_0-9]*[0-9]
   "("                           { return symbol(TokenType.LEFT_PAREN); }
   ")"                           { return symbol(TokenType.RIGHT_PAREN); }
 
-  
-  {ConstantNumbers}            { return symbol(TokenType.CONSTANT_NUMBERS, yytext()); }
+  /* string literal */
+  \"                            { yybegin(STRING); string.setLength(0); }
 
-  {Identifier}                   { return symbol(TokenType.IDENTIFIER, yytext()); } 
+  /* numeric literals */
+  {ConstantNumbers}             { return symbol(TokenType.CONSTANT_NUMBERS, yytext()); }
+
+  /* Identifiers */
+  {Identifier}                  { return symbol(TokenType.IDENTIFIER, yytext()); } 
   
+  /* whitespaces */
   {WhiteSpace}                  {/* Ignore */}  
   
   /* comments */
   {Comments}                    {/* Ignore */}
+}
+
+<STRING> {
+ \"                             { yybegin(YYINITIAL); return symbol(TokenType.STRING_LITERAL, string.toString()); }
+
+ {StringCharacter}+             { string.append( yytext() ); }
+
+ "\\b"                          { string.append( '\b' ); }
+ "\\t"                          { string.append( '\t' ); }
+ "\\n"                          { string.append( '\n' ); }
+ "\\f"                          { string.append( '\f' ); }
+ "\\r"                          { string.append( '\r' ); }
+ "\\\""                         { string.append( '\"' ); }
+ "\\'"                          { string.append( '\'' ); }
+ "\\\\"                         { string.append( '\\' ); }
 
 
-  <STRING> {
-      \"                             { yybegin(YYINITIAL);
-                                       return symbol(TokenType.STRING_LITERAL,
-                                       string.toString()); }
-      [^\n\r\"\\]+                   { string.append( yytext() ); }
-      \\t                            { string.append('\t'); }
-      \\n                            { string.append('\n'); }
-
-      \\r                            { string.append('\r'); }
-      \\\"                           { string.append('\"'); }
-      \\                             { string.append('\\'); }
-    }
+ \\.                            { throw new RuntimeException("Illegal escape sequence \""+yytext()+"\""); }
+ {LineTerminator}               { throw new RuntimeException("Unterminated string at end of line"); }
+}
 
 
 /* error fallback */

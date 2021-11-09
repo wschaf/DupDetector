@@ -2,6 +2,9 @@
 
 using namespace std;
 
+// ignore comment
+/** 
+ * ignore comment */
 int main() {
     cout << "Hello World" << endl;
 
