@@ -79,5 +79,8 @@ public enum TokenType {
     INLINE,
     LONG,
     TRUE,
-    FALSE
+    FALSE,
+    STD,
+    IOSTREAM,
+    SCOPE_OP
 }

@@ -93,6 +93,8 @@ StringCharacter = [^\r\n\"\\]
   "string"                      { return symbol(TokenType.STRING); }
   "inline"                      { return symbol(TokenType.INLINE); }
   "long"                        { return symbol(TokenType.LONG); }
+  "std"                         { return symbol(TokenType.STD); }
+  "iostream"                    { return symbol(TokenType.IOSTREAM); }
 
   /* operators */
   "="                           { return symbol(TokenType.ASSIGN_OP); }
@@ -106,6 +108,7 @@ StringCharacter = [^\r\n\"\\]
   "*"                           { return symbol(TokenType.MULTIPLY); }
   "%"                           { return symbol(TokenType.MODULO); }
   "&"                           { return symbol(TokenType.REFERENCE_SYM); }
+  "::"                          { return symbol(TokenType.SCOPE_OP); }
   
   /* Boolean Keywords */
   "true"                        { return symbol(TokenType.TRUE); }

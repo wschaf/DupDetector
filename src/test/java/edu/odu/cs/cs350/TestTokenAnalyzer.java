@@ -47,9 +47,11 @@ public class TestTokenAnalyzer {
             }
             s.close();
 
+            ArrayList <Token> tokens = new ArrayList<Token>();
+            
             Reader input = new StringReader(source);
             TokenAnalyzer tokenAnalyzer = new TokenAnalyzer(input);
-            ArrayList <Token> tokens = new ArrayList<Token>();
+            tokenAnalyzer.processFileIntoTokens();
             
             assertThat(tokens.size(), not(equalTo(tokenAnalyzer.getFileTokenCount())));
 
@@ -64,8 +66,8 @@ public class TestTokenAnalyzer {
             assertThat(t.getColumnNumber(), equalTo("1"));
 
             t = tokens.get(3);
-            assertThat(TokenType.IDENTIFIER, equalTo(t.getTokenType()));
-            assertThat(t.getLexeme(), equalTo("iostream"));
+            assertThat(TokenType.IOSTREAM, equalTo(t.getTokenType()));
+            assertThat(t.getLexeme(), equalTo(""));
             assertThat(t.getLineNumber(),equalTo("1"));
             assertThat(t.getColumnNumber(), equalTo("11"));
 
