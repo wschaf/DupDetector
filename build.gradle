@@ -25,9 +25,12 @@ sourceSets {
 }
 
 jar {
+
     manifest {
         attributes 'Main-Class': 'edu.odu.cs.cs350.DupDetector'     // to execute .jar files
     }
+
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
 }
 
 task copyDocs (type: Copy) {                            // task to copy javadocs to "docs" directory

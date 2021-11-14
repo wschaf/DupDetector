@@ -18,7 +18,7 @@ public class DupDetector {
     	 * args[i] i will be any number of files supplied in the command line
     	 */
     	if (args.length == 0) {
-            System.err.println ("Usage: java -jar  <nSuggestions> <path/of/file1> <path/of/file2>");
+            System.err.println ("Usage: java -jar build/libs/DupDetector.jar <nSuggestions> <path/of/file1> <path/of/file2>");
             System.exit(-1);
         }
     	/**
