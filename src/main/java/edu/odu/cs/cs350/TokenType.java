@@ -82,5 +82,7 @@ public enum TokenType {
     FALSE,
     STD,
     IOSTREAM,
-    SCOPE_OP
+    SCOPE_OP,
+    COLON,
+    NOT_SYMBOL
 }

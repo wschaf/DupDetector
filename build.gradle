@@ -1,6 +1,7 @@
 plugins {
    id 'java'
    id "org.xbib.gradle.plugin.jflex" version "1.5.0"    // Jflex plugin
+   id "org.xbib.gradle.plugin.git" version "2.0.0"
 }
 
 java {
@@ -9,7 +10,7 @@ java {
 }
 
 repositories {
-    jcenter()                                           //  Use the jcenter repository to pull dependency packages.
+    mavenCentral()                                      //  Use the updated maven central repository to pull dependency packages.
 }
 
 sourceSets {
@@ -21,6 +22,55 @@ sourceSets {
        srcDir "$buildDir/generatedSources/jflex"        // directory for generated sources in the build folder
      }
   }
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'edu.odu.cs.cs350.DupDetector'     // to execute .jar files
+    }
+}
+
+task copyDocs (type: Copy) {                            // task to copy javadocs to "docs" directory
+    from 'build/docs'
+    into "docs/"
+    dependsOn 'javadoc'
+}
+
+task copyTest (type: Copy) {                            // task to copy test reports to "test" directory
+    from 'build/reports'
+    into "reports/"
+    dependsOn 'test'
+}
+
+task report (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest']) {      // execute task commands
+    description  'Generate Reports'
+}
+
+task deployReports (type: Copy, dependsOn: ['report', 'check']) {
+    doLast {
+        def thisRepo = rootProject.projectDir.toString()
+        
+        def grgit = git.clone {
+            uri = 'file:' + thisRepo
+            bare = false
+            refToCheckout = 'gh-pages'
+        }
+        grgit.checkout {
+            branch = 'gh-pages'
+        }
+        grgit.add (update: false, patterns: ['reports/'])
+        grgit.add (update: true, patterns: ['reports/'])
+        grgit.add (update: false, patterns: ['docs/'])
+        grgit.add (update: true, patterns: ['docs/'])
+        grgit.commit {
+            message = "Updating web pages"
+        }
+        grgit.push {}
+        grgit.checkout {
+        	branch = 'main'
+        }
+    }
+
 }
 
 dependencies {

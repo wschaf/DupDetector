@@ -123,11 +123,13 @@ StringCharacter = [^\r\n\"\\]
   "=="                          { return symbol(TokenType.EQ_EQ); }
   "&&"                          { return symbol(TokenType.AND_SYMBOL); }
   "||"                          { return symbol(TokenType.OR_SYMBOL); }
+  "!"                          { return symbol(TokenType.NOT_SYMBOL); }
   "!="                          { return symbol(TokenType.NOT_EQUAL); }
   "?"                           { return symbol(TokenType.QUESTION_MARK); }
 
   /* Other Tokens */
   ";"                           { return symbol(TokenType.SEMI_COLON); }
+  ":"                           { return symbol(TokenType.COLON); }
   ","                           { return symbol(TokenType.COMMA); }
   "."                           { return symbol(TokenType.PERIOD); }
   "#"                           { return symbol(TokenType.HASH_SYMBOL); }

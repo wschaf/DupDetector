@@ -15,38 +15,43 @@ public class TokenAnalyzer implements Iterable<Token> {
     private List<Token> tokensContainer;
     private LexerAnalyzer scanner;
     private Token token;
-    private int minimumSequenceLength;
-    private int maxLexemesSubstitution;
     
     /**
+     * The default constructor for token analyzer. Creates an
+     * empty constructor for each data members.
+     */
+    public TokenAnalyzer() {
+        tokensContainer = new LinkedList<Token>();
+        scanner = new LexerAnalyzer(null);
+        token = new Token(null, 0, 0);
+    }
+
+    /**
      * The constructor for analyzing tokens in a file given by the parameter.
-     * Creates a list of token and adds each token in the container determined
-     * by the token rule given in the jflex file.
-     * 
+     * Creates a list of object Token and a LexerAnalyzer scanner.
      * @param input: The input file to be read to determine the tokens in the file
      */
     public TokenAnalyzer(Reader input) {
         tokensContainer = new LinkedList<Token>();
         scanner = new LexerAnalyzer(input);
-        minimumSequenceLength = 10;
-        maxLexemesSubstitution = 8;
     }
 
-    public void processFileIntoTokens() {
+    /**
+     * Divides source codes into tokens.
+     * The function will scan each token base on the token type
+     */
+    public void processSourceCode() {
         try {
             token = scanner.yylex();
             while(token != null && token.getTokenType() != TokenType.EOF) {
                 tokensContainer.add(token);
                 token = scanner.yylex();
             }
-            System.out.println(tokensContainer.toString());
         } 
         catch (IOException ex) {
             System.out.println(ex);
         }
     }
-
-
 
     /**
      *  
@@ -62,5 +67,14 @@ public class TokenAnalyzer implements Iterable<Token> {
     @Override
     public final Iterator<Token> iterator() {
         return tokensContainer.iterator();
+    }
+
+    /**
+     * For debugging purposes
+     * @return format of tokenAnalyzer which returns the number of tokens in the file
+     */
+    @Override
+    public String toString() {
+        return "Total tokens in file: " + Integer.toString(getFileTokenCount());
     }
 }
