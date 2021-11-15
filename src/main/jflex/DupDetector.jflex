@@ -1,3 +1,11 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Copyright (C) 1998-2015  Gerwin Klein <lsf@jflex.de>                    *
+ * All rights reserved.                                                    *
+ *                                                                         *
+ * License: BSD                                                            *
+ *                                                                         *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 package edu.odu.cs.cs350;
 //@SuppressWarnings("unused")
 
