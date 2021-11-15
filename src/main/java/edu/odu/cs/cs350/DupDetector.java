@@ -18,7 +18,7 @@ public class DupDetector {
     	 * args[i] i will be any number of files supplied in the command line
     	 */
     	if (args.length == 0) {
-            System.err.println ("Usage: java <nSuggestions> <path/of/file1> <path/of/file2>");
+            System.err.println ("Usage: java -jar build/libs/DupDetector.jar <nSuggestions> <path/of/file1> <path/of/file2>");
             System.exit(-1);
         }
     	/**
@@ -31,7 +31,6 @@ public class DupDetector {
     	for (int i = 1; i < args.length; i++) {
     		
     		try {
-       		 
                 File f = new File(args[i]);
                 if(f.isFile()) {
                 	Scanner s = new Scanner(f);
@@ -43,6 +42,7 @@ public class DupDetector {
                     
                     Reader input = new StringReader(source);
                     TokenAnalyzer t = new TokenAnalyzer(input);
+                    t.processSourceCode();
                     System.out.println(f);
                     System.out.println(t);
                 }

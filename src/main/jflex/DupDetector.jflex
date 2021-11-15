@@ -68,6 +68,33 @@ StringCharacter = [^\r\n\"\\]
   "break"                       { return symbol(TokenType.BREAK); }
   "switch"                      { return symbol(TokenType.SWITCH); }
   "return"                      { return symbol(TokenType.RETURN); }
+  "continue"                    { return symbol(TokenType.CONTINUE); }
+  "do"                          { return symbol(TokenType.DO); }
+  "const"                       { return symbol(TokenType.CONST); }
+  "int"                         { return symbol(TokenType.INT); }
+  "double"                      { return symbol(TokenType.DOUBLE); }
+  "float"                       { return symbol(TokenType.FLOAT); }
+  "for"                         { return symbol(TokenType.FOR); }
+  "default"                     { return symbol(TokenType.DEFAULT); }
+  "include"                     { return symbol(TokenType.INCLUDE); }
+  "final"                       { return symbol(TokenType.FINAL); }
+  "override"                    { return symbol(TokenType.OVERRIDE); }
+  "class"                       { return symbol(TokenType.CLASS); }
+  "delete"                      { return symbol(TokenType.DELETE); }
+  "new"                         { return symbol(TokenType.NEW); }
+  "enum"                        { return symbol(TokenType.ENUM); }
+  "sizeof"                      { return symbol(TokenType.SIZEOF); }
+  "namespace"                   { return symbol(TokenType.NAMESPACE); }
+  "using"                       { return symbol(TokenType.USING); }
+  "virtual"                     { return symbol(TokenType.VIRTUAL); }
+  "inherets"                    { return symbol(TokenType.INHERETS); }
+  "void"                        { return symbol(TokenType.VOID); }
+  "public"                      { return symbol(TokenType.PUBLIC); }
+  "string"                      { return symbol(TokenType.STRING); }
+  "inline"                      { return symbol(TokenType.INLINE); }
+  "long"                        { return symbol(TokenType.LONG); }
+  "std"                         { return symbol(TokenType.STD); }
+  "iostream"                    { return symbol(TokenType.IOSTREAM); }
 
   /* operators */
   "="                           { return symbol(TokenType.ASSIGN_OP); }
@@ -81,7 +108,13 @@ StringCharacter = [^\r\n\"\\]
   "*"                           { return symbol(TokenType.MULTIPLY); }
   "%"                           { return symbol(TokenType.MODULO); }
   "&"                           { return symbol(TokenType.REFERENCE_SYM); }
+  "::"                          { return symbol(TokenType.SCOPE_OP); }
   
+  /* Boolean Keywords */
+  "true"                        { return symbol(TokenType.TRUE); }
+  "false"                       { return symbol(TokenType.FALSE); }
+  "bool"                        { return symbol(TokenType.BOOL); }
+
   /* Boolean Operators */
   "<"                           { return symbol(TokenType.LT); }
   ">"                           { return symbol(TokenType.GT); }
@@ -90,6 +123,7 @@ StringCharacter = [^\r\n\"\\]
   "=="                          { return symbol(TokenType.EQ_EQ); }
   "&&"                          { return symbol(TokenType.AND_SYMBOL); }
   "||"                          { return symbol(TokenType.OR_SYMBOL); }
+  "!"                          { return symbol(TokenType.NOT_SYMBOL); }
   "!="                          { return symbol(TokenType.NOT_EQUAL); }
   "?"                           { return symbol(TokenType.QUESTION_MARK); }
   "!"                           { return symbol(TokenType.EXCLAMATION_POINT); }
