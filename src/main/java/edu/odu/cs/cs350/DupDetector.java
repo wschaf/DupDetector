@@ -1,7 +1,8 @@
 package edu.odu.cs.cs350;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FilenameFilter;
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.Scanner;
 /**
  * DupDetector is the main class for the system. It will call
@@ -40,9 +41,9 @@ public class DupDetector {
                     }
                     s.close();
                     
-                    //Reader input = new StringReader(source);
-                    //TokenAnalyzer t = new TokenAnalyzer(input);
-                    System.out.println(f);
+                    Reader input = new StringReader(source);
+                    TokenAnalyzer t = new TokenAnalyzer(input);
+                    System.out.println(t);
                 }
                 else if(f.isDirectory()){
                 	
