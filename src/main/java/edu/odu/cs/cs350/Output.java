@@ -126,7 +126,7 @@ public class Output implements OutputInterface {
 	 * line/column number for the start, and the list of tokens
 	 * in each refactoring opportunity.
 	 * Returns an empty string if there were no files processed.
-	 * If @param refactoringsToPrint > the number of refactorings,
+	 * If @param refactoringsToPrint  the number of refactorings,
 	 * prints all refactorings. Else, prints only that number of refactorings.
 	 */
 	@Override
