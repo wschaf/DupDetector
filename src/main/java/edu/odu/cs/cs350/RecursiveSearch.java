@@ -9,7 +9,7 @@ import java.util.*;
 	/**
      * searchDirectory recursively searches a given file path and
      * check if the file path ends with a directory
-     * @param startDir - the start of the absolute file path
+     * @param startDir: the start of the absolute file path
      */
 public class RecursiveSearch {
 	
