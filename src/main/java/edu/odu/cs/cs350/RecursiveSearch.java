@@ -6,13 +6,13 @@ import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.util.*;
 
+public class RecursiveSearch {
+	
 	/**
      * searchDirectory recursively searches a given file path and
      * check if the file path ends with a directory
      * @param startDir the start of the absolute file path
      */
-public class RecursiveSearch {
-	
 	public void searchDirectory(String startDir) {
     	
         File dir = new File(startDir);     
