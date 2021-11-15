@@ -36,6 +36,7 @@ public enum TokenType {
     OR_SYMBOL, 
     NOT_EQUAL, 
     QUESTION_MARK, 
+    EXCLAMATION_POINT, 
     SEMI_COLON, 
     COMMA, 
     PERIOD, 
