@@ -1,16 +1,18 @@
 package edu.odu.cs.cs350;
+
+import java.io.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
-import java.util.Scanner;
+import java.util.*;
 
-	/**
-     * searchDirectory recursively searches a given file path and
-     * check if the file path ends with a directory
-     * @param startDir - the start of the absolute file path
-     */
 public class RecursiveSearch {
 
+    /**
+     * searchDirectory recursively searches a given file path and
+     * check if the file path ends with a directory
+     * @param startDir: the start of the absolute file path
+     */
 	public void searchDirectory(String startDir) {
     	
         File dir = new File(startDir);
@@ -35,7 +37,6 @@ public class RecursiveSearch {
         };
         
         File[] files = dir.listFiles(filter);
-        
             for (File f : files) {
             	
             	try {
@@ -44,7 +45,6 @@ public class RecursiveSearch {
                     searchDirectory(f.getAbsolutePath());
                 } 
                 else {
-                	
                 		Scanner s = new Scanner(f);
                 		String source = " ";
                         while (s.hasNext()) {
@@ -52,9 +52,11 @@ public class RecursiveSearch {
                         }
                         s.close();
                         
-                        //Reader input = new StringReader(source);
-                        //TokenAnalyzer t = new TokenAnalyzer(input);
+                        Reader input = new StringReader(source);
+                        TokenAnalyzer t = new TokenAnalyzer(input);
+                        t.processSourceCode();
                 		System.out.println(f);
+                        System.out.println(t.toString());
                 	} 
             	}
             	

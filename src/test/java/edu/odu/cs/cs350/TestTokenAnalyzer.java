@@ -9,9 +9,8 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.assertThat; 
 import static org.hamcrest.Matchers.*;
 
-
 /**
- * Unit tests for both TokenAnalyzer and Token Classes
+ * Tests functionality of token analyzer
  */
 public class TestTokenAnalyzer {
     
@@ -21,22 +20,22 @@ public class TestTokenAnalyzer {
     }
 
     @Test
-    public void testTokenConstructors() {
-        Token t = new Token(TokenType.ADD, 1, 1);
-        assertThat(t.getTokenType(), equalTo(TokenType.ADD));
-        assertThat(t.getLineNumber(), equalTo("1"));
-        assertThat(t.getColumnNumber(), equalTo("1"));
-        assertThat(t.getLexeme(), equalTo(""));
+    public void testConstructors() {
+        String s = "Total tokens in file: ";
+        TokenAnalyzer tA = new TokenAnalyzer();
+        assertThat(tA.getFileTokenCount(), equalTo(0));
+        assertThat(tA.toString(), equalTo(s + "0"));
 
-        t = new Token(TokenType.CONSTANT_NUMBERS, 2, 2, "35");
-        assertThat(t.getTokenType(), equalTo(TokenType.CONSTANT_NUMBERS));
-        assertThat(t.getLineNumber(), equalTo("2"));
-        assertThat(t.getColumnNumber(), equalTo("2"));
-        assertThat(t.getLexeme(), equalTo("35"));
+        
+        Reader in = new StringReader("abc");
+        TokenAnalyzer tB = new TokenAnalyzer(in);
+        assertThat(tB.getFileTokenCount(), equalTo(0));
+        assertThat(tB.toString(), equalTo(s + "0"));
     }
 
+
     @Test
-    public void TestAnalyzer() {
+    public void testProcessSourceCode() {
         
         try {
             File f = new File("src\\test\\data\\test.cpp");
@@ -47,14 +46,13 @@ public class TestTokenAnalyzer {
             }
             s.close();
 
+            ArrayList <Token> tokens = new ArrayList<Token>();
             Reader input = new StringReader(source);
             TokenAnalyzer tokenAnalyzer = new TokenAnalyzer(input);
-            ArrayList <Token> tokens = new ArrayList<Token>();
+            tokenAnalyzer.processSourceCode();
             
             assertThat(tokens.size(), not(equalTo(tokenAnalyzer.getFileTokenCount())));
-
             for(Token t: tokenAnalyzer) tokens.add(t);
-
             assertThat(tokens.size(), equalTo(tokenAnalyzer.getFileTokenCount()));
             
             Token t = tokens.get(0);
@@ -64,8 +62,8 @@ public class TestTokenAnalyzer {
             assertThat(t.getColumnNumber(), equalTo("1"));
 
             t = tokens.get(3);
-            assertThat(TokenType.IDENTIFIER, equalTo(t.getTokenType()));
-            assertThat(t.getLexeme(), equalTo("iostream"));
+            assertThat(TokenType.IOSTREAM, equalTo(t.getTokenType()));
+            assertThat(t.getLexeme(), equalTo(""));
             assertThat(t.getLineNumber(),equalTo("1"));
             assertThat(t.getColumnNumber(), equalTo("11"));
 
