@@ -38,7 +38,6 @@ public enum TokenType {
     QUESTION_MARK, 
     EXCLAMATION_POINT, 
     SEMI_COLON, 
-    COLON,
     COMMA, 
     PERIOD, 
     HASH_SYMBOL,

@@ -20,7 +20,7 @@ public class Refactoring implements RefactoringInterface {
 
     public Refactoring(List<TokenInterface> current, List<TokenInterface> list) {
         numberOfTokens = current.size();
-        absolutePath = current.get(0).getAbsolutePath();
+        //absolutePath = current.get(0).getAbsolutePath();
         lineNumber = Integer.parseInt(current.get(0).getLineNumber());
         columnNumber = Integer.parseInt(current.get(0).getColumnNumber());
         tokenList = current.toString();
