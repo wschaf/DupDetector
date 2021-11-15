@@ -54,7 +54,6 @@ public class DupDetector {
                 	
                 }
                 
-                
             } catch(FileNotFoundException e) {
                 System.out.println(e.getMessage());
             }

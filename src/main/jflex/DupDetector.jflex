@@ -126,6 +126,7 @@ StringCharacter = [^\r\n\"\\]
   "!"                          { return symbol(TokenType.NOT_SYMBOL); }
   "!="                          { return symbol(TokenType.NOT_EQUAL); }
   "?"                           { return symbol(TokenType.QUESTION_MARK); }
+  "!"                           { return symbol(TokenType.EXCLAMATION_POINT); }
 
   /* Other Tokens */
   ";"                           { return symbol(TokenType.SEMI_COLON); }
