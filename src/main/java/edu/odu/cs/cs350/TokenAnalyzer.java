@@ -75,6 +75,6 @@ public class TokenAnalyzer implements Iterable<Token> {
      */
     @Override
     public String toString() {
-        return "Total tokens in file: " + Integer.toString(getFileTokenCount());
+        return Integer.toString(getFileTokenCount());
     }
 }

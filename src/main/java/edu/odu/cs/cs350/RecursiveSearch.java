@@ -35,7 +35,8 @@ public class RecursiveSearch {
                         
             				Reader input = new StringReader(source);
             				TokenAnalyzer t = new TokenAnalyzer(input);
-            				System.out.println(t);
+							t.processSourceCode();
+            				System.out.println(f + ", " + t);
             			}
             			else {
             				System.out.println("File not Supported");
