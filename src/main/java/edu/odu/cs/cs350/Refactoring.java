@@ -1,6 +1,9 @@
 package edu.odu.cs.cs350;
 
+import java.util.List;
+
 import edu.odu.cs.cs350.Interfaces.RefactoringInterface;
+import edu.odu.cs.cs350.Interfaces.TokenInterface;
 
 /**
  * A refactoring object contains the information needed by
@@ -14,6 +17,14 @@ public class Refactoring implements RefactoringInterface {
     public int columnNumber;
     public String tokenList;
     public int opportunityValue;
+
+    public Refactoring(List<TokenInterface> current, List<TokenInterface> list) {
+        numberOfTokens = current.size();
+        absolutePath = current.get(0).getAbsolutePath();
+        lineNumber = Integer.parseInt(current.get(0).getLineNumber());
+        columnNumber = Integer.parseInt(current.get(0).getColumnNumber());
+        tokenList = current.toString();
+    }
 
     @Override
     public String getNumberOfTokens() {
