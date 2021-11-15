@@ -43,6 +43,7 @@ public class DupDetector {
                     
                     Reader input = new StringReader(source);
                     TokenAnalyzer t = new TokenAnalyzer(input);
+                    System.out.println(f);
                     System.out.println(t);
                 }
                 else if(f.isDirectory()){
