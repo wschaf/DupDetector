@@ -11,6 +11,7 @@ import java.util.*;
 public class Recommender {
 
     private List<TokenInterface> tokens;
+    private List<RefactoringInterface> refactorings;
     int minSublistSize;
     int maxSublistSize;
     
@@ -18,7 +19,9 @@ public class Recommender {
      * Default constructor for Recommender.
      */
     Recommender() {
-        tokens = new ArrayList<TokenInterface>();
+        this.setTokens(new ArrayList<TokenInterface>());
+        setMinSublistSize(0);
+        setMaxSublistSize(0);
     }
 
     /**
@@ -119,12 +122,14 @@ public class Recommender {
             result.add(new Refactoring(candidate, opportunityValue));
         }
 
+        this.refactorings = result;
+
         /**
          * Sort the list from greatest to least oppotunity value.
          */
         Sort();
 
-        return result;
+        return this.refactorings;
     }
 
     /**
@@ -132,6 +137,7 @@ public class Recommender {
      */
     private void Sort() {
         // todo
+        return;
     }
 
     /**

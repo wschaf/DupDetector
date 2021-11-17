@@ -9,7 +9,7 @@ import edu.odu.cs.cs350.Interfaces.TokenInterface;
  * A refactoring object contains the information needed by
  * Output to print the refactoring suggestion and its associated metadata.
  */
-public class Refactoring implements RefactoringInterface {
+public class Refactoring implements RefactoringInterface, Comparable<Refactoring> {
 
     public int numberOfTokens;
     public String absolutePath;
@@ -53,6 +53,11 @@ public class Refactoring implements RefactoringInterface {
     @Override
     public String getTokenList() {
         return tokenList;
+    }
+
+    @Override
+    public int compareTo(Refactoring o) {
+        return o.opportunityValue - this.opportunityValue;
     }
     
 }
