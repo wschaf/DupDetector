@@ -26,6 +26,10 @@ public class Refactoring implements RefactoringInterface {
         tokenList = current.toString();
     }
 
+    public Refactoring(List<TokenInterface> candidate, int opportunityValue) {
+        //todo
+    }
+
     @Override
     public String getNumberOfTokens() {
         return Integer.toString(numberOfTokens);
