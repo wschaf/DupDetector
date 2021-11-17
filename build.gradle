@@ -31,7 +31,7 @@ sourceSets {
 
 jar {
     manifest {
-        attributes 'Class-Path': configurations.runtimeClasspath.files.collect { jarDir+"/$it.getName()" }.join(' ')
+        attributes 'Class-Path': configurations.runtimeClasspath.files.collect {it.getName() }.join(' ')
         attributes 'Main-Class': 'edu.odu.cs.cs350.DupDetector'     // to execute .jar files
     }
 

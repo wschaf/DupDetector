@@ -3,7 +3,6 @@ package edu.odu.cs.cs350;
 import java.io.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FilenameFilter;
 import java.util.*;
 
 public class RecursiveSearch {
@@ -35,7 +34,8 @@ public class RecursiveSearch {
                         
             				Reader input = new StringReader(source);
             				TokenAnalyzer t = new TokenAnalyzer(input);
-            				System.out.println(t);
+							t.processSourceCode();
+            				System.out.println(f + ", " + t);
             			}
             			else {
             				System.out.println("File not Supported");

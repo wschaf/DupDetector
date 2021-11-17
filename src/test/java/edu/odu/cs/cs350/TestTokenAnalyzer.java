@@ -21,16 +21,15 @@ public class TestTokenAnalyzer {
 
     @Test
     public void testConstructors() {
-        String s = "Total tokens in file: ";
         TokenAnalyzer tA = new TokenAnalyzer();
         assertThat(tA.getFileTokenCount(), equalTo(0));
-        assertThat(tA.toString(), equalTo(s + "0"));
+        assertThat(tA.toString(), equalTo("0"));
 
         
         Reader in = new StringReader("abc");
         TokenAnalyzer tB = new TokenAnalyzer(in);
         assertThat(tB.getFileTokenCount(), equalTo(0));
-        assertThat(tB.toString(), equalTo(s + "0"));
+        assertThat(tB.toString(), equalTo("0"));
     }
 
 
