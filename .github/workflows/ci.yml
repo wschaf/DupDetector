@@ -34,6 +34,7 @@ jobs:
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: build # The folder the action should deploy.
-          clean-exclude: index.md
-          clean: classes/java generatedSources/ libs/ tmp/ 
+          clean-exclude: |
+            index.md
+            README.md
 
