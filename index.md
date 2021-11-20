@@ -7,3 +7,4 @@ Will
 
 * [Tests](./reports/tests/test/)
 * [JavaDoc](./docs/javadoc/)
+* [Jacoco](./jacoco/)
