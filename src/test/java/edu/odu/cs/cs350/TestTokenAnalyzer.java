@@ -37,7 +37,7 @@ public class TestTokenAnalyzer {
     public void testProcessSourceCode() {
         
         try {
-            File f = new File("src\\test\\data\\test.cpp");
+            File f = new File("src/test/data/test.cpp");
             Scanner s = new Scanner(f);
             String source = "";
             while (s.hasNext()) {
@@ -89,10 +89,6 @@ public class TestTokenAnalyzer {
             assertThat(t.getLexeme(), equalTo("0"));
             assertThat(t.getLineNumber(),equalTo("11"));
             assertThat(t.getColumnNumber(), equalTo("12"));
-
-            // for debugging purposes
-            System.out.println(tokens);
-
         } 
         catch(FileNotFoundException e) {
             System.out.println(e.getMessage());
