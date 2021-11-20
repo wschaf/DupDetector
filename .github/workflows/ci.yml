@@ -33,7 +33,7 @@ jobs:
         run: ./gradlew build
 
       - name: Deploy Website
-        run: ./gradlew report
+        run: ./gradlew deployReports
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.5
