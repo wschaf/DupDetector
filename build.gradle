@@ -2,6 +2,7 @@ plugins {
    id 'java'
    id "org.xbib.gradle.plugin.jflex" version "1.5.0"    // Jflex plugin
    id "org.xbib.gradle.plugin.git" version "2.0.0"
+   id "com.github.johnrengelman.shadow" version "7.1.0"
 }
 
 java {
@@ -31,12 +32,10 @@ sourceSets {
 
 jar {
     manifest {
-        attributes 'Class-Path': configurations.runtimeClasspath.files.collect {it.getName() }.join(' ')
         attributes 'Main-Class': 'edu.odu.cs.cs350.DupDetector'     // to execute .jar files
     }
-
-    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
 }
+
 
 task copyDocs (type: Copy) {                            // task to copy javadocs to "docs" directory
     from 'build/docs'

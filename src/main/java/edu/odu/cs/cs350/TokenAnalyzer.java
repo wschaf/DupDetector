@@ -38,7 +38,8 @@ public class TokenAnalyzer implements Iterable<Token> {
 
     /**
      * Divides source codes into tokens.
-     * The function will scan each token base on the token type
+     * The function will scan each token and add it to the 
+     * list container if the token type is defined in the TokenType class
      */
     public void processSourceCode() {
         try {

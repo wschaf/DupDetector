@@ -37,7 +37,7 @@ public class TestTokenAnalyzer {
     public void testProcessSourceCode() {
         
         try {
-            File f = new File("src\\test\\data\\test.cpp");
+            File f = new File("src/test/data/test.cpp");
             Scanner s = new Scanner(f);
             String source = "";
             while (s.hasNext()) {
@@ -50,9 +50,9 @@ public class TestTokenAnalyzer {
             TokenAnalyzer tokenAnalyzer = new TokenAnalyzer(input);
             tokenAnalyzer.processSourceCode();
             
-            assertThat(tokens.size(), not(equalTo(tokenAnalyzer.getFileTokenCount())));
+            assertThat(tokens.size(), equalTo(0));
             for(Token t: tokenAnalyzer) tokens.add(t);
-            assertThat(tokens.size(), equalTo(tokenAnalyzer.getFileTokenCount()));
+            assertThat(tokens.size(), equalTo(24));
             
             Token t = tokens.get(0);
             assertThat(TokenType.HASH_SYMBOL, equalTo(t.getTokenType()));
