@@ -2,7 +2,7 @@ plugins {
    id 'java'
    id "org.xbib.gradle.plugin.jflex" version "1.5.0"    // Jflex plugin
    id "org.xbib.gradle.plugin.git" version "2.0.0"
-   id "com.github.johnrengelman.shadow" version "7.1.0"
+   id "jacoco"                                          // provides code coverage metrics
 }
 
 java {
@@ -37,12 +37,32 @@ jar {
 }
 
 test {
-ignoreFailures = true                                   //  Continue to build even after failing a unit test
+    ignoreFailures = true                                   //  Continue to build even after failing a unit test
     useJUnitPlatform()                                  //  Use JUnit for the Unit Test Framework
     testLogging {
         showStandardStreams = true                      //  Make sure output from standard out or error is shown in Gradle output.
     }
+    reports {
+        html.enabled = true
+    }
 }
+
+javadoc {
+    failOnError false
+}
+
+jacocoTestReport {                                      // Implements standard gradle type reporting
+    reports {
+        html.enabled true
+        xml.enabled true
+        csv.enabled true
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
 
 task copyDocs (type: Copy) {                            // task to copy javadocs to "docs" directory
     from 'build/docs'
