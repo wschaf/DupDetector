@@ -38,6 +38,14 @@ jar {
     exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
 }
 
+test {
+ignoreFailures = true                                   //  Continue to build even after failing a unit test
+    useJUnitPlatform()                                  //  Use JUnit for the Unit Test Framework
+    testLogging {
+        showStandardStreams = true                      //  Make sure output from standard out or error is shown in Gradle output.
+    }
+}
+
 task copyDocs (type: Copy) {                            // task to copy javadocs to "docs" directory
     from 'build/docs'
     into "docs/"
@@ -48,6 +56,15 @@ task copyTest (type: Copy) {                            // task to copy test rep
     from 'build/reports'
     into "reports/"
     dependsOn 'test'
+}
+
+task deleteExtraBuildFiles(type: Delete) {
+    delete  'build/classes',
+            'build/generated',
+            'build/libs',
+            'build/resources',
+            'build/test-results',
+            'build/tmp'
 }
 
 task report (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest']) {      // execute task commands
@@ -79,13 +96,4 @@ task deployReports (type: Copy, dependsOn: ['report', 'check']) {
         }
     }
 
-}
-
-
-test {
-ignoreFailures = true                                   //  Continue to build even after failing a unit test
-    useJUnitPlatform()                                  //  Use JUnit for the Unit Test Framework
-    testLogging {
-        showStandardStreams = true                      //  Make sure output from standard out or error is shown in Gradle output.
-    }
 }
