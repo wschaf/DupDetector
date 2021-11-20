@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Token.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DupDetector</a> &gt; <a href="index.source.html" class="el_package">edu.odu.cs.cs350</a> &gt; <span class="el_source">Token.java</span></div><h1>Token.java</h1><pre class="source lang-java linenums">package edu.odu.cs.cs350;
+
+import edu.odu.cs.cs350.Interfaces.TokenInterface;
+
+/**
+ * Token file contains the information needed for a token defined in the TokenType class.
+ * Token metadata includes tokentype, string lexeme of Identifier or Number, the line number
+ * of the token, and the column number of the token.
+ */
+public class Token implements TokenInterface{
+    
+    private TokenType tokenType;
+    private String lexeme;
+    private int lineNumber;
+    private int ColumnNumber;
+
+
+    /**
+     * 
+     * @param type: Type of token given in the TokenType class
+     * @param line: line number of the current token
+     * @param column: line number of the current token
+     */
+<span class="fc" id="L24">    public Token(TokenType type, int line, int column) {</span>
+<span class="fc" id="L25">        this.tokenType = type;</span>
+<span class="fc" id="L26">        this.lexeme = &quot;&quot;;</span>
+<span class="fc" id="L27">        this.lineNumber = line;</span>
+<span class="fc" id="L28">        this.ColumnNumber = column;</span>
+<span class="fc" id="L29">    }</span>
+
+    /**
+     * 
+     * @param type: Type of token given in the TokenType class
+     * @param line: line number of the current token
+     * @param column: starting column number of the current token
+     * @param lexeme: string representation of this token
+     */
+<span class="fc" id="L38">    public Token(TokenType type, int line, int column, String lexeme) {</span>
+<span class="fc" id="L39">        this.tokenType = type;</span>
+<span class="fc" id="L40">        this.lexeme = lexeme;</span>
+<span class="fc" id="L41">        this.lineNumber = line;</span>
+<span class="fc" id="L42">        this.ColumnNumber = column;</span>
+<span class="fc" id="L43">    }</span>
+
+    /**
+     * 
+     * @return the token type of this current token.
+     */
+    public TokenType getTokenType() {
+<span class="fc" id="L50">        return this.tokenType;</span>
+    }
+
+    /**
+     * 
+     * @return the string lexeme of this current token, empty if it's not 
+     *         an Identifier or a number.
+     */
+    @Override
+    public String getLexeme() {
+<span class="fc" id="L60">        return this.lexeme;</span>
+    }
+
+    /**
+     * 
+     * @return the line number of this current token in string format
+     */
+    @Override
+    public String getLineNumber() {
+<span class="fc" id="L69">        return Integer.toString(this.lineNumber);</span>
+    }
+
+    /**
+     * 
+     * @return the column number of this current token in string format
+     *         for string literals, the column number will be the ending
+     *          of the string. (i.e. the second quotation)
+     */
+    @Override
+    public String getColumnNumber() {
+<span class="fc" id="L80">        return Integer.toString(this.ColumnNumber);</span>
+    }
+
+     /**
+     * Representation of the token in two format
+     * according to the use of constructor.
+     */
+    @Override
+    public String toString() {
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        if (getLexeme().length() &gt; 0) {</span>
+<span class="nc" id="L90">            return getTokenType() + &quot;:&quot; + </span>
+<span class="nc" id="L91">                   getLexeme() + &quot;:&quot; + </span>
+<span class="nc" id="L92">                   getLineNumber() + &quot;:&quot; + </span>
+<span class="nc" id="L93">                   getColumnNumber();</span>
+        } else {
+<span class="nc" id="L95">            return getTokenType().toString()+ &quot;:&quot; + </span>
+<span class="nc" id="L96">                   getLineNumber() + &quot;:&quot; + </span>
+<span class="nc" id="L97">                   getColumnNumber();</span>
+        }
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

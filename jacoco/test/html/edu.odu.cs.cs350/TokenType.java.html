@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TokenType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DupDetector</a> &gt; <a href="index.source.html" class="el_package">edu.odu.cs.cs350</a> &gt; <span class="el_source">TokenType.java</span></div><h1>TokenType.java</h1><pre class="source lang-java linenums">package edu.odu.cs.cs350;
+
+/**
+ * Covers some of C++ token types
+ * 
+ */
+<span class="fc" id="L7">public enum TokenType {</span>
+<span class="fc" id="L8">    WHILE, </span>
+<span class="fc" id="L9">    IF, </span>
+<span class="fc" id="L10">    ELSE, </span>
+<span class="fc" id="L11">    ELSE_IF, </span>
+<span class="fc" id="L12">    COUT, </span>
+<span class="fc" id="L13">    CIN, </span>
+<span class="fc" id="L14">    CERR, </span>
+<span class="fc" id="L15">    ENDL, </span>
+<span class="fc" id="L16">    BREAK, </span>
+<span class="fc" id="L17">    SWITCH, </span>
+<span class="fc" id="L18">    RETURN,</span>
+<span class="fc" id="L19">    ASSIGN_OP, </span>
+<span class="fc" id="L20">    OSTREAM, </span>
+<span class="fc" id="L21">    ISTREAM, </span>
+<span class="fc" id="L22">    INCREMENT, </span>
+<span class="fc" id="L23">    DECREMENT, </span>
+<span class="fc" id="L24">    SUBTRACT, </span>
+<span class="fc" id="L25">    ADD, </span>
+<span class="fc" id="L26">    DIVIDE,</span>
+<span class="fc" id="L27">    MULTIPLY, </span>
+<span class="fc" id="L28">    MODULO, </span>
+<span class="fc" id="L29">    REFERENCE_SYM, </span>
+<span class="fc" id="L30">    LT, </span>
+<span class="fc" id="L31">    GT, </span>
+<span class="fc" id="L32">    LEQ, </span>
+<span class="fc" id="L33">    GEQ, </span>
+<span class="fc" id="L34">    EQ_EQ, </span>
+<span class="fc" id="L35">    AND_SYMBOL,</span>
+<span class="fc" id="L36">    OR_SYMBOL, </span>
+<span class="fc" id="L37">    NOT_EQUAL, </span>
+<span class="fc" id="L38">    QUESTION_MARK, </span>
+<span class="fc" id="L39">    SEMI_COLON, </span>
+<span class="fc" id="L40">    COMMA, </span>
+<span class="fc" id="L41">    PERIOD, </span>
+<span class="fc" id="L42">    HASH_SYMBOL,</span>
+<span class="fc" id="L43">    TILDA, </span>
+<span class="fc" id="L44">    AT_SYMBOL, </span>
+<span class="fc" id="L45">    LEFT_BRACE, </span>
+<span class="fc" id="L46">    RIGHT_BRACE, </span>
+<span class="fc" id="L47">    LEFT_BRACKET, </span>
+<span class="fc" id="L48">    RIGHT_BRACKET,</span>
+<span class="fc" id="L49">    LEFT_PAREN, </span>
+<span class="fc" id="L50">    RIGHT_PAREN, </span>
+<span class="fc" id="L51">    EOF, </span>
+<span class="fc" id="L52">    IDENTIFIER, </span>
+<span class="fc" id="L53">    CONSTANT_NUMBERS, </span>
+<span class="fc" id="L54">    STRING_LITERAL,</span>
+<span class="fc" id="L55">    CONTINUE,</span>
+<span class="fc" id="L56">    DO,</span>
+<span class="fc" id="L57">    CONST,</span>
+<span class="fc" id="L58">    INT,</span>
+<span class="fc" id="L59">    DOUBLE,</span>
+<span class="fc" id="L60">    FLOAT,</span>
+<span class="fc" id="L61">    FOR,</span>
+<span class="fc" id="L62">    DEFAULT, </span>
+<span class="fc" id="L63">    INCLUDE, </span>
+<span class="fc" id="L64">    FINAL,</span>
+<span class="fc" id="L65">    OVERRIDE,</span>
+<span class="fc" id="L66">    BOOL,</span>
+<span class="fc" id="L67">    CLASS,</span>
+<span class="fc" id="L68">    DELETE,</span>
+<span class="fc" id="L69">    NEW,</span>
+<span class="fc" id="L70">    ENUM,</span>
+<span class="fc" id="L71">    SIZEOF,</span>
+<span class="fc" id="L72">    NAMESPACE,</span>
+<span class="fc" id="L73">    USING,</span>
+<span class="fc" id="L74">    VIRTUAL, </span>
+<span class="fc" id="L75">    INHERETS,</span>
+<span class="fc" id="L76">    VOID,</span>
+<span class="fc" id="L77">    PUBLIC,</span>
+<span class="fc" id="L78">    STRING,</span>
+<span class="fc" id="L79">    INLINE,</span>
+<span class="fc" id="L80">    LONG,</span>
+<span class="fc" id="L81">    TRUE,</span>
+<span class="fc" id="L82">    FALSE,</span>
+<span class="fc" id="L83">    STD,</span>
+<span class="fc" id="L84">    IOSTREAM,</span>
+<span class="fc" id="L85">    SCOPE_OP,</span>
+<span class="fc" id="L86">    COLON,</span>
+<span class="fc" id="L87">    NOT_SYMBOL</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

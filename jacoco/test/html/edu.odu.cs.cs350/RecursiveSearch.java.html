@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RecursiveSearch.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DupDetector</a> &gt; <a href="index.source.html" class="el_package">edu.odu.cs.cs350</a> &gt; <span class="el_source">RecursiveSearch.java</span></div><h1>RecursiveSearch.java</h1><pre class="source lang-java linenums">package edu.odu.cs.cs350;
+
+import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
+
+<span class="nc" id="L8">public class RecursiveSearch {</span>
+	
+	/**
+     * searchDirectory recursively searches a given file path and
+     * check if the file path ends with a directory
+     * @param startDir the start of the absolute file path
+     */
+	public void searchDirectory(String startDir) {
+    	
+<span class="nc" id="L17">        File dir = new File(startDir);     </span>
+<span class="nc" id="L18">        File[] files = dir.listFiles();</span>
+<span class="nc bnc" id="L19" title="All 2 branches missed.">            for (File f : files) {</span>
+            	
+            	try {
+                // Check if the file is a directory
+<span class="nc bnc" id="L23" title="All 2 branches missed.">            		if (f.isDirectory()) {</span>
+<span class="nc" id="L24">            			searchDirectory(f.getAbsolutePath());</span>
+            		} 
+            		else {      
+<span class="nc bnc" id="L27" title="All 4 branches missed.">            			if(f.getName().endsWith(&quot;.cpp&quot;) || f.getName().endsWith(&quot;.h&quot;)) {</span>
+<span class="nc" id="L28">            				Scanner s = new Scanner(f);</span>
+<span class="nc" id="L29">            				String source = &quot; &quot;;</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">            				while (s.hasNext()) {</span>
+<span class="nc" id="L31">            					source += s.nextLine() + &quot;\n&quot;;</span>
+            				}
+<span class="nc" id="L33">            				s.close();</span>
+                        
+<span class="nc" id="L35">            				Reader input = new StringReader(source);</span>
+<span class="nc" id="L36">            				TokenAnalyzer t = new TokenAnalyzer(input);</span>
+<span class="nc" id="L37">							t.processSourceCode();</span>
+<span class="nc" id="L38">            				System.out.println(f + &quot;, &quot; + t);</span>
+<span class="nc" id="L39">            			}</span>
+            			else {
+<span class="nc" id="L41">            				System.out.println(&quot;File not Supported&quot;);</span>
+            			}
+                	} 
+            	}
+            	
+<span class="nc" id="L46">            	catch(FileNotFoundException e) {</span>
+<span class="nc" id="L47">                    System.out.println(e.getMessage());</span>
+<span class="nc" id="L48">                }</span>
+         }
+        
+<span class="nc" id="L51">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
