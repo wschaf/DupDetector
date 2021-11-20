@@ -86,7 +86,7 @@ task deleteExtraBuildFiles(type: Delete) {
             'build/tmp'
 }
 
-task report (dependsOn: ['javadoc', 'test', 'deleteExtraBuildFiles']) {      // execute task commands
+task report (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest', 'deleteExtraBuildFiles']) {      // execute task commands
     description  'Generate Reports'
 }
 
