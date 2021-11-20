@@ -77,13 +77,13 @@ task copyTest (type: Copy) {                            // task to copy test rep
 }
 
 task deleteExtraBuildFiles(type: Delete) {
-    delete  'build/classes',
-            'build/generated',
-            'build/generatedSources',
-            'build/libs',
-            'build/resources',
-            'build/test-results',
-            'build/tmp'
+    delete  'build/classes'
+            // 'build/generated',
+            // 'build/generatedSources',
+            // 'build/libs',
+            // 'build/resources',
+            // 'build/test-results',
+            // 'build/tmp'
 }
 
 task report (dependsOn: ['javadoc', 'test', 'deleteExtraBuildFiles']) {      // execute task commands
