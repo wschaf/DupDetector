@@ -44,3 +44,4 @@ jobs:
             index.md
             _config.yml
             README.md
+            .gitignore
