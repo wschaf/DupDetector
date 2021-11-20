@@ -10,12 +10,32 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestRecommender {
     @Test
+    void testGetMaxSublistSize() {
+
+    }
+
+    @Test
+    void testGetMinSublistSize() {
+
+    }
+
+    @Test
     void testGetRecommendations() {
 
     }
 
     @Test
     void testGetTokens() {
+
+    }
+
+    @Test
+    void testSetMaxSublistSize() {
+
+    }
+
+    @Test
+    void testSetMinSublistSize() {
 
     }
 
