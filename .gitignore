@@ -1,9 +1,0 @@
-#Implicit Ignore All
-*
-
-#gh-pages
-!.gitignore
-!index.*
-!_config.*
-!docs/
-!reports/
