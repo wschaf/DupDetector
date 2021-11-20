@@ -1,45 +1,9 @@
-# Prerequisites
-*.d
+#Implicit Ignore All
+*
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-#Java
-bin
-/bin
-bin/
-*.class
-
-.vscode
-.gradle
-build
-.settings
-.project
-.classpath
+#gh-pages
+!.gitignore
+!index.*
+!_config.*
+!docs/
+!reports/
