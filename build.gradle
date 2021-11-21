@@ -138,8 +138,7 @@ task deleteExtraBuildFiles(type: Delete) {
             'build/reports/spotbugs/main.html'
 }
 
-task report (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest',
- 'deleteExtraBuildFiles', 'renamePMDMain', 'renameSpotBugsMain']) {      // execute task commands
+task report (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest','deleteExtraBuildFiles', 'renamePMDMain', 'renameSpotBugsMain']) {      // execute task commands
     description  'Generate Reports'
 }
 
