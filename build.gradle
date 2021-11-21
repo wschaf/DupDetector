@@ -3,6 +3,10 @@ plugins {
    id "org.xbib.gradle.plugin.jflex" version "1.5.0"    // Jflex plugin
    id "org.xbib.gradle.plugin.git" version "2.0.0"
    id 'jacoco'                                          // provides code coverage metrics
+//    id 'checkstyle'
+   id 'pmd'                                             // static code analysis
+   id "com.github.spotbugs" version "5.0.0-beta.8"      // another static code analysis
+
 }
 
 java {
@@ -56,16 +60,46 @@ jacocoTestReport {                                      // Implements standard g
     dependsOn test
     reports {
         html.enabled true
-        xml.enabled true
-        csv.enabled true
     }
 }
 
 jacoco {
     toolVersion = "0.8.7"
-    reportsDir = file("$buildDir/jacoco")
+    reportsDirectory = file("$buildDir/jacoco")
 }
 
+// checkstyle {
+// 	toolVersion "8.1"
+//     configFile file("${project.rootDir}/config/checkstyle.xml")
+//     ignoreFailures = true
+//     showViolations = false    
+// }
+
+// tasks.withType(Checkstyle) {
+//   reports {
+//     html.destination project.file("build/reports/checkstyle/main.html")
+//   }
+// }
+
+// checkstyleTest.enabled = false
+
+pmd {
+    ignoreFailures = true
+    consoleOutput = false
+}
+
+spotbugsMain {
+    ignoreFailures = true
+    effort = 'max'
+    reportLevel = 'medium'
+    reports {
+       xml.enabled = false
+       html.enabled = true
+    }
+}
+
+pmdTest.enabled = false                                 // suppresses running PMD on code in src/test/java
+spotbugsTest.enabled = false                            // suppresses running spotbugs on code in src/test/java
 
 task copyDocs (type: Copy) {                            // task to copy javadocs to "docs" directory
     from 'build/docs'
