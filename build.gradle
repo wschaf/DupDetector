@@ -126,7 +126,8 @@ task deleteExtraBuildFiles(type: Delete) {
             'build/libs',
             'build/resources',
             'build/test-results',
-            'build/tmp'
+            'build/tmp',
+            'build/reports/pmd/main.html'
 }
 
 task report (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest', 'deleteExtraBuildFiles', 'renameMainToIndex']) {      // execute task commands
