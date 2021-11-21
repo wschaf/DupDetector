@@ -3,10 +3,8 @@ plugins {
    id "org.xbib.gradle.plugin.jflex" version "1.5.0"    // Jflex plugin
    id "org.xbib.gradle.plugin.git" version "2.0.0"
    id 'jacoco'                                          // Provides code coverage metrics
-//    id 'checkstyle'
    id 'pmd'                                             // Static code analysis
    id "com.github.spotbugs" version "5.0.0-beta.8"      // Another static code analysis
-//    id 'edu.odu.cs.report_accumulator' version '1.3'     // Add graphs to reports
 
 }
 
@@ -69,21 +67,6 @@ jacoco {
     reportsDirectory = file("$buildDir/jacoco")
 }
 
-// checkstyle {
-// 	toolVersion "8.1"
-//     configFile file("${project.rootDir}/config/checkstyle.xml")
-//     ignoreFailures = true
-//     showViolations = false    
-// }
-
-// tasks.withType(Checkstyle) {
-//   reports {
-//     html.destination project.file("build/reports/checkstyle/main.html")
-//   }
-// }
-
-// checkstyleTest.enabled = false
-
 pmd {
     ignoreFailures = true
     consoleOutput = false
@@ -138,11 +121,11 @@ task deleteExtraBuildFiles(type: Delete) {
             'build/reports/spotbugs/main.html'
 }
 
-task report (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest','deleteExtraBuildFiles', 'renamePMDMain', 'renameSpotBugsMain']) {      // execute task commands
+task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest','deleteExtraBuildFiles', 'renamePMDMain', 'renameSpotBugsMain']) {      // execute task commands
     description  'Generate Reports'
 }
 
-task deployReports (type: Copy, dependsOn: ['report', 'check']) {
+task deployReports (type: Copy, dependsOn: ['reports', 'check']) {
     doLast {
         def thisRepo = rootProject.projectDir.toString()
         
