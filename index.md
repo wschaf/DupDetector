@@ -7,4 +7,6 @@ Will
 
 * [Tests](./reports/tests/test/)
 * [JavaDoc](./docs/javadoc/)
-* [Jacoco](./jacoco/test/html/)
+* [Jacoco - Unit and Integration Test Code Coverage](./jacoco/test/html/)
+* [PMD - Static Code Analysis](./reports/pmd/)
+* [SpotBugs - Static Code Analysis](./reports/spotbugs/)
