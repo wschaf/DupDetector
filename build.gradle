@@ -113,9 +113,15 @@ task copyTest (type: Copy) {                            // task to copy test rep
     dependsOn 'test'
 }
 
-task renameMainToIndex (type:Copy) {
+task renamePMDMain (type:Copy) {                        // rename main to index in order for gh-pages to detect html
     from 'build/reports/pmd/'
-    into 'build/reports/pmd'
+    into 'build/reports/pmd/'
+    rename('main.html', 'index.html')
+}
+
+task renameSpotBugsMain (type:Copy) {
+    from 'build/reports/spotbugs/'
+    into 'build/reports/spotbugs/'
     rename('main.html', 'index.html')
 }
 
@@ -127,10 +133,12 @@ task deleteExtraBuildFiles(type: Delete) {
             'build/resources',
             'build/test-results',
             'build/tmp',
-            'build/reports/pmd/main.html'
+            'build/reports/pmd/main.html',
+            'build/reports/spotbugs/main.html'
 }
 
-task report (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest', 'deleteExtraBuildFiles', 'renameMainToIndex']) {      // execute task commands
+task report (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest',
+ 'deleteExtraBuildFiles', 'renamePMDMain', 'renameSpotBugsMain']) {      // execute task commands
     description  'Generate Reports'
 }
 
