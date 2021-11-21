@@ -2,10 +2,11 @@ plugins {
    id 'java'
    id "org.xbib.gradle.plugin.jflex" version "1.5.0"    // Jflex plugin
    id "org.xbib.gradle.plugin.git" version "2.0.0"
-   id 'jacoco'                                          // provides code coverage metrics
+   id 'jacoco'                                          // Provides code coverage metrics
 //    id 'checkstyle'
-   id 'pmd'                                             // static code analysis
-   id "com.github.spotbugs" version "5.0.0-beta.8"      // another static code analysis
+   id 'pmd'                                             // Static code analysis
+   id "com.github.spotbugs" version "5.0.0-beta.8"      // Another static code analysis
+//    id 'edu.odu.cs.report_accumulator' version '1.3'     // Add graphs to reports
 
 }
 
@@ -29,14 +30,14 @@ sourceSets {
        srcDir "src/main/jflex"
      }
      java {
-       srcDir "$buildDir/generatedSources/jflex"        // directory for generated sources in the build folder
+       srcDir "$buildDir/generatedSources/jflex"        // Directory for generated sources in the build folder
      }
   }
 }
 
 jar {
     manifest {
-        attributes 'Main-Class': 'edu.odu.cs.cs350.DupDetector'     // to execute .jar files
+        attributes 'Main-Class': 'edu.odu.cs.cs350.DupDetector'     // To execute .jar files
     }
 }
 
@@ -98,22 +99,22 @@ spotbugsMain {
     }
 }
 
-pmdTest.enabled = false                                 // suppresses running PMD on code in src/test/java
-spotbugsTest.enabled = false                            // suppresses running spotbugs on code in src/test/java
+pmdTest.enabled = false                                 // Suppresses running PMD on code in src/test/java
+spotbugsTest.enabled = false                            // Suppresses running spotbugs on code in src/test/java
 
-task copyDocs (type: Copy) {                            // task to copy javadocs to "docs" directory
+task copyDocs (type: Copy) {                            // Task to copy javadocs to "docs" directory
     from 'build/docs'
     into "docs/"
     dependsOn 'javadoc'
 }
 
-task copyTest (type: Copy) {                            // task to copy test reports to "test" directory
+task copyTest (type: Copy) {                            // Task to copy test reports to "test" directory
     from 'build/reports'
     into "reports/"
     dependsOn 'test'
 }
 
-task renamePMDMain (type:Copy) {                        // rename main to index in order for gh-pages to detect html
+task renamePMDMain (type:Copy) {                        // Rename main to index in order for gh-pages to detect html
     from 'build/reports/pmd/'
     into 'build/reports/pmd/'
     rename('main.html', 'index.html')
@@ -168,3 +169,5 @@ task deployReports (type: Copy, dependsOn: ['report', 'check']) {
     }
 
 }
+
+// reportStats.reportsURL = 'https://wschaf.github.io/DupDetector/'
