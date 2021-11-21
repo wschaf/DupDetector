@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd" version="6.36.0" timestamp="2021-11-21T18:34:32.886">
+<file name="/home/runner/work/DupDetector/DupDetector/src/main/java/edu/odu/cs/cs350/DupDetector.java">
+<violation beginline="29" endline="61" begincolumn="10" endcolumn="49" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="DupDetector" method="main" variable="nSuggestions" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DU'-anomaly for variable 'nSuggestions' (lines '29'-'61').
+</violation>
+<violation beginline="36" endline="36" begincolumn="26" endcolumn="26" rule="CloseResource" ruleset="Error Prone" package="edu.odu.cs.cs350" class="DupDetector" method="main" variable="s" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#closeresource" priority="3">
+Ensure that resources like this Scanner object are closed after use
+</violation>
+<violation beginline="43" endline="43" begincolumn="28" endcolumn="32" rule="CloseResource" ruleset="Error Prone" package="edu.odu.cs.cs350" class="DupDetector" method="main" variable="input" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#closeresource" priority="3">
+Ensure that resources like this StringReader object are closed after use
+</violation>
+</file>
+<file name="/home/runner/work/DupDetector/DupDetector/src/main/java/edu/odu/cs/cs350/Recommender.java">
+<violation beginline="14" endline="14" begincolumn="40" endcolumn="51" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="Recommender" variable="refactorings" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="23" endline="23" begincolumn="9" endcolumn="28" rule="ConstructorCallsOverridableMethod" ruleset="Error Prone" package="edu.odu.cs.cs350" class="Recommender" method="Recommender" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#constructorcallsoverridablemethod" priority="1">
+Overridable method 'setMinSublistSize' called during object construction
+</violation>
+<violation beginline="24" endline="24" begincolumn="9" endcolumn="28" rule="ConstructorCallsOverridableMethod" ruleset="Error Prone" package="edu.odu.cs.cs350" class="Recommender" method="Recommender" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#constructorcallsoverridablemethod" priority="1">
+Overridable method 'setMaxSublistSize' called during object construction
+</violation>
+<violation beginline="32" endline="32" begincolumn="9" endcolumn="30" rule="ConstructorCallsOverridableMethod" ruleset="Error Prone" package="edu.odu.cs.cs350" class="Recommender" method="Recommender" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#constructorcallsoverridablemethod" priority="1">
+Overridable method 'setTokens' called during object construction
+</violation>
+</file>
+<file name="/home/runner/work/DupDetector/DupDetector/src/main/java/edu/odu/cs/cs350/RecursiveSearch.java">
+<violation beginline="28" endline="28" begincolumn="25" endcolumn="25" rule="CloseResource" ruleset="Error Prone" package="edu.odu.cs.cs350" class="RecursiveSearch" method="searchDirectory" variable="s" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#closeresource" priority="3">
+Ensure that resources like this Scanner object are closed after use
+</violation>
+<violation beginline="35" endline="35" begincolumn="24" endcolumn="28" rule="CloseResource" ruleset="Error Prone" package="edu.odu.cs.cs350" class="RecursiveSearch" method="searchDirectory" variable="input" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#closeresource" priority="3">
+Ensure that resources like this StringReader object are closed after use
+</violation>
+</file>
+<file name="/home/runner/work/DupDetector/DupDetector/src/main/java/edu/odu/cs/cs350/Refactoring.java">
+<violation beginline="14" endline="14" begincolumn="16" endcolumn="29" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="Refactoring" variable="numberOfTokens" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="15" endline="15" begincolumn="19" endcolumn="30" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="Refactoring" variable="absolutePath" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="16" endline="16" begincolumn="16" endcolumn="25" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="Refactoring" variable="lineNumber" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="17" endline="17" begincolumn="16" endcolumn="27" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="Refactoring" variable="columnNumber" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="18" endline="18" begincolumn="19" endcolumn="27" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="Refactoring" variable="tokenList" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="19" endline="19" begincolumn="16" endcolumn="31" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="Refactoring" variable="opportunityValue" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+</file>
+<file name="/home/runner/work/DupDetector/DupDetector/src/main/java/edu/odu/cs/cs350/Token.java">
+<violation beginline="12" endline="12" begincolumn="23" endcolumn="31" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="Token" variable="tokenType" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="13" endline="13" begincolumn="20" endcolumn="25" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="Token" variable="lexeme" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="14" endline="14" begincolumn="17" endcolumn="26" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="Token" variable="lineNumber" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="15" endline="15" begincolumn="17" endcolumn="28" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="Token" variable="ColumnNumber" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+</file>
+<file name="/home/runner/work/DupDetector/DupDetector/src/main/java/edu/odu/cs/cs350/TokenAnalyzer.java">
+<violation beginline="15" endline="15" begincolumn="25" endcolumn="39" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="TokenAnalyzer" variable="tokensContainer" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="16" endline="16" begincolumn="27" endcolumn="33" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="TokenAnalyzer" variable="scanner" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="17" endline="17" begincolumn="19" endcolumn="23" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="TokenAnalyzer" variable="token" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+</file>
+<file name="/home/runner/work/DupDetector/DupDetector/build/generatedSources/jflex/edu/odu/cs/cs350/LexerAnalyzer.java">
+<violation beginline="71" endline="73" begincolumn="5" endcolumn="67" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="zzUnpackcmap_top" variable="offset" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DU'-anomaly for variable 'offset' (lines '71'-'73').
+</violation>
+<violation beginline="312" endline="314" begincolumn="5" endcolumn="73" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="zzUnpackcmap_blocks" variable="offset" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DU'-anomaly for variable 'offset' (lines '312'-'314').
+</violation>
+<violation beginline="355" endline="357" begincolumn="5" endcolumn="63" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="zzUnpackAction" variable="offset" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DU'-anomaly for variable 'offset' (lines '355'-'357').
+</violation>
+<violation beginline="412" endline="414" begincolumn="5" endcolumn="63" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="zzUnpackRowMap" variable="offset" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DU'-anomaly for variable 'offset' (lines '412'-'414').
+</violation>
+<violation beginline="479" endline="479" begincolumn="5" endcolumn="45" rule="AvoidDuplicateLiterals" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#avoidduplicateliterals" priority="3">
+The String literal "\6\11\4\0\2\11\12\0\1\11\13\0\1\11\12\0" appears 4 times in this file; the first occurrence is on line 479
+</violation>
+<violation beginline="523" endline="523" begincolumn="5" endcolumn="45" rule="AvoidDuplicateLiterals" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#avoidduplicateliterals" priority="3">
+The String literal "\4\11\4\0\2\11\12\0\1\11\13\0\1\11\12\0" appears 4 times in this file; the first occurrence is on line 523
+</violation>
+<violation beginline="631" endline="633" begincolumn="5" endcolumn="61" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="zzUnpackTrans" variable="offset" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DU'-anomaly for variable 'offset' (lines '631'-'633').
+</violation>
+<violation beginline="641" endline="642" begincolumn="7" endcolumn="13" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="zzUnpackTrans" variable="value" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DD'-anomaly for variable 'value' (lines '641'-'642').
+</violation>
+<violation beginline="682" endline="684" begincolumn="5" endcolumn="69" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="zzUnpackAttribute" variable="offset" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DU'-anomaly for variable 'offset' (lines '682'-'684').
+</violation>
+<violation beginline="699" endline="699" begincolumn="26" endcolumn="33" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" variable="zzReader" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="702" endline="702" begincolumn="15" endcolumn="21" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" variable="zzState" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="705" endline="705" begincolumn="15" endcolumn="28" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" variable="zzLexicalState" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="711" endline="711" begincolumn="16" endcolumn="25" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" variable="zzBuffer" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="714" endline="714" begincolumn="15" endcolumn="25" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" variable="zzMarkedPos" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="717" endline="717" begincolumn="15" endcolumn="26" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" variable="zzCurrentPos" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="720" endline="720" begincolumn="15" endcolumn="25" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" variable="zzStartRead" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="723" endline="723" begincolumn="15" endcolumn="23" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" variable="zzEndRead" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="729" endline="729" begincolumn="19" endcolumn="25" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" variable="zzAtEOF" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="737" endline="737" begincolumn="15" endcolumn="34" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" variable="zzFinalHighSurrogate" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="740" endline="740" begincolumn="15" endcolumn="20" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" variable="yyline" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="743" endline="743" begincolumn="15" endcolumn="22" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" variable="yycolumn" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="747" endline="747" begincolumn="16" endcolumn="21" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" variable="yychar" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="751" endline="751" begincolumn="19" endcolumn="25" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" variable="zzAtBOL" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="755" endline="755" begincolumn="19" endcolumn="27" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" variable="zzEOFDone" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="758" endline="758" begincolumn="16" endcolumn="21" rule="BeanMembersShouldSerialize" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" variable="string" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#beanmembersshouldserialize" priority="3">
+Found non-transient, non-static member. Please mark as transient or provide accessors.
+</violation>
+<violation beginline="988" endline="990" begincolumn="7" endcolumn="46" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="zzScanError" variable="message" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DD'-anomaly for variable 'message' (lines '988'-'990').
+</violation>
+<violation beginline="1039" endline="1055" begincolumn="11" endcolumn="21" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="yylex" variable="zzR" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DD'-anomaly for variable 'zzR' (lines '1,039'-'1,055').
+</violation>
+<violation beginline="1046" endline="1046" begincolumn="9" endcolumn="47" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="yylex" variable="zzCharCount" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DD'-anomaly for variable 'zzCharCount' (lines '1,046'-'1,046').
+</violation>
+<violation beginline="1046" endline="1635" begincolumn="9" endcolumn="47" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="yylex" variable="zzCharCount" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DU'-anomaly for variable 'zzCharCount' (lines '1,046'-'1,635').
+</violation>
+<violation beginline="1047" endline="1073" begincolumn="9" endcolumn="9" rule="MissingBreakInSwitch" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="yylex" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#missingbreakinswitch" priority="3">
+A switch statement does not contain a break
+</violation>
+<violation beginline="1096" endline="1105" begincolumn="9" endcolumn="26" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="yylex" variable="zzAction" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DD'-anomaly for variable 'zzAction' (lines '1,096'-'1,105').
+</violation>
+<violation beginline="1104" endline="1104" begincolumn="34" endcolumn="34" rule="AvoidLiteralsInIfCondition" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="yylex" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#avoidliteralsinifcondition" priority="3">
+Avoid using Literals in Conditional Statements
+</violation>
+<violation beginline="1105" endline="1145" begincolumn="13" endcolumn="30" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="yylex" variable="zzAction" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DD'-anomaly for variable 'zzAction' (lines '1,105'-'1,145').
+</violation>
+<violation beginline="1105" endline="1635" begincolumn="9" endcolumn="26" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="yylex" variable="zzAction" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DU'-anomaly for variable 'zzAction' (lines '1,105'-'1,635').
+</violation>
+<violation beginline="1144" endline="1144" begincolumn="38" endcolumn="38" rule="AvoidLiteralsInIfCondition" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="yylex" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#avoidliteralsinifcondition" priority="3">
+Avoid using Literals in Conditional Statements
+</violation>
+<violation beginline="1145" endline="1145" begincolumn="13" endcolumn="30" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="yylex" variable="zzAction" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DD'-anomaly for variable 'zzAction' (lines '1,145'-'1,145').
+</violation>
+<violation beginline="1145" endline="1635" begincolumn="13" endcolumn="30" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="yylex" variable="zzAction" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DU'-anomaly for variable 'zzAction' (lines '1,145'-'1,635').
+</violation>
+<violation beginline="1146" endline="1146" begincolumn="13" endcolumn="40" rule="DataflowAnomalyAnalysis" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="yylex" variable="zzMarkedPosL" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#dataflowanomalyanalysis" priority="5">
+Found 'DD'-anomaly for variable 'zzMarkedPosL' (lines '1,146'-'1,146').
+</violation>
+<violation beginline="1147" endline="1147" begincolumn="40" endcolumn="40" rule="AvoidLiteralsInIfCondition" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="yylex" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#avoidliteralsinifcondition" priority="3">
+Avoid using Literals in Conditional Statements
+</violation>
+<violation beginline="1163" endline="1632" begincolumn="9" endcolumn="9" rule="MissingBreakInSwitch" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="yylex" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#missingbreakinswitch" priority="3">
+A switch statement does not contain a break
+</violation>
+<violation beginline="1171" endline="1172" begincolumn="13" endcolumn="13" rule="EmptyStatementBlock" ruleset="Error Prone" package="edu.odu.cs.cs350" class="LexerAnalyzer" method="yylex" externalInfoUrl="https://pmd.github.io/pmd-6.36.0/pmd_rules_java_errorprone.html#emptystatementblock" priority="3">
+Avoid empty block statements.
+</violation>
+</file>
+</pmd>
