@@ -96,7 +96,7 @@ spotbugsMain {
     }
 }
 
-checkstyleTest.enabled = false
+checkstyleTest.enabled = false                          // Suppresses running checkstyle on code in src/test/java
 pmdTest.enabled = false                                 // Suppresses running PMD on code in src/test/java
 spotbugsTest.enabled = false                            // Suppresses running spotbugs on code in src/test/java
 
@@ -176,7 +176,5 @@ task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest',
 
 // }
 
-
-
 reportStats.reportsURL = 'https://wschaf.github.io/DupDetector/'
-deployReports.deployDestination = 'DupDetector/reports/'
+deployReports.deployDestination = 'DupDetector/'
