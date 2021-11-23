@@ -177,4 +177,4 @@ task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest',
 // }
 
 reportStats.reportsURL = 'https://wschaf.github.io/DupDetector/'
-deployReports.deployDestination = 'DupDetector/'
+deployReports.deployDestination = 'DupDetector/build/'
