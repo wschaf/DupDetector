@@ -145,7 +145,7 @@ task deleteExtraBuildFiles(type: Delete) {
 
 task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest',
                           'deleteExtraBuildFiles', 'renamePMDMain',
-                           'renameSpotBugsMain']) {      // execute task commands
+                           'renameSpotBugsMain', 'renameCheckStyleMain']) {      // execute task commands
     description  'Generate Reports'
 }
 
