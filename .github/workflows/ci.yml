@@ -6,7 +6,7 @@ name: CI - build and test
 
 on:                                
   push:
-    branches: [ main ]
+    branches: [ push ]
   pull_request:
     branches: [ main ]
 
@@ -34,6 +34,9 @@ jobs:
 
       - name: Deploy Website
         run: ./gradlew reports
+
+      - name: Generate data graphs
+        run: ./gradlew reportStats
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.6
