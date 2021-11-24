@@ -180,6 +180,6 @@ task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest',
 reportStats {
     reportsURL = 'https://wschaf.github.io/DupDetector/'
     htmlSourceDir = file('src/main/html')  // default value
-    reportsDir = file('build/reports') // default value
+    reportsDir = file('build/reports/') // default value
     buildID = "12345"                  // defaults to current date, but can be any run identifier
 }
