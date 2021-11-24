@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.odu.cs.cs350.TestOutput" tests="15" skipped="0" failures="0" errors="0" timestamp="2021-11-24T15:28:20" hostname="fv-az77-549" time="0.123">
+<testsuite name="edu.odu.cs.cs350.TestOutput" tests="15" skipped="0" failures="0" errors="0" timestamp="2021-11-24T15:40:10" hostname="fv-az77-549" time="0.091">
   <properties/>
-  <testcase name="testGetRefactoringsToPrint()" classname="edu.odu.cs.cs350.TestOutput" time="0.023"/>
-  <testcase name="testGetFiles()" classname="edu.odu.cs.cs350.TestOutput" time="0.002"/>
-  <testcase name="testGetCompleteOutput()" classname="edu.odu.cs.cs350.TestOutput" time="0.026"/>
+  <testcase name="testGetRefactoringsToPrint()" classname="edu.odu.cs.cs350.TestOutput" time="0.029"/>
+  <testcase name="testGetFiles()" classname="edu.odu.cs.cs350.TestOutput" time="0.001"/>
+  <testcase name="testGetCompleteOutput()" classname="edu.odu.cs.cs350.TestOutput" time="0.03"/>
   <testcase name="testParameterizedConstructor()" classname="edu.odu.cs.cs350.TestOutput" time="0.002"/>
   <testcase name="testSetRefactoringsToPrint()" classname="edu.odu.cs.cs350.TestOutput" time="0.002"/>
-  <testcase name="testGetCompleteOutputNoFiles()" classname="edu.odu.cs.cs350.TestOutput" time="0.001"/>
+  <testcase name="testGetCompleteOutputNoFiles()" classname="edu.odu.cs.cs350.TestOutput" time="0.0"/>
   <testcase name="testGetRefactorings()" classname="edu.odu.cs.cs350.TestOutput" time="0.003"/>
   <testcase name="testSetRefactorings()" classname="edu.odu.cs.cs350.TestOutput" time="0.002"/>
   <testcase name="testGetSectionOneNoFiles()" classname="edu.odu.cs.cs350.TestOutput" time="0.001"/>
-  <testcase name="testGetSectionTwoNoFiles()" classname="edu.odu.cs.cs350.TestOutput" time="0.002"/>
-  <testcase name="testGetSectionTwoLimitedRefactorings()" classname="edu.odu.cs.cs350.TestOutput" time="0.007"/>
-  <testcase name="testGetSectionOne()" classname="edu.odu.cs.cs350.TestOutput" time="0.016"/>
-  <testcase name="testGetSectionTwo()" classname="edu.odu.cs.cs350.TestOutput" time="0.003"/>
-  <testcase name="testDefaultConstructor()" classname="edu.odu.cs.cs350.TestOutput" time="0.001"/>
-  <testcase name="testSetFiles()" classname="edu.odu.cs.cs350.TestOutput" time="0.002"/>
+  <testcase name="testGetSectionTwoNoFiles()" classname="edu.odu.cs.cs350.TestOutput" time="0.0"/>
+  <testcase name="testGetSectionTwoLimitedRefactorings()" classname="edu.odu.cs.cs350.TestOutput" time="0.001"/>
+  <testcase name="testGetSectionOne()" classname="edu.odu.cs.cs350.TestOutput" time="0.009"/>
+  <testcase name="testGetSectionTwo()" classname="edu.odu.cs.cs350.TestOutput" time="0.001"/>
+  <testcase name="testDefaultConstructor()" classname="edu.odu.cs.cs350.TestOutput" time="0.0"/>
+  <testcase name="testSetFiles()" classname="edu.odu.cs.cs350.TestOutput" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
