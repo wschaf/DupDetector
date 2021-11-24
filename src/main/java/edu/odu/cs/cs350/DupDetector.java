@@ -1,9 +1,7 @@
 package edu.odu.cs.cs350;
 
-import java.io.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 /**
  * DupDetector is the main class for the system. It will call
  * each subsystem of the program, passing input/output between
@@ -28,36 +26,45 @@ public class DupDetector {
     	 */
     	int nSuggestions = Integer.parseInt(args[0]);
     	
-    	for (int i = 1; i < args.length; i++) {
-    		
+    	if(args[1].endsWith(".ini")) {
+    	for (int i = 2; i < args.length; i++) {	
     		try {
                 File f = new File(args[i]);
                 if(f.isFile()) {
-                	Scanner s = new Scanner(f);
-                	String source = " ";
-                    while (s.hasNext()) {
-                        source += s.nextLine() + "\n";
-                    }
-                    s.close();
-                    
-                    Reader input = new StringReader(source);
-                    TokenAnalyzer t = new TokenAnalyzer(input);
-                    t.processSourceCode();
-                    System.out.println(f);
-                    System.out.println(t);
+                	Output O = new Output();
+                	System.out.println(O);
                 }
                 else if(f.isDirectory()){
                 	
                 	String startDir = args[i];
                 	RecursiveSearch r = new RecursiveSearch();
-                	r.searchDirectory(startDir);
-                	
+                	System.out.println(r.searchWithProperties(startDir, args[1]));
                 }
-                
             } catch(FileNotFoundException e) {
                 System.out.println(e.getMessage());
             }
     	}
+		}
+    	else {
+    		for (int i = 1; i < args.length; i++) {
+        		
+        		try {
+                    File f = new File(args[i]);
+                    if(f.isFile()) {
+                    	Output O = new Output();
+                    	System.out.println(O);
+                    }
+                    else if(f.isDirectory()){
+                    	
+                    	String startDir = args[i];
+                    	RecursiveSearch r = new RecursiveSearch();
+                    	System.out.println(r.searchDirectory(startDir));
+                    }
+                    
+                } catch(FileNotFoundException e) {
+                    System.out.println(e.getMessage());
+                }
+    	}
+    	}
     }
-   
 }
