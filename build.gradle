@@ -138,6 +138,7 @@ task deleteExtraBuildFiles(type: Delete) {
             'build/resources',
             'build/test-results',
             'build/tmp',
+            'build/jacoco',
             'build/reports/pmd/main.html',
             'build/reports/spotbugs/main.html',
             'build/reports/checkstyle/main.html'
