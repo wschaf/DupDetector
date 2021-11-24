@@ -181,5 +181,5 @@ task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest',
 reportStats {
     reportsURL = 'https://wschaf.github.io/DupDetector/'
     htmlSourceDir = file('reports_accumulator/')  // default value
-    reportsDir = file('build/reports') // default value
+    reportsDir = file("$reportsDir/") // default value
 }
