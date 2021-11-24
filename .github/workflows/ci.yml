@@ -32,11 +32,11 @@ jobs:
       - name: Build and test
         run: ./gradlew build
 
-      - name: Deploy Website
-        run: ./gradlew reports
-
       - name: Generate data graphs
         run: ./gradlew reportStats
+          
+      - name: Deploy Website
+        run: ./gradlew reports
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.6
