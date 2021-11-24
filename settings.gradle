@@ -1,12 +1,10 @@
 pluginManagement {
     repositories {
-        jcenter()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-          }
-        ivy { // for report_accumulator
+        ivy { // Use my own CS dept repo
             url 'https://www.cs.odu.edu/~zeil/ivyrepo'
         }
+        gradlePluginPortal()
+        mavenCentral()
     }
 }
 
