@@ -12,12 +12,12 @@ th {
 }
 
 div.reportLinks {
-    left-margin: 5ex
+    margin-left: 5ex
 }
 
 div.reportGraphs {
     background-color: #C0C0C0;
-    left-margin: 5ex;
+    margin-left: 5ex;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
