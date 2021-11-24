@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="edu.odu.cs.cs350.TestTokenAnalyzer" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-11-24T15:40:11" hostname="fv-az77-549" time="0.054">
-  <properties/>
-  <testcase name="testConstructors()" classname="edu.odu.cs.cs350.TestTokenAnalyzer" time="0.023"/>
-  <testcase name="testProcessSourceCode()" classname="edu.odu.cs.cs350.TestTokenAnalyzer" time="0.031"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
