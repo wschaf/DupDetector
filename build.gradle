@@ -175,6 +175,8 @@ task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest',
 //     }
 
 // }
+
+
 reportStats {
     reportsURL = 'https://wschaf.github.io/DupDetector/'
     htmlSourceDir = file('src/main/html')  // default value
