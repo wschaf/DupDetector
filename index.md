@@ -11,4 +11,4 @@ Will
 * [PMD - Static Code Analysis](./reports/pmd/)
 * [SpotBugs - Static Code Analysis](./reports/spotbugs/)
 * [Checkstyle - Static Code Analysis](./reports/checkstyle/)
-(./reports/)
+* [](./reports/)
