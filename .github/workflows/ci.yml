@@ -35,9 +35,6 @@ jobs:
       - name: Deploy Website
         run: ./gradlew reports
 
-      - name: Modify reports files
-        run: ./gradlew modifyReportsFiles 
-
       - name: Generate data graphs
         run: ./gradlew reportStats
 

@@ -144,11 +144,9 @@ task deleteExtraBuildFiles(type: Delete) {
             'build/reports/checkstyle/main.html'
 }
 
-task modifyReportsFiles(dependsOn: ['deleteExtraBuildFiles', 'renamePMDMain','renameSpotBugsMain', 'renameCheckStyleMain',]) {
-    description 'Delete extra build files and rename tests main files to index'
-}
-
-task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest']) {      // execute task commands
+task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest', 
+                          'deleteExtraBuildFiles', 'renamePMDMain',
+                          'renameSpotBugsMain', 'renameCheckStyleMain']) {      // execute task commands
     description  'Generate Reports'
 }
 
