@@ -144,9 +144,11 @@ task deleteExtraBuildFiles(type: Delete) {
             'build/reports/checkstyle/main.html'
 }
 
-task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest',
-                          'deleteExtraBuildFiles', 'renamePMDMain',
-                           'renameSpotBugsMain', 'renameCheckStyleMain']) {      // execute task commands
+task modifyReportsFiles(dependsOn: ['deleteExtraBuildFiles', 'renamePMDMain','renameSpotBugsMain', 'renameCheckStyleMain',]) {
+    description 'Delete extra build files and rename tests main files to index'
+}
+
+task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest']) {      // execute task commands
     description  'Generate Reports'
 }
 
@@ -180,7 +182,7 @@ task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest',
 
 reportStats {
     reportsURL = 'https://wschaf.github.io/DupDetector/'
-    htmlSourceDir = file('src/main/html')  // default value
-    reportsDir = file('build/reports/') // default value
+    htmlSourceDir = file('reports_accumulator/')  // default value
+    reportsDir = file('build/reports') // default value
     buildID = "12345"                  // defaults to current date, but can be any run identifier
 }
