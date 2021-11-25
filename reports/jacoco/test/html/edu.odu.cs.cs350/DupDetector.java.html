@@ -30,26 +30,24 @@ import java.io.FileNotFoundException;
 <span class="nc" id="L30">					Output out = new Output();</span>
 <span class="nc" id="L31">					out.setFiles(r.searchWithProperties(startDir, args[1]));</span>
 <span class="nc" id="L32">					System.out.println(out.getSectionOne());</span>
-<span class="nc" id="L33">    				r.clear();</span>
-<span class="nc" id="L34">    			} catch(FileNotFoundException e) {</span>
-<span class="nc" id="L35">    				System.out.println(e.getMessage());</span>
-<span class="nc" id="L36">    			}</span>
+<span class="nc" id="L33">    			} catch(FileNotFoundException e) {</span>
+<span class="nc" id="L34">    				System.out.println(e.getMessage());</span>
+<span class="nc" id="L35">    			}</span>
     		}
 		}
     	else {
-<span class="nc bnc" id="L40" title="All 2 branches missed.">    		for (int i = 1; i &lt; args.length; i++) {</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">    		for (int i = 1; i &lt; args.length; i++) {</span>
         		try {
-<span class="nc" id="L42">                    String startDir = args[i];</span>
-<span class="nc" id="L43">                    RecursiveSearch r = new RecursiveSearch();</span>
-<span class="nc" id="L44">                    Output out = new Output();</span>
-<span class="nc" id="L45">					out.setFiles(r.searchDirectory(startDir));</span>
-<span class="nc" id="L46">					System.out.println(out.getSectionOne());</span>
-<span class="nc" id="L47">                    r.clear();</span>
-<span class="nc" id="L48">                } catch(FileNotFoundException e) {</span>
-<span class="nc" id="L49">                    System.out.println(e.getMessage());</span>
-<span class="nc" id="L50">                }</span>
+<span class="nc" id="L41">                    String startDir = args[i];</span>
+<span class="nc" id="L42">                    RecursiveSearch r = new RecursiveSearch();</span>
+<span class="nc" id="L43">                    Output out = new Output();</span>
+<span class="nc" id="L44">					out.setFiles(r.searchDirectory(startDir));</span>
+<span class="nc" id="L45">					System.out.println(out.getSectionOne());</span>
+<span class="nc" id="L46">                } catch(FileNotFoundException e) {</span>
+<span class="nc" id="L47">                    System.out.println(e.getMessage());</span>
+<span class="nc" id="L48">                }</span>
     		}
     	}
-<span class="nc" id="L53">    }</span>
+<span class="nc" id="L51">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

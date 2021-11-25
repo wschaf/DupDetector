@@ -2,9 +2,9 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 DupDetector,edu.odu.cs.cs350,TokenAnalyzer,4,75,1,3,2,18,1,7,0,6
 DupDetector,edu.odu.cs.cs350,Recommender,157,0,10,0,41,0,18,0,13,0
 DupDetector,edu.odu.cs.cs350,Token,23,44,2,0,8,16,2,6,1,6
-DupDetector,edu.odu.cs.cs350,DupDetector,101,0,8,0,27,0,6,0,2,0
+DupDetector,edu.odu.cs.cs350,DupDetector,97,0,8,0,25,0,6,0,2,0
 DupDetector,edu.odu.cs.cs350,Output,3,334,0,20,2,72,0,22,0,12
 DupDetector,edu.odu.cs.cs350,LexerAnalyzer,666,796,196,76,233,200,194,65,9,21
-DupDetector,edu.odu.cs.cs350,RecursiveSearch,117,41,18,0,24,9,11,4,2,4
+DupDetector,edu.odu.cs.cs350,RecursiveSearch,143,44,20,0,26,11,12,4,2,4
 DupDetector,edu.odu.cs.cs350,Refactoring,54,0,0,0,14,0,8,0,8,0
 DupDetector,edu.odu.cs.cs350,TokenType,0,804,0,0,0,81,0,1,0,1

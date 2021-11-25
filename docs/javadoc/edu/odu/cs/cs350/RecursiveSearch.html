@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -174,8 +174,8 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clear()">clear</a></span>()</code></th>
+<td class="colFirst"><code>java.util.List&lt;java.io.File&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getFiles()">getFiles</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -194,6 +194,14 @@ extends java.lang.Object</pre>
 <div class="block">searchWithProperties recursively searches a given file path using
  properties loaded from a property file (.ini) and
  check if the file path ends with a directory</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setFiles(java.util.List)">setFiles</a></span>&#8203;(java.util.List&lt;java.io.File&gt;&nbsp;listofFiles)</code></th>
+<td class="colLast">
+<div class="block">Sets the list of files that will be output in Section 1 of
+ the final output.</div>
 </td>
 </tr>
 </table>
@@ -278,13 +286,28 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="clear()">
+<a id="getFiles()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getFiles</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;java.io.File&gt;&nbsp;getFiles()</pre>
+</li>
+</ul>
+<a id="setFiles(java.util.List)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>clear</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;clear()</pre>
+<h4>setFiles</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setFiles&#8203;(java.util.List&lt;java.io.File&gt;&nbsp;listofFiles)</pre>
+<div class="block">Sets the list of files that will be output in Section 1 of
+ the final output.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>files</code> - is a list of file objects.</dd>
+</dl>
 </li>
 </ul>
 </li>
