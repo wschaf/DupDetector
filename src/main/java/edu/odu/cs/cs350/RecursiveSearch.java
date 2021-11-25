@@ -9,7 +9,8 @@ public class RecursiveSearch {
 	private static List<File> listofFiles = new ArrayList<>();
 	
 	/**
-     * searchDirectory recursively searches a given file path and
+     * searchWithProperties recursively searches a given file path using
+     * properties loaded from a property file (.ini) and
      * check if the file path ends with a directory
      * @param startDir - the start of the absolute file path
      * @param propertiesName - the name of the .ini file
@@ -24,46 +25,65 @@ public class RecursiveSearch {
 		// after loading the .ini file, string are split by "," and stored in an array of extension
 		String[] extensions = props.getProperty("CppExtensions").split(", ");
 		
-        File dir = new File(startDir);     
-        for (File f : dir.listFiles()) {	
-            try {
-               // Check if the file is a directory
-            	if (f.isDirectory()) {
-            		searchWithProperties(f.getAbsolutePath(), propertiesName);
-            	} 
-            	else {      
+        File dir = new File(startDir);
+        if (dir.isFile()) {
+        	listofFiles.add(dir);
+        }
+        else { 
+        	for (File f : dir.listFiles()) {	
+        		try {
+        			// Check if the file is a directory
+        			if (f.isDirectory()) {
+        				searchWithProperties(f.getAbsolutePath(), propertiesName);
+        			} 
+        			else {      
             		// check if files extension matches any of the properties defined by the .ini
-            		if(Arrays.stream(extensions).anyMatch(entry -> f.getName().endsWith(entry))) {
-            			listofFiles.add(f); 
-            		}
-                } 
-            }
-            catch(FileNotFoundException e) {
+        				if(Arrays.stream(extensions).anyMatch(entry -> f.getName().endsWith(entry))) {
+        					listofFiles.add(f); 
+        				}
+        			} 
+        		}
+            	catch(FileNotFoundException e) {
                    System.out.println(e.getMessage());
-            }
+            	}
+        	}
         }
         return listofFiles;
     }
 	
+	/**
+     * searchDirectory recursively searches a given file and
+     * check if the file path ends with a directory
+     * @param startDir - the start of the absolute file path
+     */
 	public List<File> searchDirectory(String startDir) throws Exception {
     	
-        File dir = new File(startDir);     
-        for (File f : dir.listFiles()) {
-            try {
-               // Check if the file is a directory
-            	if (f.isDirectory()) {
-            		searchDirectory(f.getAbsolutePath());
-            	} 
-            	else {      
-            		if(f.getName().endsWith(".cpp") || f.getName().endsWith(".h")) {
-            			listofFiles.add(f);
-            		}
-                } 
-            }
-            catch(FileNotFoundException e) {
+        File dir = new File(startDir);  
+        if (dir.isFile()) {
+        	listofFiles.add(dir);
+        }
+        else { 
+        	for (File f : dir.listFiles()) {
+        		try {
+        			// Check if the file is a directory
+        			if (f.isDirectory()) {
+        				searchDirectory(f.getAbsolutePath());
+        			} 
+        			else {      
+        				if(f.getName().endsWith(".cpp") || f.getName().endsWith(".h")) {
+        					listofFiles.add(f);
+        				}
+        			} 
+        		}
+        		catch(FileNotFoundException e) {
                    System.out.println(e.getMessage());
-               }
+        		}
+        	}
          }
          return listofFiles;   
+	}
+	
+	public void clear() {
+		listofFiles.clear();
 	}
 }
