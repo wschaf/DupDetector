@@ -10,6 +10,19 @@ import static org.hamcrest.Matchers.*;
 
 public class TestRecursiveSearch {
 	
+	private List<File> actual;
+	
+	@BeforeEach
+	public void setup() {
+        actual = new ArrayList<File>();
+    }
+	
+	@Test
+	public void testDefaultConstructor() {
+		
+		RecursiveSearch search = new RecursiveSearch();
+		assertThat(search.getFiles().size(), equalTo(0));
+	}
 	
 	@Test
     public void testSearchWithProperties() throws Exception {
@@ -18,7 +31,7 @@ public class TestRecursiveSearch {
 		String directory = "src\\test\\data";
 		String properties = "properties.ini";
 
-		List<File> actual = new ArrayList<>(search.searchWithProperties(directory, properties));
+        actual = new ArrayList<>(search.searchWithProperties(directory, properties));
         File file1 = new File("src\\test\\data\\Point.cpp");
         File file2 = new File("src\\test\\data\\Point.h");
         File file3 = new File("src\\test\\data\\readingList.cpp");
@@ -30,7 +43,6 @@ public class TestRecursiveSearch {
         assertThat(actual.size(), is(5));
         assertThat(actual, not(IsEmptyCollection.empty()));
         assertThat(new ArrayList<>(), IsEmptyCollection.empty());
-        search.clear();
     }
 	
 	@Test
@@ -39,7 +51,7 @@ public class TestRecursiveSearch {
 		RecursiveSearch search = new RecursiveSearch();
 		String directory = "src\\test\\data";
 
-		List<File> actual = new ArrayList<>(search.searchDirectory(directory));
+        actual = new ArrayList<>(search.searchDirectory(directory));
         File file1 = new File("src\\test\\data\\Point.cpp");
         File file2 = new File("src\\test\\data\\Point.h");
         File file3 = new File("src\\test\\data\\readingList.cpp");
@@ -51,6 +63,5 @@ public class TestRecursiveSearch {
         assertThat(actual.size(), is(5));
         assertThat(actual, not(IsEmptyCollection.empty()));
         assertThat(new ArrayList<>(), IsEmptyCollection.empty());
-        search.clear();
     }
 }
