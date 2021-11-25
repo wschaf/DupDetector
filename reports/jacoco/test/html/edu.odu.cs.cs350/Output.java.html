@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Output.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DupDetector</a> &gt; <a href="index.source.html" class="el_package">edu.odu.cs.cs350</a> &gt; <span class="el_source">Output.java</span></div><h1>Output.java</h1><pre class="source lang-java linenums">package edu.odu.cs.cs350;
+
+import edu.odu.cs.cs350.Interfaces.*;
+
+import java.util.*;
+import java.io.*;
+
+/**
+ * Output contains all of the functionality to format and print to the console
+ * the complete output of the program. This includes the list of files, their metadata,
+ * the list of suggested refactorings, and their metadata.
+ */
+public class Output implements OutputInterface {
+    
+	private int refactoringsToPrint;
+	private List&lt;File&gt; files;
+	private List&lt;RefactoringInterface&gt; refactorings;
+
+	/**
+	 * The default constructor for Output. Creates a new Output object
+	 * by calling the default constructor for each data member in turn.
+	 */
+<span class="fc" id="L23">	public Output() {</span>
+<span class="fc" id="L24">		refactoringsToPrint = 0;</span>
+<span class="fc" id="L25">		files = new ArrayList&lt;File&gt;();</span>
+<span class="fc" id="L26">		refactorings = new ArrayList&lt;RefactoringInterface&gt;();</span>
+<span class="fc" id="L27">	}</span>
+
+	/**
+	 * 
+	 * @param refactoringsToPrint The number of refactoring suggestions to be printed in the final output.
+	 * @param files The list of files that have been processed by the system.
+	 * @param refactorings The list of suggested refactorings that resulted from processing @param files.
+	 */
+<span class="fc" id="L35">	public Output(int refactoringsToPrint, List&lt;File&gt; files, List&lt;? extends RefactoringInterface&gt; refactorings) {</span>
+<span class="fc" id="L36">		this.refactoringsToPrint = refactoringsToPrint;</span>
+
+		//	Java tip: You cannot assign a interface list to a concrete list; you have to iterate through the list.
+<span class="fc" id="L39">		List&lt;File&gt; fileList = new ArrayList&lt;File&gt;();</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">		for (var f : files) fileList.add(f);</span>
+<span class="fc" id="L41">		this.files = fileList;</span>
+
+<span class="fc" id="L43">		List&lt;RefactoringInterface&gt; rList = new ArrayList&lt;RefactoringInterface&gt;();</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">		for (var r : refactorings) rList.add(r);</span>
+<span class="fc" id="L45">		this.refactorings = rList;</span>
+<span class="fc" id="L46">	}</span>
+
+	/**
+	 * @param f: The file given from the input, provided by the user.
+	 * @return Character stream of the file that will be read
+	 * in token analyzer
+	 */
+	@Override
+	public Reader readFiles(File f) {
+		try {
+<span class="fc" id="L56">			Scanner s = new Scanner(f);</span>
+<span class="fc" id="L57">			String source = &quot;&quot;;</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">			while(s.hasNext()) {</span>
+<span class="fc" id="L59">				source += s.nextLine() + &quot;\n&quot;;</span>
+			}
+<span class="fc" id="L61">			s.close();</span>
+<span class="fc" id="L62">			Reader input = new StringReader(source);</span>
+<span class="fc" id="L63">			return input;</span>
+		}
+<span class="nc" id="L65">		catch(FileNotFoundException e) {</span>
+
+		}
+<span class="nc" id="L68">		return null;</span>
+	}
+
+	/**
+	 * @return the number of suggested refactorings that will be
+	 * printed in the final output.
+	 */
+	@Override
+	public int getRefactoringsToPrint() {
+<span class="fc" id="L77">		return refactoringsToPrint;</span>
+	}
+
+	/**
+	 * @param refactoringsToPrint sets the number of refactorings
+	 * that will be printed in the final output.
+	 */
+	@Override
+	public void setRefactoringsToPrint(int refactoringsToPrint) {
+<span class="fc" id="L86">		this.refactoringsToPrint = refactoringsToPrint;</span>
+<span class="fc" id="L87">	}</span>
+
+	/**
+	 * @return the list of file objects that have been processed by the system.
+	 */
+	@Override
+	public List&lt;File&gt; getFiles() {
+<span class="fc" id="L94">		return files;</span>
+	}
+
+	/**
+	 * Sets the list of files that will be output in Section 1 of
+	 * the final output.
+	 * @param files is a list of file objects.
+	 */
+	@Override
+	public void setFiles(List&lt;File&gt; files) {
+<span class="fc" id="L104">		List&lt;File&gt; fileList = new ArrayList&lt;File&gt;();</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">		for (var f : files) fileList.add(f);</span>
+<span class="fc" id="L106">		this.files = fileList;</span>
+<span class="fc" id="L107">	}</span>
+
+	/**
+	 * @return the list of Refactoring objects to be printed in Section 2 of the final output.
+	 */
+	@Override
+	public List&lt;RefactoringInterface&gt; getRefactorings() {
+<span class="fc" id="L114">		return refactorings;</span>
+	}
+
+	@Override
+	public void setRefactorings(List&lt;? extends RefactoringInterface&gt; refactorings) {
+<span class="fc" id="L119">		List&lt;RefactoringInterface&gt; rList = new ArrayList&lt;RefactoringInterface&gt;();</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">		for (var r : refactorings) rList.add(r);</span>
+<span class="fc" id="L121">		this.refactorings = rList;</span>
+<span class="fc" id="L122">	}</span>
+
+	/**
+	 * @return a string containing the complete output for Section 1.
+	 * Section 1 includes the absolute path for each file processed
+	 * and the total number of tokens discovered in that file.
+	 * Returns an empty string if there were no files processed.
+	 */
+	@Override
+	public String getSectionOne() {
+<span class="fc bfc" id="L132" title="All 2 branches covered.">		if (files.size() == 0) return new String();</span>
+<span class="fc" id="L133">		String sectionOne = new String();</span>
+<span class="fc" id="L134">		sectionOne = sectionOne + &quot;Files Scanned:\n&quot;;</span>
+<span class="fc" id="L135">		String f = new String();</span>
+<span class="fc bfc" id="L136" title="All 2 branches covered.">		for (var file : files) {</span>
+<span class="fc" id="L137">			TokenAnalyzer tokenAnalyzer = new TokenAnalyzer(readFiles(file));</span>
+<span class="fc" id="L138">			tokenAnalyzer.processSourceCode();</span>
+<span class="fc" id="L139">			f = f + &quot;    &quot;;</span>
+<span class="fc" id="L140">			f = f + file.getAbsolutePath();</span>
+<span class="fc" id="L141">			f = f + &quot;, &quot;;</span>
+<span class="fc" id="L142">			f = f + Integer.toString(tokenAnalyzer.getFileTokenCount());</span>
+<span class="fc" id="L143">			f = f + &quot;\n&quot;;</span>
+<span class="fc" id="L144">		}</span>
+<span class="fc" id="L145">		sectionOne = sectionOne + f;</span>
+<span class="fc" id="L146">		return sectionOne;</span>
+	}
+
+	/**
+	 * @return a string containing the complete output for Section 2.
+	 * Section 2 includes the number of tokens, absolute path,
+	 * line/column number for the start, and the list of tokens
+	 * in each refactoring opportunity.
+	 * Returns an empty string if there were no files processed.
+
+	 * If @param refactoringsToPrint less than the number of refactorings,
+   
+	 * prints all refactorings. Else, prints only that number of refactorings.
+	 */
+	@Override
+	public String getSectionTwo() {
+<span class="fc" id="L162">		String s2 = new String();</span>
+<span class="fc bfc" id="L163" title="All 2 branches covered.">		if (files.size() == 0) return s2;</span>
+<span class="fc bfc" id="L164" title="All 2 branches covered.">		for (int i = 0; i &lt; refactoringsToPrint; i++) {</span>
+<span class="fc" id="L165">			s2 = s2 + &quot;Opportunity #&quot;;</span>
+<span class="fc" id="L166">			s2 = s2 + Integer.toString(i + 1);</span>
+<span class="fc" id="L167">			s2 = s2 + &quot;, &quot;;</span>
+<span class="fc" id="L168">			s2 = s2 + refactorings.get(i).getNumberOfTokens();</span>
+<span class="fc" id="L169">			s2 = s2 + &quot; tokens\n&quot;;</span>
+<span class="fc" id="L170">			s2 = s2 + refactorings.get(i).getAbsolutePath();</span>
+<span class="fc" id="L171">			s2 = s2 + &quot;:&quot;;</span>
+<span class="fc" id="L172">			s2 = s2 + refactorings.get(i).getLineNumber();</span>
+<span class="fc" id="L173">			s2 = s2 + &quot;:&quot;;</span>
+<span class="fc" id="L174">			s2 = s2 + refactorings.get(i).getColumnNumber();</span>
+<span class="fc" id="L175">			s2 = s2 + &quot;\n&quot;;</span>
+<span class="fc" id="L176">			s2 = s2 + refactorings.get(i).getTokenList();</span>
+<span class="fc" id="L177">			s2 = s2 + &quot;\n&quot;;</span>
+		}
+<span class="fc" id="L179">		return s2;</span>
+	}
+
+	/**
+	 * Cocatenates the strings for Section 1 and Section 2.
+	 * @return the complete string to printed to standard output.
+	 */
+	@Override
+	public String getCompleteOutput() {
+<span class="fc bfc" id="L188" title="All 2 branches covered.">		if (files.size() == 0) return &quot;No files scanned.\n&quot;;</span>
+<span class="fc" id="L189">		String s = new String();</span>
+
+<span class="fc" id="L191">		s = s + getSectionOne();</span>
+<span class="fc" id="L192">		s = s + &quot;\n&quot;;</span>
+<span class="fc" id="L193">		s = s + getSectionTwo();</span>
+
+<span class="fc" id="L195">		return s;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -59,28 +59,28 @@ import java.util.*;
 	public List&lt;File&gt; searchDirectory(String startDir) throws Exception {
     	
 <span class="fc" id="L61">        File dir = new File(startDir);  </span>
-<span class="nc bnc" id="L62" title="All 2 branches missed.">        if (dir.isFile()) {</span>
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">        if (dir.isFile()) {</span>
 <span class="nc" id="L63">        	listofFiles.add(dir);</span>
         }
         else { 
-<span class="nc bnc" id="L66" title="All 2 branches missed.">        	for (File f : dir.listFiles()) {</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        	for (File f : dir.listFiles()) {</span>
         		try {
         			// Check if the file is a directory
-<span class="nc bnc" id="L69" title="All 2 branches missed.">        			if (f.isDirectory()) {</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">        			if (f.isDirectory()) {</span>
 <span class="nc" id="L70">        				searchDirectory(f.getAbsolutePath());</span>
         			} 
         			else {      
-<span class="nc bnc" id="L73" title="All 4 branches missed.">        				if(f.getName().endsWith(&quot;.cpp&quot;) || f.getName().endsWith(&quot;.h&quot;)) {</span>
-<span class="nc" id="L74">        					listofFiles.add(f);</span>
+<span class="pc bpc" id="L73" title="1 of 4 branches missed.">        				if(f.getName().endsWith(&quot;.cpp&quot;) || f.getName().endsWith(&quot;.h&quot;)) {</span>
+<span class="fc" id="L74">        					listofFiles.add(f);</span>
         				}
         			} 
         		}
 <span class="nc" id="L78">        		catch(FileNotFoundException e) {</span>
 <span class="nc" id="L79">                   System.out.println(e.getMessage());</span>
-<span class="nc" id="L80">        		}</span>
+<span class="fc" id="L80">        		}</span>
         	}
          }
-<span class="nc" id="L83">         return listofFiles;   </span>
+<span class="fc" id="L83">         return listofFiles;   </span>
 	}
 	
 	public void clear() {
