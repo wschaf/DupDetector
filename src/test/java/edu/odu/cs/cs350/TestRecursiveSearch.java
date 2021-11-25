@@ -10,38 +10,56 @@ import static org.hamcrest.Matchers.*;
 
 public class TestRecursiveSearch {
 	
+	private List<File> actual = new ArrayList<>();
+	
+	@Test
+    public void testSearchWithProperties() throws Exception {
+		
+		RecursiveSearch search = new RecursiveSearch();
+		String directory = "src\\test\\data";
+		String properties = "properties.ini";
+
+        actual = new ArrayList<>(search.searchWithProperties(directory, properties));
+        File file1 = new File("src\\test\\data\\Point.cpp");
+        File file2 = new File("src\\test\\data\\Point.h");
+        File file3 = new File("src\\test\\data\\readingList.cpp");
+        File file4 = new File("src\\test\\data\\readingList.h");
+        File file5 = new File("src\\test\\data\\test.cpp");
+        assertThat(actual, containsInAnyOrder(file1, file2, file3, file4, file5));
+      
+        assertThat(actual, hasSize(5));
+        assertThat(actual.size(), is(5));
+        assertThat(actual, not(IsEmptyCollection.empty()));
+        assertThat(new ArrayList<>(), IsEmptyCollection.empty());
+        search.clear();
+    }
+	
 	@Test
     public void testSearchDirectory() throws Exception {
 		
 		RecursiveSearch search = new RecursiveSearch();
-		String directory = "src/test/data";
+		String directory = "src\\test\\data";
 
-        List<File> actual = new ArrayList<>(search.searchDirectory(directory));
-        List<File> expected = new ArrayList<>();
-        File f1 = new File("src/test/data/Point.cpp");
-        File f2 = new File("src/test/data/Point.h");
-        File f3 = new File("src/test/data/readingList.cpp");
-        File f4 = new File("src/test/data/readingList.h");
-        File f5 = new File("src/test/data/test.cpp");
-        expected.add(f1);
-        expected.add(f2);
-        expected.add(f3);
-        expected.add(f4);
-        expected.add(f5);
-        
-        //1. Test equal.
-        assertThat(actual, is(expected));
-
-        //2. Check List Size
+        actual = new ArrayList<>(search.searchDirectory(directory));
+        File file1 = new File("src\\test\\data\\Point.cpp");
+        File file2 = new File("src\\test\\data\\Point.h");
+        File file3 = new File("src\\test\\data\\readingList.cpp");
+        File file4 = new File("src\\test\\data\\readingList.h");
+        File file5 = new File("src\\test\\data\\test.cpp");
+        assertThat(actual, containsInAnyOrder(file1, file2, file3, file4, file5));
+      
         assertThat(actual, hasSize(5));
-
         assertThat(actual.size(), is(5));
-
-        //4. check empty list
         assertThat(actual, not(IsEmptyCollection.empty()));
-
         assertThat(new ArrayList<>(), IsEmptyCollection.empty());
-
+        search.clear();
     }
-
+	
+	public void testClear() {	
+		
+		RecursiveSearch search = new RecursiveSearch();
+		search.clear();
+		assertThat(actual, IsEmptyCollection.empty());
+	}
+	
 }
