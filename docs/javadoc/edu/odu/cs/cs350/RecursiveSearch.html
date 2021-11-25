@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10};
+var data = {"i0":10,"i1":10,"i2":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -174,16 +174,25 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>java.util.List&lt;java.io.File&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#searchDirectory(java.lang.String)">searchDirectory</a></span>&#8203;(java.lang.String&nbsp;startDir)</code></th>
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#clear()">clear</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;java.io.File&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#searchDirectory(java.lang.String)">searchDirectory</a></span>&#8203;(java.lang.String&nbsp;startDir)</code></th>
+<td class="colLast">
+<div class="block">searchDirectory recursively searches a given file and
+ check if the file path ends with a directory</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>java.util.List&lt;java.io.File&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#searchWithProperties(java.lang.String,java.lang.String)">searchWithProperties</a></span>&#8203;(java.lang.String&nbsp;startDir,
                     java.lang.String&nbsp;propertiesName)</code></th>
 <td class="colLast">
-<div class="block">searchDirectory recursively searches a given file path and
+<div class="block">searchWithProperties recursively searches a given file path using
+ properties loaded from a property file (.ini) and
  check if the file path ends with a directory</div>
 </td>
 </tr>
@@ -239,7 +248,8 @@ extends java.lang.Object</pre>
 <pre class="methodSignature">public&nbsp;java.util.List&lt;java.io.File&gt;&nbsp;searchWithProperties&#8203;(java.lang.String&nbsp;startDir,
                                                          java.lang.String&nbsp;propertiesName)
                                                   throws java.lang.Exception</pre>
-<div class="block">searchDirectory recursively searches a given file path and
+<div class="block">searchWithProperties recursively searches a given file path using
+ properties loaded from a property file (.ini) and
  check if the file path ends with a directory</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -253,15 +263,28 @@ extends java.lang.Object</pre>
 <a id="searchDirectory(java.lang.String)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>searchDirectory</h4>
 <pre class="methodSignature">public&nbsp;java.util.List&lt;java.io.File&gt;&nbsp;searchDirectory&#8203;(java.lang.String&nbsp;startDir)
                                              throws java.lang.Exception</pre>
+<div class="block">searchDirectory recursively searches a given file and
+ check if the file path ends with a directory</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>startDir</code> - - the start of the absolute file path</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.Exception</code></dd>
 </dl>
+</li>
+</ul>
+<a id="clear()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>clear</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;clear()</pre>
 </li>
 </ul>
 </li>
