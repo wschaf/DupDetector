@@ -10,7 +10,6 @@ import static org.hamcrest.Matchers.*;
 
 public class TestRecursiveSearch {
 	
-	private List<File> actual = new ArrayList<>();
 	
 	@Test
     public void testSearchWithProperties() throws Exception {
@@ -19,7 +18,7 @@ public class TestRecursiveSearch {
 		String directory = "src\\test\\data";
 		String properties = "properties.ini";
 
-        actual = new ArrayList<>(search.searchWithProperties(directory, properties));
+		List<File> actual = new ArrayList<>(search.searchWithProperties(directory, properties));
         File file1 = new File("src\\test\\data\\Point.cpp");
         File file2 = new File("src\\test\\data\\Point.h");
         File file3 = new File("src\\test\\data\\readingList.cpp");
@@ -40,7 +39,7 @@ public class TestRecursiveSearch {
 		RecursiveSearch search = new RecursiveSearch();
 		String directory = "src\\test\\data";
 
-        actual = new ArrayList<>(search.searchDirectory(directory));
+		List<File> actual = new ArrayList<>(search.searchDirectory(directory));
         File file1 = new File("src\\test\\data\\Point.cpp");
         File file2 = new File("src\\test\\data\\Point.h");
         File file3 = new File("src\\test\\data\\readingList.cpp");
@@ -54,12 +53,4 @@ public class TestRecursiveSearch {
         assertThat(new ArrayList<>(), IsEmptyCollection.empty());
         search.clear();
     }
-	
-	public void testClear() {	
-		
-		RecursiveSearch search = new RecursiveSearch();
-		search.clear();
-		assertThat(actual, IsEmptyCollection.empty());
-	}
-	
 }
