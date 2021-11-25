@@ -17,15 +17,15 @@ import java.util.*;
      */
 	public List&lt;File&gt; searchWithProperties(String startDir, String propertiesName) throws Exception {
     	
-<span class="nc" id="L20">		File properties = new File(propertiesName);</span>
-<span class="nc" id="L21">		Properties props = new Properties();</span>
-<span class="nc" id="L22">		try(Reader reader = new FileReader(properties)){</span>
-<span class="nc" id="L23">    		props.load(reader);</span>
+<span class="fc" id="L20">		File properties = new File(propertiesName);</span>
+<span class="fc" id="L21">		Properties props = new Properties();</span>
+<span class="fc" id="L22">		try(Reader reader = new FileReader(properties)){</span>
+<span class="fc" id="L23">    		props.load(reader);</span>
     	}
 		// after loading the .ini file, string are split by &quot;,&quot; and stored in an array of extension
-<span class="nc" id="L26">		String[] extensions = props.getProperty(&quot;CppExtensions&quot;).split(&quot;, &quot;);</span>
+<span class="fc" id="L26">		String[] extensions = props.getProperty(&quot;CppExtensions&quot;).split(&quot;, &quot;);</span>
 		
-<span class="nc" id="L28">        File dir = new File(startDir);</span>
+<span class="fc" id="L28">        File dir = new File(startDir);</span>
 <span class="nc bnc" id="L29" title="All 2 branches missed.">        if (dir.isFile()) {</span>
 <span class="nc" id="L30">        	listofFiles.add(dir);</span>
         }
@@ -59,28 +59,28 @@ import java.util.*;
 	public List&lt;File&gt; searchDirectory(String startDir) throws Exception {
     	
 <span class="fc" id="L61">        File dir = new File(startDir);  </span>
-<span class="pc bpc" id="L62" title="1 of 2 branches missed.">        if (dir.isFile()) {</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        if (dir.isFile()) {</span>
 <span class="nc" id="L63">        	listofFiles.add(dir);</span>
         }
         else { 
-<span class="fc bfc" id="L66" title="All 2 branches covered.">        	for (File f : dir.listFiles()) {</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        	for (File f : dir.listFiles()) {</span>
         		try {
         			// Check if the file is a directory
-<span class="pc bpc" id="L69" title="1 of 2 branches missed.">        			if (f.isDirectory()) {</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        			if (f.isDirectory()) {</span>
 <span class="nc" id="L70">        				searchDirectory(f.getAbsolutePath());</span>
         			} 
         			else {      
-<span class="pc bpc" id="L73" title="1 of 4 branches missed.">        				if(f.getName().endsWith(&quot;.cpp&quot;) || f.getName().endsWith(&quot;.h&quot;)) {</span>
-<span class="fc" id="L74">        					listofFiles.add(f);</span>
+<span class="nc bnc" id="L73" title="All 4 branches missed.">        				if(f.getName().endsWith(&quot;.cpp&quot;) || f.getName().endsWith(&quot;.h&quot;)) {</span>
+<span class="nc" id="L74">        					listofFiles.add(f);</span>
         				}
         			} 
         		}
 <span class="nc" id="L78">        		catch(FileNotFoundException e) {</span>
 <span class="nc" id="L79">                   System.out.println(e.getMessage());</span>
-<span class="fc" id="L80">        		}</span>
+<span class="nc" id="L80">        		}</span>
         	}
          }
-<span class="fc" id="L83">         return listofFiles;   </span>
+<span class="nc" id="L83">         return listofFiles;   </span>
 	}
 	
 	public void clear() {
