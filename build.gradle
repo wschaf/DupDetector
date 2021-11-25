@@ -61,6 +61,7 @@ jacocoTestReport {                                      // Implements standard g
     dependsOn test
     reports {
         html.enabled true
+        csv.enabled true
     }
 }
 
@@ -150,36 +151,8 @@ task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest',
     description  'Generate Reports'
 }
 
-// task deployReports (type: Copy, dependsOn: ['reports', 'check']) {
-//     doLast {
-//         def thisRepo = rootProject.projectDir.toString()
-        
-//         def grgit = git.clone {
-//             uri = 'file:' + thisRepo
-//             bare = false
-//             refToCheckout = 'gh-pages'
-//         }
-//         grgit.checkout {
-//             branch = 'gh-pages'
-//         }
-//         grgit.add (update: false, patterns: ['reports/'])
-//         grgit.add (update: true, patterns: ['reports/'])
-//         grgit.add (update: false, patterns: ['docs/'])
-//         grgit.add (update: true, patterns: ['docs/'])
-//         grgit.commit {
-//             message = "Updating web pages"
-//         }
-//         grgit.push {}
-//         grgit.checkout {
-//         	branch = 'main'
-//         }
-//     }
-
-// }
-
-
 reportStats {
     reportsURL = 'https://wschaf.github.io/DupDetector/'
-    htmlSourceDir = file('reports_accumulator/')  // default value
-    reportsDir = file("$reportsDir/") // default value
+    htmlSourceDir = file('reports_accumulator/')
+    reportsDir = file("$reportsDir/")
 }

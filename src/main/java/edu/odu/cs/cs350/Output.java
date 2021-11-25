@@ -3,6 +3,7 @@ package edu.odu.cs.cs350;
 import edu.odu.cs.cs350.Interfaces.*;
 
 import java.util.*;
+import java.io.*;
 
 /**
  * Output contains all of the functionality to format and print to the console
@@ -12,7 +13,7 @@ import java.util.*;
 public class Output implements OutputInterface {
     
 	private int refactoringsToPrint;
-	private List<FileInterface> files;
+	private List<File> files;
 	private List<RefactoringInterface> refactorings;
 
 	/**
@@ -21,7 +22,7 @@ public class Output implements OutputInterface {
 	 */
 	public Output() {
 		refactoringsToPrint = 0;
-		files = new ArrayList<FileInterface>();
+		files = new ArrayList<File>();
 		refactorings = new ArrayList<RefactoringInterface>();
 	}
 
@@ -31,17 +32,40 @@ public class Output implements OutputInterface {
 	 * @param files The list of files that have been processed by the system.
 	 * @param refactorings The list of suggested refactorings that resulted from processing @param files.
 	 */
-	public Output(int refactoringsToPrint, List<? extends FileInterface> files, List<? extends RefactoringInterface> refactorings) {
+	public Output(int refactoringsToPrint, List<File> files, List<? extends RefactoringInterface> refactorings) {
 		this.refactoringsToPrint = refactoringsToPrint;
 
 		//	Java tip: You cannot assign a interface list to a concrete list; you have to iterate through the list.
-		List<FileInterface> fileList = new ArrayList<FileInterface>();
+		List<File> fileList = new ArrayList<File>();
 		for (var f : files) fileList.add(f);
 		this.files = fileList;
 
 		List<RefactoringInterface> rList = new ArrayList<RefactoringInterface>();
 		for (var r : refactorings) rList.add(r);
 		this.refactorings = rList;
+	}
+
+	/**
+	 * @param f: The file given from the input, provided by the user.
+	 * @return Character stream of the file that will be read
+	 * in token analyzer
+	 */
+	@Override
+	public Reader readFiles(File f) {
+		try {
+			Scanner s = new Scanner(f);
+			String source = "";
+			while(s.hasNext()) {
+				source += s.nextLine() + "\n";
+			}
+			s.close();
+			Reader input = new StringReader(source);
+			return input;
+		}
+		catch(FileNotFoundException e) {
+
+		}
+		return null;
 	}
 
 	/**
@@ -66,7 +90,7 @@ public class Output implements OutputInterface {
 	 * @return the list of file objects that have been processed by the system.
 	 */
 	@Override
-	public List<FileInterface> getFiles() {
+	public List<File> getFiles() {
 		return files;
 	}
 
@@ -76,8 +100,8 @@ public class Output implements OutputInterface {
 	 * @param files is a list of file objects.
 	 */
 	@Override
-	public void setFiles(List<? extends FileInterface> files) {
-		List<FileInterface> fileList = new ArrayList<FileInterface>();
+	public void setFiles(List<File> files) {
+		List<File> fileList = new ArrayList<File>();
 		for (var f : files) fileList.add(f);
 		this.files = fileList;
 	}
@@ -110,10 +134,12 @@ public class Output implements OutputInterface {
 		sectionOne = sectionOne + "Files Scanned:\n";
 		String f = new String();
 		for (var file : files) {
+			TokenAnalyzer tokenAnalyzer = new TokenAnalyzer(readFiles(file));
+			tokenAnalyzer.processSourceCode();
 			f = f + "    ";
 			f = f + file.getAbsolutePath();
 			f = f + ", ";
-			f = f + file.getNumberOfTokens();
+			f = f + Integer.toString(tokenAnalyzer.getFileTokenCount());
 			f = f + "\n";
 		}
 		sectionOne = sectionOne + f;

@@ -17,6 +17,7 @@ package edu.odu.cs.cs350;
 import edu.odu.cs.cs350.Mocks.*;
 
 import java.util.*;
+import java.io.*;
 import org.junit.jupiter.api.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -24,17 +25,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestOutput {
 
-    private static List<MockFile> mockFiles;
+    private static List<File> files;
     private static List<MockRefactoring> mockRefactorings;
     private static int RefactoringsToPrint;
 
     @BeforeEach
     public void setup() {
-        mockFiles = new ArrayList<MockFile>();
+        files = new ArrayList<File>();
 
-        mockFiles.add(new MockFile());
-        mockFiles.add(new MockFile());
-        mockFiles.add(new MockFile());
+        files.add(new File("src/test/data/test.cpp"));
+        files.add(new File("src/test/data/test.cpp"));
+        files.add(new File("src/test/data/test.cpp"));
+
 
         mockRefactorings = new ArrayList<MockRefactoring>();
         mockRefactorings.add(new MockRefactoring());
@@ -54,58 +56,56 @@ public class TestOutput {
 
     @Test
     public void testParameterizedConstructor() {
-        Output out = new Output(RefactoringsToPrint, mockFiles, mockRefactorings);
+        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
         assertThat(out.getRefactoringsToPrint(), is(RefactoringsToPrint));
         assertThat(out.getRefactorings(), is(mockRefactorings));
-        assertThat(out.getFiles(), is(mockFiles));
+        assertThat(out.getFiles(), is(files));
     }
 
     @Test
     public void testGetRefactoringsToPrint() {
-        Output out = new Output(RefactoringsToPrint, mockFiles, mockRefactorings);
+        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
         assertThat(out.getRefactoringsToPrint(), is(2));
     }
 
     @Test
     public void testSetRefactoringsToPrint() {
-        Output out = new Output(RefactoringsToPrint, mockFiles, mockRefactorings);
+        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
         out.setRefactoringsToPrint(5);
         assertThat(out.getRefactoringsToPrint(), is(5));
     }
 
     @Test
     public void testGetFiles() {
-        Output out = new Output(RefactoringsToPrint, mockFiles, mockRefactorings);
-        List<MockFile> k = new ArrayList<MockFile>();
-        k.add(new MockFile());
-        k.add(new MockFile());
-        k.add(new MockFile());
+        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
+        List<File> k = new ArrayList<File>();
+        k.add(new File("src/test/data/test.cpp"));
+        k.add(new File("src/test/data/test.cpp"));
+        k.add(new File("src/test/data/test.cpp"));
         assertThat(out.getFiles().size(), is(k.size()));
     }
 
     @Test
     public void testSetFiles() {
-        Output out = new Output(RefactoringsToPrint, mockFiles, mockRefactorings);
-        List<MockFile> files = new ArrayList<MockFile>();
-        files.add(new MockFile());
-        files.add(new MockFile());
-        MockFile k = new MockFile();
-        String path = "testPath";
-        k.setAbsolutePath(path);
+        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
+        List<File> files = new ArrayList<File>();
+        files.add(new File("src/test/data/test.cpp"));
+        files.add(new File("src/test/data/test.cpp"));
+        File k = new File("test.cpp");
         files.add(k);
         out.setFiles(files);
-        assertTrue(out.getFiles().get(2).getAbsolutePath() == path);
+        assertThat(out.getFiles().get(2).toString(), equalTo("test.cpp"));
     }
 
     @Test
     public void testGetRefactorings() {
-        Output out = new Output(RefactoringsToPrint, mockFiles, mockRefactorings);
+        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
         assertThat(out.getRefactorings(), is(mockRefactorings));
     }
 
     @Test
     public void testSetRefactorings() {
-        Output out = new Output(RefactoringsToPrint, mockFiles, mockRefactorings);
+        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
         List<MockRefactoring> k = new ArrayList<MockRefactoring>();
         k.add(new MockRefactoring());
         k.add(new MockRefactoring());
@@ -120,7 +120,7 @@ public class TestOutput {
     @Test
     public void testGetSectionOneNoFiles() {
         List<MockRefactoring> r = new ArrayList<MockRefactoring>();
-        List<MockFile> f = new ArrayList<MockFile>();
+        List<File> f = new ArrayList<File>();
         Output out = new Output(0, f, r);
         String s = out.getSectionOne();
         assertThat(s.length(), is(0));
@@ -128,20 +128,19 @@ public class TestOutput {
 
     @Test
     public void testGetSectionOne() {
-        Output out = new Output(RefactoringsToPrint, mockFiles, mockRefactorings);
+        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
         String subject = out.getSectionOne();
         assertThat(subject.length(), greaterThan(0));
         assertTrue(subject.contains("Files Scanned:\n"));
-        for (var f : mockFiles) {
+        for (var f : files) {
             assertTrue(subject.contains(f.getAbsolutePath()));
-            assertTrue(subject.contains(f.getNumberOfTokens()));
         }
     }
 
     @Test
     public void testGetSectionTwoNoFiles() {
         List<MockRefactoring> r = new ArrayList<MockRefactoring>();
-        List<MockFile> f = new ArrayList<MockFile>();
+        List<File> f = new ArrayList<File>();
         Output out = new Output(0, f, r);
         String s = out.getSectionTwo();
         assertThat(s.length(), is(0));
@@ -149,7 +148,7 @@ public class TestOutput {
 
     @Test
     public void testGetSectionTwo() {
-        Output out = new Output(RefactoringsToPrint, mockFiles, mockRefactorings);
+        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
         String subject = out.getSectionTwo();
         assertThat(subject.length(), greaterThan(0));
         assertTrue(subject.contains("Opportunity #"));
@@ -165,7 +164,7 @@ public class TestOutput {
 
     @Test
     public void testGetSectionTwoLimitedRefactorings() {
-        Output out = new Output(RefactoringsToPrint, mockFiles, mockRefactorings);
+        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
         String subject = out.getSectionTwo();
         int lines = subject.split("\r\n|\r|\n").length;
         assertThat(lines, is(RefactoringsToPrint * 3));
@@ -174,7 +173,7 @@ public class TestOutput {
     @Test
     public void testGetCompleteOutputNoFiles() {
         List<MockRefactoring> r = new ArrayList<MockRefactoring>();
-        List<MockFile> f = new ArrayList<MockFile>();
+        List<File> f = new ArrayList<File>();
         Output out = new Output(0, f, r);
         String correctOutput = "No files scanned.\n";
         assertThat(out.getCompleteOutput(), is(correctOutput));
@@ -182,13 +181,13 @@ public class TestOutput {
 
     @Test
     public void testGetCompleteOutput() {
-        Output out = new Output(RefactoringsToPrint, mockFiles, mockRefactorings);
+        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
         String subject = out.getCompleteOutput();
         String correctOutput =
         "Files Scanned:\n" +
-        "    /home/wgs/src/cs350/DupDetector/src/test/data/hello.cpp, 19\n" +
-        "    /home/wgs/src/cs350/DupDetector/src/test/data/hello.cpp, 19\n" +
-        "    /home/wgs/src/cs350/DupDetector/src/test/data/hello.cpp, 19\n" +
+        "    C:/Users/chrst/Documents/CS350/DupDetector2.0/DupDetector/src/test/data/test.cpp, 24\n" +
+        "    C:/Users/chrst/Documents/CS350/DupDetector2.0/DupDetector/src/test/data/test.cpp, 24\n" +
+        "    C:/Users/chrst/Documents/CS350/DupDetector2.0/DupDetector/src/test/data/test.cpp, 24\n" +
         "\n" +
         "Opportunity #1, 6 tokens\n" +
         "/home/wgs/src/cs350/DupDetector/src/test/data/hello.cpp:32:64\n" +
@@ -197,6 +196,6 @@ public class TestOutput {
         "/home/wgs/src/cs350/DupDetector/src/test/data/hello.cpp:32:64\n" +
         "if this then that\n";
 
-        assertThat(subject, is(correctOutput));
+        assertThat(subject.toString(), is(correctOutput));
     }
 }

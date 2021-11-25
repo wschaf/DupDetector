@@ -58,7 +58,9 @@ public class DupDetector {
                     	
                     	String startDir = args[i];
                     	RecursiveSearch r = new RecursiveSearch();
-                    	System.out.println(r.searchDirectory(startDir));
+						Output out = new Output();
+						out.setFiles(r.searchDirectory(startDir));
+						System.out.println(out.getSectionOne());
                     }
                     
                 } catch(FileNotFoundException e) {
