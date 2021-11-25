@@ -27,7 +27,9 @@ public class DupDetector {
     			try {
     				String startDir = args[i];
     				RecursiveSearch r = new RecursiveSearch();
-    				System.out.println(r.searchWithProperties(startDir, args[1]));
+					Output out = new Output();
+					out.setFiles(r.searchWithProperties(startDir, args[1]));
+					System.out.println(out.getSectionOne());
     				r.clear();
     			} catch(FileNotFoundException e) {
     				System.out.println(e.getMessage());
@@ -39,7 +41,9 @@ public class DupDetector {
         		try {
                     String startDir = args[i];
                     RecursiveSearch r = new RecursiveSearch();
-                    System.out.println(r.searchDirectory(startDir));
+                    Output out = new Output();
+					out.setFiles(r.searchDirectory(startDir));
+					System.out.println(out.getSectionOne());
                     r.clear();
                 } catch(FileNotFoundException e) {
                     System.out.println(e.getMessage());

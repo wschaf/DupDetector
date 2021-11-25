@@ -137,7 +137,7 @@ public class Recommender {
      */
     private void Sort() {
         // todo
-        return;
+        Collections.sort(refactorings, Collections.reverseOrder());
     }
 
     /**

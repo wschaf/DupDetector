@@ -14,15 +14,15 @@ public class TestRecursiveSearch {
     public void testSearchDirectory() throws Exception {
 		
 		RecursiveSearch search = new RecursiveSearch();
-		String directory = "src\\test\\data";
+		String directory = "src/test/data";
 
         List<File> actual = new ArrayList<>(search.searchDirectory(directory));
         List<File> expected = new ArrayList<>();
-        File f1 = new File("src\\test\\data\\Point.cpp");
-        File f2 = new File("src\\test\\data\\Point.h");
-        File f3 = new File("src\\test\\data\\readingList.cpp");
-        File f4 = new File("src\\test\\data\\readingList.h");
-        File f5 = new File("src\\test\\data\\test.cpp");
+        File f1 = new File("src/test/data/Point.cpp");
+        File f2 = new File("src/test/data/Point.h");
+        File f3 = new File("src/test/data/readingList.cpp");
+        File f4 = new File("src/test/data/readingList.h");
+        File f5 = new File("src/test/data/test.cpp");
         expected.add(f1);
         expected.add(f2);
         expected.add(f3);

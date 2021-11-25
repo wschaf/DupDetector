@@ -1,10 +1,12 @@
 plugins {
-   id 'java'
+   id "java"
    id "org.xbib.gradle.plugin.jflex" version "1.5.0"    // Jflex plugin
    id "org.xbib.gradle.plugin.git" version "2.0.0"
-   id 'jacoco'                                          // Provides code coverage metrics
-   id 'pmd'                                             // Static code analysis
-   id "com.github.spotbugs" version "5.0.0-beta.8"      // Another static code analysis
+   id "jacoco"                                          // Provides code coverage metrics
+   id "pmd"                                             // Static code analysis
+   id "com.github.spotbugs" version "5.0.0-beta.8"      // Static code analysis
+   id "checkstyle"                                      // Static code analysis
+   id 'edu.odu.cs.report_accumulator' version '1.4' 
 
 }
 
@@ -59,12 +61,25 @@ jacocoTestReport {                                      // Implements standard g
     dependsOn test
     reports {
         html.enabled true
+        csv.enabled true
     }
 }
 
 jacoco {
     toolVersion = "0.8.7"
-    reportsDirectory = file("$buildDir/jacoco")
+    reportsDirectory = file("$buildDir/reports/jacoco")
+}
+
+checkstyle {
+    toolVersion "9.1"
+    ignoreFailures = true
+    showViolations = false
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        html.destination project.file("build/reports/checkstyle/main.html")
+    }
 }
 
 pmd {
@@ -82,6 +97,7 @@ spotbugsMain {
     }
 }
 
+checkstyleTest.enabled = false                          // Suppresses running checkstyle on code in src/test/java
 pmdTest.enabled = false                                 // Suppresses running PMD on code in src/test/java
 spotbugsTest.enabled = false                            // Suppresses running spotbugs on code in src/test/java
 
@@ -109,6 +125,12 @@ task renameSpotBugsMain (type:Copy) {
     rename('main.html', 'index.html')
 }
 
+task renameCheckStyleMain (type: Copy) {
+    from 'build/reports/checkstyle/'
+    into 'build/reports/checkstyle/'
+    rename('main.html', 'index.html')
+}
+
 task deleteExtraBuildFiles(type: Delete) {
     delete  'build/classes',
             'build/generated',
@@ -117,39 +139,20 @@ task deleteExtraBuildFiles(type: Delete) {
             'build/resources',
             'build/test-results',
             'build/tmp',
+            'build/jacoco',
             'build/reports/pmd/main.html',
-            'build/reports/spotbugs/main.html'
+            'build/reports/spotbugs/main.html',
+            'build/reports/checkstyle/main.html'
 }
 
-task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest','deleteExtraBuildFiles', 'renamePMDMain', 'renameSpotBugsMain']) {      // execute task commands
+task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest', 
+                          'deleteExtraBuildFiles', 'renamePMDMain',
+                          'renameSpotBugsMain', 'renameCheckStyleMain']) {      // execute task commands
     description  'Generate Reports'
 }
 
-task deployReports (type: Copy, dependsOn: ['reports', 'check']) {
-    doLast {
-        def thisRepo = rootProject.projectDir.toString()
-        
-        def grgit = git.clone {
-            uri = 'file:' + thisRepo
-            bare = false
-            refToCheckout = 'gh-pages'
-        }
-        grgit.checkout {
-            branch = 'gh-pages'
-        }
-        grgit.add (update: false, patterns: ['reports/'])
-        grgit.add (update: true, patterns: ['reports/'])
-        grgit.add (update: false, patterns: ['docs/'])
-        grgit.add (update: true, patterns: ['docs/'])
-        grgit.commit {
-            message = "Updating web pages"
-        }
-        grgit.push {}
-        grgit.checkout {
-        	branch = 'main'
-        }
-    }
-
+reportStats {
+    reportsURL = 'https://wschaf.github.io/DupDetector/'
+    htmlSourceDir = file('reports_accumulator/')
+    reportsDir = file("$reportsDir/")
 }
-
-// reportStats.reportsURL = 'https://wschaf.github.io/DupDetector/'
