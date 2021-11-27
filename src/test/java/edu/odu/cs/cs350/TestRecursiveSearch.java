@@ -25,11 +25,11 @@ public class TestRecursiveSearch {
 		String properties = "properties.ini";
 
         actual = new ArrayList<>(search.searchWithProperties(directory, properties));
-        File file1 = new File("src\\test\\data\\Point.cpp");
-        File file2 = new File("src\\test\\data\\Point.h");
-        File file3 = new File("src\\test\\data\\readingList.cpp");
-        File file4 = new File("src\\test\\data\\readingList.h");
-        File file5 = new File("src\\test\\data\\test.cpp");
+        File file1 = new File("src/test/data/Point.cpp");
+        File file2 = new File("src/test/data/Point.h");
+        File file3 = new File("src/test/data/readingList.cpp");
+        File file4 = new File("src/test/data/readingList.h");
+        File file5 = new File("src/test/data/test.cpp");
         assertThat(actual, containsInAnyOrder(file1, file2, file3, file4, file5));
       
         assertThat(actual, hasSize(5));
@@ -45,11 +45,11 @@ public class TestRecursiveSearch {
 		String directory = "src/test/data";
 
         actual = new ArrayList<>(search.searchDirectory(directory));
-        File file1 = new File("src\\test\\data\\Point.cpp");
-        File file2 = new File("src\\test\\data\\Point.h");
-        File file3 = new File("src\\test\\data\\readingList.cpp");
-        File file4 = new File("src\\test\\data\\readingList.h");
-        File file5 = new File("src\\test\\data\\test.cpp");
+        File file1 = new File("src/test/data/Point.cpp");
+        File file2 = new File("src/test/data/Point.h");
+        File file3 = new File("src/test/data/readingList.cpp");
+        File file4 = new File("src/test/data/readingList.h");
+        File file5 = new File("src/test/data/test.cpp");
         assertThat(actual, containsInAnyOrder(file1, file2, file3, file4, file5));
       
         assertThat(actual, hasSize(5));
@@ -67,8 +67,8 @@ public class TestRecursiveSearch {
 		String properties = "properties.ini";
 
         actual = new ArrayList<>(search.searchWithProperties(directory, properties));
-	    File file1 = new File("src\\test\\data\\test.cpp");
-	    assertThat(actual, containsInAnyOrder(file1));
+	    File file1 = new File("src/test/data/test.cpp");
+	    assertThat(actual, contains(file1));
 	      
 	    assertThat(actual, hasSize(1));
 	    assertThat(actual.size(), is(1));
@@ -85,8 +85,8 @@ public class TestRecursiveSearch {
 		String properties = "properties.ini";
 
         actual = new ArrayList<>(search.searchWithProperties(directory, properties));
-	    File file1 = new File("src\\test\\data\\test.cpp");
-	    assertThat(actual, containsInAnyOrder(file1));
+	    File file1 = new File("src/test/data/test.cpp");
+	    assertThat(actual, contains(file1));
 	      
 	    assertThat(actual, hasSize(1));
 	    assertThat(actual.size(), is(1));
