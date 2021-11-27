@@ -86,19 +86,4 @@ public class RecursiveSearch {
          }
          return listofFiles;   
 	}
-	
-	public List<File> getFiles() {
-		return listofFiles;
-	}
-
-	/**
-	 * Sets the list of files that will be output in Section 1 of
-	 * the final output.
-	 * @param files is a list of file objects.
-	 */
-	public void setFiles(List<File> listofFiles) {
-		List<File> fileList = new ArrayList<File>();
-		for (var f : listofFiles) fileList.add(f);
-		this.listofFiles = fileList;
-	}
 }

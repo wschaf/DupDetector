@@ -18,17 +18,10 @@ public class TestRecursiveSearch {
     }
 	
 	@Test
-	public void testDefaultConstructor() {
-		
-		RecursiveSearch search = new RecursiveSearch();
-		assertThat(search.getFiles().size(), equalTo(0));
-	}
-	
-	@Test
     public void testSearchWithProperties() throws Exception {
 		
 		RecursiveSearch search = new RecursiveSearch();
-		String directory = "src\\test\\data";
+		String directory = "src/test/data";
 		String properties = "properties.ini";
 
         actual = new ArrayList<>(search.searchWithProperties(directory, properties));
@@ -49,7 +42,7 @@ public class TestRecursiveSearch {
     public void testSearchDirectory() throws Exception {
 		
 		RecursiveSearch search = new RecursiveSearch();
-		String directory = "src\\test\\data";
+		String directory = "src/test/data";
 
         actual = new ArrayList<>(search.searchDirectory(directory));
         File file1 = new File("src\\test\\data\\Point.cpp");
@@ -64,4 +57,40 @@ public class TestRecursiveSearch {
         assertThat(actual, not(IsEmptyCollection.empty()));
         assertThat(new ArrayList<>(), IsEmptyCollection.empty());
     }
+	
+	//test recursive search with properties using just 1 file input
+	@Test
+	public void testSWPIfFile() throws Exception {
+		
+		RecursiveSearch search = new RecursiveSearch();
+		String directory = "src/test/data/test.cpp";
+		String properties = "properties.ini";
+
+        actual = new ArrayList<>(search.searchWithProperties(directory, properties));
+	    File file1 = new File("src\\test\\data\\test.cpp");
+	    assertThat(actual, containsInAnyOrder(file1));
+	      
+	    assertThat(actual, hasSize(1));
+	    assertThat(actual.size(), is(1));
+	    assertThat(actual, not(IsEmptyCollection.empty()));
+	    assertThat(new ArrayList<>(), IsEmptyCollection.empty());
+	}
+	
+	//test recursive search without properties using just 1 file input
+	@Test
+	public void testRSIfFile() throws Exception {
+		
+		RecursiveSearch search = new RecursiveSearch();
+		String directory = "src/test/data/test.cpp";
+		String properties = "properties.ini";
+
+        actual = new ArrayList<>(search.searchWithProperties(directory, properties));
+	    File file1 = new File("src\\test\\data\\test.cpp");
+	    assertThat(actual, containsInAnyOrder(file1));
+	      
+	    assertThat(actual, hasSize(1));
+	    assertThat(actual.size(), is(1));
+	    assertThat(actual, not(IsEmptyCollection.empty()));
+	    assertThat(new ArrayList<>(), IsEmptyCollection.empty());
+	}
 }
