@@ -1,9 +1,10 @@
 # Project Reports
 ## DupDetector
 
-* Ariell
-* Christian
-* Will
+- Ariell
+- Christian
+- Will
 
+<br>
 
-* [Reports Accumulator](./reports/)
+- [Reports Accumulator](./reports/)
