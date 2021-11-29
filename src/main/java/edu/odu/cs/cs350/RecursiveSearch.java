@@ -6,7 +6,11 @@ import java.util.*;
 
 public class RecursiveSearch {
 	
-	private static List<File> listofFiles = new ArrayList<>();
+	private List<File> listofFiles;
+	
+	public RecursiveSearch() {
+		listofFiles = new ArrayList<>();
+	}
 	
 	/**
      * searchWithProperties recursively searches a given file path using
@@ -81,9 +85,5 @@ public class RecursiveSearch {
         	}
          }
          return listofFiles;   
-	}
-	
-	public void clear() {
-		listofFiles.clear();
 	}
 }
