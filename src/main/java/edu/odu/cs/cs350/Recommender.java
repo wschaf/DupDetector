@@ -36,10 +36,11 @@ public class Recommender implements RecommenderInterface {
     }
 
     /**
-     * Parameter constructor.
+     * Parameter constructor. with a list of tokens provided.
      * tokens is set to inputTokens, recommend runs to set
      * the Refactorings list, 
-     * @param inputTokens
+     * @param inputTokens a list of tokens produced from lexical
+     * analysis of all the files provided as input.
      */
     Recommender(List<TokenInterface> inputTokens) {
         this.setTokens(inputTokens);
@@ -48,6 +49,13 @@ public class Recommender implements RecommenderInterface {
         this.recommend();
     }
 
+    /**
+     * Parameter constructor, with tokens and min and max size of refactorings parameters.
+     * @param inputTokensa list of tokens produced from lexical
+     * analysis of all the files provided as input.
+     * @param min the least number of tokens that a refactoring candidate can have.
+     * @param max the highest number of tokens that a refactoring candidate can have.
+     */
     Recommender(List<TokenInterface> inputTokens, int min, int max) {
         this.setTokens(inputTokens);
         this.setMinRefactoringSize(min);
