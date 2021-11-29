@@ -1,6 +1,6 @@
 package edu.odu.cs.cs350.Interfaces;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * Taking as input a list of tokens which represents a string of
@@ -62,6 +62,15 @@ public interface RecommenderInterface {
     /**
      * Recommended refactorings should be greater than
      * minRefactoringSize but less than maxRefactoringSize,
+     * inclusive. If no input was provided, sets the min to
+     * 0 if Recommender's list of tokens is empty, or to 3%
+     * of the size of the token list.
+     */
+    public void setMinRefactoringSize();
+
+    /**
+     * Recommended refactorings should be greater than
+     * minRefactoringSize but less than maxRefactoringSize,
      * inclusive.
      * @return the maximum number of tokens that can make up a
      * refactoring.
@@ -76,4 +85,13 @@ public interface RecommenderInterface {
      * refactoring.
      */
     public void setMaxRefactoringSize(int input);
+
+    /**
+     * Recommended refactorings should be greater than
+     * minRefactoringSize but less than maxRefactoringSize,
+     * inclusive. If no input was provided, sets the max to
+     * 0 if Recommender's list of tokens is empty, or to 75%
+     * of the size of the token list.
+     */
+    public void setMaxRefactoringSize();
 }
