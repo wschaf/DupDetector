@@ -19,27 +19,27 @@ public interface RecommenderInterface {
      * @return the list of tokens from which the recommendations
      * are generated.
      */
-    public List<TokenInterface> getTokens();
+    public List<? extends TokenInterface> getTokens();
 
     /**
      * Sets the list of tokens from which recommendations are
      * generated to the input list parameter.
      * @param input a list of token objects.
      */
-    public void setTokens(List<TokenInterface> input);
+    public void setTokens(List<? extends TokenInterface> input);
 
     /**
      * The primary functionality for recommender.
      * @return a complete list of all refactoring recommendations.
      */
-    public List<RefactoringInterface> getRefactorings();
+    public List<? extends RefactoringInterface> getRefactorings();
 
     /**
      * Sets recommender's list of refactorings to a pre-existing
      * refactoring list.
      * @param input a list of Refactoring recommendations.
      */
-    public void setRefactorings(List<RefactoringInterface> input);
+    public void setRefactorings(List<? extends RefactoringInterface> input);
 
     /**
      * Recommended refactorings should be greater than

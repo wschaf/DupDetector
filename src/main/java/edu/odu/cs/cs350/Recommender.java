@@ -42,7 +42,7 @@ public class Recommender implements RecommenderInterface {
      * @param inputTokens a list of tokens produced from lexical
      * analysis of all the files provided as input.
      */
-    Recommender(List<TokenInterface> inputTokens) {
+    Recommender(List<? extends TokenInterface> inputTokens) {
         this.setTokens(inputTokens);
         this.setMinRefactoringSize();
         this.setMaxRefactoringSize();
@@ -56,7 +56,7 @@ public class Recommender implements RecommenderInterface {
      * @param min the least number of tokens that a refactoring candidate can have.
      * @param max the highest number of tokens that a refactoring candidate can have.
      */
-    Recommender(List<TokenInterface> inputTokens, int min, int max) {
+    Recommender(List<? extends TokenInterface> inputTokens, int min, int max) {
         this.setTokens(inputTokens);
         this.setMinRefactoringSize(min);
         this.setMaxRefactoringSize(max);
@@ -68,7 +68,7 @@ public class Recommender implements RecommenderInterface {
      * are generated.
      */
     @Override
-    public List<TokenInterface> getTokens() {
+    public List<? extends TokenInterface> getTokens() {
         return this.tokens;
     }
 
@@ -78,8 +78,9 @@ public class Recommender implements RecommenderInterface {
      * @param input a list of token objects.
      */
     @Override
-    public void setTokens(List<TokenInterface> input) {
-        this.tokens = input;
+    public void setTokens(List<? extends TokenInterface> input) {
+        tokens.clear();
+        for (TokenInterface t : input) tokens.add(t);
     }
 
     /**
@@ -87,7 +88,7 @@ public class Recommender implements RecommenderInterface {
      * @return a complete list of all refactoring recommendations.
      */
     @Override
-    public List<RefactoringInterface> getRefactorings() {
+    public List<? extends RefactoringInterface> getRefactorings() {
         if (this.refactorings.size() == 0) this.recommend();
         return this.refactorings;
     }
@@ -98,8 +99,9 @@ public class Recommender implements RecommenderInterface {
      * @param input a list of Refactoring recommendations.
      */
     @Override
-    public void setRefactorings(List<RefactoringInterface> input) {
-        this.refactorings = input;
+    public void setRefactorings(List<? extends RefactoringInterface> input) {
+        refactorings.clear();
+        for (RefactoringInterface r : input) refactorings.add(r);
     }
 
     /**
