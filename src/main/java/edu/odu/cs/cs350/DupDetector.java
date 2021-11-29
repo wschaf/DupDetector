@@ -30,7 +30,6 @@ public class DupDetector {
 					Output out = new Output();
 					out.setFiles(r.searchWithProperties(startDir, args[1]));
 					System.out.println(out.getSectionOne());
-    				r.clear();
     			} catch(FileNotFoundException e) {
     				System.out.println(e.getMessage());
     			}
@@ -44,7 +43,6 @@ public class DupDetector {
                     Output out = new Output();
 					out.setFiles(r.searchDirectory(startDir));
 					System.out.println(out.getSectionOne());
-                    r.clear();
                 } catch(FileNotFoundException e) {
                     System.out.println(e.getMessage());
                 }
