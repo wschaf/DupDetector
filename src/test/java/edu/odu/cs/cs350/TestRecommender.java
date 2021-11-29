@@ -12,5 +12,53 @@ import static org.junit.jupiter.api.Assertions.*;
  * @see RecommenderInterface
  */
 public class TestRecommender {
-    
+    @Test
+    void testGetMaxRefactoringSize() {
+
+    }
+
+    @Test
+    void testGetMinRefactoringSize() {
+
+    }
+
+    @Test
+    void testGetRefactorings() {
+
+    }
+
+    @Test
+    void testGetTokens() {
+
+    }
+
+    @Test
+    void testSetMaxRefactoringSize() {
+
+    }
+
+    @Test
+    void testSetMaxRefactoringSize2() {
+
+    }
+
+    @Test
+    void testSetMinRefactoringSize() {
+
+    }
+
+    @Test
+    void testSetMinRefactoringSize2() {
+
+    }
+
+    @Test
+    void testSetRefactorings() {
+
+    }
+
+    @Test
+    void testSetTokens() {
+
+    }
 }
