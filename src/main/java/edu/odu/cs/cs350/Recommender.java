@@ -44,9 +44,9 @@ public class Recommender implements RecommenderInterface {
      */
     Recommender(List<? extends TokenInterface> inputTokens) {
         this.setTokens(inputTokens);
-        this.setMinRefactoringSize();
-        this.setMaxRefactoringSize();
-        this.recommend();
+        this.refactorings = new ArrayList<RefactoringInterface>();
+        this.setMinRefactoringSize(0);
+        this.setMaxRefactoringSize(0);
     }
 
     /**
@@ -79,7 +79,11 @@ public class Recommender implements RecommenderInterface {
      */
     @Override
     public void setTokens(List<? extends TokenInterface> input) {
-        tokens.clear();
+        if (input == null || input.size() == 0) {
+            tokens = new ArrayList<TokenInterface>();
+            return;
+        }
+        tokens = new ArrayList<TokenInterface>();
         for (TokenInterface t : input) tokens.add(t);
     }
 
@@ -89,7 +93,7 @@ public class Recommender implements RecommenderInterface {
      */
     @Override
     public List<? extends RefactoringInterface> getRefactorings() {
-        if (this.refactorings.size() == 0) this.recommend();
+        if (this.refactorings.isEmpty() || this.refactorings == null) this.recommend();
         return this.refactorings;
     }
 
@@ -100,8 +104,13 @@ public class Recommender implements RecommenderInterface {
      */
     @Override
     public void setRefactorings(List<? extends RefactoringInterface> input) {
-        refactorings.clear();
-        for (RefactoringInterface r : input) refactorings.add(r);
+        if (input.isEmpty() || input == null) {
+            refactorings = new ArrayList<RefactoringInterface>();
+        }
+        else {
+            refactorings.clear();
+            for (RefactoringInterface r : input) refactorings.add(r);
+        }
     }
 
     /**
@@ -137,7 +146,7 @@ public class Recommender implements RecommenderInterface {
      */
     @Override
     public void setMinRefactoringSize() {
-        if (this.getTokens().size() == 0) {
+        if (this.getTokens().isEmpty() || this.getTokens() == null) {
             this.minRefactoringSize = 0;
             return;
         }
@@ -182,7 +191,7 @@ public class Recommender implements RecommenderInterface {
      */
     @Override
     public void setMaxRefactoringSize() {
-        if (this.getTokens().size() == 0) {
+        if (this.getTokens().isEmpty() || this.getTokens() == null) {
             this.maxRefactoringSize = 0;
             return;
         }
