@@ -93,6 +93,7 @@ public class Recommender implements RecommenderInterface {
      */
     @Override
     public List<? extends RefactoringInterface> getRefactorings() {
+        if (this.tokens == null || this.tokens.size() == 0) this.refactorings = new ArrayList<RefactoringInterface>();
         if (this.refactorings.isEmpty() || this.refactorings == null) this.recommend();
         return this.refactorings;
     }
