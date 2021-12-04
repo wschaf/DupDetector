@@ -10,38 +10,37 @@ import java.util.Iterator;
  * TokenAnalyzer analyzes each lexemes in the given file
  * and determines the type of token. The result returns
  * a list of tokens and the total number of tokens in the file.
- * 
  */
 public class TokenAnalyzer implements Iterable&lt;Token&gt; {
     
-    /** Container for token object found in the file */
+    /** Container for token object found in the file. */
     private List&lt;Token&gt; tokensContainer;
 
-    /** Scan the input file */
+    /** Scan the input file. */
     private LexerAnalyzer scanner;
 
-    /** Token object found in the file. Contains necessary metadata defined in Token class*/
+    /** Token object found in the file. Contains necessary metadata defined in Token class. */
     private Token token;
     
     /**
-     * The default constructor for token analyzer. Creates an
-     * empty constructor for each data members.
+     * The default constructor for token analyzer.
+     * Creates an empty constructor for each data members.
      */
-<span class="fc" id="L30">    public TokenAnalyzer() {</span>
-<span class="fc" id="L31">        tokensContainer = new LinkedList&lt;Token&gt;();</span>
-<span class="fc" id="L32">        scanner = new LexerAnalyzer(null);</span>
-<span class="fc" id="L33">        token = new Token(null, 0, 0);</span>
-<span class="fc" id="L34">    }</span>
+<span class="fc" id="L29">    public TokenAnalyzer() {</span>
+<span class="fc" id="L30">        tokensContainer = new LinkedList&lt;Token&gt;();</span>
+<span class="fc" id="L31">        scanner = new LexerAnalyzer(null);</span>
+<span class="fc" id="L32">        token = new Token(null, 0, 0);</span>
+<span class="fc" id="L33">    }</span>
 
     /**
      * The constructor for analyzing tokens in a file given by the parameter.
      * Creates a list of object Token and a LexerAnalyzer scanner.
      * @param input The input file to be read to determine the tokens in the file
      */
-<span class="fc" id="L41">    public TokenAnalyzer(Reader input) {</span>
-<span class="fc" id="L42">        tokensContainer = new LinkedList&lt;Token&gt;();</span>
-<span class="fc" id="L43">        scanner = new LexerAnalyzer(input);</span>
-<span class="fc" id="L44">    }</span>
+<span class="fc" id="L40">    public TokenAnalyzer(Reader input) {</span>
+<span class="fc" id="L41">        tokensContainer = new LinkedList&lt;Token&gt;();</span>
+<span class="fc" id="L42">        scanner = new LexerAnalyzer(input);</span>
+<span class="fc" id="L43">    }</span>
 
     /**
      * Divides source codes into tokens.
@@ -50,23 +49,23 @@ public class TokenAnalyzer implements Iterable&lt;Token&gt; {
      */
     public void processSourceCode() {
         try {
-<span class="fc" id="L53">            token = scanner.yylex();</span>
-<span class="pc bpc" id="L54" title="1 of 4 branches missed.">            while(token != null &amp;&amp; token.getTokenType() != TokenType.EOF) {</span>
-<span class="fc" id="L55">                tokensContainer.add(token);</span>
-<span class="fc" id="L56">                token = scanner.yylex();</span>
+<span class="fc" id="L52">            token = scanner.yylex();</span>
+<span class="pc bpc" id="L53" title="1 of 4 branches missed.">            while (token != null &amp;&amp; token.getTokenType() != TokenType.EOF) {</span>
+<span class="fc" id="L54">                tokensContainer.add(token);</span>
+<span class="fc" id="L55">                token = scanner.yylex();</span>
             }
         } 
-<span class="nc" id="L59">        catch (IOException ex) {</span>
-<span class="nc" id="L60">            System.out.println(ex);</span>
-<span class="fc" id="L61">        }</span>
-<span class="fc" id="L62">    }</span>
+<span class="nc" id="L58">        catch (IOException ex) {</span>
+<span class="nc" id="L59">            System.out.println(ex);</span>
+<span class="fc" id="L60">        }</span>
+<span class="fc" id="L61">    }</span>
 
     /**
      *  
      * @return The total number of tokens in the file that is being read.
      */
     public final int getFileTokenCount() {
-<span class="fc" id="L69">        return tokensContainer.size();</span>
+<span class="fc" id="L68">        return tokensContainer.size();</span>
     }
 
     /**
@@ -74,7 +73,7 @@ public class TokenAnalyzer implements Iterable&lt;Token&gt; {
      */
     @Override
     public final Iterator&lt;Token&gt; iterator() {
-<span class="fc" id="L77">        return tokensContainer.iterator();</span>
+<span class="fc" id="L76">        return tokensContainer.iterator();</span>
     }
 
     /**
@@ -83,7 +82,7 @@ public class TokenAnalyzer implements Iterable&lt;Token&gt; {
      */
     @Override
     public String toString() {
-<span class="fc" id="L86">        return Integer.toString(getFileTokenCount());</span>
+<span class="fc" id="L85">        return Integer.toString(getFileTokenCount());</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
