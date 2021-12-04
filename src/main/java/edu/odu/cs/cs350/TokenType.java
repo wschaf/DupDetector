@@ -1,7 +1,7 @@
 package edu.odu.cs.cs350;
 
 /**
- * Covers some of C++ token types
+ * Covers some of C++ token types.
  */
 public enum TokenType {
     WHILE, 

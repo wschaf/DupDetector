@@ -4,13 +4,20 @@ import edu.odu.cs.cs350.Interfaces.TokenInterface;
 
 /**
  * Token file contains the information needed for a token defined in the TokenType class.
- * Token metadata includes tokentype, string lexeme of Identifier or Number
+ * Token metadata includes tokentype, string lexeme of Identifier or Number,
  * the line number of the token, and the column number of the token.
  */
 public class Token implements TokenInterface {
+    /** The type of the current token. */
     private TokenType tokenType;
+
+    /** String representation of the token lexeme. */
     private String lexeme;
+
+    /** The line number of the token. */
     private int lineNumber;
+
+    /** The column number of the token. */
     private int ColumnNumber;
 
 
