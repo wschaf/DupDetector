@@ -2,7 +2,9 @@ package edu.odu.cs.cs350;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.*;
+import java.util.List;
+import java.util.LinkedList;
+import java.util.Iterator;
 
 /**
  * TokenAnalyzer analyzes each lexemes in the given file
@@ -12,8 +14,13 @@ import java.util.*;
  */
 public class TokenAnalyzer implements Iterable<Token> {
     
+    /** Container for token object found in the file */
     private List<Token> tokensContainer;
+
+    /** Scan the input file */
     private LexerAnalyzer scanner;
+
+    /** Token object found in the file. Contains necessary metadata defined in Token class*/
     private Token token;
     
     /**
@@ -29,7 +36,7 @@ public class TokenAnalyzer implements Iterable<Token> {
     /**
      * The constructor for analyzing tokens in a file given by the parameter.
      * Creates a list of object Token and a LexerAnalyzer scanner.
-     * @param input: The input file to be read to determine the tokens in the file
+     * @param input The input file to be read to determine the tokens in the file
      */
     public TokenAnalyzer(Reader input) {
         tokensContainer = new LinkedList<Token>();
@@ -71,7 +78,7 @@ public class TokenAnalyzer implements Iterable<Token> {
     }
 
     /**
-     * For debugging purposes
+     * For debugging purposes.
      * @return format of tokenAnalyzer which returns the number of tokens in the file
      */
     @Override

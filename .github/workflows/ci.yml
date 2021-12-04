@@ -6,7 +6,7 @@ name: CI - build and test
 
 on:                                
   push:
-    branches: [ main ]
+    branches: [ CBranch ]
   pull_request:
     branches: [ main ]
 
@@ -45,3 +45,4 @@ jobs:
             _config.yml
             README.md
             .gitignore
+            *.csv

@@ -185,9 +185,9 @@ public class TestOutput {
         String subject = out.getCompleteOutput();
         String correctOutput =
         "Files Scanned:\n" +
-        "    C:/Users/chrst/Documents/CS350/DupDetector2.0/DupDetector/src/test/data/test.cpp, 24\n" +
-        "    C:/Users/chrst/Documents/CS350/DupDetector2.0/DupDetector/src/test/data/test.cpp, 24\n" +
-        "    C:/Users/chrst/Documents/CS350/DupDetector2.0/DupDetector/src/test/data/test.cpp, 24\n" +
+        "    /home/runner/work/DupDetector/DupDetector/src/test/data/test.cpp, 24\n" +
+        "    /home/runner/work/DupDetector/DupDetector/src/test/data/test.cpp, 24\n" +
+        "    /home/runner/work/DupDetector/DupDetector/src/test/data/test.cpp, 24\n" +
         "\n" +
         "Opportunity #1, 6 tokens\n" +
         "/home/wgs/src/cs350/DupDetector/src/test/data/hello.cpp:32:64\n" +
