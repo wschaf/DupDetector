@@ -45,4 +45,3 @@ jobs:
             _config.yml
             README.md
             .gitignore
-            *.csv
