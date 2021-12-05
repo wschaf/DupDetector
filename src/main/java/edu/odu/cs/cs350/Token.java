@@ -34,7 +34,6 @@ public class Token implements TokenInterface {
     }
 
     /**
-     * 
      * @param type Type of token given in the TokenType class
      * @param line line number of the current token
      * @param column starting column number of the current token
@@ -48,7 +47,6 @@ public class Token implements TokenInterface {
     }
 
     /**
-     * 
      * @return the token type of this current token.
      */
     public TokenType getTokenType() {
@@ -65,7 +63,7 @@ public class Token implements TokenInterface {
     }
 
     /**
-     * @return the line number of this current token in string format
+     * @return the line number of this current token in string format.
      */
     @Override
     public String getLineNumber() {
