@@ -43,12 +43,12 @@ public class IntergrationTest {
         "    /home/runner/work/DupDetector/DupDetector/src/test/data/test.cpp, 24\n";
 
         out.setFiles(search.searchDirectory(directory));
-        assertThat(out.getFiles(), equalTo(expectedFiles));
+        assertThat(out.getFiles(), containsInAnyOrder(expectedFiles));
         assertThat(out.getFiles().size(), is(5));
         assertThat(out.getSectionOne(), equalTo(expected));
 
         out.setFiles(search.searchWithProperties(directory, properties));
-        assertThat(out.getFiles(), equalTo(expectedFiles));
+        assertThat(out.getFiles(), containsInAnyOrder(expectedFiles));
         assertThat(out.getFiles().size(), is(5));
         assertThat(out.getSectionOne(), equalTo(expected));
     }
