@@ -70,11 +70,11 @@ public class RecursiveSearch {
 <span class="fc bfc" id="L70" title="All 2 branches covered.">        	for (File f : dir.listFiles()) {</span>
         		try {
         			// Check if the file is a directory
-<span class="pc bpc" id="L73" title="1 of 2 branches missed.">        			if (f.isDirectory()) {</span>
-<span class="nc" id="L74">        				searchDirectory(f.getAbsolutePath());</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        			if (f.isDirectory()) {</span>
+<span class="fc" id="L74">        				searchDirectory(f.getAbsolutePath());</span>
         			} 
         			else {      
-<span class="pc bpc" id="L77" title="1 of 4 branches missed.">        				if(f.getName().endsWith(&quot;.cpp&quot;) || f.getName().endsWith(&quot;.h&quot;)) {</span>
+<span class="fc bfc" id="L77" title="All 4 branches covered.">        				if(f.getName().endsWith(&quot;.cpp&quot;) || f.getName().endsWith(&quot;.h&quot;)) {</span>
 <span class="fc" id="L78">        					listofFiles.add(f);</span>
         				}
         			} 
