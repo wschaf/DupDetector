@@ -25,11 +25,11 @@ public class IntergrationTest {
         directory = "src/";
         properties = "properties.ini";
 
-        expectedFiles.add(new File("src/test/data/Point.cpp"));
-        expectedFiles.add(new File("src/test/data/Point.h"));
-        expectedFiles.add(new File("src/test/data/readingList.cpp"));
-        expectedFiles.add(new File("src/test/data/readingList.h"));
-        expectedFiles.add(new File("src/test/data/test.cpp"));
+        expectedFiles.add(new File("/home/runner/work/DupDetector/DupDetector/src/test/data/Point.cpp"));
+        expectedFiles.add(new File("/home/runner/work/DupDetector/DupDetector/src/test/data/Point.h"));
+        expectedFiles.add(new File("/home/runner/work/DupDetector/DupDetector/src/test/data/readingList.cpp"));
+        expectedFiles.add(new File("/home/runner/work/DupDetector/DupDetector/src/test/data/readingList.h"));
+        expectedFiles.add(new File("/home/runner/work/DupDetector/DupDetector/src/test/data/test.cpp"));
     }
 
     @Test
@@ -55,7 +55,7 @@ public class IntergrationTest {
 
     @Test
     public void testSectionTwoFunctionality() throws Exception {
-        
+
     }
 
 }
