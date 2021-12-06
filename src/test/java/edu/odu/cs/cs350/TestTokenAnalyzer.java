@@ -34,7 +34,7 @@ public class TestTokenAnalyzer {
 
 
     @Test
-    public void testProcessSourceCode() {
+    public void testProcessSourceCode() throws Exception {
         
         try {
             File f = new File("src/test/data/test.cpp");
@@ -59,36 +59,42 @@ public class TestTokenAnalyzer {
             assertThat(t.getLexeme(), equalTo(""));
             assertThat(t.getLineNumber(),equalTo("1"));
             assertThat(t.getColumnNumber(), equalTo("1"));
+            assertThat(t.toString(), equalTo("HASH_SYMBOL:1:1"));
 
             t = tokens.get(3);
             assertThat(TokenType.IOSTREAM, equalTo(t.getTokenType()));
             assertThat(t.getLexeme(), equalTo(""));
             assertThat(t.getLineNumber(),equalTo("1"));
             assertThat(t.getColumnNumber(), equalTo("11"));
+            assertThat(t.toString(), equalTo("IOSTREAM:1:11"));
 
             t = tokens.get(12);
             assertThat(TokenType.RIGHT_PAREN, equalTo(t.getTokenType()));
             assertThat(t.getLexeme(), equalTo(""));
             assertThat(t.getLineNumber(),equalTo("8"));
             assertThat(t.getColumnNumber(), equalTo("10"));
+            assertThat(t.toString(), equalTo("RIGHT_PAREN:8:10"));
 
             t = tokens.get(16);
             assertThat(TokenType.STRING_LITERAL, equalTo(t.getTokenType()));
             assertThat(t.getLexeme(), equalTo("Hello World"));
             assertThat(t.getLineNumber(),equalTo("9"));
             assertThat(t.getColumnNumber(), equalTo("25"));
+            assertThat(t.toString(), equalTo("STRING_LITERAL:Hello World:9:25"));
 
             t = tokens.get(17);
             assertThat(TokenType.OSTREAM, equalTo(t.getTokenType()));
             assertThat(t.getLexeme(), equalTo(""));
             assertThat(t.getLineNumber(),equalTo("9"));
             assertThat(t.getColumnNumber(), equalTo("27"));
+            assertThat(t.toString(), equalTo("OSTREAM:9:27"));
             
             t = tokens.get(21);
             assertThat(TokenType.CONSTANT_NUMBERS, equalTo(t.getTokenType()));
             assertThat(t.getLexeme(), equalTo("0"));
             assertThat(t.getLineNumber(),equalTo("11"));
             assertThat(t.getColumnNumber(), equalTo("12"));
+            assertThat(t.toString(), equalTo("CONSTANT_NUMBERS:0:11:12"));
         } 
         catch(FileNotFoundException e) {
             System.out.println(e.getMessage());

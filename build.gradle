@@ -152,7 +152,7 @@ task reports (dependsOn: ['javadoc', 'test', 'copyDocs', 'copyTest',
 }
 
 reportStats {
-    reportsURL = 'https://wschaf.github.io/DupDetector/'
+    reportsURL = 'https://wschaf.github.io/DupDetector/reports/'
     htmlSourceDir = file('reports_accumulator/')
     reportsDir = file("$reportsDir/")
 }

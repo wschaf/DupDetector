@@ -4,23 +4,28 @@ import edu.odu.cs.cs350.Interfaces.TokenInterface;
 
 /**
  * Token file contains the information needed for a token defined in the TokenType class.
- * Token metadata includes tokentype, string lexeme of Identifier or Number, the line number
- * of the token, and the column number of the token.
+ * Token metadata includes tokentype, string lexeme of Identifier or Number,
+ * the line number of the token, and the column number of the token.
  */
-public class Token implements TokenInterface{
-    
+public class Token implements TokenInterface {
+    /** The type of the current token. */
     private TokenType tokenType;
+
+    /** String representation of the token lexeme. */
     private String lexeme;
+
+    /** The line number of the token. */
     private int lineNumber;
+
+    /** The column number of the token. */
     private int ColumnNumber;
     private String absolutePath;
 
 
     /**
-     * 
-     * @param type: Type of token given in the TokenType class
-     * @param line: line number of the current token
-     * @param column: line number of the current token
+     * @param type Type of token given in the TokenType class
+     * @param line line number of the current token
+     * @param column line number of the current token
      */
     public Token(TokenType type, int line, int column) {
         this.tokenType = type;
@@ -30,11 +35,10 @@ public class Token implements TokenInterface{
     }
 
     /**
-     * 
-     * @param type: Type of token given in the TokenType class
-     * @param line: line number of the current token
-     * @param column: starting column number of the current token
-     * @param lexeme: string representation of this token
+     * @param type Type of token given in the TokenType class
+     * @param line line number of the current token
+     * @param column starting column number of the current token
+     * @param lexeme string representation of this token
      */
     public Token(TokenType type, int line, int column, String lexeme) {
         this.tokenType = type;
@@ -44,7 +48,6 @@ public class Token implements TokenInterface{
     }
 
     /**
-     * 
      * @return the token type of this current token.
      */
     public TokenType getTokenType() {
@@ -52,7 +55,6 @@ public class Token implements TokenInterface{
     }
 
     /**
-     * 
      * @return the string lexeme of this current token, empty if it's not 
      *         an Identifier or a number.
      */
@@ -62,8 +64,7 @@ public class Token implements TokenInterface{
     }
 
     /**
-     * 
-     * @return the line number of this current token in string format
+     * @return the line number of this current token in string format.
      */
     @Override
     public String getLineNumber() {
@@ -71,7 +72,6 @@ public class Token implements TokenInterface{
     }
 
     /**
-     * 
      * @return the column number of this current token in string format
      *         for string literals, the column number will be the ending
      *          of the string. (i.e. the second quotation)
@@ -88,12 +88,12 @@ public class Token implements TokenInterface{
     @Override
     public String toString() {
         if (getLexeme().length() > 0) {
-            return getTokenType() + ":" + 
+            return getTokenType().toString() + ":" + 
                    getLexeme() + ":" + 
                    getLineNumber() + ":" + 
                    getColumnNumber();
         } else {
-            return getTokenType().toString()+ ":" + 
+            return getTokenType().toString() + ":" + 
                    getLineNumber() + ":" + 
                    getColumnNumber();
         }
