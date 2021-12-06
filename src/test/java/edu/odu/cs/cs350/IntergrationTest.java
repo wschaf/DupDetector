@@ -35,7 +35,7 @@ public class IntergrationTest {
     @Test
     public void testSectionOneFunctionality() throws Exception {
         String expected = 
-        "File Scanned:\n" +
+        "Files Scanned:\n" +
         "    /home/runner/work/DupDetector/DupDetector/src/test/data/readingList.cpp, 720\n" + 
         "    /home/runner/work/DupDetector/DupDetector/src/test/data/Point.cpp, 189\n" +
         "    /home/runner/work/DupDetector/DupDetector/src/test/data/Point.h, 200\n" +
