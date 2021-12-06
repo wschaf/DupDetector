@@ -13,6 +13,7 @@ public class Token implements TokenInterface{
     private String lexeme;
     private int lineNumber;
     private int ColumnNumber;
+    private String absolutePath;
 
 
     /**
@@ -98,5 +99,8 @@ public class Token implements TokenInterface{
         }
     }
 
-
+    @Override
+    public String getAbsolutePath() {
+        return this.absolutePath;
+    }
 }
