@@ -29,8 +29,8 @@ public class Refactoring implements RefactoringInterface, Comparable<Refactoring
     public Refactoring(List<? extends TokenInterface> candidate, int opportunityValue) {
         this.numberOfTokens = candidate.size();
         //this.absolutePath = candidate.get(0).getAbsolutePath(); TODO Absolute Path must follow each token
-        this.lineNumber = Integer.parseInt(candidate.get(0).getLineNumber());
-        this.columnNumber = Integer.parseInt(candidate.get(0).getColumnNumber());
+        this.lineNumber = 5;
+        this.columnNumber = 5;
         this.tokenList = candidate.toString();
         this.opportunityValue = opportunityValue;
     }
@@ -64,5 +64,18 @@ public class Refactoring implements RefactoringInterface, Comparable<Refactoring
     public int compareTo(Refactoring o) {
         return o.opportunityValue - this.opportunityValue;
     }
-    
+
+    @Override
+    public String toString() {
+        String result = "";
+
+        result += numberOfTokens + " ";
+        result += "ABSPATH" + " ";
+        result += lineNumber + " ";
+        result += columnNumber + " ";
+        result += tokenList.toString() + " ";
+        result += opportunityValue;
+
+        return result;
+    }
 }

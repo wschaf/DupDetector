@@ -77,6 +77,12 @@ public class TestRecommender {
         assertThat(subject.getMinRefactoringSize(), is(subject.getMaxRefactoringSize()));
         assertThat(subject.getMinRefactoringSize(), is(0));
         assertThat(subject.getMaxRefactoringSize(), is(0));
+
+        Recommender s = new Recommender(basicTokens);
+        s.setMinRefactoringSize();
+        s.setMaxRefactoringSize();
+        assertThat(s.getMinRefactoringSize(), is(0));
+        assertThat(s.getMaxRefactoringSize(), is(3));
     }
 
     @Test
@@ -118,11 +124,18 @@ public class TestRecommender {
          * 3. A recommender with refactorable tokens returns at least one refactoring.
          */
 
-        Recommender subject1 = new Recommender();
-        assertThat(subject1.getRefactorings().size(), is(0));
+        Recommender subjectA = new Recommender();
+        assertThat(subjectA.getRefactorings().size(), is(0));
         
-        Recommender subject2 = new Recommender(basicTokens, 0, 5);
-        assertThat(subject2.getRefactorings().size(), is(0));
+        Recommender subjectB = new Recommender(basicTokens);
+        assertThat(subjectB.getRefactorings().size(), is(0));
+
+        Recommender subjectC = new Recommender(oneRefactoring);
+        for (var r : subjectC.getRefactorings()) {
+            System.out.println(r.toString());
+        }
+
+        assertThat(subjectC.getRefactorings().size(), is(10));
     }
 
     @Test
@@ -143,6 +156,10 @@ public class TestRecommender {
 
         subject.setMinRefactoringSize(5);
         assertThat(subject.getMinRefactoringSize(), is(5));
+
+        Recommender s = new Recommender(basicTokens);
+        s.setMinRefactoringSize();
+        assertThat(s.getMinRefactoringSize(), is(0));
     }
 
     @Test
@@ -169,6 +186,10 @@ public class TestRecommender {
 
         subject.setMinRefactoringSize(50);
         assertThat(subject.getMinRefactoringSize(), is(50));
+
+        Recommender s = new Recommender(basicTokens);
+        s.setMaxRefactoringSize();
+        assertThat(s.getMaxRefactoringSize(), is(3));
     }
 
     @Test

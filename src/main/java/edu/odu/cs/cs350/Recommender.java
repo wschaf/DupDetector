@@ -225,15 +225,16 @@ public class Recommender implements RecommenderInterface {
          * value = ( A + B ) * 100
          */
 
-         BigDecimal A = new BigDecimal(candidate.size());
-         A.divide(new BigDecimal(tokens.size()));
+        /*BigDecimal A = new BigDecimal(candidate.size());
+        A.divide(new BigDecimal(tokens.size()));
 
-         BigDecimal B = new BigDecimal(amountOfDuplicates);
-         B.divide(new BigDecimal(amountOfSublists));
+        BigDecimal B = new BigDecimal(amountOfDuplicates);
+        B.divide(new BigDecimal(amountOfSublists));
 
-         BigDecimal result = A.add(B);
-         result.multiply(new BigDecimal(100));
-         return result.intValue();
+        BigDecimal result = A.add(B);
+        result.multiply(new BigDecimal(100));*/
+        //return result.intValue();
+        return 5;
     }
 
     /**
@@ -244,7 +245,7 @@ public class Recommender implements RecommenderInterface {
      */
     private void recommend() {
         this.refactorings = new ArrayList<RefactoringInterface>();
-        if (this.getMinRefactoringSize() <= 1 && this.getMaxRefactoringSize() <= 1) return;
+        if (this.tokens == null || this.tokens.size() <= 1 || this.getMaxRefactoringSize() <= 3) return;
 
         //  sublists stores each of the created candidate list of tokens.
         List<List<TokenInterface>> sublists = new ArrayList<List<TokenInterface>>();
@@ -252,11 +253,11 @@ public class Recommender implements RecommenderInterface {
         //  Create lists with varying sizes between minRefactoringSize up to and including maxRefactoringSize.
         for (int i = this.getMinRefactoringSize(); i <= this.getMaxRefactoringSize(); i++) {
             for (int j = 0; j < this.getTokens().size(); j++) {
-                if ( (j + i) >= this.getTokens().size()) {
+                try {
+                    List<TokenInterface> l = tokens.subList(j, ( j + i));
+                    sublists.add(l);
+                } catch (IndexOutOfBoundsException e) {
                     continue;
-                }
-                else {
-                    sublists.add(tokens.subList(j, ( j + i)));
                 }
             }
         }
@@ -266,7 +267,8 @@ public class Recommender implements RecommenderInterface {
             int occurrences = countOccurrences(list, sublists);
             if (occurrences > 1) {
                 int opportunityValue = computeOpportunityValue(list, occurrences - 1, sublists.size());
-                this.refactorings.add(new Refactoring(list, opportunityValue));
+                Refactoring r = new Refactoring(list, opportunityValue);
+                this.refactorings.add(r);
             }
         }
     }
