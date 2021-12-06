@@ -20,45 +20,63 @@ public class Refactoring implements RefactoringInterface, Comparable&lt;Refactor
 
 <span class="nc" id="L21">    public Refactoring(List&lt;TokenInterface&gt; current, List&lt;TokenInterface&gt; list) {</span>
 <span class="nc" id="L22">        numberOfTokens = current.size();</span>
-        //absolutePath = current.get(0).getAbsolutePath();
+        //absolutePath = current.get(0).getAbsolutePath(); TODO Absolute Path must follow each token
 <span class="nc" id="L24">        lineNumber = Integer.parseInt(current.get(0).getLineNumber());</span>
 <span class="nc" id="L25">        columnNumber = Integer.parseInt(current.get(0).getColumnNumber());</span>
 <span class="nc" id="L26">        tokenList = current.toString();</span>
 <span class="nc" id="L27">    }</span>
 
-<span class="nc" id="L29">    public Refactoring(List&lt;TokenInterface&gt; candidate, int opportunityValue) {</span>
-        //todo
-<span class="nc" id="L31">    }</span>
+<span class="fc" id="L29">    public Refactoring(List&lt;? extends TokenInterface&gt; candidate, int opportunityValue) {</span>
+<span class="fc" id="L30">        this.numberOfTokens = candidate.size();</span>
+        //this.absolutePath = candidate.get(0).getAbsolutePath(); TODO Absolute Path must follow each token
+<span class="fc" id="L32">        this.lineNumber = 5;</span>
+<span class="fc" id="L33">        this.columnNumber = 5;</span>
+<span class="fc" id="L34">        this.tokenList = candidate.toString();</span>
+<span class="fc" id="L35">        this.opportunityValue = opportunityValue;</span>
+<span class="fc" id="L36">    }</span>
 
     @Override
     public String getNumberOfTokens() {
-<span class="nc" id="L35">        return Integer.toString(numberOfTokens);</span>
+<span class="nc" id="L40">        return Integer.toString(numberOfTokens);</span>
     }
 
     @Override
     public String getAbsolutePath() {
-<span class="nc" id="L40">        return absolutePath;</span>
+<span class="nc" id="L45">        return absolutePath;</span>
     }
 
     @Override
     public String getLineNumber() {
-<span class="nc" id="L45">        return Integer.toString(lineNumber);</span>
+<span class="nc" id="L50">        return Integer.toString(lineNumber);</span>
     }
 
     @Override
     public String getColumnNumber() {
-<span class="nc" id="L50">        return Integer.toString(columnNumber);</span>
+<span class="nc" id="L55">        return Integer.toString(columnNumber);</span>
     }
 
     @Override
     public String getTokenList() {
-<span class="nc" id="L55">        return tokenList;</span>
+<span class="nc" id="L60">        return tokenList;</span>
     }
 
     @Override
     public int compareTo(Refactoring o) {
-<span class="nc" id="L60">        return o.opportunityValue - this.opportunityValue;</span>
+<span class="nc" id="L65">        return o.opportunityValue - this.opportunityValue;</span>
     }
-    
+
+    @Override
+    public String toString() {
+<span class="fc" id="L70">        String result = &quot;&quot;;</span>
+
+<span class="fc" id="L72">        result += numberOfTokens + &quot; &quot;;</span>
+<span class="fc" id="L73">        result += &quot;ABSPATH&quot; + &quot; &quot;;</span>
+<span class="fc" id="L74">        result += lineNumber + &quot; &quot;;</span>
+<span class="fc" id="L75">        result += columnNumber + &quot; &quot;;</span>
+<span class="fc" id="L76">        result += tokenList.toString() + &quot; &quot;;</span>
+<span class="fc" id="L77">        result += opportunityValue;</span>
+
+<span class="fc" id="L79">        return result;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

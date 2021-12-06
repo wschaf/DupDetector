@@ -3,177 +3,288 @@
 import edu.odu.cs.cs350.Interfaces.*;
 
 import java.util.*;
+import java.math.BigDecimal;
 
 /**
- * Performs the functions of producing refactoring recommendations based on input files.
- * tokens contains a list of all tokens provided as input from the user.
+ * Taking as input a list of tokens which represents a string of
+ * tokens taken from all files that the Input processed. It will
+ * process these tokens, and produce a list of recommended
+ * refactorings, ordered from greatest to least opportunity value.
+ * Additionally, after finding a refactoring recommendation, but
+ * before adding the recommendation to the list of recommendations,
+ * it will compute the opportunity value of that recommendation.
+ * @see RecommenderInterface
+ * @see TestRecomender
  */
-public class Recommender {
+public class Recommender implements RecommenderInterface {
 
     private List&lt;TokenInterface&gt; tokens;
     private List&lt;RefactoringInterface&gt; refactorings;
-    int minSublistSize;
-    int maxSublistSize;
-    
-    /**
-     * Default constructor for Recommender.
-     */
-<span class="nc" id="L21">    Recommender() {</span>
-<span class="nc" id="L22">        this.setTokens(new ArrayList&lt;TokenInterface&gt;());</span>
-<span class="nc" id="L23">        setMinSublistSize(0);</span>
-<span class="nc" id="L24">        setMaxSublistSize(0);</span>
-<span class="nc" id="L25">    }</span>
+    private int minRefactoringSize;
+    private int maxRefactoringSize;
 
     /**
-     * Constructor.
-     * @param tokens a list of C++ tokens from all files that were provided as input from the user.
+     * Default constructor.
+     * tokens and refactorings are set to empty lists;
+     * minRefactoringSize and maxRefactoringSize are set to 0.
      */
-<span class="nc" id="L31">    Recommender(List&lt;TokenInterface&gt; tokens, int minSublistSize, int maxSublistSize) {</span>
-<span class="nc" id="L32">        this.setTokens(tokens);</span>
-<span class="nc" id="L33">        setMinSublistSize(minSublistSize);</span>
-<span class="nc" id="L34">        setMaxSublistSize(maxSublistSize);</span>
-<span class="nc" id="L35">    }</span>
+<span class="fc" id="L31">    Recommender() {</span>
+<span class="fc" id="L32">        this.setTokens(new ArrayList&lt;TokenInterface&gt;());</span>
+<span class="fc" id="L33">        this.setRefactorings(new ArrayList&lt;RefactoringInterface&gt;());</span>
+<span class="fc" id="L34">        this.setMinRefactoringSize(0);</span>
+<span class="fc" id="L35">        this.setMaxRefactoringSize(0);</span>
+<span class="fc" id="L36">    }</span>
 
     /**
-     * Sets the list of tokens to create recommended refactorings from.
-     * @param tokens a list of C++ tokens from all files that were provided as input from the user.
+     * Parameter constructor. with a list of tokens provided.
+     * tokens is set to inputTokens, recommend runs to set
+     * the Refactorings list, 
+     * @param inputTokens a list of tokens produced from lexical
+     * analysis of all the files provided as input.
      */
-    public void setTokens(List&lt;TokenInterface&gt; tokens) {
-<span class="nc" id="L42">        List&lt;TokenInterface&gt; tokenlist = new ArrayList&lt;TokenInterface&gt;();</span>
-<span class="nc bnc" id="L43" title="All 2 branches missed.">		for (var t : tokens) tokenlist.add(t);</span>
-<span class="nc" id="L44">		this.tokens = tokenlist;</span>
-<span class="nc" id="L45">    }</span>
+<span class="fc" id="L45">    Recommender(List&lt;? extends TokenInterface&gt; inputTokens) {</span>
+<span class="fc" id="L46">        this.setTokens(inputTokens);</span>
+<span class="fc" id="L47">        this.refactorings = new ArrayList&lt;RefactoringInterface&gt;();</span>
+<span class="fc" id="L48">        this.setMinRefactoringSize();</span>
+<span class="fc" id="L49">        this.setMaxRefactoringSize();</span>
+<span class="fc" id="L50">    }</span>
 
     /**
-     * Sets minSublistSize equal to min.
-     * @param min the minimum size of token sublists to analyze.
+     * Parameter constructor, with tokens and min and max size of refactorings parameters.
+     * @param inputTokensa list of tokens produced from lexical
+     * analysis of all the files provided as input.
+     * @param min the least number of tokens that a refactoring candidate can have.
+     * @param max the highest number of tokens that a refactoring candidate can have.
      */
-    public void setMinSublistSize(int min)
-    {
-<span class="nc" id="L53">        this.minSublistSize = min;</span>
-<span class="nc" id="L54">    }</span>
+<span class="fc" id="L59">    Recommender(List&lt;? extends TokenInterface&gt; inputTokens, int min, int max) {</span>
+<span class="fc" id="L60">        this.setTokens(inputTokens);</span>
+<span class="fc" id="L61">        this.setMinRefactoringSize(min);</span>
+<span class="fc" id="L62">        this.setMaxRefactoringSize(max);</span>
+<span class="fc" id="L63">        this.recommend();</span>
+<span class="fc" id="L64">    }</span>
 
     /**
-     * @return the minimum size of token sublists to analyze.
+     * @return the list of tokens from which the recommendations
+     * are generated.
      */
-    public int getMinSublistSize()
-    {
-<span class="nc" id="L61">        return this.minSublistSize;</span>
+    @Override
+    public List&lt;? extends TokenInterface&gt; getTokens() {
+<span class="fc" id="L72">        return this.tokens;</span>
     }
 
     /**
-     * Sets maxSublistSize equal to max.
-     * @param max the minimum size of token sublists to analyze.
+     * Sets the list of tokens from which recommendations are
+     * generated to the input list parameter.
+     * @param input a list of token objects.
      */
-    public void setMaxSublistSize(int max)
-    {
-<span class="nc" id="L70">        this.maxSublistSize = max;</span>
-<span class="nc" id="L71">    }</span>
+    @Override
+    public void setTokens(List&lt;? extends TokenInterface&gt; input) {
+<span class="pc bpc" id="L82" title="1 of 4 branches missed.">        if (input == null || input.size() == 0) {</span>
+<span class="fc" id="L83">            tokens = new ArrayList&lt;TokenInterface&gt;();</span>
+<span class="fc" id="L84">            return;</span>
+        }
+<span class="fc" id="L86">        tokens = new ArrayList&lt;TokenInterface&gt;();</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        for (TokenInterface t : input) tokens.add(t);</span>
+<span class="fc" id="L88">    }</span>
 
     /**
-     * @return the maximum size of token sublists to analyze.
+     * If no refactorings have been created, create them.
+     * @return a complete list of all refactoring recommendations.
      */
-    public int getMaxSublistSize()
-    {
-<span class="nc" id="L78">        return this.maxSublistSize;</span>
+    @Override
+    public List&lt;? extends RefactoringInterface&gt; getRefactorings() {
+<span class="fc bfc" id="L96" title="All 2 branches covered.">        if (this.refactorings.size() != 0) return this.refactorings;</span>
+<span class="pc bpc" id="L97" title="1 of 4 branches missed.">        if (this.tokens == null || this.tokens.size() == 0) return new ArrayList&lt;RefactoringInterface&gt;();</span>
+<span class="pc bpc" id="L98" title="2 of 4 branches missed.">        if (this.refactorings == null || this.refactorings.isEmpty()) this.recommend();</span>
+<span class="fc" id="L99">        return this.refactorings;</span>
     }
 
     /**
-     * @return the list of tokens that recommended refactorings are created from.
+     * Sets recommender's list of refactorings to a pre-existing
+     * refactoring list.
+     * @param input a list of Refactoring recommendations.
      */
-    public List&lt;TokenInterface&gt; getTokens() {
-<span class="nc" id="L85">        return this.tokens;</span>
+    @Override
+    public void setRefactorings(List&lt;? extends RefactoringInterface&gt; input) {
+<span class="pc bpc" id="L109" title="1 of 4 branches missed.">        if (input.isEmpty() || input == null) {</span>
+<span class="fc" id="L110">            refactorings = new ArrayList&lt;RefactoringInterface&gt;();</span>
+        }
+        else {
+<span class="fc" id="L113">            refactorings = new ArrayList&lt;RefactoringInterface&gt;();</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">            for (RefactoringInterface r : input) refactorings.add(r);</span>
+        }
+<span class="fc" id="L116">    }</span>
+
+    /**
+     * Recommended refactorings should be greater than
+     * minRefactoringSize but less than maxRefactoringSize,
+     * inclusive.
+     * @return the minimum number of tokens that can make up a
+     * refactoring.
+     */
+    @Override
+    public int getMinRefactoringSize() {
+<span class="fc" id="L127">        return this.minRefactoringSize;</span>
     }
 
     /**
-     * Computes the list of all recommended refactorings, ordered by
-     * opportunity value from most valuable to least.
-     * @return the list of all recommended refactorings.
+     * Recommended refactorings should be greater than
+     * minRefactoringSize but less than maxRefactoringSize,
+     * inclusive.
+     * @param input the minimum number of tokens that can make up a
+     * refactoring.
      */
-    public List&lt;RefactoringInterface&gt; getRecommendations()
-    {
-<span class="nc" id="L95">        List&lt;RefactoringInterface&gt; result = new ArrayList&lt;RefactoringInterface&gt;();</span>
-<span class="nc" id="L96">        List&lt;List&lt;TokenInterface&gt;&gt; sublists = new ArrayList&lt;List&lt;TokenInterface&gt;&gt;();</span>
+    @Override
+    public void setMinRefactoringSize(int input) {
+<span class="fc" id="L139">        this.minRefactoringSize = input;</span>
+<span class="fc" id="L140">    }</span>
 
+    /**
+     * Recommended refactorings should be greater than
+     * minRefactoringSize but less than maxRefactoringSize,
+     * inclusive. If no input was provided, sets the min to
+     * 0 if Recommender's list of tokens is empty, or to 3%
+     * of the size of the token list.
+     */
+    @Override
+    public void setMinRefactoringSize() {
+<span class="pc bpc" id="L151" title="1 of 4 branches missed.">        if (this.getTokens().isEmpty() || this.getTokens() == null) {</span>
+<span class="fc" id="L152">            this.minRefactoringSize = 0;</span>
+<span class="fc" id="L153">            return;</span>
+        }
+        else {
+<span class="fc" id="L156">            BigDecimal size = new BigDecimal(this.getTokens().size());</span>
+<span class="fc" id="L157">            BigDecimal result = size.multiply(new BigDecimal(&quot;0.03&quot;));</span>
+<span class="fc" id="L158">            this.minRefactoringSize = result.intValue();</span>
+<span class="fc" id="L159">            return;</span>
+        }
+    }
+
+    /**
+     * Recommended refactorings should be greater than
+     * minRefactoringSize but less than maxRefactoringSize,
+     * inclusive.
+     * @return the maximum number of tokens that can make up a
+     * refactoring.
+     */
+    @Override
+    public int getMaxRefactoringSize() {
+<span class="fc" id="L172">        return this.maxRefactoringSize;</span>
+    }
+
+    /**
+     * Recommended refactorings should be greater than
+     * minRefactoringSize but less than maxRefactoringSize,
+     * inclusive.
+     * @param input the maximum number of tokens that can make up a
+     * refactoring.
+     */
+    @Override
+    public void setMaxRefactoringSize(int input) {
+<span class="fc" id="L184">        this.maxRefactoringSize = input;</span>
+<span class="fc" id="L185">    }</span>
+
+    /**
+     * Recommended refactorings should be greater than
+     * minRefactoringSize but less than maxRefactoringSize,
+     * inclusive. If no input was provided, sets the max to
+     * 0 if Recommender's list of tokens is empty, or to 75%
+     * of the size of the token list.
+     */
+    @Override
+    public void setMaxRefactoringSize() {
+<span class="pc bpc" id="L196" title="1 of 4 branches missed.">        if (this.getTokens().isEmpty() || this.getTokens() == null) {</span>
+<span class="fc" id="L197">            this.maxRefactoringSize = 0;</span>
+<span class="fc" id="L198">            return;</span>
+        }
+        else {
+<span class="fc" id="L201">            BigDecimal size = new BigDecimal(this.getTokens().size());</span>
+<span class="fc" id="L202">            BigDecimal result = size.multiply(new BigDecimal(&quot;0.70&quot;));</span>
+<span class="fc" id="L203">            this.maxRefactoringSize = result.intValue();</span>
+<span class="fc" id="L204">            return;</span>
+        }
+    }
+
+    /**
+     * Computes the opportunity value for refactoring for candidate,
+     * based on its size and number of reoccurrences in the list of
+     * tokens that was given to Recommender.
+     * @param candidate a list of tokens that is a candidate for
+     * refactorization.
+     * @param amountOfDuplicates the number of times the candidate
+     * reoccurs in tokens.
+     * @param 
+     * @return an integer between 0 and 100, inclusive, representing
+     * the amount of value a refactoring candidate has.
+     */
+    private int computeOpportunityValue(List&lt;TokenInterface&gt; candidate, int amountOfDuplicates, int amountOfSublists) {
         /**
-         * Create a 2-D list of lists of tokens.
-         * - The lists should vary in size from 5 tokens up to and including 70% of the size of the largest input file.
-         * - Each list of the same size should overlap by 1 token.
+         * Formula for calculating opportunity value:
+         * A = candidate.size() / tokens.size()
+         * B = amountOfDuplicates / sublists.size()
+         * value = ( A + B ) * 100
          */
-<span class="nc bnc" id="L103" title="All 2 branches missed.">        for (int i = getMinSublistSize(); i &lt;= getMaxSublistSize(); i++) {</span>
-<span class="nc" id="L104">            sublists.add(createSublists(i, this.tokens));</span>
+
+        /*BigDecimal A = new BigDecimal(candidate.size());
+        A.divide(new BigDecimal(tokens.size()));
+
+        BigDecimal B = new BigDecimal(amountOfDuplicates);
+        B.divide(new BigDecimal(amountOfSublists));
+
+        BigDecimal result = A.add(B);
+        result.multiply(new BigDecimal(100));*/
+        //return result.intValue();
+<span class="fc" id="L237">        return 5;</span>
+    }
+
+    /**
+     * Using the list of tokens, finds all suggested refactorings of
+     * those tokens, calculates the opportunity value for each
+     * candidate, and then produces a list of suggested
+     * refactorings.
+     */
+    private void recommend() {
+<span class="fc" id="L247">        this.refactorings = new ArrayList&lt;RefactoringInterface&gt;();</span>
+<span class="pc bpc" id="L248" title="1 of 6 branches missed.">        if (this.tokens == null || this.tokens.size() &lt;= 1 || this.getMaxRefactoringSize() &lt;= 3) return;</span>
+
+        //  sublists stores each of the created candidate list of tokens.
+<span class="fc" id="L251">        List&lt;List&lt;TokenInterface&gt;&gt; sublists = new ArrayList&lt;List&lt;TokenInterface&gt;&gt;();</span>
+
+        //  Create lists with varying sizes between minRefactoringSize up to and including maxRefactoringSize.
+<span class="fc bfc" id="L254" title="All 2 branches covered.">        for (int i = this.getMinRefactoringSize(); i &lt;= this.getMaxRefactoringSize(); i++) {</span>
+<span class="fc bfc" id="L255" title="All 2 branches covered.">            for (int j = 0; j &lt; this.getTokens().size(); j++) {</span>
+                try {
+<span class="fc" id="L257">                    List&lt;TokenInterface&gt; l = tokens.subList(j, ( j + i));</span>
+<span class="fc" id="L258">                    sublists.add(l);</span>
+<span class="fc" id="L259">                } catch (IndexOutOfBoundsException e) {</span>
+<span class="fc" id="L260">                    continue;</span>
+<span class="fc" id="L261">                }</span>
+            }
         }
 
-        /**
-         * Compare each sublist with all the other sublists of the same size.
-         * - If two sublists have the exact same sequence of tokens, it is a recommended refactoring.
-         * - Assign the candidate to a list of candidates.
-         */
-<span class="nc" id="L112">        List&lt;List&lt;TokenInterface&gt;&gt; candidateTokens = new ArrayList&lt;List&lt;TokenInterface&gt;&gt;();</span>
-<span class="nc bnc" id="L113" title="All 2 branches missed.">        for (List&lt;TokenInterface&gt; list : sublists) {</span>
-<span class="nc bnc" id="L114" title="All 2 branches missed.">            if (isCandidate(list)) candidateTokens.add(list);</span>
-<span class="nc" id="L115">        }</span>
-
-        /**
-         * Instantiate a new refactoring and add it to the result list.
-         */
-<span class="nc bnc" id="L120" title="All 2 branches missed.">        for (List&lt;TokenInterface&gt; candidate : candidateTokens) {</span>
-<span class="nc" id="L121">            int opportunityValue = computeOpportunity(candidate, sublists);</span>
-<span class="nc" id="L122">            result.add(new Refactoring(candidate, opportunityValue));</span>
-<span class="nc" id="L123">        }</span>
-
-<span class="nc" id="L125">        this.refactorings = result;</span>
-
-        /**
-         * Sort the list from greatest to least oppotunity value.
-         */
-<span class="nc" id="L130">        Sort();</span>
-
-<span class="nc" id="L132">        return this.refactorings;</span>
-    }
+        //  Determine whether each sublist is a recommended refactoring.
+<span class="fc bfc" id="L266" title="All 2 branches covered.">        for (List&lt;TokenInterface&gt; list : sublists) {</span>
+<span class="fc" id="L267">            int occurrences = countOccurrences(list, sublists);</span>
+<span class="fc bfc" id="L268" title="All 2 branches covered.">            if (occurrences &gt; 1) {</span>
+<span class="fc" id="L269">                int opportunityValue = computeOpportunityValue(list, occurrences - 1, sublists.size());</span>
+<span class="fc" id="L270">                Refactoring r = new Refactoring(list, opportunityValue);</span>
+<span class="fc" id="L271">                this.refactorings.add(r);</span>
+            }
+<span class="fc" id="L273">        }</span>
+<span class="fc" id="L274">    }</span>
 
     /**
-     * Sorts the list from greatest to least oppotunity value.
+     * Counts the number of times candidate reoccurs in sublists.
+     * @param candidate the list of tokens representing a candidate for refactorization.
+     * @param sublists the list of all sublists of tokens.
+     * @return the number of times candidate reoccurs in sublists (counting itself).
      */
-    private void Sort() {
-        // todo
-<span class="nc" id="L140">        Collections.sort(refactorings, Collections.reverseOrder());</span>
-<span class="nc" id="L141">    }</span>
-
-    /**
-     * Compute a value reoccurences, which is the number of times the sequence of tokens re-occurs in the 2-D list.
-     * Compute a value length, which is the length of the candidate sequence of tokens.
-     * Compute and return opportunityValue = ( ( reoccurences * length ) % 100 )
-     * 
-     * @param candidate the list of tokens to compute the opportunityValue for.
-     * @param sublists the total list of token lists to check for a count of reocurrences.
-     * @return opportunityValue, an integer between 0 and 100 inclusive, representing how valuable a recommended refactoring is.
-     */
-    private int computeOpportunity(List&lt;TokenInterface&gt; candidate, List&lt;List&lt;TokenInterface&gt;&gt; sublists) {
-        //todo
-<span class="nc" id="L154">        return 0;</span>
-    }
-
-    /**
-     * @param list a list of tokens to check to see if it is a candidate for refactorization.
-     * @return true iff list is a candidate for refactorization.
-     */
-    private boolean isCandidate(List&lt;TokenInterface&gt; list) {
-        //todo
-<span class="nc" id="L163">        return false;</span>
-    }
-
-    /**
-     * Create a 2-D list of lists of tokens.
-     * The lists should vary in size from 5 tokens up to and including 70% of the size of the largest input file.
-     * Each list of the same size should overlap by 1 token.
-     * @param i
-     * @param tokens
-     * @return
-     */
-    private List&lt;TokenInterface&gt; createSublists(int i, List&lt;TokenInterface&gt; tokens) {
-        //todo
-<span class="nc" id="L176">        return null;</span>
+    private int countOccurrences(List&lt;TokenInterface&gt; candidate, List&lt;List&lt;TokenInterface&gt;&gt; sublists) {
+<span class="fc" id="L283">        int result = 0;</span>
+<span class="fc bfc" id="L284" title="All 2 branches covered.">        for (List&lt;TokenInterface&gt; list : sublists) {</span>
+<span class="fc bfc" id="L285" title="All 2 branches covered.">            if (candidate.equals(list)) result++;</span>
+<span class="fc" id="L286">        }</span>
+<span class="fc" id="L287">        return result;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

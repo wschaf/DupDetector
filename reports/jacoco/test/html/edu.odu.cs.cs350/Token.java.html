@@ -19,6 +19,7 @@ public class Token implements TokenInterface {
 
     /** The column number of the token. */
     private int ColumnNumber;
+    private String absolutePath;
 
 
     /**
@@ -26,12 +27,12 @@ public class Token implements TokenInterface {
      * @param line line number of the current token
      * @param column line number of the current token
      */
-<span class="fc" id="L29">    public Token(TokenType type, int line, int column) {</span>
-<span class="fc" id="L30">        this.tokenType = type;</span>
-<span class="fc" id="L31">        this.lexeme = &quot;&quot;;</span>
-<span class="fc" id="L32">        this.lineNumber = line;</span>
-<span class="fc" id="L33">        this.ColumnNumber = column;</span>
-<span class="fc" id="L34">    }</span>
+<span class="fc" id="L30">    public Token(TokenType type, int line, int column) {</span>
+<span class="fc" id="L31">        this.tokenType = type;</span>
+<span class="fc" id="L32">        this.lexeme = &quot;&quot;;</span>
+<span class="fc" id="L33">        this.lineNumber = line;</span>
+<span class="fc" id="L34">        this.ColumnNumber = column;</span>
+<span class="fc" id="L35">    }</span>
 
     /**
      * @param type Type of token given in the TokenType class
@@ -39,18 +40,18 @@ public class Token implements TokenInterface {
      * @param column starting column number of the current token
      * @param lexeme string representation of this token
      */
-<span class="fc" id="L42">    public Token(TokenType type, int line, int column, String lexeme) {</span>
-<span class="fc" id="L43">        this.tokenType = type;</span>
-<span class="fc" id="L44">        this.lexeme = lexeme;</span>
-<span class="fc" id="L45">        this.lineNumber = line;</span>
-<span class="fc" id="L46">        this.ColumnNumber = column;</span>
-<span class="fc" id="L47">    }</span>
+<span class="fc" id="L43">    public Token(TokenType type, int line, int column, String lexeme) {</span>
+<span class="fc" id="L44">        this.tokenType = type;</span>
+<span class="fc" id="L45">        this.lexeme = lexeme;</span>
+<span class="fc" id="L46">        this.lineNumber = line;</span>
+<span class="fc" id="L47">        this.ColumnNumber = column;</span>
+<span class="fc" id="L48">    }</span>
 
     /**
      * @return the token type of this current token.
      */
     public TokenType getTokenType() {
-<span class="fc" id="L53">        return this.tokenType;</span>
+<span class="fc" id="L54">        return this.tokenType;</span>
     }
 
     /**
@@ -59,7 +60,7 @@ public class Token implements TokenInterface {
      */
     @Override
     public String getLexeme() {
-<span class="fc" id="L62">        return this.lexeme;</span>
+<span class="fc" id="L63">        return this.lexeme;</span>
     }
 
     /**
@@ -67,7 +68,7 @@ public class Token implements TokenInterface {
      */
     @Override
     public String getLineNumber() {
-<span class="fc" id="L70">        return Integer.toString(this.lineNumber);</span>
+<span class="fc" id="L71">        return Integer.toString(this.lineNumber);</span>
     }
 
     /**
@@ -77,7 +78,7 @@ public class Token implements TokenInterface {
      */
     @Override
     public String getColumnNumber() {
-<span class="fc" id="L80">        return Integer.toString(this.ColumnNumber);</span>
+<span class="fc" id="L81">        return Integer.toString(this.ColumnNumber);</span>
     }
 
      /**
@@ -86,18 +87,21 @@ public class Token implements TokenInterface {
      */
     @Override
     public String toString() {
-<span class="fc bfc" id="L89" title="All 2 branches covered.">        if (getLexeme().length() &gt; 0) {</span>
-<span class="fc" id="L90">            return getTokenType().toString() + &quot;:&quot; + </span>
-<span class="fc" id="L91">                   getLexeme() + &quot;:&quot; + </span>
-<span class="fc" id="L92">                   getLineNumber() + &quot;:&quot; + </span>
-<span class="fc" id="L93">                   getColumnNumber();</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">        if (getLexeme().length() &gt; 0) {</span>
+<span class="fc" id="L91">            return getTokenType().toString() + &quot;:&quot; + </span>
+<span class="fc" id="L92">                   getLexeme() + &quot;:&quot; + </span>
+<span class="fc" id="L93">                   getLineNumber() + &quot;:&quot; + </span>
+<span class="fc" id="L94">                   getColumnNumber();</span>
         } else {
-<span class="fc" id="L95">            return getTokenType().toString() + &quot;:&quot; + </span>
-<span class="fc" id="L96">                   getLineNumber() + &quot;:&quot; + </span>
-<span class="fc" id="L97">                   getColumnNumber();</span>
+<span class="fc" id="L96">            return getTokenType().toString() + &quot;:&quot; + </span>
+<span class="fc" id="L97">                   getLineNumber() + &quot;:&quot; + </span>
+<span class="fc" id="L98">                   getColumnNumber();</span>
         }
     }
 
-
+    @Override
+    public String getAbsolutePath() {
+<span class="nc" id="L104">        return this.absolutePath;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
