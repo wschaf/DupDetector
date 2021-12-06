@@ -1,6 +1,5 @@
 package edu.odu.cs.cs350;
 
-import java.io.FileNotFoundException;
 /**
  * DupDetector is the main class for the system. It will call
  * each subsystem of the program, passing input/output between

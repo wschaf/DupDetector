@@ -1,5 +1,6 @@
 package edu.odu.cs.cs350;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
@@ -21,6 +22,8 @@ public class TokenAnalyzer implements Iterable<Token> {
 
     /** Token object found in the file. Contains necessary metadata defined in Token class. */
     private Token token;
+
+    private File file;
     
     /**
      * The default constructor for token analyzer.
@@ -39,6 +42,12 @@ public class TokenAnalyzer implements Iterable<Token> {
      */
     public TokenAnalyzer(Reader input) {
         tokensContainer = new LinkedList<Token>();
+        scanner = new LexerAnalyzer(input);
+    }
+
+    public TokenAnalyzer(File file) {
+        tokensContainer = new LinkedList<Token>();
+        this.file = file;
         scanner = new LexerAnalyzer(input);
     }
 
@@ -84,4 +93,8 @@ public class TokenAnalyzer implements Iterable<Token> {
     public String toString() {
         return Integer.toString(getFileTokenCount());
     }
+
+	public Token getTokens() {
+		return null;
+	}
 }

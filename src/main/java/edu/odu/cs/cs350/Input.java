@@ -1,7 +1,6 @@
 package edu.odu.cs.cs350;
 
 import java.io.FileNotFoundException;
-import java.io.*;
 import java.io.File;
 import java.util.*;
 
@@ -40,9 +39,7 @@ public class Input {
     			try {
     				String startDir = args[i];
     				RecursiveSearch r = new RecursiveSearch();
-					Output out = new Output();
-					out.setFiles(r.searchWithProperties(startDir, args[1]));
-					System.out.println(out.getSectionOne());
+					this.files = r.searchWithProperties(startDir, args[1]);
     			} catch(FileNotFoundException e) {
     				System.out.println(e.getMessage());
     			}
@@ -53,14 +50,22 @@ public class Input {
         		try {
                     String startDir = args[i];
                     RecursiveSearch r = new RecursiveSearch();
-                    Output out = new Output();
-					out.setFiles(r.searchDirectory(startDir));
-					System.out.println(out.getSectionOne());
+					this.files = r.searchDirectory(startDir);
                 } catch(FileNotFoundException e) {
                     System.out.println(e.getMessage());
                 }
     		}
     	}
+
+        this.setTokens();
+    }
+
+    public void setTokens() {
+        this.tokens = new ArrayList<Token>();
+        for (File file : this.getFiles()) {
+            TokenAnalyzer t = new TokenAnalyzer(file);
+            this.tokens.add(t.getTokens());
+        }
     }
 
     public List<File> getFiles() {
