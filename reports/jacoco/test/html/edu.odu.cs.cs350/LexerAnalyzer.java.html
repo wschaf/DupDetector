@@ -1160,7 +1160,7 @@ public class LexerAnalyzer {
               }
       }
       else {
-<span class="pc bpc" id="L1163" title="163 of 188 branches missed.">        switch (zzAction &lt; 0 ? zzAction : ZZ_ACTION[zzAction]) {</span>
+<span class="pc bpc" id="L1163" title="124 of 188 branches missed.">        switch (zzAction &lt; 0 ? zzAction : ZZ_ACTION[zzAction]) {</span>
           case 1:
 <span class="nc" id="L1165">            { throw new RuntimeException(&quot;Illegal character \&quot;&quot;+yytext()+</span>
                                                               &quot;\&quot; at line &quot;+yyline+&quot;, column &quot;+yycolumn);
@@ -1173,7 +1173,7 @@ public class LexerAnalyzer {
             // fall through
 <span class="fc" id="L1174">          case 95: break;</span>
           case 3:
-<span class="nc" id="L1176">            { return symbol(TokenType.NOT_SYMBOL);</span>
+<span class="fc" id="L1176">            { return symbol(TokenType.NOT_SYMBOL);</span>
             }
             // fall through
 <span class="nc" id="L1179">          case 96: break;</span>
@@ -1198,7 +1198,7 @@ public class LexerAnalyzer {
             // fall through
 <span class="nc" id="L1199">          case 100: break;</span>
           case 8:
-<span class="nc" id="L1201">            { return symbol(TokenType.REFERENCE_SYM);</span>
+<span class="fc" id="L1201">            { return symbol(TokenType.REFERENCE_SYM);</span>
             }
             // fall through
 <span class="nc" id="L1204">          case 101: break;</span>
@@ -1213,27 +1213,27 @@ public class LexerAnalyzer {
             // fall through
 <span class="nc" id="L1214">          case 103: break;</span>
           case 11:
-<span class="nc" id="L1216">            { return symbol(TokenType.MULTIPLY);</span>
+<span class="fc" id="L1216">            { return symbol(TokenType.MULTIPLY);</span>
             }
             // fall through
 <span class="nc" id="L1219">          case 104: break;</span>
           case 12:
-<span class="nc" id="L1221">            { return symbol(TokenType.ADD);</span>
+<span class="fc" id="L1221">            { return symbol(TokenType.ADD);</span>
             }
             // fall through
 <span class="nc" id="L1224">          case 105: break;</span>
           case 13:
-<span class="nc" id="L1226">            { return symbol(TokenType.COMMA);</span>
+<span class="fc" id="L1226">            { return symbol(TokenType.COMMA);</span>
             }
             // fall through
 <span class="nc" id="L1229">          case 106: break;</span>
           case 14:
-<span class="nc" id="L1231">            { return symbol(TokenType.SUBTRACT);</span>
+<span class="fc" id="L1231">            { return symbol(TokenType.SUBTRACT);</span>
             }
             // fall through
 <span class="nc" id="L1234">          case 107: break;</span>
           case 15:
-<span class="nc" id="L1236">            { return symbol(TokenType.PERIOD);</span>
+<span class="fc" id="L1236">            { return symbol(TokenType.PERIOD);</span>
             }
             // fall through
 <span class="nc" id="L1239">          case 108: break;</span>
@@ -1248,7 +1248,7 @@ public class LexerAnalyzer {
             // fall through
 <span class="nc" id="L1249">          case 110: break;</span>
           case 18:
-<span class="nc" id="L1251">            { return symbol(TokenType.COLON);</span>
+<span class="fc" id="L1251">            { return symbol(TokenType.COLON);</span>
             }
             // fall through
 <span class="nc" id="L1254">          case 111: break;</span>
@@ -1263,7 +1263,7 @@ public class LexerAnalyzer {
             // fall through
 <span class="nc" id="L1264">          case 113: break;</span>
           case 21:
-<span class="nc" id="L1266">            { return symbol(TokenType.ASSIGN_OP);</span>
+<span class="fc" id="L1266">            { return symbol(TokenType.ASSIGN_OP);</span>
             }
             // fall through
 <span class="nc" id="L1269">          case 114: break;</span>
@@ -1283,12 +1283,12 @@ public class LexerAnalyzer {
             // fall through
 <span class="nc" id="L1284">          case 117: break;</span>
           case 25:
-<span class="nc" id="L1286">            { return symbol(TokenType.LEFT_BRACKET);</span>
+<span class="fc" id="L1286">            { return symbol(TokenType.LEFT_BRACKET);</span>
             }
             // fall through
 <span class="nc" id="L1289">          case 118: break;</span>
           case 26:
-<span class="nc" id="L1291">            { return symbol(TokenType.RIGHT_BRACKET);</span>
+<span class="fc" id="L1291">            { return symbol(TokenType.RIGHT_BRACKET);</span>
             }
             // fall through
 <span class="nc" id="L1294">          case 119: break;</span>
@@ -1303,7 +1303,7 @@ public class LexerAnalyzer {
             // fall through
 <span class="nc" id="L1304">          case 121: break;</span>
           case 29:
-<span class="nc" id="L1306">            { return symbol(TokenType.TILDA);</span>
+<span class="fc" id="L1306">            { return symbol(TokenType.TILDA);</span>
             }
             // fall through
 <span class="nc" id="L1309">          case 122: break;</span>
@@ -1323,27 +1323,27 @@ public class LexerAnalyzer {
             // fall through
 <span class="nc" id="L1324">          case 125: break;</span>
           case 33:
-<span class="nc" id="L1326">            { return symbol(TokenType.NOT_EQUAL);</span>
+<span class="fc" id="L1326">            { return symbol(TokenType.NOT_EQUAL);</span>
             }
             // fall through
 <span class="nc" id="L1329">          case 126: break;</span>
           case 34:
-<span class="nc" id="L1331">            { return symbol(TokenType.AND_SYMBOL);</span>
+<span class="fc" id="L1331">            { return symbol(TokenType.AND_SYMBOL);</span>
             }
             // fall through
 <span class="nc" id="L1334">          case 127: break;</span>
           case 35:
-<span class="nc" id="L1336">            { return symbol(TokenType.INCREMENT);</span>
+<span class="fc" id="L1336">            { return symbol(TokenType.INCREMENT);</span>
             }
             // fall through
 <span class="nc" id="L1339">          case 128: break;</span>
           case 36:
-<span class="nc" id="L1341">            { return symbol(TokenType.DECREMENT);</span>
+<span class="fc" id="L1341">            { return symbol(TokenType.DECREMENT);</span>
             }
             // fall through
 <span class="nc" id="L1344">          case 129: break;</span>
           case 37:
-<span class="nc" id="L1346">            { return symbol(TokenType.SCOPE_OP);</span>
+<span class="fc" id="L1346">            { return symbol(TokenType.SCOPE_OP);</span>
             }
             // fall through
 <span class="nc" id="L1349">          case 130: break;</span>
@@ -1353,22 +1353,22 @@ public class LexerAnalyzer {
             // fall through
 <span class="nc" id="L1354">          case 131: break;</span>
           case 39:
-<span class="nc" id="L1356">            { return symbol(TokenType.LEQ);</span>
+<span class="fc" id="L1356">            { return symbol(TokenType.LEQ);</span>
             }
             // fall through
 <span class="nc" id="L1359">          case 132: break;</span>
           case 40:
-<span class="nc" id="L1361">            { return symbol(TokenType.EQ_EQ);</span>
+<span class="fc" id="L1361">            { return symbol(TokenType.EQ_EQ);</span>
             }
             // fall through
 <span class="nc" id="L1364">          case 133: break;</span>
           case 41:
-<span class="nc" id="L1366">            { return symbol(TokenType.GEQ);</span>
+<span class="fc" id="L1366">            { return symbol(TokenType.GEQ);</span>
             }
             // fall through
 <span class="nc" id="L1369">          case 134: break;</span>
           case 42:
-<span class="nc" id="L1371">            { return symbol(TokenType.ISTREAM);</span>
+<span class="fc" id="L1371">            { return symbol(TokenType.ISTREAM);</span>
             }
             // fall through
 <span class="nc" id="L1374">          case 135: break;</span>
@@ -1378,7 +1378,7 @@ public class LexerAnalyzer {
             // fall through
 <span class="nc" id="L1379">          case 136: break;</span>
           case 44:
-<span class="nc" id="L1381">            { return symbol(TokenType.IF);</span>
+<span class="fc" id="L1381">            { return symbol(TokenType.IF);</span>
             }
             // fall through
 <span class="nc" id="L1384">          case 137: break;</span>
@@ -1438,7 +1438,7 @@ public class LexerAnalyzer {
             // fall through
 <span class="nc" id="L1439">          case 148: break;</span>
           case 56:
-<span class="nc" id="L1441">            { return symbol(TokenType.FOR);</span>
+<span class="fc" id="L1441">            { return symbol(TokenType.FOR);</span>
             }
             // fall through
 <span class="nc" id="L1444">          case 149: break;</span>
@@ -1448,7 +1448,7 @@ public class LexerAnalyzer {
             // fall through
 <span class="nc" id="L1449">          case 150: break;</span>
           case 58:
-<span class="nc" id="L1451">            { return symbol(TokenType.NEW);</span>
+<span class="fc" id="L1451">            { return symbol(TokenType.NEW);</span>
             }
             // fall through
 <span class="nc" id="L1454">          case 151: break;</span>
@@ -1458,7 +1458,7 @@ public class LexerAnalyzer {
             // fall through
 <span class="nc" id="L1459">          case 152: break;</span>
           case 60:
-<span class="nc" id="L1461">            { return symbol(TokenType.BOOL);</span>
+<span class="fc" id="L1461">            { return symbol(TokenType.BOOL);</span>
             }
             // fall through
 <span class="nc" id="L1464">          case 153: break;</span>
@@ -1473,7 +1473,7 @@ public class LexerAnalyzer {
             // fall through
 <span class="nc" id="L1474">          case 155: break;</span>
           case 63:
-<span class="nc" id="L1476">            { return symbol(TokenType.ELSE);</span>
+<span class="fc" id="L1476">            { return symbol(TokenType.ELSE);</span>
             }
             // fall through
 <span class="nc" id="L1479">          case 156: break;</span>
@@ -1493,32 +1493,32 @@ public class LexerAnalyzer {
             // fall through
 <span class="nc" id="L1494">          case 159: break;</span>
           case 67:
-<span class="nc" id="L1496">            { return symbol(TokenType.TRUE);</span>
+<span class="fc" id="L1496">            { return symbol(TokenType.TRUE);</span>
             }
             // fall through
 <span class="nc" id="L1499">          case 160: break;</span>
           case 68:
-<span class="nc" id="L1501">            { return symbol(TokenType.VOID);</span>
+<span class="fc" id="L1501">            { return symbol(TokenType.VOID);</span>
             }
             // fall through
 <span class="nc" id="L1504">          case 161: break;</span>
           case 69:
-<span class="nc" id="L1506">            { return symbol(TokenType.BREAK);</span>
+<span class="fc" id="L1506">            { return symbol(TokenType.BREAK);</span>
             }
             // fall through
 <span class="nc" id="L1509">          case 162: break;</span>
           case 70:
-<span class="nc" id="L1511">            { return symbol(TokenType.CLASS);</span>
+<span class="fc" id="L1511">            { return symbol(TokenType.CLASS);</span>
             }
             // fall through
 <span class="nc" id="L1514">          case 163: break;</span>
           case 71:
-<span class="nc" id="L1516">            { return symbol(TokenType.CONST);</span>
+<span class="fc" id="L1516">            { return symbol(TokenType.CONST);</span>
             }
             // fall through
 <span class="nc" id="L1519">          case 164: break;</span>
           case 72:
-<span class="nc" id="L1521">            { return symbol(TokenType.FALSE);</span>
+<span class="fc" id="L1521">            { return symbol(TokenType.FALSE);</span>
             }
             // fall through
 <span class="nc" id="L1524">          case 165: break;</span>
@@ -1538,27 +1538,27 @@ public class LexerAnalyzer {
             // fall through
 <span class="nc" id="L1539">          case 168: break;</span>
           case 76:
-<span class="nc" id="L1541">            { return symbol(TokenType.WHILE);</span>
+<span class="fc" id="L1541">            { return symbol(TokenType.WHILE);</span>
             }
             // fall through
 <span class="nc" id="L1544">          case 169: break;</span>
           case 77:
-<span class="nc" id="L1546">            { return symbol(TokenType.DELETE);</span>
+<span class="fc" id="L1546">            { return symbol(TokenType.DELETE);</span>
             }
             // fall through
 <span class="nc" id="L1549">          case 170: break;</span>
           case 78:
-<span class="nc" id="L1551">            { return symbol(TokenType.DOUBLE);</span>
+<span class="fc" id="L1551">            { return symbol(TokenType.DOUBLE);</span>
             }
             // fall through
 <span class="nc" id="L1554">          case 171: break;</span>
           case 79:
-<span class="nc" id="L1556">            { return symbol(TokenType.INLINE);</span>
+<span class="fc" id="L1556">            { return symbol(TokenType.INLINE);</span>
             }
             // fall through
 <span class="nc" id="L1559">          case 172: break;</span>
           case 80:
-<span class="nc" id="L1561">            { return symbol(TokenType.PUBLIC);</span>
+<span class="fc" id="L1561">            { return symbol(TokenType.PUBLIC);</span>
             }
             // fall through
 <span class="nc" id="L1564">          case 173: break;</span>
@@ -1573,7 +1573,7 @@ public class LexerAnalyzer {
             // fall through
 <span class="nc" id="L1574">          case 175: break;</span>
           case 83:
-<span class="nc" id="L1576">            { return symbol(TokenType.STRING);</span>
+<span class="fc" id="L1576">            { return symbol(TokenType.STRING);</span>
             }
             // fall through
 <span class="nc" id="L1579">          case 176: break;</span>
@@ -1583,7 +1583,7 @@ public class LexerAnalyzer {
             // fall through
 <span class="nc" id="L1584">          case 177: break;</span>
           case 85:
-<span class="nc" id="L1586">            { return symbol(TokenType.DEFAULT);</span>
+<span class="fc" id="L1586">            { return symbol(TokenType.DEFAULT);</span>
             }
             // fall through
 <span class="nc" id="L1589">          case 178: break;</span>
