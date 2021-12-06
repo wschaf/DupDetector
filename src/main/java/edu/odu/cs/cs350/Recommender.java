@@ -45,8 +45,8 @@ public class Recommender implements RecommenderInterface {
     Recommender(List<? extends TokenInterface> inputTokens) {
         this.setTokens(inputTokens);
         this.refactorings = new ArrayList<RefactoringInterface>();
-        this.setMinRefactoringSize(0);
-        this.setMaxRefactoringSize(0);
+        this.setMinRefactoringSize();
+        this.setMaxRefactoringSize();
     }
 
     /**
@@ -93,8 +93,9 @@ public class Recommender implements RecommenderInterface {
      */
     @Override
     public List<? extends RefactoringInterface> getRefactorings() {
-        if (this.tokens == null || this.tokens.size() == 0) this.refactorings = new ArrayList<RefactoringInterface>();
-        if (this.refactorings.isEmpty() || this.refactorings == null) this.recommend();
+        if (this.refactorings.size() != 0) return this.refactorings;
+        if (this.tokens == null || this.tokens.size() == 0) return new ArrayList<RefactoringInterface>();
+        if (this.refactorings == null || this.refactorings.isEmpty()) this.recommend();
         return this.refactorings;
     }
 
@@ -109,7 +110,7 @@ public class Recommender implements RecommenderInterface {
             refactorings = new ArrayList<RefactoringInterface>();
         }
         else {
-            refactorings.clear();
+            refactorings = new ArrayList<RefactoringInterface>();
             for (RefactoringInterface r : input) refactorings.add(r);
         }
     }
@@ -242,20 +243,21 @@ public class Recommender implements RecommenderInterface {
      * refactorings.
      */
     private void recommend() {
-        List<RefactoringInterface> result = new ArrayList<RefactoringInterface>();
+        this.refactorings = new ArrayList<RefactoringInterface>();
+        if (this.getMinRefactoringSize() <= 1 && this.getMaxRefactoringSize() <= 1) return;
 
         //  sublists stores each of the created candidate list of tokens.
         List<List<TokenInterface>> sublists = new ArrayList<List<TokenInterface>>();
 
         //  Create lists with varying sizes between minRefactoringSize up to and including maxRefactoringSize.
-        for (int i = this.minRefactoringSize; i <= this.maxRefactoringSize; i++) {
-            int candidateLength = maxRefactoringSize - minRefactoringSize;
-
-            //  Loop through the entire token list
-            for (int j = 0; j < this.tokens.size(); i++) {
-                
-                //  Create a new sublist from j to j+candidateLength
-                sublists.add(tokens.subList(j, candidateLength));
+        for (int i = this.getMinRefactoringSize(); i <= this.getMaxRefactoringSize(); i++) {
+            for (int j = 0; j < this.getTokens().size(); j++) {
+                if ( (j + i) >= this.getTokens().size()) {
+                    continue;
+                }
+                else {
+                    sublists.add(tokens.subList(j, ( j + i)));
+                }
             }
         }
 
@@ -264,7 +266,7 @@ public class Recommender implements RecommenderInterface {
             int occurrences = countOccurrences(list, sublists);
             if (occurrences > 1) {
                 int opportunityValue = computeOpportunityValue(list, occurrences - 1, sublists.size());
-                result.add(new Refactoring(list, opportunityValue));
+                this.refactorings.add(new Refactoring(list, opportunityValue));
             }
         }
     }

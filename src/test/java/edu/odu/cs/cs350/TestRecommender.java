@@ -20,19 +20,40 @@ public class TestRecommender {
 
     private List<Token> noTokens;
     private List<Token> basicTokens;
+    private List<Token> oneRefactoring;
 
     @BeforeEach
     public void setup() {
-        //  Empty list of tokens.
+        /** Empty list of tokens. */
         noTokens = new ArrayList<Token>();
 
-        //  One C++ statement, no refactorings to recommend.
+        /** One C++ statement, no refactorings to recommend.
+         * int x = 5;
+        */
         basicTokens = Arrays.asList (
-            (new Token(TokenType.INT, 2, 5)),
-            (new Token(TokenType.IDENTIFIER, 2, 9)),
-            (new Token(TokenType.ASSIGN_OP, 2, 11)),
-            (new Token(TokenType.CONSTANT_NUMBERS, 2, 13)),
-            (new Token(TokenType.SEMI_COLON, 2, 14))
+            (new Token(TokenType.INT, 2, 1)),
+            (new Token(TokenType.IDENTIFIER, 2, 5)),
+            (new Token(TokenType.ASSIGN_OP, 2, 7)),
+            (new Token(TokenType.CONSTANT_NUMBERS, 2, 9)),
+            (new Token(TokenType.SEMI_COLON, 2, 10))
+        );
+
+        /** The same C++ statement twice, should produce one candidate refacoring.
+         * int x = 5;
+         * int y = 6;
+        */
+        oneRefactoring = Arrays.asList (
+            (new Token(TokenType.INT, 2, 1)),
+            (new Token(TokenType.IDENTIFIER, 2, 5)),
+            (new Token(TokenType.ASSIGN_OP, 2, 7)),
+            (new Token(TokenType.CONSTANT_NUMBERS, 2, 9)),
+            (new Token(TokenType.SEMI_COLON, 2, 10)),
+
+            (new Token(TokenType.INT, 3, 1)),
+            (new Token(TokenType.IDENTIFIER, 3, 5)),
+            (new Token(TokenType.ASSIGN_OP, 3, 7)),
+            (new Token(TokenType.CONSTANT_NUMBERS, 3, 9)),
+            (new Token(TokenType.SEMI_COLON, 3, 10))
         );
     }
 
@@ -74,8 +95,8 @@ public class TestRecommender {
         Recommender subject = new Recommender(basicTokens);
 
         assertThat(subject.getTokens().size(), is(5));
-        assertThat(subject.getTokens().get(0).toString(), equalTo(new Token(TokenType.INT, 2, 5).toString()));
-        assertThat(subject.getTokens().get(4).toString(), equalTo(new Token(TokenType.SEMI_COLON, 2, 14).toString()));
+        assertThat(subject.getTokens().get(0).toString(), equalTo(new Token(TokenType.INT, 2, 1).toString()));
+        assertThat(subject.getTokens().get(4).toString(), equalTo(new Token(TokenType.SEMI_COLON, 2, 10).toString()));
     }
 
     @Test
@@ -84,13 +105,24 @@ public class TestRecommender {
         subject.setTokens(basicTokens);
 
         assertThat(subject.getTokens().size(), is(5));
-        assertThat(subject.getTokens().get(0).toString(), equalTo(new Token(TokenType.INT, 2, 5).toString()));
-        assertThat(subject.getTokens().get(4).toString(), equalTo(new Token(TokenType.SEMI_COLON, 2, 14).toString()));
+        assertThat(subject.getTokens().get(0).toString(), equalTo(new Token(TokenType.INT, 2, 1).toString()));
+        assertThat(subject.getTokens().get(4).toString(), equalTo(new Token(TokenType.SEMI_COLON, 2, 10).toString()));
     }
 
     @Test
     public void testGetRefactorings() {
-        //  TODO
+        /**
+         * Three scenarios to test:
+         * 1. A recommender with no tokens returns an empty list.
+         * 2. A recommender with non-refactorable tokens returns an empty list.
+         * 3. A recommender with refactorable tokens returns at least one refactoring.
+         */
+
+        Recommender subject1 = new Recommender();
+        assertThat(subject1.getRefactorings().size(), is(0));
+        
+        Recommender subject2 = new Recommender(basicTokens, 0, 5);
+        assertThat(subject2.getRefactorings().size(), is(0));
     }
 
     @Test
@@ -100,37 +132,59 @@ public class TestRecommender {
         refactorings.add(new Refactoring(basicTokens, 5));
         subject.setRefactorings(refactorings);
 
-        assertThat(subject.getRefactorings().size(), is(1));
-
+        assertThat(subject.getRefactorings().size(), not(0));
+        assertThat(subject.getRefactorings(), is(refactorings));
     }
 
     @Test
     public void testGetMinRefactoringSize() {
+        Recommender subject = new Recommender();
+        assertThat(subject.getMinRefactoringSize(), is(0));
 
+        subject.setMinRefactoringSize(5);
+        assertThat(subject.getMinRefactoringSize(), is(5));
     }
 
     @Test
-    public void testSetMinRefactoringSize() {
+    public void testSetMinRefactoringSizeDefault() {
+        List<TokenInterface> t = new ArrayList<TokenInterface>();
+        for (int i = 0; i < 100; i++) t.add(new Token(TokenType.INT, 2, 5));
+        Recommender subject = new Recommender(t);
 
+        assertThat(subject.getMinRefactoringSize(), is(3));
     }
 
     @Test
     public void testSetMinRefactoringSizeParameter() {
+        Recommender subject = new Recommender();
+        subject.setMinRefactoringSize(5);
 
+        assertThat(subject.getMinRefactoringSize(), is(5));
     }
 
     @Test
     public void testGetMaxRefactoringSize() {
+        Recommender subject = new Recommender();
+        assertThat(subject.getMinRefactoringSize(), is(0));
 
+        subject.setMinRefactoringSize(50);
+        assertThat(subject.getMinRefactoringSize(), is(50));
     }
 
     @Test
     public void testSetMaxRefactoringSize() {
+        List<TokenInterface> t = new ArrayList<TokenInterface>();
+        for (int i = 0; i < 100; i++) t.add(new Token(TokenType.INT, 2, 5));
+        Recommender subject = new Recommender(t);
 
+        assertThat(subject.getMaxRefactoringSize(), is(70));
     }
 
     @Test
     public void testSetMaxRefactoringSizeParameter() {
+        Recommender subject = new Recommender();
+        subject.setMaxRefactoringSize(50);
 
+        assertThat(subject.getMaxRefactoringSize(), is(50));
     }
 }
