@@ -35,12 +35,12 @@ public class IntergrationTest {
     @Test
     public void testSectionOneFunctionality() throws Exception {
         String expected = 
-        "File Scanned:\n" + 
+        "File Scanned:\n" +
+        "    /home/runner/work/DupDetector/DupDetector/src/test/data/readingList.cpp, 720\n" + 
         "    /home/runner/work/DupDetector/DupDetector/src/test/data/Point.cpp, 189\n" +
         "    /home/runner/work/DupDetector/DupDetector/src/test/data/Point.h, 200\n" +
-        "    /home/runner/work/DupDetector/DupDetector/src/test/data/readingList.cpp, 720\n" +
-        "    /home/runner/work/DupDetector/DupDetector/src/test/data/readingList.h, 194\n" +
-        "    /home/runner/work/DupDetector/DupDetector/src/test/data/test.cpp, 24\n";
+        "    /home/runner/work/DupDetector/DupDetector/src/test/data/test.cpp, 24\n" +
+        "    /home/runner/work/DupDetector/DupDetector/src/test/data/readingList.h, 194\n";
 
         out.setFiles(search.searchDirectory(directory));
         assertTrue(out.getFiles().containsAll(expectedFiles));
