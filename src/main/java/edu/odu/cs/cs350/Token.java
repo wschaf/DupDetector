@@ -19,6 +19,7 @@ public class Token implements TokenInterface {
 
     /** The column number of the token. */
     private int ColumnNumber;
+    private String absolutePath;
 
 
     /**
@@ -98,5 +99,8 @@ public class Token implements TokenInterface {
         }
     }
 
-
+    @Override
+    public String getAbsolutePath() {
+        return this.absolutePath;
+    }
 }

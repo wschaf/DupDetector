@@ -3,176 +3,287 @@ package edu.odu.cs.cs350;
 import edu.odu.cs.cs350.Interfaces.*;
 
 import java.util.*;
+import java.math.BigDecimal;
 
 /**
- * Performs the functions of producing refactoring recommendations based on input files.
- * tokens contains a list of all tokens provided as input from the user.
+ * Taking as input a list of tokens which represents a string of
+ * tokens taken from all files that the Input processed. It will
+ * process these tokens, and produce a list of recommended
+ * refactorings, ordered from greatest to least opportunity value.
+ * Additionally, after finding a refactoring recommendation, but
+ * before adding the recommendation to the list of recommendations,
+ * it will compute the opportunity value of that recommendation.
+ * @see RecommenderInterface
+ * @see TestRecomender
  */
-public class Recommender {
+public class Recommender implements RecommenderInterface {
 
     private List<TokenInterface> tokens;
     private List<RefactoringInterface> refactorings;
-    int minSublistSize;
-    int maxSublistSize;
-    
+    private int minRefactoringSize;
+    private int maxRefactoringSize;
+
     /**
-     * Default constructor for Recommender.
+     * Default constructor.
+     * tokens and refactorings are set to empty lists;
+     * minRefactoringSize and maxRefactoringSize are set to 0.
      */
     Recommender() {
         this.setTokens(new ArrayList<TokenInterface>());
-        setMinSublistSize(0);
-        setMaxSublistSize(0);
+        this.setRefactorings(new ArrayList<RefactoringInterface>());
+        this.setMinRefactoringSize(0);
+        this.setMaxRefactoringSize(0);
     }
 
     /**
-     * Constructor.
-     * @param tokens a list of C++ tokens from all files that were provided as input from the user.
+     * Parameter constructor. with a list of tokens provided.
+     * tokens is set to inputTokens, recommend runs to set
+     * the Refactorings list, 
+     * @param inputTokens a list of tokens produced from lexical
+     * analysis of all the files provided as input.
      */
-    Recommender(List<TokenInterface> tokens, int minSublistSize, int maxSublistSize) {
-        this.setTokens(tokens);
-        setMinSublistSize(minSublistSize);
-        setMaxSublistSize(maxSublistSize);
+    Recommender(List<? extends TokenInterface> inputTokens) {
+        this.setTokens(inputTokens);
+        this.refactorings = new ArrayList<RefactoringInterface>();
+        this.setMinRefactoringSize();
+        this.setMaxRefactoringSize();
     }
 
     /**
-     * Sets the list of tokens to create recommended refactorings from.
-     * @param tokens a list of C++ tokens from all files that were provided as input from the user.
+     * Parameter constructor, with tokens and min and max size of refactorings parameters.
+     * @param inputTokensa list of tokens produced from lexical
+     * analysis of all the files provided as input.
+     * @param min the least number of tokens that a refactoring candidate can have.
+     * @param max the highest number of tokens that a refactoring candidate can have.
      */
-    public void setTokens(List<TokenInterface> tokens) {
-        List<TokenInterface> tokenlist = new ArrayList<TokenInterface>();
-		for (var t : tokens) tokenlist.add(t);
-		this.tokens = tokenlist;
+    Recommender(List<? extends TokenInterface> inputTokens, int min, int max) {
+        this.setTokens(inputTokens);
+        this.setMinRefactoringSize(min);
+        this.setMaxRefactoringSize(max);
+        this.recommend();
     }
 
     /**
-     * Sets minSublistSize equal to min.
-     * @param min the minimum size of token sublists to analyze.
+     * @return the list of tokens from which the recommendations
+     * are generated.
      */
-    public void setMinSublistSize(int min)
-    {
-        this.minSublistSize = min;
-    }
-
-    /**
-     * @return the minimum size of token sublists to analyze.
-     */
-    public int getMinSublistSize()
-    {
-        return this.minSublistSize;
-    }
-
-    /**
-     * Sets maxSublistSize equal to max.
-     * @param max the minimum size of token sublists to analyze.
-     */
-    public void setMaxSublistSize(int max)
-    {
-        this.maxSublistSize = max;
-    }
-
-    /**
-     * @return the maximum size of token sublists to analyze.
-     */
-    public int getMaxSublistSize()
-    {
-        return this.maxSublistSize;
-    }
-
-    /**
-     * @return the list of tokens that recommended refactorings are created from.
-     */
-    public List<TokenInterface> getTokens() {
+    @Override
+    public List<? extends TokenInterface> getTokens() {
         return this.tokens;
     }
 
     /**
-     * Computes the list of all recommended refactorings, ordered by
-     * opportunity value from most valuable to least.
-     * @return the list of all recommended refactorings.
+     * Sets the list of tokens from which recommendations are
+     * generated to the input list parameter.
+     * @param input a list of token objects.
      */
-    public List<RefactoringInterface> getRecommendations()
-    {
-        List<RefactoringInterface> result = new ArrayList<RefactoringInterface>();
-        List<List<TokenInterface>> sublists = new ArrayList<List<TokenInterface>>();
-
-        /**
-         * Create a 2-D list of lists of tokens.
-         * - The lists should vary in size from 5 tokens up to and including 70% of the size of the largest input file.
-         * - Each list of the same size should overlap by 1 token.
-         */
-        for (int i = getMinSublistSize(); i <= getMaxSublistSize(); i++) {
-            sublists.add(createSublists(i, this.tokens));
+    @Override
+    public void setTokens(List<? extends TokenInterface> input) {
+        if (input == null || input.size() == 0) {
+            tokens = new ArrayList<TokenInterface>();
+            return;
         }
+        tokens = new ArrayList<TokenInterface>();
+        for (TokenInterface t : input) tokens.add(t);
+    }
 
-        /**
-         * Compare each sublist with all the other sublists of the same size.
-         * - If two sublists have the exact same sequence of tokens, it is a recommended refactoring.
-         * - Assign the candidate to a list of candidates.
-         */
-        List<List<TokenInterface>> candidateTokens = new ArrayList<List<TokenInterface>>();
-        for (List<TokenInterface> list : sublists) {
-            if (isCandidate(list)) candidateTokens.add(list);
-        }
-
-        /**
-         * Instantiate a new refactoring and add it to the result list.
-         */
-        for (List<TokenInterface> candidate : candidateTokens) {
-            int opportunityValue = computeOpportunity(candidate, sublists);
-            result.add(new Refactoring(candidate, opportunityValue));
-        }
-
-        this.refactorings = result;
-
-        /**
-         * Sort the list from greatest to least oppotunity value.
-         */
-        Sort();
-
+    /**
+     * If no refactorings have been created, create them.
+     * @return a complete list of all refactoring recommendations.
+     */
+    @Override
+    public List<? extends RefactoringInterface> getRefactorings() {
+        if (this.refactorings.size() != 0) return this.refactorings;
+        if (this.tokens == null || this.tokens.size() == 0) return new ArrayList<RefactoringInterface>();
+        if (this.refactorings == null || this.refactorings.isEmpty()) this.recommend();
         return this.refactorings;
     }
 
     /**
-     * Sorts the list from greatest to least oppotunity value.
+     * Sets recommender's list of refactorings to a pre-existing
+     * refactoring list.
+     * @param input a list of Refactoring recommendations.
      */
-    private void Sort() {
-        // todo
-        Collections.sort(refactorings, Collections.reverseOrder());
+    @Override
+    public void setRefactorings(List<? extends RefactoringInterface> input) {
+        if (input.isEmpty() || input == null) {
+            refactorings = new ArrayList<RefactoringInterface>();
+        }
+        else {
+            refactorings = new ArrayList<RefactoringInterface>();
+            for (RefactoringInterface r : input) refactorings.add(r);
+        }
     }
 
     /**
-     * Compute a value reoccurences, which is the number of times the sequence of tokens re-occurs in the 2-D list.
-     * Compute a value length, which is the length of the candidate sequence of tokens.
-     * Compute and return opportunityValue = ( ( reoccurences * length ) % 100 )
-     * 
-     * @param candidate the list of tokens to compute the opportunityValue for.
-     * @param sublists the total list of token lists to check for a count of reocurrences.
-     * @return opportunityValue, an integer between 0 and 100 inclusive, representing how valuable a recommended refactoring is.
+     * Recommended refactorings should be greater than
+     * minRefactoringSize but less than maxRefactoringSize,
+     * inclusive.
+     * @return the minimum number of tokens that can make up a
+     * refactoring.
      */
-    private int computeOpportunity(List<TokenInterface> candidate, List<List<TokenInterface>> sublists) {
-        //todo
-        return 0;
+    @Override
+    public int getMinRefactoringSize() {
+        return this.minRefactoringSize;
     }
 
     /**
-     * @param list a list of tokens to check to see if it is a candidate for refactorization.
-     * @return true iff list is a candidate for refactorization.
+     * Recommended refactorings should be greater than
+     * minRefactoringSize but less than maxRefactoringSize,
+     * inclusive.
+     * @param input the minimum number of tokens that can make up a
+     * refactoring.
      */
-    private boolean isCandidate(List<TokenInterface> list) {
-        //todo
-        return false;
+    @Override
+    public void setMinRefactoringSize(int input) {
+        this.minRefactoringSize = input;
     }
 
     /**
-     * Create a 2-D list of lists of tokens.
-     * The lists should vary in size from 5 tokens up to and including 70% of the size of the largest input file.
-     * Each list of the same size should overlap by 1 token.
-     * @param i
-     * @param tokens
-     * @return
+     * Recommended refactorings should be greater than
+     * minRefactoringSize but less than maxRefactoringSize,
+     * inclusive. If no input was provided, sets the min to
+     * 0 if Recommender's list of tokens is empty, or to 3%
+     * of the size of the token list.
      */
-    private List<TokenInterface> createSublists(int i, List<TokenInterface> tokens) {
-        //todo
-        return null;
+    @Override
+    public void setMinRefactoringSize() {
+        if (this.getTokens().isEmpty() || this.getTokens() == null) {
+            this.minRefactoringSize = 0;
+            return;
+        }
+        else {
+            BigDecimal size = new BigDecimal(this.getTokens().size());
+            BigDecimal result = size.multiply(new BigDecimal("0.03"));
+            this.minRefactoringSize = result.intValue();
+            return;
+        }
+    }
+
+    /**
+     * Recommended refactorings should be greater than
+     * minRefactoringSize but less than maxRefactoringSize,
+     * inclusive.
+     * @return the maximum number of tokens that can make up a
+     * refactoring.
+     */
+    @Override
+    public int getMaxRefactoringSize() {
+        return this.maxRefactoringSize;
+    }
+
+    /**
+     * Recommended refactorings should be greater than
+     * minRefactoringSize but less than maxRefactoringSize,
+     * inclusive.
+     * @param input the maximum number of tokens that can make up a
+     * refactoring.
+     */
+    @Override
+    public void setMaxRefactoringSize(int input) {
+        this.maxRefactoringSize = input;
+    }
+
+    /**
+     * Recommended refactorings should be greater than
+     * minRefactoringSize but less than maxRefactoringSize,
+     * inclusive. If no input was provided, sets the max to
+     * 0 if Recommender's list of tokens is empty, or to 75%
+     * of the size of the token list.
+     */
+    @Override
+    public void setMaxRefactoringSize() {
+        if (this.getTokens().isEmpty() || this.getTokens() == null) {
+            this.maxRefactoringSize = 0;
+            return;
+        }
+        else {
+            BigDecimal size = new BigDecimal(this.getTokens().size());
+            BigDecimal result = size.multiply(new BigDecimal("0.70"));
+            this.maxRefactoringSize = result.intValue();
+            return;
+        }
+    }
+
+    /**
+     * Computes the opportunity value for refactoring for candidate,
+     * based on its size and number of reoccurrences in the list of
+     * tokens that was given to Recommender.
+     * @param candidate a list of tokens that is a candidate for
+     * refactorization.
+     * @param amountOfDuplicates the number of times the candidate
+     * reoccurs in tokens.
+     * @param 
+     * @return an integer between 0 and 100, inclusive, representing
+     * the amount of value a refactoring candidate has.
+     */
+    private int computeOpportunityValue(List<TokenInterface> candidate, int amountOfDuplicates, int amountOfSublists) {
+        /**
+         * Formula for calculating opportunity value:
+         * A = candidate.size() / tokens.size()
+         * B = amountOfDuplicates / sublists.size()
+         * value = ( A + B ) * 100
+         */
+
+        /*BigDecimal A = new BigDecimal(candidate.size());
+        A.divide(new BigDecimal(tokens.size()));
+
+        BigDecimal B = new BigDecimal(amountOfDuplicates);
+        B.divide(new BigDecimal(amountOfSublists));
+
+        BigDecimal result = A.add(B);
+        result.multiply(new BigDecimal(100));*/
+        //return result.intValue();
+        return 5;
+    }
+
+    /**
+     * Using the list of tokens, finds all suggested refactorings of
+     * those tokens, calculates the opportunity value for each
+     * candidate, and then produces a list of suggested
+     * refactorings.
+     */
+    private void recommend() {
+        this.refactorings = new ArrayList<RefactoringInterface>();
+        if (this.tokens == null || this.tokens.size() <= 1 || this.getMaxRefactoringSize() <= 3) return;
+
+        //  sublists stores each of the created candidate list of tokens.
+        List<List<TokenInterface>> sublists = new ArrayList<List<TokenInterface>>();
+
+        //  Create lists with varying sizes between minRefactoringSize up to and including maxRefactoringSize.
+        for (int i = this.getMinRefactoringSize(); i <= this.getMaxRefactoringSize(); i++) {
+            for (int j = 0; j < this.getTokens().size(); j++) {
+                try {
+                    List<TokenInterface> l = tokens.subList(j, ( j + i));
+                    sublists.add(l);
+                } catch (IndexOutOfBoundsException e) {
+                    continue;
+                }
+            }
+        }
+
+        //  Determine whether each sublist is a recommended refactoring.
+        for (List<TokenInterface> list : sublists) {
+            int occurrences = countOccurrences(list, sublists);
+            if (occurrences > 1) {
+                int opportunityValue = computeOpportunityValue(list, occurrences - 1, sublists.size());
+                Refactoring r = new Refactoring(list, opportunityValue);
+                this.refactorings.add(r);
+            }
+        }
+    }
+
+    /**
+     * Counts the number of times candidate reoccurs in sublists.
+     * @param candidate the list of tokens representing a candidate for refactorization.
+     * @param sublists the list of all sublists of tokens.
+     * @return the number of times candidate reoccurs in sublists (counting itself).
+     */
+    private int countOccurrences(List<TokenInterface> candidate, List<List<TokenInterface>> sublists) {
+        int result = 0;
+        for (List<TokenInterface> list : sublists) {
+            if (candidate.equals(list)) result++;
+        }
+        return result;
     }
 }

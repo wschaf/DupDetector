@@ -14,4 +14,6 @@ public abstract interface TokenInterface {
     public String getColumnNumber();
 
     public String toString();
+
+    public String getAbsolutePath();
 }
