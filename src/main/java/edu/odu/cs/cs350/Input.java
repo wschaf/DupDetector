@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.*;
 import java.util.*;
 
-import edu.odu.cs.cs350.Interfaces.TokenInterface;
+import edu.odu.cs.cs350.Interfaces.*;
 
 /**
  * Input file will be invoked using command line arguments.
@@ -15,7 +15,7 @@ import edu.odu.cs.cs350.Interfaces.TokenInterface;
  * args[i] i will be any number of files supplied in the command
  * line.
  */
-public class Input {
+public class Input implements InputInterface {
 
     private int nSuggestions;
     private List<File> files;
@@ -70,6 +70,7 @@ public class Input {
 	 * @return Character stream of the file that will be read
 	 * in token analyzer
 	 */
+    @Override
 	public Reader readFiles(File f) {
 		try {
 			Scanner s = new Scanner(f);
@@ -100,22 +101,27 @@ public class Input {
         }
     }
 
+    @Override
     public List<File> getFiles() {
         return this.files;
     }
 
+    @Override
     public List<? extends TokenInterface> getTokens() {
         return this.tokens;
     }
 
+    @Override
     public int getNSuggestions() {
         return this.nSuggestions;
     }
 
+    @Override
     public Dictionary<File, Integer> getTokenCountForFiles() {
         return this.tokenCountForFiles;
     }
 
+    @Override
     public int getTokenCountForFile(File file) {
         return this.tokenCountForFiles.get(file);
     }
