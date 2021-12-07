@@ -103,4 +103,8 @@ public class Token implements TokenInterface {
     public String getAbsolutePath() {
         return this.absolutePath;
     }
+
+    public void setAbsolutePath(String absolutePath) {
+        this.absolutePath = absolutePath;
+    }
 }

@@ -12,6 +12,8 @@ import java.io.*;
  */
 public class Output implements OutputInterface {
     
+	private InputInterface input;
+	private RecommenderInterface recommender;
 	private int refactoringsToPrint;
 	private List<File> files;
 	private List<RefactoringInterface> refactorings;
@@ -27,45 +29,24 @@ public class Output implements OutputInterface {
 	}
 
 	/**
-	 * 
-	 * @param refactoringsToPrint The number of refactoring suggestions to be printed in the final output.
-	 * @param files The list of files that have been processed by the system.
-	 * @param refactorings The list of suggested refactorings that resulted from processing @param files.
+	 * Constructs an Output object using Input and Recommender objects.
+	 * @param input a completed Input object; contains all files
+	 * and all tokens.
+	 * @param recommender a completed Recommender object; contains all
+	 * refactoring recommendations.
 	 */
-	public Output(int refactoringsToPrint, List<File> files, List<? extends RefactoringInterface> refactorings) {
-		this.refactoringsToPrint = refactoringsToPrint;
+	public Output(InputInterface input, RecommenderInterface recommender) {
+		this.input = input;
+		this.recommender = recommender;
+		this.refactoringsToPrint = input.getNSuggestions();
 
-		//	Java tip: You cannot assign a interface list to a concrete list; you have to iterate through the list.
 		List<File> fileList = new ArrayList<File>();
-		for (var f : files) fileList.add(f);
+		for (var f : input.getFiles()) fileList.add(f);
 		this.files = fileList;
 
 		List<RefactoringInterface> rList = new ArrayList<RefactoringInterface>();
-		for (var r : refactorings) rList.add(r);
+		for (var r : this.recommender.getRefactorings()) rList.add(r);
 		this.refactorings = rList;
-	}
-
-	/**
-	 * @param f: The file given from the input, provided by the user.
-	 * @return Character stream of the file that will be read
-	 * in token analyzer
-	 */
-	@Override
-	public Reader readFiles(File f) {
-		try {
-			Scanner s = new Scanner(f);
-			String source = "";
-			while(s.hasNext()) {
-				source += s.nextLine() + "\n";
-			}
-			s.close();
-			Reader input = new StringReader(source);
-			return input;
-		}
-		catch(FileNotFoundException e) {
-
-		}
-		return null;
 	}
 
 	/**
@@ -133,13 +114,11 @@ public class Output implements OutputInterface {
 		String sectionOne = new String();
 		sectionOne = sectionOne + "Files Scanned:\n";
 		String f = new String();
-		for (var file : files) {
-			TokenAnalyzer tokenAnalyzer = new TokenAnalyzer(readFiles(file));
-			tokenAnalyzer.processSourceCode();
+		for (File file : files) {
 			f = f + "    ";
 			f = f + file.getAbsolutePath();
 			f = f + ", ";
-			f = f + Integer.toString(tokenAnalyzer.getFileTokenCount());
+			f = f + input.getTokenCountForFile(file);
 			f = f + "\n";
 		}
 		sectionOne = sectionOne + f;
