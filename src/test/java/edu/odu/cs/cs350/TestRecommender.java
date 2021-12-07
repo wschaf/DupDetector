@@ -1,16 +1,11 @@
 package edu.odu.cs.cs350;
 
-import java.util.*;
-
-import org.hamcrest.core.IsNot;
-import org.junit.jupiter.api.*;
-
-import edu.odu.cs.cs350.Interfaces.RefactoringInterface;
 import edu.odu.cs.cs350.Interfaces.TokenInterface;
 
+import java.util.*;
+import org.junit.jupiter.api.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @see Recommender

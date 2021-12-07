@@ -1,11 +1,14 @@
 package edu.odu.cs.cs350;
 
 import java.io.File;
+import java.io.InputStream;
 import java.io.IOException;
 import java.io.Reader;
+import java.io.StringReader;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 /**
  * TokenAnalyzer analyzes each lexemes in the given file
@@ -45,10 +48,21 @@ public class TokenAnalyzer implements Iterable<Token> {
         scanner = new LexerAnalyzer(input);
     }
 
-    public TokenAnalyzer(File file) {
-        tokensContainer = new LinkedList<Token>();
-        this.file = file;
-        scanner = new LexerAnalyzer(input);
+    public TokenAnalyzer(File inputFile) {
+        Scanner scanner;
+        try {
+            scanner = new Scanner(inputFile);
+            String source = "";
+            while(scanner.hasNext()) source += scanner.nextLine() + "\n";
+            scanner.close();
+            Reader input = new StringReader(source);
+            this.tokensContainer = new LinkedList<Token>();
+            this.scanner = new LexerAnalyzer(input);
+        } catch (Exception e) {
+            System.err.println("TokenAnalyzer error: unable to read file " +
+                inputFile.getAbsolutePath()
+            );
+        }
     }
 
     /**

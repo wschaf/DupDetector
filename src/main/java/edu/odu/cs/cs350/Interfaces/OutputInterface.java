@@ -15,8 +15,6 @@ public abstract interface OutputInterface {
 
 	public void setRefactoringsToPrint(int refactoringsToPrint);
 
-	public Reader readFiles(File f);
-
 	public List<File> getFiles();
 
 	public void setFiles(List<File> files);

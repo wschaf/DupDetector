@@ -46,29 +46,6 @@ public class Output implements OutputInterface {
 	}
 
 	/**
-	 * @param f: The file given from the input, provided by the user.
-	 * @return Character stream of the file that will be read
-	 * in token analyzer
-	 */
-	@Override
-	public Reader readFiles(File f) {
-		try {
-			Scanner s = new Scanner(f);
-			String source = "";
-			while(s.hasNext()) {
-				source += s.nextLine() + "\n";
-			}
-			s.close();
-			Reader input = new StringReader(source);
-			return input;
-		}
-		catch(FileNotFoundException e) {
-
-		}
-		return null;
-	}
-
-	/**
 	 * @return the number of suggested refactorings that will be
 	 * printed in the final output.
 	 */
@@ -129,7 +106,7 @@ public class Output implements OutputInterface {
 	 */
 	@Override
 	public String getSectionOne() {
-		if (files.size() == 0) return new String();
+		/*if (files.size() == 0) return new String();
 		String sectionOne = new String();
 		sectionOne = sectionOne + "Files Scanned:\n";
 		String f = new String();
@@ -143,7 +120,9 @@ public class Output implements OutputInterface {
 			f = f + "\n";
 		}
 		sectionOne = sectionOne + f;
-		return sectionOne;
+		return sectionOne;*/
+		return null;
+		//TODO
 	}
 
 	/**

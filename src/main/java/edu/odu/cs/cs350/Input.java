@@ -1,7 +1,7 @@
 package edu.odu.cs.cs350;
 
 import java.io.FileNotFoundException;
-import java.io.File;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -59,6 +59,28 @@ public class Input {
 
         this.setTokens();
     }
+
+    /**
+	 * @param f: The file given from the input, provided by the user.
+	 * @return Character stream of the file that will be read
+	 * in token analyzer
+	 */
+	public Reader readFiles(File f) {
+		try {
+			Scanner s = new Scanner(f);
+			String source = "";
+			while(s.hasNext()) {
+				source += s.nextLine() + "\n";
+			}
+			s.close();
+			Reader input = new StringReader(source);
+			return input;
+		}
+		catch(FileNotFoundException e) {
+
+		}
+		return null;
+	}
 
     public void setTokens() {
         this.tokens = new ArrayList<Token>();
