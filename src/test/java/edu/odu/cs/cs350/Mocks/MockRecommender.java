@@ -1,5 +1,6 @@
 package edu.odu.cs.cs350.Mocks;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.odu.cs.cs350.Interfaces.RecommenderInterface;
@@ -8,64 +9,83 @@ import edu.odu.cs.cs350.Interfaces.TokenInterface;
 
 public class MockRecommender implements RecommenderInterface {
 
+    private List<TokenInterface> tokens;
+    private List<RefactoringInterface> refactorings;
+    private int minRefactoringSize;
+    private int maxRefactoringSize;
+
+    MockRecommender() {
+        this.tokens = new ArrayList<TokenInterface>();
+        this.refactorings = new ArrayList<RefactoringInterface>();
+        this.minRefactoringSize = 0;
+        this.maxRefactoringSize = 0;
+    }
+
+    MockRecommender(
+        List<TokenInterface> tokens,
+        List<RefactoringInterface> refactorings,
+        int minRefactoringSize,
+        int maxRefactoringSize
+    ) {
+        this.tokens = tokens;
+        this.refactorings = refactorings;
+        this.minRefactoringSize = minRefactoringSize;
+        this.maxRefactoringSize = maxRefactoringSize;
+    }
+
     @Override
     public List<? extends TokenInterface> getTokens() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.tokens;
     }
 
     @Override
     public void setTokens(List<? extends TokenInterface> input) {
-        // TODO Auto-generated method stub
-        
+        this.tokens = new ArrayList<TokenInterface>();
+        for (var t : input) this.tokens.add(t);
     }
 
     @Override
     public List<? extends RefactoringInterface> getRefactorings() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.refactorings;
     }
 
     @Override
     public void setRefactorings(List<? extends RefactoringInterface> input) {
-        // TODO Auto-generated method stub
-        
+        this.refactorings = new ArrayList<RefactoringInterface>();
+        for (var r : input) this.refactorings.add(r);
     }
 
     @Override
     public int getMinRefactoringSize() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.minRefactoringSize;
     }
 
     @Override
     public void setMinRefactoringSize(int input) {
-        // TODO Auto-generated method stub
+        this.minRefactoringSize = input;
         
     }
 
     @Override
     public void setMinRefactoringSize() {
-        // TODO Auto-generated method stub
+        this.minRefactoringSize = 0;
         
     }
 
     @Override
     public int getMaxRefactoringSize() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.maxRefactoringSize;
     }
 
     @Override
     public void setMaxRefactoringSize(int input) {
-        // TODO Auto-generated method stub
+        this.maxRefactoringSize = input;
         
     }
 
     @Override
     public void setMaxRefactoringSize() {
-        // TODO Auto-generated method stub
-        
+        this.maxRefactoringSize = 0;
     }
     
 }
