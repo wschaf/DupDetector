@@ -12,8 +12,8 @@ import java.io.*;
  */
 public class Output implements OutputInterface {
     
-	private Input input;
-	private Recommender recommender;
+	private InputInterface input;
+	private RecommenderInterface recommender;
 	private int refactoringsToPrint;
 	private List<File> files;
 	private List<RefactoringInterface> refactorings;
@@ -29,25 +29,13 @@ public class Output implements OutputInterface {
 	}
 
 	/**
-	 * 
-	 * @param refactoringsToPrint The number of refactoring suggestions to be printed in the final output.
-	 * @param files The list of files that have been processed by the system.
-	 * @param refactorings The list of suggested refactorings that resulted from processing @param files.
+	 * Constructs an Output object using Input and Recommender objects.
+	 * @param input a completed Input object; contains all files
+	 * and all tokens.
+	 * @param recommender a completed Recommender object; contains all
+	 * refactoring recommendations.
 	 */
-	public Output(int refactoringsToPrint, List<File> files, List<? extends RefactoringInterface> refactorings) {
-		this.refactoringsToPrint = refactoringsToPrint;
-
-		//	Java tip: You cannot assign a interface list to a concrete list; you have to iterate through the list.
-		List<File> fileList = new ArrayList<File>();
-		for (var f : files) fileList.add(f);
-		this.files = fileList;
-
-		List<RefactoringInterface> rList = new ArrayList<RefactoringInterface>();
-		for (var r : refactorings) rList.add(r);
-		this.refactorings = rList;
-	}
-
-	public Output(Input input, Recommender recommender) {
+	public Output(InputInterface input, RecommenderInterface recommender) {
 		this.input = input;
 		this.recommender = recommender;
 		this.refactoringsToPrint = input.getNSuggestions();

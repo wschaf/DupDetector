@@ -26,14 +26,15 @@ public class MockRefactoring implements RefactoringInterface {
         String absolutePath,
         int lineNumber,
         int columnNumber,
-        List<? extends TokenInterface> tokenList,
+        List<? extends TokenInterface> inputTokenList,
         int opportunityValue
     ) {
         this.numberOfTokens = numberOfTokens;
         this.absolutePath = absolutePath;
         this.lineNumber = lineNumber;
         this.columnNumber = columnNumber;
-        for (var t : tokenList) this.tokenList.add(t);
+        this.tokenList = new ArrayList<TokenInterface>();
+        for (var t : inputTokenList) this.tokenList.add(t);
         this.opportunityValue = opportunityValue;
     }
     

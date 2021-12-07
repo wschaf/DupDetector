@@ -87,7 +87,7 @@ public class TestOutput {
 
     @Test
     public void testParameterizedConstructor() {
-        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
+        Output out = new Output(input, recommender);
         assertThat(out.getRefactoringsToPrint(), is(RefactoringsToPrint));
         assertThat(out.getRefactorings(), is(mockRefactorings));
         assertThat(out.getFiles(), is(files));
@@ -95,30 +95,28 @@ public class TestOutput {
 
     @Test
     public void testGetRefactoringsToPrint() {
-        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
-        assertThat(out.getRefactoringsToPrint(), is(2));
+        Output out = new Output(input, recommender);
+        assertThat(out.getRefactoringsToPrint(), is(1));
     }
 
     @Test
     public void testSetRefactoringsToPrint() {
-        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
+        Output out = new Output(input, recommender);
         out.setRefactoringsToPrint(5);
         assertThat(out.getRefactoringsToPrint(), is(5));
     }
 
     @Test
     public void testGetFiles() {
-        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
+        Output out = new Output(input, recommender);
         List<File> k = new ArrayList<File>();
-        k.add(new File("src/test/data/test.cpp"));
-        k.add(new File("src/test/data/test.cpp"));
         k.add(new File("src/test/data/test.cpp"));
         assertThat(out.getFiles().size(), is(k.size()));
     }
 
     @Test
     public void testSetFiles() {
-        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
+        Output out = new Output(input, recommender);
         List<File> files = new ArrayList<File>();
         files.add(new File("src/test/data/test.cpp"));
         files.add(new File("src/test/data/test.cpp"));
@@ -130,13 +128,13 @@ public class TestOutput {
 
     @Test
     public void testGetRefactorings() {
-        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
+        Output out = new Output(input, recommender);
         assertThat(out.getRefactorings(), is(mockRefactorings));
     }
 
     @Test
     public void testSetRefactorings() {
-        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
+        Output out = new Output(input, recommender);
         List<MockRefactoring> k = new ArrayList<MockRefactoring>();
         k.add(new MockRefactoring());
         k.add(new MockRefactoring());
@@ -150,16 +148,14 @@ public class TestOutput {
 
     @Test
     public void testGetSectionOneNoFiles() {
-        List<MockRefactoring> r = new ArrayList<MockRefactoring>();
-        List<File> f = new ArrayList<File>();
-        Output out = new Output(0, f, r);
+        Output out = new Output(emptyInput, emptyRecommender);
         String s = out.getSectionOne();
         assertThat(s.length(), is(0));
     }
 
     @Test
     public void testGetSectionOne() {
-        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
+        Output out = new Output(input, recommender);
         String subject = out.getSectionOne();
         assertThat(subject.length(), greaterThan(0));
         assertTrue(subject.contains("Files Scanned:\n"));
@@ -170,16 +166,14 @@ public class TestOutput {
 
     @Test
     public void testGetSectionTwoNoFiles() {
-        List<MockRefactoring> r = new ArrayList<MockRefactoring>();
-        List<File> f = new ArrayList<File>();
-        Output out = new Output(0, f, r);
+        Output out = new Output(emptyInput, emptyRecommender);
         String s = out.getSectionTwo();
         assertThat(s.length(), is(0));
     }
 
     @Test
     public void testGetSectionTwo() {
-        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
+        Output out = new Output(input, recommender);
         String subject = out.getSectionTwo();
         assertThat(subject.length(), greaterThan(0));
         assertTrue(subject.contains("Opportunity #"));
@@ -195,7 +189,7 @@ public class TestOutput {
 
     @Test
     public void testGetSectionTwoLimitedRefactorings() {
-        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
+        Output out = new Output(input, recommender);
         String subject = out.getSectionTwo();
         int lines = subject.split("\r\n|\r|\n").length;
         assertThat(lines, is(RefactoringsToPrint * 3));
@@ -203,30 +197,32 @@ public class TestOutput {
 
     @Test
     public void testGetCompleteOutputNoFiles() {
-        List<MockRefactoring> r = new ArrayList<MockRefactoring>();
-        List<File> f = new ArrayList<File>();
-        Output out = new Output(0, f, r);
+        Output out = new Output(emptyInput, emptyRecommender);
         String correctOutput = "No files scanned.\n";
         assertThat(out.getCompleteOutput(), is(correctOutput));
     }
 
     @Test
     public void testGetCompleteOutput() {
-        Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
+        Output out = new Output(input, recommender);
         String subject = out.getCompleteOutput();
         String correctOutput =
-        "Files Scanned:\n" +
-        "    /home/runner/work/DupDetector/DupDetector/src/test/data/test.cpp, 24\n" +
-        "    /home/runner/work/DupDetector/DupDetector/src/test/data/test.cpp, 24\n" +
-        "    /home/runner/work/DupDetector/DupDetector/src/test/data/test.cpp, 24\n" +
-        "\n" +
-        "Opportunity #1, 6 tokens\n" +
-        "/home/wgs/src/cs350/DupDetector/src/test/data/hello.cpp:32:64\n" +
-        "if this then that\n" +
-        "Opportunity #2, 6 tokens\n" +
-        "/home/wgs/src/cs350/DupDetector/src/test/data/hello.cpp:32:64\n" +
-        "if this then that\n";
+        "Files Scanned:\n"                                                          +
+        "    /home/wgs/src/cs350/DupDetector/src/test/data/test.cpp, 5\n"           +
+        "\n"                                                                        +
+        "Opportunity #1, 5 tokens\n"                                                +
+        "src/test/data/test.cpp:1:1\n"                                              +
+        "INT:1:1IDENTIFIER:1:5ASSIGN_OP:1:7CONSTANT_NUMBERS:1:9SEMI_COLON:1:10\n"   ;
 
         assertThat(subject.toString(), is(correctOutput));
     }
 }
+
+/*
+“Files Scanned:\n" +
+"    /home/wgs/src/cs350/DupDetector/src/test/data/test.cpp, 5\n" +
+"\n" +
+"Opportunity #1, 5 tokens\n" +
+"src/test/data/test.cpp:1:1\n" +
+INT:1:1IDENTIFIER:1:5ASSIGN_OP:1:7CONSTANT_NUMBERS:1:9SEMI_COLON:1:10\n”
+*/
