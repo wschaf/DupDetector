@@ -15,5 +15,7 @@ public abstract interface RefactoringInterface {
     public String getColumnNumber();
 
     public String getTokenList();
+
+    public int getOpportunityValue();
     
 }

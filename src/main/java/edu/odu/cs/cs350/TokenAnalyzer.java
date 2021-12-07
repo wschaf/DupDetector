@@ -76,7 +76,12 @@ public class TokenAnalyzer implements Iterable<Token> {
         try {
             token = scanner.yylex();
             while (token != null && token.getTokenType() != TokenType.EOF) {
-                token.setAbsolutePath(this.inputFile.getAbsolutePath());
+                if (this.inputFile == null || !this.inputFile.exists()) {
+                    token.setAbsolutePath("");
+                }
+                else {
+                    token.setAbsolutePath(this.inputFile.getAbsolutePath());
+                }
                 tokensContainer.add(token);
                 token = scanner.yylex();
             }

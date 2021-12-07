@@ -59,4 +59,9 @@ public class MockRefactoring implements RefactoringInterface {
         for (var t : this.tokenList) result += t.toString();
         return result;
     }
+
+    @Override
+    public int getOpportunityValue() {
+        return this.opportunityValue;
+    }
 }
