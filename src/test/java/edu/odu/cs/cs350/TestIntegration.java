@@ -34,7 +34,7 @@ public class TestIntegration {
     public void setup() {
         args = new String[] {
             "5",
-            ""
+            "/home/wgs/src/cs350/DupDetector/src/test/data/properties.ini"
         };
     }
 
