@@ -66,9 +66,10 @@ public class Input implements InputInterface {
     }
 
     /**
-	 * @param f: The file given from the input, provided by the user.
-	 * @return Character stream of the file that will be read
-	 * in token analyzer
+	 * @param f: The file given from the input, provided by the
+     * user.
+	 * @return Character stream of the file that will be read in
+     * token analyzer.
 	 */
     @Override
 	public Reader readFiles(File f) {
@@ -88,6 +89,10 @@ public class Input implements InputInterface {
 		return null;
 	}
 
+    /**
+     * Generates the token list.
+     */
+    @Override
     public void setTokens() {
         this.tokens = new ArrayList<TokenInterface>();
         this.tokenCountForFiles = new Hashtable<File, Integer>();
@@ -101,26 +106,49 @@ public class Input implements InputInterface {
         }
     }
 
+    /**
+     * @return the list of all files that input received as
+     * arguments.
+     */
     @Override
     public List<File> getFiles() {
         return this.files;
     }
 
+    /**
+     * @return the list of tokens produced using the argument files.
+     */
     @Override
     public List<? extends TokenInterface> getTokens() {
         return this.tokens;
     }
 
+    /**
+     * @return the number of suggestions for Output to print back
+     * to the user.
+     */
     @Override
     public int getNSuggestions() {
         return this.nSuggestions;
     }
 
+    /**
+     * Key: a File object
+     * Value: an Integer object reprsenting the total tokens in 
+     * that File.
+     * @return a dictionary containing each file and the count of
+     * tokens in that file.
+     */
     @Override
     public Dictionary<File, Integer> getTokenCountForFiles() {
         return this.tokenCountForFiles;
     }
 
+    /**
+     * @param file any of a list of files that was passed to input
+     * as an argument.
+     * @return the number of tokens present in that file.
+     */
     @Override
     public int getTokenCountForFile(File file) {
         return this.tokenCountForFiles.get(file);
