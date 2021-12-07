@@ -66,30 +66,6 @@ public class Input implements InputInterface {
     }
 
     /**
-	 * @param f: The file given from the input, provided by the
-     * user.
-	 * @return Character stream of the file that will be read in
-     * token analyzer.
-	 */
-    @Override
-	public Reader readFiles(File f) {
-		try {
-			Scanner s = new Scanner(f);
-			String source = "";
-			while(s.hasNext()) {
-				source += s.nextLine() + "\n";
-			}
-			s.close();
-			Reader input = new StringReader(source);
-			return input;
-		}
-		catch(FileNotFoundException e) {
-
-		}
-		return null;
-	}
-
-    /**
      * Generates the token list.
      */
     @Override

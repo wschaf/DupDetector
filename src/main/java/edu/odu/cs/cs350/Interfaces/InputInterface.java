@@ -6,14 +6,6 @@ import java.util.*;
 public interface InputInterface {
 
     /**
-	 * @param f: The file given from the input, provided by the
-     * user.
-	 * @return Character stream of the file that will be read in
-     * token analyzer.
-	 */
-	public Reader readFiles(File f);
-
-    /**
      * Generates the token list.
      */
     public void setTokens();

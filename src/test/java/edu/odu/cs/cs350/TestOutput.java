@@ -130,11 +130,11 @@ public class TestOutput {
     public void testGetSectionOne() {
         Output out = new Output(RefactoringsToPrint, files, mockRefactorings);
         String subject = out.getSectionOne();
-        /*assertThat(subject.length(), greaterThan(0));
+        assertThat(subject.length(), greaterThan(0));
         assertTrue(subject.contains("Files Scanned:\n"));
         for (var f : files) {
             assertTrue(subject.contains(f.getAbsolutePath()));
-        }*/
+        }
     }
 
     @Test
