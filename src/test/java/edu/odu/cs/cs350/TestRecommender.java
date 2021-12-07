@@ -126,9 +126,6 @@ public class TestRecommender {
         assertThat(subjectB.getRefactorings().size(), is(0));
 
         Recommender subjectC = new Recommender(oneRefactoring);
-        for (var r : subjectC.getRefactorings()) {
-            System.out.println(r.toString());
-        }
 
         assertThat(subjectC.getRefactorings().size(), is(10));
     }

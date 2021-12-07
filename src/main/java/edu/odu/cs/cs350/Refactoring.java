@@ -29,8 +29,8 @@ public class Refactoring implements RefactoringInterface, Comparable<Refactoring
     public Refactoring(List<? extends TokenInterface> candidate, int opportunityValue) {
         this.numberOfTokens = candidate.size();
         this.absolutePath = candidate.get(0).getAbsolutePath();
-        this.lineNumber = 5;
-        this.columnNumber = 5;
+        this.lineNumber = Integer.parseInt(candidate.get(0).getLineNumber());
+        this.columnNumber = Integer.parseInt(candidate.get(0).getColumnNumber());
         this.tokenList = candidate.toString();
         this.opportunityValue = opportunityValue;
     }
