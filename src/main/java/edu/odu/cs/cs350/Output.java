@@ -126,7 +126,7 @@ public class Output implements OutputInterface {
 		String sectionOne = new String();
 		sectionOne = sectionOne + "Files Scanned:\n";
 		String f = new String();
-		for (var file : files) {
+		for (File file : files) {
 			f = f + "    ";
 			f = f + file.getAbsolutePath();
 			f = f + ", ";
