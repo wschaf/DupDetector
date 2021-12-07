@@ -14,14 +14,14 @@ public class MockRecommender implements RecommenderInterface {
     private int minRefactoringSize;
     private int maxRefactoringSize;
 
-    MockRecommender() {
+    public MockRecommender() {
         this.tokens = new ArrayList<TokenInterface>();
         this.refactorings = new ArrayList<RefactoringInterface>();
         this.minRefactoringSize = 0;
         this.maxRefactoringSize = 0;
     }
 
-    MockRecommender(
+    public MockRecommender(
         List<TokenInterface> tokens,
         List<RefactoringInterface> refactorings,
         int minRefactoringSize,

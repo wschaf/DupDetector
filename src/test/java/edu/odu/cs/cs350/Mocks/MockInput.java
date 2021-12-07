@@ -13,14 +13,14 @@ public class MockInput implements InputInterface {
     private Hashtable<File, Integer> tokenCountForFiles;
     private List<TokenInterface> tokens;
 
-    MockInput() {
+    public MockInput() {
         this.nSuggestions = 0;
         this.files = new ArrayList<File>();
         this.tokenCountForFiles = new Hashtable<File, Integer>();
         this.tokens = new ArrayList<TokenInterface>();
     }
 
-    MockInput(
+    public MockInput(
         int nSuggestions, 
         List<File> files, 
         Hashtable<File, Integer> tokenCountForFiles, 
@@ -34,7 +34,10 @@ public class MockInput implements InputInterface {
 
     @Override
     public void setTokens() {
-        //  Do nothing, tokens should have already been set.
+        List<TokenInterface> temp = new ArrayList<TokenInterface>();
+        for (var t : this.tokens) temp.add(t);
+        this.tokens = new ArrayList<TokenInterface>();
+        for (var t : temp) this.tokens.add(t);
     }
 
     @Override

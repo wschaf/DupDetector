@@ -28,15 +28,15 @@ public class TestOutput {
     private static List<File> files;
     private static List<MockRefactoring> mockRefactorings;
     private static int RefactoringsToPrint;
+    private static MockInput emptyInput;
+    private static MockInput input;
+    private static MockRecommender emptyRecommender;
+    private static MockRecommender recommender;
 
     @BeforeEach
     public void setup() {
         files = new ArrayList<File>();
-
         files.add(new File("src/test/data/test.cpp"));
-        files.add(new File("src/test/data/test.cpp"));
-        files.add(new File("src/test/data/test.cpp"));
-
 
         mockRefactorings = new ArrayList<MockRefactoring>();
         mockRefactorings.add(new MockRefactoring());
@@ -44,6 +44,11 @@ public class TestOutput {
         mockRefactorings.add(new MockRefactoring());
 
         RefactoringsToPrint = 2;
+
+        emptyInput = new MockInput();
+        emptyRecommender = new MockRecommender();
+        input = new MockInput(RefactoringsToPrint, files, tokenCountForFiles, tokens);
+        recommender = new MockRecommender(tokens, refactorings, minRefactoringSize, maxRefactoringSize)
     }
 
     @Test

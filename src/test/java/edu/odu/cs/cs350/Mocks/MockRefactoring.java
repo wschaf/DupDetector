@@ -2,14 +2,40 @@ package edu.odu.cs.cs350.Mocks;
 
 import edu.odu.cs.cs350.Interfaces.*;
 
+import java.util.*;
+
 public class MockRefactoring implements RefactoringInterface {
 
-    public int numberOfTokens = 6;
-    public String absolutePath = "/home/wgs/src/cs350/DupDetector/src/test/data/hello.cpp";
-    public int lineNumber = 32;
-    public int columnNumber = 64;
-    public String tokenList = "if this then that";
+    public int numberOfTokens;
+    public String absolutePath;
+    public int lineNumber;
+    public int columnNumber;
+    public List<TokenInterface> tokenList;
     public int opportunityValue;
+
+    public MockRefactoring() {
+        this.numberOfTokens = 0;
+        this.absolutePath = "";
+        this.lineNumber = 0;
+        this.columnNumber = 0;
+        tokenList = new ArrayList<TokenInterface>();
+    }
+
+    public MockRefactoring(
+        int numberOfTokens,
+        String absolutePath,
+        int lineNumber,
+        int columnNumber,
+        List<? extends TokenInterface> tokenList,
+        int opportunityValue
+    ) {
+        this.numberOfTokens = numberOfTokens;
+        this.absolutePath = absolutePath;
+        this.lineNumber = lineNumber;
+        this.columnNumber = columnNumber;
+        for (var t : tokenList) this.tokenList.add(t);
+        this.opportunityValue = opportunityValue;
+    }
     
     public String getNumberOfTokens() {
         return Integer.toString(numberOfTokens);
@@ -28,7 +54,8 @@ public class MockRefactoring implements RefactoringInterface {
     }
 
     public String getTokenList() {
-        return tokenList;
+        String result = "";
+        for (var t : this.tokenList) result += t.toString();
+        return result;
     }
-    
 }
