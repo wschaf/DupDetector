@@ -96,8 +96,8 @@ public class TestRecommender {
         Recommender subject = new Recommender(basicTokens);
 
         assertThat(subject.getTokens().size(), is(5));
-        assertThat(subject.getTokens().get(0).toString(), equalTo(new Token(TokenType.INT, 2, 1).toString()));
-        assertThat(subject.getTokens().get(4).toString(), equalTo(new Token(TokenType.SEMI_COLON, 2, 10).toString()));
+        assertThat(subject.getTokens().get(0).toString(), equalTo(new Token(TokenType.INT, 1, 1).toString()));
+        assertThat(subject.getTokens().get(4).toString(), equalTo(new Token(TokenType.SEMI_COLON, 1, 10).toString()));
     }
 
     @Test
@@ -106,8 +106,8 @@ public class TestRecommender {
         subject.setTokens(basicTokens);
 
         assertThat(subject.getTokens().size(), is(5));
-        assertThat(subject.getTokens().get(0).toString(), equalTo(new Token(TokenType.INT, 2, 1).toString()));
-        assertThat(subject.getTokens().get(4).toString(), equalTo(new Token(TokenType.SEMI_COLON, 2, 10).toString()));
+        assertThat(subject.getTokens().get(0).toString(), equalTo(new Token(TokenType.INT, 1, 1).toString()));
+        assertThat(subject.getTokens().get(4).toString(), equalTo(new Token(TokenType.SEMI_COLON, 1, 10).toString()));
     }
 
     @Test
