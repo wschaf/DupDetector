@@ -1,7 +1,6 @@
 package edu.odu.cs.cs350;
 
 import java.io.File;
-import java.io.InputStream;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
@@ -9,6 +8,8 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.Iterator;
 import java.util.Scanner;
+
+import edu.odu.cs.cs350.Interfaces.TokenInterface;
 
 /**
  * TokenAnalyzer analyzes each lexemes in the given file
@@ -26,7 +27,7 @@ public class TokenAnalyzer implements Iterable<Token> {
     /** Token object found in the file. Contains necessary metadata defined in Token class. */
     private Token token;
 
-    private File file;
+    private File inputFile;
     
     /**
      * The default constructor for token analyzer.
@@ -50,6 +51,7 @@ public class TokenAnalyzer implements Iterable<Token> {
 
     public TokenAnalyzer(File inputFile) {
         Scanner scanner;
+        this.inputFile = inputFile;
         try {
             scanner = new Scanner(inputFile);
             String source = "";
@@ -74,6 +76,7 @@ public class TokenAnalyzer implements Iterable<Token> {
         try {
             token = scanner.yylex();
             while (token != null && token.getTokenType() != TokenType.EOF) {
+                token.setAbsolutePath(this.inputFile.getAbsolutePath());
                 tokensContainer.add(token);
                 token = scanner.yylex();
             }
@@ -108,7 +111,7 @@ public class TokenAnalyzer implements Iterable<Token> {
         return Integer.toString(getFileTokenCount());
     }
 
-	public Token getTokens() {
-		return null;
+	public List<? extends TokenInterface> getTokens() {
+		return this.tokensContainer;
 	}
 }

@@ -12,6 +12,8 @@ import java.io.*;
  */
 public class Output implements OutputInterface {
     
+	private Input input;
+	private Recommender recommender;
 	private int refactoringsToPrint;
 	private List<File> files;
 	private List<RefactoringInterface> refactorings;
@@ -42,6 +44,20 @@ public class Output implements OutputInterface {
 
 		List<RefactoringInterface> rList = new ArrayList<RefactoringInterface>();
 		for (var r : refactorings) rList.add(r);
+		this.refactorings = rList;
+	}
+
+	public Output(Input input, Recommender recommender) {
+		this.input = input;
+		this.recommender = recommender;
+		this.refactoringsToPrint = input.getNSuggestions();
+
+		List<File> fileList = new ArrayList<File>();
+		for (var f : input.getFiles()) fileList.add(f);
+		this.files = fileList;
+
+		List<RefactoringInterface> rList = new ArrayList<RefactoringInterface>();
+		for (var r : this.recommender.getRefactorings()) rList.add(r);
 		this.refactorings = rList;
 	}
 
@@ -106,23 +122,19 @@ public class Output implements OutputInterface {
 	 */
 	@Override
 	public String getSectionOne() {
-		/*if (files.size() == 0) return new String();
+		if (files.size() == 0) return new String();
 		String sectionOne = new String();
 		sectionOne = sectionOne + "Files Scanned:\n";
 		String f = new String();
 		for (var file : files) {
-			TokenAnalyzer tokenAnalyzer = new TokenAnalyzer(readFiles(file));
-			tokenAnalyzer.processSourceCode();
 			f = f + "    ";
 			f = f + file.getAbsolutePath();
 			f = f + ", ";
-			f = f + Integer.toString(tokenAnalyzer.getFileTokenCount());
+			f = f + input.getTokenCountForFile(file);
 			f = f + "\n";
 		}
 		sectionOne = sectionOne + f;
-		return sectionOne;*/
-		return null;
-		//TODO
+		return sectionOne;
 	}
 
 	/**

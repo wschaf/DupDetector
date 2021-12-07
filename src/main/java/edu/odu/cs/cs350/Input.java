@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.*;
 import java.util.*;
 
+import edu.odu.cs.cs350.Interfaces.TokenInterface;
+
 /**
  * Input file will be invoked using command line arguments.
  * args[0] is reserved for the number of suggestions the user wants
@@ -17,12 +19,15 @@ public class Input {
 
     private int nSuggestions;
     private List<File> files;
-    private List<Token> tokens;
+    /**Key: File; Value: tokenCount */
+    private Hashtable<File, Integer> tokenCountForFiles;
+    private List<TokenInterface> tokens;
     
     Input() {
         this.nSuggestions = 0;
         files = new ArrayList<File>();
-        tokens = new ArrayList<Token>();
+        tokens = new ArrayList<TokenInterface>();
+        tokenCountForFiles = new Hashtable<File, Integer>();
     }
 
     Input(String args[]) throws Exception {
@@ -83,10 +88,15 @@ public class Input {
 	}
 
     public void setTokens() {
-        this.tokens = new ArrayList<Token>();
+        this.tokens = new ArrayList<TokenInterface>();
+        this.tokenCountForFiles = new Hashtable<File, Integer>();
         for (File file : this.getFiles()) {
             TokenAnalyzer t = new TokenAnalyzer(file);
-            this.tokens.add(t.getTokens());
+            t.processSourceCode();
+            tokenCountForFiles.put(file, t.getFileTokenCount());
+            for (var token : t.getTokens()) {
+                this.tokens.add(token);
+            }
         }
     }
 
@@ -94,11 +104,19 @@ public class Input {
         return this.files;
     }
 
-    public List<Token> getTokens() {
+    public List<? extends TokenInterface> getTokens() {
         return this.tokens;
     }
 
     public int getNSuggestions() {
         return this.nSuggestions;
+    }
+
+    public Dictionary<File, Integer> getTokenCountForFiles() {
+        return this.tokenCountForFiles;
+    }
+
+    public int getTokenCountForFile(File file) {
+        return this.tokenCountForFiles.get(file);
     }
 }
