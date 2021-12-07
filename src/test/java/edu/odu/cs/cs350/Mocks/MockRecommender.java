@@ -23,14 +23,15 @@ public class MockRecommender implements RecommenderInterface {
 
     public MockRecommender(
         List<TokenInterface> tokens,
-        List<RefactoringInterface> refactorings,
+        List<? extends RefactoringInterface> refactorings,
         int minRefactoringSize,
         int maxRefactoringSize
     ) {
         this.tokens = tokens;
-        this.refactorings = refactorings;
         this.minRefactoringSize = minRefactoringSize;
         this.maxRefactoringSize = maxRefactoringSize;
+        this.refactorings = new ArrayList<RefactoringInterface>();
+        for (var r : refactorings) this.refactorings.add(r);
     }
 
     @Override

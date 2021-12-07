@@ -14,6 +14,7 @@ Opportunity <Opportunity#>, <NumberofTokensInOpportunity> tokens
 
 package edu.odu.cs.cs350;
 
+import edu.odu.cs.cs350.Interfaces.TokenInterface;
 import edu.odu.cs.cs350.Mocks.*;
 
 import java.util.*;
@@ -32,23 +33,48 @@ public class TestOutput {
     private static MockInput input;
     private static MockRecommender emptyRecommender;
     private static MockRecommender recommender;
+    private static Hashtable<File, Integer> tokenCountForFiles;
 
     @BeforeEach
     public void setup() {
         files = new ArrayList<File>();
-        files.add(new File("src/test/data/test.cpp"));
+        File f = new File("src/test/data/test.cpp");
+        files.add(f);
 
+        tokenCountForFiles = new Hashtable<File, Integer>();
+        tokenCountForFiles.put(f, 5);
+
+        List<TokenInterface> tokens = Arrays.asList (
+            (new Token(TokenType.INT, 1, 1)),
+            (new Token(TokenType.IDENTIFIER, 1, 5)),
+            (new Token(TokenType.ASSIGN_OP, 1, 7)),
+            (new Token(TokenType.CONSTANT_NUMBERS, 1, 9)),
+            (new Token(TokenType.SEMI_COLON, 1, 10)),
+
+            (new Token(TokenType.INT, 2, 1)),
+            (new Token(TokenType.IDENTIFIER, 2, 5)),
+            (new Token(TokenType.ASSIGN_OP, 2, 7)),
+            (new Token(TokenType.CONSTANT_NUMBERS, 2, 9)),
+            (new Token(TokenType.SEMI_COLON, 2, 10))
+        );
+        List<TokenInterface> refactoringTokenList = Arrays.asList (
+            (new Token(TokenType.INT, 1, 1)),
+            (new Token(TokenType.IDENTIFIER, 1, 5)),
+            (new Token(TokenType.ASSIGN_OP, 1, 7)),
+            (new Token(TokenType.CONSTANT_NUMBERS, 1, 9)),
+            (new Token(TokenType.SEMI_COLON, 1, 10))
+        );
+
+        MockRefactoring r = new MockRefactoring(5, "src/test/data/test.cpp", 1, 1, refactoringTokenList, 100);
         mockRefactorings = new ArrayList<MockRefactoring>();
-        mockRefactorings.add(new MockRefactoring());
-        mockRefactorings.add(new MockRefactoring());
-        mockRefactorings.add(new MockRefactoring());
+        mockRefactorings.add(r);
 
-        RefactoringsToPrint = 2;
+        RefactoringsToPrint = 1;
 
         emptyInput = new MockInput();
         emptyRecommender = new MockRecommender();
         input = new MockInput(RefactoringsToPrint, files, tokenCountForFiles, tokens);
-        recommender = new MockRecommender(tokens, refactorings, minRefactoringSize, maxRefactoringSize)
+        recommender = new MockRecommender(tokens, mockRefactorings, 0, 100);
     }
 
     @Test

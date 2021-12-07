@@ -26,11 +26,11 @@ public class TestRecommender {
          * int x = 5;
         */
         basicTokens = Arrays.asList (
-            (new Token(TokenType.INT, 2, 1)),
-            (new Token(TokenType.IDENTIFIER, 2, 5)),
-            (new Token(TokenType.ASSIGN_OP, 2, 7)),
-            (new Token(TokenType.CONSTANT_NUMBERS, 2, 9)),
-            (new Token(TokenType.SEMI_COLON, 2, 10))
+            (new Token(TokenType.INT, 1, 1)),
+            (new Token(TokenType.IDENTIFIER, 1, 5)),
+            (new Token(TokenType.ASSIGN_OP, 1, 7)),
+            (new Token(TokenType.CONSTANT_NUMBERS, 1, 9)),
+            (new Token(TokenType.SEMI_COLON, 1, 10))
         );
 
         /** The same C++ statement twice, should produce one candidate refacoring.
@@ -38,17 +38,17 @@ public class TestRecommender {
          * int y = 6;
         */
         oneRefactoring = Arrays.asList (
+            (new Token(TokenType.INT, 1, 1)),
+            (new Token(TokenType.IDENTIFIER, 1, 5)),
+            (new Token(TokenType.ASSIGN_OP, 1, 7)),
+            (new Token(TokenType.CONSTANT_NUMBERS, 1, 9)),
+            (new Token(TokenType.SEMI_COLON, 1, 10)),
+
             (new Token(TokenType.INT, 2, 1)),
             (new Token(TokenType.IDENTIFIER, 2, 5)),
             (new Token(TokenType.ASSIGN_OP, 2, 7)),
             (new Token(TokenType.CONSTANT_NUMBERS, 2, 9)),
-            (new Token(TokenType.SEMI_COLON, 2, 10)),
-
-            (new Token(TokenType.INT, 3, 1)),
-            (new Token(TokenType.IDENTIFIER, 3, 5)),
-            (new Token(TokenType.ASSIGN_OP, 3, 7)),
-            (new Token(TokenType.CONSTANT_NUMBERS, 3, 9)),
-            (new Token(TokenType.SEMI_COLON, 3, 10))
+            (new Token(TokenType.SEMI_COLON, 2, 10))
         );
     }
 
