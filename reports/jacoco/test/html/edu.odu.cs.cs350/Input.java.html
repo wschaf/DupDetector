@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Input.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DupDetector</a> &gt; <a href="index.source.html" class="el_package">edu.odu.cs.cs350</a> &gt; <span class="el_source">Input.java</span></div><h1>Input.java</h1><pre class="source lang-java linenums">package edu.odu.cs.cs350;
 
-import java.io.FileNotFoundException;
 import java.io.*;
 import java.util.*;
 
@@ -18,6 +17,8 @@ import edu.odu.cs.cs350.Interfaces.*;
 public class Input implements InputInterface {
 
     private int nSuggestions;
+    private int MinSequenceLength;
+    private int MaxSubstitutions;
     private List&lt;File&gt; files;
     private File propertiesFile;
     private List&lt;String&gt; fileExtensions;
@@ -25,71 +26,74 @@ public class Input implements InputInterface {
     private Hashtable&lt;File, Integer&gt; tokenCountForFiles;
     private List&lt;TokenInterface&gt; tokens;
     
-<span class="nc" id="L28">    Input() {</span>
-<span class="nc" id="L29">        this.nSuggestions = 0;</span>
-<span class="nc" id="L30">        files = new ArrayList&lt;File&gt;();</span>
-<span class="nc" id="L31">        tokens = new ArrayList&lt;TokenInterface&gt;();</span>
-<span class="nc" id="L32">        tokenCountForFiles = new Hashtable&lt;File, Integer&gt;();</span>
-<span class="nc" id="L33">        propertiesFile = new File(&quot;&quot;);</span>
-<span class="nc" id="L34">        this.setFileExtensions();</span>
-<span class="nc" id="L35">    }</span>
+<span class="nc" id="L29">    Input() {</span>
+<span class="nc" id="L30">        this.nSuggestions = 0;</span>
+<span class="nc" id="L31">        files = new ArrayList&lt;File&gt;();</span>
+<span class="nc" id="L32">        tokens = new ArrayList&lt;TokenInterface&gt;();</span>
+<span class="nc" id="L33">        tokenCountForFiles = new Hashtable&lt;File, Integer&gt;();</span>
+<span class="nc" id="L34">        propertiesFile = new File(&quot;&quot;);</span>
+<span class="nc" id="L35">        this.setFileExtensions();</span>
+<span class="nc" id="L36">        this.setMinSequenceMaxSubs();</span>
+<span class="nc" id="L37">    }</span>
 
-<span class="fc" id="L37">    Input(String args[]) throws Exception {</span>
-<span class="pc bpc" id="L38" title="2 of 4 branches missed.">        if (args == null || args.length == 0) {</span>
-<span class="nc" id="L39">            System.err.println(&quot;Usage: java -jar build/libs/DupDetector.jar &lt;nSuggestions&gt; &quot;</span>
+<span class="fc" id="L39">    Input(String args[]) throws Exception {</span>
+<span class="pc bpc" id="L40" title="2 of 4 branches missed.">        if (args == null || args.length == 0) {</span>
+<span class="nc" id="L41">            System.err.println(&quot;Usage: java -jar build/libs/DupDetector.jar &lt;nSuggestions&gt; &quot;</span>
             		+ &quot;&lt;properties file&gt;[OPTIONAL] &lt;path/of/file1&gt; &lt;path/of/file2&gt;&quot;);
-<span class="nc" id="L41">            System.exit(-1);</span>
+<span class="nc" id="L43">            System.exit(-1);</span>
         }
-<span class="fc" id="L43">        this.files = new ArrayList&lt;File&gt;();</span>
-<span class="fc" id="L44">        List&lt;String&gt; argList = new ArrayList&lt;String&gt;();</span>
-<span class="fc bfc" id="L45" title="All 2 branches covered.">        for (String string : args) argList.add(string);</span>
-<span class="fc" id="L46">        this.nSuggestions = Integer.parseInt(argList.get(0));</span>
-<span class="fc" id="L47">        argList.remove(0);</span>
+<span class="fc" id="L45">        this.files = new ArrayList&lt;File&gt;();</span>
+<span class="fc" id="L46">        List&lt;String&gt; argList = new ArrayList&lt;String&gt;();</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        for (String string : args) argList.add(string);</span>
+<span class="fc" id="L48">        this.nSuggestions = Integer.parseInt(argList.get(0));</span>
+<span class="fc" id="L49">        argList.remove(0);</span>
 
-<span class="pc bpc" id="L49" title="1 of 2 branches missed.">        if (argList.get(0).endsWith(&quot;.ini&quot;)) {</span>
-<span class="nc" id="L50">            this.propertiesFile = new File(argList.get(0));</span>
-<span class="nc" id="L51">            argList.remove(0);</span>
-<span class="nc" id="L52">            this.setFileExtensions(propertiesFile);</span>
-<span class="nc bnc" id="L53" title="All 2 branches missed.">            for (var path : argList) {</span>
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">        if (argList.get(0).endsWith(&quot;.ini&quot;)) {</span>
+<span class="nc" id="L52">            this.propertiesFile = new File(argList.get(0));</span>
+<span class="nc" id="L53">            argList.remove(0);</span>
+<span class="nc" id="L54">            this.setFileExtensions(propertiesFile);</span>
+<span class="nc" id="L55">            this.setMinSequenceMaxSubs(propertiesFile);</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            for (var path : argList) {</span>
                 try {
-<span class="nc" id="L55">                    RecursiveSearch r = new RecursiveSearch();</span>
-<span class="nc" id="L56">                    this.files.addAll(r.findFiles(path, this.getfileExtensions()));</span>
-<span class="nc" id="L57">                } catch(FileNotFoundException e) {</span>
-<span class="nc" id="L58">                    System.out.println(e.getMessage());</span>
-<span class="nc" id="L59">                }</span>
-<span class="nc" id="L60">            }</span>
+<span class="nc" id="L58">                    RecursiveSearch r = new RecursiveSearch();</span>
+<span class="nc" id="L59">                    this.files.addAll(r.findFiles(path, this.getfileExtensions()));</span>
+<span class="nc" id="L60">                } catch(FileNotFoundException e) {</span>
+<span class="nc" id="L61">                    System.out.println(e.getMessage());</span>
+<span class="nc" id="L62">                }</span>
+<span class="nc" id="L63">            }</span>
         }
         else {
-<span class="fc" id="L63">            this.setFileExtensions();</span>
-<span class="fc bfc" id="L64" title="All 2 branches covered.">            for (var path : argList) {</span>
+<span class="fc" id="L66">            this.setFileExtensions();</span>
+<span class="fc" id="L67">            this.setMinSequenceMaxSubs();</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">            for (var path : argList) {</span>
                 try {
-<span class="fc" id="L66">                    RecursiveSearch r = new RecursiveSearch();</span>
-<span class="fc" id="L67">                    this.files.addAll(r.findFiles(path));</span>
-<span class="nc" id="L68">                } catch(FileNotFoundException e) {</span>
-<span class="nc" id="L69">                    System.out.println(e.getMessage());</span>
-<span class="fc" id="L70">                }</span>
-<span class="fc" id="L71">            }</span>
+<span class="fc" id="L70">                    RecursiveSearch r = new RecursiveSearch();</span>
+<span class="fc" id="L71">                    this.files.addAll(r.findFiles(path));</span>
+<span class="nc" id="L72">                } catch(FileNotFoundException e) {</span>
+<span class="nc" id="L73">                    System.out.println(e.getMessage());</span>
+<span class="fc" id="L74">                }</span>
+<span class="fc" id="L75">            }</span>
         }
 
-<span class="fc" id="L74">        this.setTokens();</span>
-<span class="fc" id="L75">    }</span>
+<span class="fc" id="L78">        this.setTokens();</span>
+<span class="fc" id="L79">    }</span>
 
     /**
      * Generates the token list.
      */
     @Override
     public void setTokens() {
-<span class="fc" id="L82">        this.tokens = new ArrayList&lt;TokenInterface&gt;();</span>
-<span class="fc" id="L83">        this.tokenCountForFiles = new Hashtable&lt;File, Integer&gt;();</span>
-<span class="fc bfc" id="L84" title="All 2 branches covered.">        for (File file : this.getFiles()) {</span>
-<span class="fc" id="L85">            TokenAnalyzer t = new TokenAnalyzer(file);</span>
-<span class="fc" id="L86">            t.processSourceCode();</span>
-<span class="fc" id="L87">            tokenCountForFiles.put(file, t.getFileTokenCount());</span>
-<span class="fc bfc" id="L88" title="All 2 branches covered.">            for (var token : t.getTokens()) {</span>
-<span class="fc" id="L89">                this.tokens.add(token);</span>
-<span class="fc" id="L90">            }</span>
-<span class="fc" id="L91">        }</span>
-<span class="fc" id="L92">    }</span>
+<span class="fc" id="L86">        this.tokens = new ArrayList&lt;TokenInterface&gt;();</span>
+<span class="fc" id="L87">        this.tokenCountForFiles = new Hashtable&lt;File, Integer&gt;();</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        for (File file : this.getFiles()) {</span>
+<span class="fc" id="L89">            TokenAnalyzer t = new TokenAnalyzer(file);</span>
+<span class="fc" id="L90">            t.processSourceCode();</span>
+<span class="fc" id="L91">            tokenCountForFiles.put(file, t.getFileTokenCount());</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">            for (var token : t.getTokens()) {</span>
+<span class="fc" id="L93">                this.tokens.add(token);</span>
+<span class="fc" id="L94">            }</span>
+<span class="fc" id="L95">        }</span>
+<span class="fc" id="L96">    }</span>
 
     /**
      * @return the list of all files that input received as
@@ -97,7 +101,7 @@ public class Input implements InputInterface {
      */
     @Override
     public List&lt;File&gt; getFiles() {
-<span class="fc" id="L100">        return this.files;</span>
+<span class="fc" id="L104">        return this.files;</span>
     }
 
     /**
@@ -105,7 +109,7 @@ public class Input implements InputInterface {
      */
     @Override
     public List&lt;? extends TokenInterface&gt; getTokens() {
-<span class="fc" id="L108">        return this.tokens;</span>
+<span class="fc" id="L112">        return this.tokens;</span>
     }
 
     /**
@@ -114,7 +118,7 @@ public class Input implements InputInterface {
      */
     @Override
     public int getNSuggestions() {
-<span class="fc" id="L117">        return this.nSuggestions;</span>
+<span class="fc" id="L121">        return this.nSuggestions;</span>
     }
 
     /**
@@ -126,7 +130,7 @@ public class Input implements InputInterface {
      */
     @Override
     public Dictionary&lt;File, Integer&gt; getTokenCountForFiles() {
-<span class="nc" id="L129">        return this.tokenCountForFiles;</span>
+<span class="nc" id="L133">        return this.tokenCountForFiles;</span>
     }
 
     /**
@@ -136,7 +140,7 @@ public class Input implements InputInterface {
      */
     @Override
     public int getTokenCountForFile(File file) {
-<span class="fc" id="L139">        return this.tokenCountForFiles.get(file);</span>
+<span class="fc" id="L143">        return this.tokenCountForFiles.get(file);</span>
     }
 
     /**
@@ -144,7 +148,22 @@ public class Input implements InputInterface {
      * to be analyzed by the program.
      */
     public List&lt;String&gt; getfileExtensions() {
-<span class="nc" id="L147">        return this.fileExtensions;</span>
+<span class="nc" id="L151">        return this.fileExtensions;</span>
+    }
+
+    /**
+     * @return Minimum sequence length of token to be refactored.
+     */
+    public int getMinSequenceLength() {
+<span class="nc" id="L158">        return this.MinSequenceLength;</span>
+    }
+
+    /**
+     * @return Max number of lexeme substitutions defined in the
+     * properties.ini file.
+     */
+    public int getMaxSubstitutions() {
+<span class="nc" id="L166">        return this.MaxSubstitutions;</span>
     }
 
     /**
@@ -152,22 +171,44 @@ public class Input implements InputInterface {
      * Default: [&quot;.h,.cpp&quot;]
      */
     public void setFileExtensions() {
-<span class="fc" id="L155">        this.fileExtensions = new ArrayList&lt;String&gt;();</span>
-<span class="fc" id="L156">        this.fileExtensions.add(&quot;.h&quot;);</span>
-<span class="fc" id="L157">        this.fileExtensions.add(&quot;.cpp&quot;);</span>
-<span class="fc" id="L158">    }</span>
+<span class="fc" id="L174">        this.fileExtensions = new ArrayList&lt;String&gt;();</span>
+<span class="fc" id="L175">        this.fileExtensions.add(&quot;.h&quot;);</span>
+<span class="fc" id="L176">        this.fileExtensions.add(&quot;.cpp&quot;);</span>
+<span class="fc" id="L177">    }</span>
 
     /**
      * Sets the file extension to those listed in properties.ini.
      */
     public void setFileExtensions(File propertiesFile) throws Exception {
-<span class="nc" id="L164">        this.fileExtensions = new ArrayList&lt;String&gt;();</span>
-<span class="nc" id="L165">        Properties props = new Properties();</span>
-<span class="nc" id="L166">        try(Reader reader = new FileReader(propertiesFile)){</span>
-<span class="nc" id="L167">            props.load(reader);</span>
+<span class="nc" id="L183">        this.fileExtensions = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L184">        Properties props = new Properties();</span>
+<span class="nc" id="L185">        try(Reader reader = new FileReader(propertiesFile)){</span>
+<span class="nc" id="L186">            props.load(reader);</span>
         }
         // after loading the .ini file, string are split by &quot;,&quot; and stored in an array of extension
-<span class="nc" id="L170">        fileExtensions = Arrays.asList(props.getProperty(&quot;CppExtensions&quot;).split(&quot;, &quot;));</span>
-<span class="nc" id="L171">    }</span>
+<span class="nc" id="L189">        fileExtensions = Arrays.asList(props.getProperty(&quot;CppExtensions&quot;).split(&quot;, &quot;));</span>
+<span class="nc" id="L190">    }</span>
+
+    /**
+     * Sets properties value to default defined in the SRD.
+     */
+    public void setMinSequenceMaxSubs() {
+<span class="fc" id="L196">        this.MinSequenceLength = 10;</span>
+<span class="fc" id="L197">        this.MaxSubstitutions = 8;</span>
+<span class="fc" id="L198">    }</span>
+
+    /**
+     * Sets the properties value for minimum sequence length
+     * and maxs substitution defined in the properties file.
+     * @param propertiesFile the properties file from the CLI.
+     */
+    public void setMinSequenceMaxSubs(File propertiesFile) throws Exception {
+<span class="nc" id="L206">        Properties props = new Properties();</span>
+<span class="nc" id="L207">        try(Reader reader = new FileReader(propertiesFile)) {</span>
+<span class="nc" id="L208">            props.load(reader);</span>
+        }
+<span class="nc" id="L210">        MinSequenceLength = Integer.valueOf(props.getProperty(&quot;MinSequenceLength&quot;));</span>
+<span class="nc" id="L211">        MaxSubstitutions = Integer.valueOf(props.getProperty(&quot;MaxSubstitutions&quot;));</span>
+<span class="nc" id="L212">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

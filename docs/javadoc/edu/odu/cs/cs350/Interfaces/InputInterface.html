@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -159,15 +159,25 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNSuggestions()">getNSuggestions</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMaxSubstitutions()">getMaxSubstitutions</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTokenCountForFile(java.io.File)">getTokenCountForFile</a></span>&#8203;(java.io.File&nbsp;file)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMinSequenceLength()">getMinSequenceLength</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNSuggestions()">getNSuggestions</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTokenCountForFile(java.io.File)">getTokenCountForFile</a></span>&#8203;(java.io.File&nbsp;file)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>java.util.Dictionary&lt;java.io.File,&#8203;java.lang.Integer&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTokenCountForFiles()">getTokenCountForFiles</a></span>()</code></th>
 <td class="colLast">
@@ -176,26 +186,41 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  that File.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;? extends <a href="TokenInterface.html" title="interface in edu.odu.cs.cs350.Interfaces">TokenInterface</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTokens()">getTokens</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setFileExtensions()">setFileExtensions</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Sets file extension to default.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setFileExtensions(java.io.File)">setFileExtensions</a></span>&#8203;(java.io.File&nbsp;propertiesFile)</code></th>
 <td class="colLast">
 <div class="block">Sets the file extension to those listed in properties.ini.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMinSequenceMaxSubs()">setMinSequenceMaxSubs</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Sets properties value to default defined in the SRD.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMinSequenceMaxSubs(java.io.File)">setMinSequenceMaxSubs</a></span>&#8203;(java.io.File&nbsp;propertiesFile)</code></th>
+<td class="colLast">
+<div class="block">Sets the properties value for minimum sequence length
+ and maxs substitution defined in the properties file.</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTokens()">setTokens</a></span>()</code></th>
 <td class="colLast">
@@ -331,13 +356,68 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <a id="setFileExtensions(java.io.File)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>setFileExtensions</h4>
 <pre class="methodSignature">void&nbsp;setFileExtensions&#8203;(java.io.File&nbsp;propertiesFile)
                 throws java.lang.Exception</pre>
 <div class="block">Sets the file extension to those listed in properties.ini.</div>
 <dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.Exception</code></dd>
+</dl>
+</li>
+</ul>
+<a id="getMinSequenceLength()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getMinSequenceLength</h4>
+<pre class="methodSignature">int&nbsp;getMinSequenceLength()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Minimum sequence length of token to be refactored.</dd>
+</dl>
+</li>
+</ul>
+<a id="getMaxSubstitutions()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getMaxSubstitutions</h4>
+<pre class="methodSignature">int&nbsp;getMaxSubstitutions()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Max number of lexeme substitutions defined in the
+ properties.ini file.</dd>
+</dl>
+</li>
+</ul>
+<a id="setMinSequenceMaxSubs()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setMinSequenceMaxSubs</h4>
+<pre class="methodSignature">void&nbsp;setMinSequenceMaxSubs()</pre>
+<div class="block">Sets properties value to default defined in the SRD.</div>
+</li>
+</ul>
+<a id="setMinSequenceMaxSubs(java.io.File)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>setMinSequenceMaxSubs</h4>
+<pre class="methodSignature">void&nbsp;setMinSequenceMaxSubs&#8203;(java.io.File&nbsp;propertiesFile)
+                    throws java.lang.Exception</pre>
+<div class="block">Sets the properties value for minimum sequence length
+ and maxs substitution defined in the properties file.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>propertiesFile</code> - the properties file from the CLI.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.Exception</code></dd>
 </dl>

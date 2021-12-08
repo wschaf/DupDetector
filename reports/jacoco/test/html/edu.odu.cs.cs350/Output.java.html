@@ -152,7 +152,7 @@ public class Output implements OutputInterface {
 <span class="fc" id="L152">			s2 = s2 + &quot;:&quot;;</span>
 <span class="fc" id="L153">			s2 = s2 + refactorings.get(i).getColumnNumber();</span>
 <span class="fc" id="L154">			s2 = s2 + &quot;\n&quot;;</span>
-<span class="fc" id="L155">			s2 = s2 + refactorings.get(i).getTokenList();</span>
+<span class="fc" id="L155">			s2 = s2 + String.join(&quot;&quot;,refactorings.get(i).getTokenList());</span>
 <span class="fc" id="L156">			s2 = s2 + &quot;\n&quot;;</span>
 		}
 <span class="fc" id="L158">		return s2;</span>

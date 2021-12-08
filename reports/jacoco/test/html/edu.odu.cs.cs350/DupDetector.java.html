@@ -17,7 +17,7 @@ import java.util.List;
     
 	public static void main(String args[]) throws Exception {
 <span class="nc" id="L19">		setInput(args);</span>
-<span class="nc" id="L20">		setRecommender(input.getTokens());</span>
+<span class="nc" id="L20">		setRecommender(input.getTokens(), input.getMinSequenceLength());</span>
 <span class="nc" id="L21">		setOutput(input, recommender);</span>
 <span class="nc" id="L22">		System.out.println(output.getCompleteOutput());</span>
 <span class="nc" id="L23">    }</span>
@@ -27,8 +27,8 @@ import java.util.List;
 	 * recommendations.
 	 * @param tokens a list of C++ tokens.
 	 */
-	private static void setRecommender(List&lt;? extends TokenInterface&gt; tokens) {
-<span class="nc" id="L31">		recommender = new Recommender(tokens);</span>
+	private static void setRecommender(List&lt;? extends TokenInterface&gt; tokens, int min) {
+<span class="nc" id="L31">		recommender = new Recommender(tokens, min);</span>
 <span class="nc" id="L32">	}</span>
 
 	/**
