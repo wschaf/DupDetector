@@ -265,15 +265,6 @@ public class Recommender implements RecommenderInterface {
             }
         }
 
-        for (var list : sublists) {
-            if (list.size() <= 2) continue;
-            System.out.print("Size: " + list.size() + " :: ");
-            for (var t : list) {
-                System.out.print(t.printToken() + " ");
-            }
-            System.out.print("\n");
-        }
-
         if (sublists == null || sublists.size() == 0) return;
 
         //  Determine whether each sublist is a recommended refactoring.

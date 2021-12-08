@@ -19,6 +19,8 @@ public class Input implements InputInterface {
 
     private int nSuggestions;
     private List<File> files;
+    private File propertiesFile;
+    private List<String> fileExtensions;
     /**Key: File; Value: tokenCount */
     private Hashtable<File, Integer> tokenCountForFiles;
     private List<TokenInterface> tokens;
@@ -28,39 +30,46 @@ public class Input implements InputInterface {
         files = new ArrayList<File>();
         tokens = new ArrayList<TokenInterface>();
         tokenCountForFiles = new Hashtable<File, Integer>();
+        propertiesFile = new File("");
+        this.setFileExtensions();
     }
 
     Input(String args[]) throws Exception {
-        if (args.length == 0) {
+        if (args == null || args.length == 0) {
             System.err.println("Usage: java -jar build/libs/DupDetector.jar <nSuggestions> "
             		+ "<properties file>[OPTIONAL] <path/of/file1> <path/of/file2>");
             System.exit(-1);
         }
+        this.files = new ArrayList<File>();
+        List<String> argList = new ArrayList<String>();
+        for (String string : args) argList.add(string);
+        this.nSuggestions = Integer.parseInt(argList.get(0));
+        argList.remove(0);
 
-        this.nSuggestions = Integer.parseInt(args[0]);
-
-        if(args[1].endsWith(".ini")) {
-    		for (int i = 2; i < args.length; i++) {	
-    			try {
-    				String startDir = args[i];
-    				RecursiveSearch r = new RecursiveSearch();
-					this.files = r.searchWithProperties(startDir, args[1]);
-    			} catch(FileNotFoundException e) {
-    				System.out.println(e.getMessage());
-    			}
-    		}
-		}
-    	else {
-    		for (int i = 1; i < args.length; i++) {
-        		try {
-                    String startDir = args[i];
+        if (argList.get(0).endsWith(".ini")) {
+            this.propertiesFile = new File(argList.get(0));
+            argList.remove(0);
+            this.setFileExtensions(propertiesFile);
+            for (var path : argList) {
+                try {
                     RecursiveSearch r = new RecursiveSearch();
-					this.files = r.searchDirectory(startDir);
+                    this.files.addAll(r.findFiles(path, this.getfileExtensions()));
                 } catch(FileNotFoundException e) {
                     System.out.println(e.getMessage());
                 }
-    		}
-    	}
+            }
+        }
+        else {
+            this.setFileExtensions();
+            for (var path : argList) {
+                try {
+                    RecursiveSearch r = new RecursiveSearch();
+                    this.files.addAll(r.findFiles(path));
+                } catch(FileNotFoundException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
 
         this.setTokens();
     }
@@ -128,5 +137,36 @@ public class Input implements InputInterface {
     @Override
     public int getTokenCountForFile(File file) {
         return this.tokenCountForFiles.get(file);
+    }
+
+    /**
+     * @return a list of strings representing the file extensions
+     * to be analyzed by the program.
+     */
+    public List<String> getfileExtensions() {
+        return this.fileExtensions;
+    }
+
+    /**
+     * Sets file extension to default.
+     * Default: [".h,.cpp"]
+     */
+    public void setFileExtensions() {
+        this.fileExtensions = new ArrayList<String>();
+        this.fileExtensions.add(".h");
+        this.fileExtensions.add(".cpp");
+    }
+
+    /**
+     * Sets the file extension to those listed in properties.ini.
+     */
+    public void setFileExtensions(File propertiesFile) throws Exception {
+        this.fileExtensions = new ArrayList<String>();
+        Properties props = new Properties();
+        try(Reader reader = new FileReader(propertiesFile)){
+            props.load(reader);
+        }
+        // after loading the .ini file, string are split by "," and stored in an array of extension
+        fileExtensions = Arrays.asList(props.getProperty("CppExtensions").split(", "));
     }
 }
