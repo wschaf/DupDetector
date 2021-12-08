@@ -15,13 +15,13 @@ public class RecursiveSearch {
 <span class="fc" id="L15">	}</span>
 	
 	/**
-     * searchWithProperties recursively searches a given file path using
+     * findFiles recursively searches a given file path using
      * properties loaded from a property file (.ini) and
      * check if the file path ends with a directory
      * @param startDir - the start of the absolute file path
      * @param propertiesName - the name of the .ini file
      */
-	public List&lt;File&gt; searchWithProperties(String startDir, List&lt;String&gt; extensions) throws Exception {		
+	public List&lt;File&gt; findFiles(String startDir, List&lt;String&gt; extensions) throws Exception {		
 <span class="fc" id="L25">		File dir = new File(startDir);</span>
 <span class="fc bfc" id="L26" title="All 2 branches covered.">		if (dir.isFile()) {</span>
 <span class="fc" id="L27">			listofFiles.add(dir);</span>
@@ -31,7 +31,7 @@ public class RecursiveSearch {
 				try {
 					// Check if the file is a directory
 <span class="pc bpc" id="L33" title="1 of 2 branches missed.">					if (f.isDirectory()) {</span>
-<span class="nc" id="L34">						searchWithProperties(f.getAbsolutePath(), extensions);</span>
+<span class="nc" id="L34">						findFiles(f.getAbsolutePath(), extensions);</span>
 					} 
 					else {      
 <span class="fc bfc" id="L37" title="All 2 branches covered.">						for (String extension : extensions) {</span>
@@ -48,13 +48,13 @@ public class RecursiveSearch {
     }
 
 	/**
-     * searchWithProperties recursively searches a given file path using
+     * findFiles recursively searches a given file path using
      * properties loaded from a property file (.ini) and
      * check if the file path ends with a directory
      * @param startDir - the start of the absolute file path
      * @param propertiesName - the name of the .ini file
      */
-	public List&lt;File&gt; searchWithProperties(String startDir) throws Exception {
+	public List&lt;File&gt; findFiles(String startDir) throws Exception {
 <span class="fc" id="L58">		extensions = new ArrayList&lt;String&gt;();</span>
 <span class="fc" id="L59">		extensions.add(&quot;.h&quot;);</span>
 <span class="fc" id="L60">		extensions.add(&quot;.cpp&quot;);		</span>
@@ -67,7 +67,7 @@ public class RecursiveSearch {
 				try {
 					// Check if the file is a directory
 <span class="nc bnc" id="L69" title="All 2 branches missed.">					if (f.isDirectory()) {</span>
-<span class="nc" id="L70">						searchWithProperties(f.getAbsolutePath());</span>
+<span class="nc" id="L70">						findFiles(f.getAbsolutePath());</span>
 					} 
 					else {      
 <span class="nc bnc" id="L73" title="All 2 branches missed.">						for (String extension : extensions) {</span>

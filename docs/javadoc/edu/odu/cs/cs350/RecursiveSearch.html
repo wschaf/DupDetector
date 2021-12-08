@@ -175,28 +175,28 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>java.util.List&lt;java.io.File&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#searchDirectory(java.lang.String)">searchDirectory</a></span>&#8203;(java.lang.String&nbsp;startDir)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findFiles(java.lang.String)">findFiles</a></span>&#8203;(java.lang.String&nbsp;startDir)</code></th>
 <td class="colLast">
-<div class="block">searchDirectory recursively searches a given file and
+<div class="block">findFiles recursively searches a given file path using
+ properties loaded from a property file (.ini) and
  check if the file path ends with a directory</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;java.io.File&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#searchWithProperties(java.lang.String)">searchWithProperties</a></span>&#8203;(java.lang.String&nbsp;startDir)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#findFiles(java.lang.String,java.util.List)">findFiles</a></span>&#8203;(java.lang.String&nbsp;startDir,
+         java.util.List&lt;java.lang.String&gt;&nbsp;extensions)</code></th>
 <td class="colLast">
-<div class="block">searchWithProperties recursively searches a given file path using
+<div class="block">findFiles recursively searches a given file path using
  properties loaded from a property file (.ini) and
  check if the file path ends with a directory</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>java.util.List&lt;java.io.File&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#searchWithProperties(java.lang.String,java.util.List)">searchWithProperties</a></span>&#8203;(java.lang.String&nbsp;startDir,
-                    java.util.List&lt;java.lang.String&gt;&nbsp;extensions)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#searchDirectory(java.lang.String)">searchDirectory</a></span>&#8203;(java.lang.String&nbsp;startDir)</code></th>
 <td class="colLast">
-<div class="block">searchWithProperties recursively searches a given file path using
- properties loaded from a property file (.ini) and
+<div class="block">searchDirectory recursively searches a given file and
  check if the file path ends with a directory</div>
 </td>
 </tr>
@@ -243,16 +243,16 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="searchWithProperties(java.lang.String,java.util.List)">
+<a id="findFiles(java.lang.String,java.util.List)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>searchWithProperties</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;java.io.File&gt;&nbsp;searchWithProperties&#8203;(java.lang.String&nbsp;startDir,
-                                                         java.util.List&lt;java.lang.String&gt;&nbsp;extensions)
-                                                  throws java.lang.Exception</pre>
-<div class="block">searchWithProperties recursively searches a given file path using
+<h4>findFiles</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;java.io.File&gt;&nbsp;findFiles&#8203;(java.lang.String&nbsp;startDir,
+                                              java.util.List&lt;java.lang.String&gt;&nbsp;extensions)
+                                       throws java.lang.Exception</pre>
+<div class="block">findFiles recursively searches a given file path using
  properties loaded from a property file (.ini) and
  check if the file path ends with a directory</div>
 <dl>
@@ -264,15 +264,15 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="searchWithProperties(java.lang.String)">
+<a id="findFiles(java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>searchWithProperties</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;java.io.File&gt;&nbsp;searchWithProperties&#8203;(java.lang.String&nbsp;startDir)
-                                                  throws java.lang.Exception</pre>
-<div class="block">searchWithProperties recursively searches a given file path using
+<h4>findFiles</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;java.io.File&gt;&nbsp;findFiles&#8203;(java.lang.String&nbsp;startDir)
+                                       throws java.lang.Exception</pre>
+<div class="block">findFiles recursively searches a given file path using
  properties loaded from a property file (.ini) and
  check if the file path ends with a directory</div>
 <dl>

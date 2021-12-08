@@ -53,7 +53,7 @@ public class Input implements InputInterface {
 <span class="nc bnc" id="L53" title="All 2 branches missed.">            for (var path : argList) {</span>
                 try {
 <span class="nc" id="L55">                    RecursiveSearch r = new RecursiveSearch();</span>
-<span class="nc" id="L56">                    this.files.addAll(r.searchWithProperties(path, this.getfileExtensions()));</span>
+<span class="nc" id="L56">                    this.files.addAll(r.findFiles(path, this.getfileExtensions()));</span>
 <span class="nc" id="L57">                } catch(FileNotFoundException e) {</span>
 <span class="nc" id="L58">                    System.out.println(e.getMessage());</span>
 <span class="nc" id="L59">                }</span>
@@ -64,7 +64,7 @@ public class Input implements InputInterface {
 <span class="fc bfc" id="L64" title="All 2 branches covered.">            for (var path : argList) {</span>
                 try {
 <span class="fc" id="L66">                    RecursiveSearch r = new RecursiveSearch();</span>
-<span class="fc" id="L67">                    this.files.addAll(r.searchWithProperties(path));</span>
+<span class="fc" id="L67">                    this.files.addAll(r.findFiles(path));</span>
 <span class="nc" id="L68">                } catch(FileNotFoundException e) {</span>
 <span class="nc" id="L69">                    System.out.println(e.getMessage());</span>
 <span class="fc" id="L70">                }</span>
