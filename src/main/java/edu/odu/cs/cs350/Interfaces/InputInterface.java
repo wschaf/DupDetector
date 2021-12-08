@@ -42,4 +42,21 @@ public interface InputInterface {
      * @return the number of tokens present in that file.
      */
     public int getTokenCountForFile(File file);
+
+    /**
+     * @return a list of strings representing the file extensions
+     * to be analyzed by the program.
+     */
+    public List<String> getfileExtensions();
+
+    /**
+     * Sets file extension to default.
+     * Default: [".h,.cpp"]
+     */
+    public void setFileExtensions();
+
+    /**
+     * Sets the file extension to those listed in properties.ini.
+     */
+    public void setFileExtensions(File propertiesFile) throws Exception;
 }

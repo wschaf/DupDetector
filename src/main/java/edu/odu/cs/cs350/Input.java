@@ -20,6 +20,7 @@ public class Input implements InputInterface {
     private int nSuggestions;
     private List<File> files;
     private File propertiesFile;
+    private List<String> fileExtensions;
     /**Key: File; Value: tokenCount */
     private Hashtable<File, Integer> tokenCountForFiles;
     private List<TokenInterface> tokens;
@@ -30,6 +31,7 @@ public class Input implements InputInterface {
         tokens = new ArrayList<TokenInterface>();
         tokenCountForFiles = new Hashtable<File, Integer>();
         propertiesFile = new File("");
+        this.setFileExtensions();
     }
 
     Input(String args[]) throws Exception {
@@ -47,16 +49,18 @@ public class Input implements InputInterface {
         if (argList.get(0).endsWith(".ini")) {
             this.propertiesFile = new File(argList.get(0));
             argList.remove(0);
+            this.setFileExtensions(propertiesFile);
             for (var path : argList) {
                 try {
                     RecursiveSearch r = new RecursiveSearch();
-                    this.files.addAll(r.searchWithProperties(path, propertiesFile));
+                    this.files.addAll(r.searchWithProperties(path, this.getfileExtensions()));
                 } catch(FileNotFoundException e) {
                     System.out.println(e.getMessage());
                 }
             }
         }
         else {
+            this.setFileExtensions();
             for (var path : argList) {
                 try {
                     RecursiveSearch r = new RecursiveSearch();
@@ -133,5 +137,36 @@ public class Input implements InputInterface {
     @Override
     public int getTokenCountForFile(File file) {
         return this.tokenCountForFiles.get(file);
+    }
+
+    /**
+     * @return a list of strings representing the file extensions
+     * to be analyzed by the program.
+     */
+    public List<String> getfileExtensions() {
+        return this.fileExtensions;
+    }
+
+    /**
+     * Sets file extension to default.
+     * Default: [".h,.cpp"]
+     */
+    public void setFileExtensions() {
+        this.fileExtensions = new ArrayList<String>();
+        this.fileExtensions.add(".h");
+        this.fileExtensions.add(".cpp");
+    }
+
+    /**
+     * Sets the file extension to those listed in properties.ini.
+     */
+    public void setFileExtensions(File propertiesFile) throws Exception {
+        this.fileExtensions = new ArrayList<String>();
+        Properties props = new Properties();
+        try(Reader reader = new FileReader(propertiesFile)){
+            props.load(reader);
+        }
+        // after loading the .ini file, string are split by "," and stored in an array of extension
+        fileExtensions = Arrays.asList(props.getProperty("CppExtensions").split(", "));
     }
 }

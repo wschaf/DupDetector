@@ -12,6 +12,7 @@ public class MockInput implements InputInterface {
     /**Key: File; Value: tokenCount */
     private Hashtable<File, Integer> tokenCountForFiles;
     private List<TokenInterface> tokens;
+    private List<String> fileExtensions;
 
     public MockInput() {
         this.nSuggestions = 0;
@@ -63,6 +64,25 @@ public class MockInput implements InputInterface {
     @Override
     public int getTokenCountForFile(File file) {
         return this.tokenCountForFiles.get(file);
+    }
+
+    @Override
+    public List<String> getfileExtensions() {
+        return this.fileExtensions;
+    }
+
+    @Override
+    public void setFileExtensions() {
+        this.fileExtensions = new ArrayList<String>();
+        this.fileExtensions.add(".h");
+        this.fileExtensions.add(".cpp");
+    }
+
+    @Override
+    public void setFileExtensions(File propertiesFile) throws Exception {
+        this.fileExtensions = new ArrayList<String>();
+        this.fileExtensions.add(".h");
+        this.fileExtensions.add(".cpp");
     }
     
 }

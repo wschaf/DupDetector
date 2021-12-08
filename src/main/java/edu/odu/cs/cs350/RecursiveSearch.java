@@ -21,22 +21,7 @@ public class RecursiveSearch {
      * @param startDir - the start of the absolute file path
      * @param propertiesName - the name of the .ini file
      */
-	public List<File> searchWithProperties(String startDir, File propertiesFile) throws Exception {
-		if (propertiesFile == null || propertiesFile == new File("")) {
-			extensions = new ArrayList<String>();
-			extensions.add(".h");
-			extensions.add(".cpp");
-		}
-		else {
-			extensions = new ArrayList<String>();
-			Properties props = new Properties();
-			try(Reader reader = new FileReader(propertiesFile)){
-				props.load(reader);
-			}
-			// after loading the .ini file, string are split by "," and stored in an array of extension
-			extensions = Arrays.asList(props.getProperty("CppExtensions").split(", "));
-		}
-		
+	public List<File> searchWithProperties(String startDir, List<String> extensions) throws Exception {		
 		File dir = new File(startDir);
 		if (dir.isFile()) {
 			listofFiles.add(dir);
@@ -46,7 +31,7 @@ public class RecursiveSearch {
 				try {
 					// Check if the file is a directory
 					if (f.isDirectory()) {
-						searchWithProperties(f.getAbsolutePath(), propertiesFile);
+						searchWithProperties(f.getAbsolutePath(), extensions);
 					} 
 					else {      
 						for (String extension : extensions) {

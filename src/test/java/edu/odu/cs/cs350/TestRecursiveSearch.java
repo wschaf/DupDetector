@@ -22,9 +22,11 @@ public class TestRecursiveSearch {
 		
 		RecursiveSearch search = new RecursiveSearch();
 		String directory = "src/test/data";
-		File propertiesFile = new File("properties.ini");
+		List<String> mockExtensions = new ArrayList<String>();
+		mockExtensions.add(".h");
+		mockExtensions.add(".cpp");
 
-        actual = new ArrayList<>(search.searchWithProperties(directory, propertiesFile));
+        actual = new ArrayList<>(search.searchWithProperties(directory, mockExtensions));
         File file1 = new File("src/test/data/Point.cpp");
         File file2 = new File("src/test/data/Point.h");
         File file3 = new File("src/test/data/readingList.cpp");
@@ -64,9 +66,11 @@ public class TestRecursiveSearch {
 		
 		RecursiveSearch search = new RecursiveSearch();
 		String directory = "src/test/data/test.cpp";
-		File propertiesFile = new File("properties.ini");
+		List<String> mockExtensions = new ArrayList<String>();
+		mockExtensions.add(".h");
+		mockExtensions.add(".cpp");
 
-        actual = new ArrayList<>(search.searchWithProperties(directory, propertiesFile));
+        actual = new ArrayList<>(search.searchWithProperties(directory, mockExtensions));
 	    File file1 = new File("src/test/data/test.cpp");
 		
 	    assertThat(actual, contains(file1));
@@ -82,9 +86,11 @@ public class TestRecursiveSearch {
 		
 		RecursiveSearch search = new RecursiveSearch();
 		String directory = "src/test/data/test.cpp";
-		File propertiesFile = new File("properties.ini");
+		List<String> mockExtensions = new ArrayList<String>();
+		mockExtensions.add(".h");
+		mockExtensions.add(".cpp");
 
-        actual = new ArrayList<>(search.searchWithProperties(directory, propertiesFile));
+        actual = new ArrayList<>(search.searchWithProperties(directory, mockExtensions));
 	    File file1 = new File("src/test/data/test.cpp");
 	    assertThat(actual, contains(file1));
 	      
