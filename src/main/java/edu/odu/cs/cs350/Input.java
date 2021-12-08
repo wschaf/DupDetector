@@ -19,6 +19,7 @@ public class Input implements InputInterface {
 
     private int nSuggestions;
     private List<File> files;
+    private File propertiesFile;
     /**Key: File; Value: tokenCount */
     private Hashtable<File, Integer> tokenCountForFiles;
     private List<TokenInterface> tokens;
@@ -28,39 +29,33 @@ public class Input implements InputInterface {
         files = new ArrayList<File>();
         tokens = new ArrayList<TokenInterface>();
         tokenCountForFiles = new Hashtable<File, Integer>();
+        propertiesFile = new File("");
     }
 
     Input(String args[]) throws Exception {
-        if (args.length == 0) {
+        if (args == null || args.length == 0) {
             System.err.println("Usage: java -jar build/libs/DupDetector.jar <nSuggestions> "
             		+ "<properties file>[OPTIONAL] <path/of/file1> <path/of/file2>");
             System.exit(-1);
         }
+        List<String> argList = new ArrayList<String>();
+        for (String string : args) argList.add(string);
+        this.nSuggestions = Integer.parseInt(argList.get(0));
+        argList.remove(0);
 
-        this.nSuggestions = Integer.parseInt(args[0]);
-
-        if(args[1].endsWith(".ini")) {
-    		for (int i = 2; i < args.length; i++) {	
-    			try {
-    				String startDir = args[i];
-    				RecursiveSearch r = new RecursiveSearch();
-					this.files = r.searchWithProperties(startDir, args[1]);
-    			} catch(FileNotFoundException e) {
-    				System.out.println(e.getMessage());
-    			}
-    		}
-		}
-    	else {
-    		for (int i = 1; i < args.length; i++) {
-        		try {
-                    String startDir = args[i];
-                    RecursiveSearch r = new RecursiveSearch();
-					this.files = r.searchDirectory(startDir);
-                } catch(FileNotFoundException e) {
-                    System.out.println(e.getMessage());
-                }
-    		}
-    	}
+        if (argList.get(0).endsWith(".ini")) {
+            this.propertiesFile = new File(argList.get(0));
+            argList.remove(0);
+        }
+        for (var path : argList) {
+            try {
+                String startDir = path;
+                RecursiveSearch r = new RecursiveSearch();
+                this.files = r.searchWithProperties(startDir, propertiesFile);
+            } catch(FileNotFoundException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         this.setTokens();
     }

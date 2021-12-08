@@ -23,8 +23,9 @@ public class TestRecursiveSearch {
 		RecursiveSearch search = new RecursiveSearch();
 		String directory = "src/test/data";
 		String properties = "properties.ini";
+		File propertiesFile = new File("properties.ini");
 
-        actual = new ArrayList<>(search.searchWithProperties(directory, properties));
+        actual = new ArrayList<>(search.searchWithProperties(directory, propertiesFile));
         File file1 = new File("src/test/data/Point.cpp");
         File file2 = new File("src/test/data/Point.h");
         File file3 = new File("src/test/data/readingList.cpp");
@@ -65,8 +66,9 @@ public class TestRecursiveSearch {
 		RecursiveSearch search = new RecursiveSearch();
 		String directory = "src/test/data/test.cpp";
 		String properties = "properties.ini";
+		File propertiesFile = new File("properties.ini");
 
-        actual = new ArrayList<>(search.searchWithProperties(directory, properties));
+        actual = new ArrayList<>(search.searchWithProperties(directory, propertiesFile));
 	    File file1 = new File("src/test/data/test.cpp");
 		
 	    assertThat(actual, contains(file1));
@@ -83,8 +85,9 @@ public class TestRecursiveSearch {
 		RecursiveSearch search = new RecursiveSearch();
 		String directory = "src/test/data/test.cpp";
 		String properties = "properties.ini";
+		File propertiesFile = new File("properties.ini");
 
-        actual = new ArrayList<>(search.searchWithProperties(directory, properties));
+        actual = new ArrayList<>(search.searchWithProperties(directory, propertiesFile));
 	    File file1 = new File("src/test/data/test.cpp");
 	    assertThat(actual, contains(file1));
 	      

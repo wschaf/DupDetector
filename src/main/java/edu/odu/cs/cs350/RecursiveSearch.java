@@ -7,6 +7,7 @@ import java.util.*;
 public class RecursiveSearch {
 	
 	private List<File> listofFiles;
+	private List<String> extensions;
 	
 	public RecursiveSearch() {
 		listofFiles = new ArrayList<>();
@@ -19,39 +20,44 @@ public class RecursiveSearch {
      * @param startDir - the start of the absolute file path
      * @param propertiesName - the name of the .ini file
      */
-	public List<File> searchWithProperties(String startDir, String propertiesName) throws Exception {
-    	
-		File properties = new File(propertiesName);
-		Properties props = new Properties();
-		try(Reader reader = new FileReader(properties)){
-    		props.load(reader);
-    	}
-		// after loading the .ini file, string are split by "," and stored in an array of extension
-		String[] extensions = props.getProperty("CppExtensions").split(", ");
+	public List<File> searchWithProperties(String startDir, File propertiesFile) throws Exception {
+		if (propertiesFile == null || propertiesFile == new File("")) {
+			extensions = new ArrayList<String>();
+			extensions.add(".h");
+			extensions.add(".cpp");
+		}
+		else {
+			extensions = new ArrayList<String>();
+			Properties props = new Properties();
+			try(Reader reader = new FileReader(propertiesFile)){
+				props.load(reader);
+			}
+			// after loading the .ini file, string are split by "," and stored in an array of extension
+			extensions = Arrays.asList(props.getProperty("CppExtensions").split(", "));
+		}
 		
-        File dir = new File(startDir);
-        if (dir.isFile()) {
-        	listofFiles.add(dir);
-        }
-        else { 
-        	for (File f : dir.listFiles()) {	
-        		try {
-        			// Check if the file is a directory
-        			if (f.isDirectory()) {
-        				searchWithProperties(f.getAbsolutePath(), propertiesName);
-        			} 
-        			else {      
-            		// check if files extension matches any of the properties defined by the .ini
-        				if(Arrays.stream(extensions).anyMatch(entry -> f.getName().endsWith(entry))) {
-        					listofFiles.add(f); 
-        				}
-        			} 
-        		}
-            	catch(FileNotFoundException e) {
-                   System.out.println(e.getMessage());
-            	}
-        	}
-        }
+		File dir = new File(startDir);
+		if (dir.isFile()) {
+			listofFiles.add(dir);
+		}
+		else { 
+			for (File f : dir.listFiles()) {
+				try {
+					// Check if the file is a directory
+					if (f.isDirectory()) {
+						searchWithProperties(f.getAbsolutePath(), propertiesFile);
+					} 
+					else {      
+						for (String extension : extensions) {
+							if (f.getName().endsWith(extension)) listofFiles.add(f);
+						}
+					} 
+				}
+				catch(FileNotFoundException e) {
+				System.out.println(e.getMessage());
+				}
+			}
+		}
         return listofFiles;
     }
 	
