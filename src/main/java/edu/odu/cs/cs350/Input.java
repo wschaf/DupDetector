@@ -53,7 +53,7 @@ public class Input implements InputInterface {
             for (var path : argList) {
                 try {
                     RecursiveSearch r = new RecursiveSearch();
-                    this.files.addAll(r.searchWithProperties(path, this.getfileExtensions()));
+                    this.files.addAll(r.findFiles(path, this.getfileExtensions()));
                 } catch(FileNotFoundException e) {
                     System.out.println(e.getMessage());
                 }
@@ -64,7 +64,7 @@ public class Input implements InputInterface {
             for (var path : argList) {
                 try {
                     RecursiveSearch r = new RecursiveSearch();
-                    this.files.addAll(r.searchWithProperties(path));
+                    this.files.addAll(r.findFiles(path));
                 } catch(FileNotFoundException e) {
                     System.out.println(e.getMessage());
                 }
