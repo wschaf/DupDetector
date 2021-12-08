@@ -16,4 +16,8 @@ public abstract interface TokenInterface {
     public String toString();
 
     public String getAbsolutePath();
+
+    public String printToken();
+
+    public Object getTokenType();
 }

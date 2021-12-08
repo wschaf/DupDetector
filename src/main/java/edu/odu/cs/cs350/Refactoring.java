@@ -78,4 +78,9 @@ public class Refactoring implements RefactoringInterface, Comparable<Refactoring
 
         return result;
     }
+
+    @Override
+    public int getOpportunityValue() {
+        return this.opportunityValue;
+    }
 }

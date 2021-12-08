@@ -38,7 +38,7 @@ public class TestOutput {
     @BeforeEach
     public void setup() {
         files = new ArrayList<File>();
-        File f = new File("src/test/data/test.cpp");
+        File f = new File("src/test/data/testA.cpp");
         files.add(f);
 
         tokenCountForFiles = new Hashtable<File, Integer>();
@@ -65,7 +65,7 @@ public class TestOutput {
             (new Token(TokenType.SEMI_COLON, 1, 10))
         );
 
-        MockRefactoring r = new MockRefactoring(5, "src/test/data/test.cpp", 1, 1, refactoringTokenList, 100);
+        MockRefactoring r = new MockRefactoring(5, "src/test/data/testA.cpp", 1, 1, refactoringTokenList, 100);
         mockRefactorings = new ArrayList<MockRefactoring>();
         mockRefactorings.add(r);
 
@@ -110,7 +110,7 @@ public class TestOutput {
     public void testGetFiles() {
         Output out = new Output(input, recommender);
         List<File> k = new ArrayList<File>();
-        k.add(new File("src/test/data/test.cpp"));
+        k.add(new File("src/test/data/testA.cpp"));
         assertThat(out.getFiles().size(), is(k.size()));
     }
 
@@ -118,12 +118,12 @@ public class TestOutput {
     public void testSetFiles() {
         Output out = new Output(input, recommender);
         List<File> files = new ArrayList<File>();
-        files.add(new File("src/test/data/test.cpp"));
-        files.add(new File("src/test/data/test.cpp"));
-        File k = new File("test.cpp");
+        files.add(new File("src/test/data/testA.cpp"));
+        files.add(new File("src/test/data/testA.cpp"));
+        File k = new File("testA.cpp");
         files.add(k);
         out.setFiles(files);
-        assertThat(out.getFiles().get(2).toString(), equalTo("test.cpp"));
+        assertThat(out.getFiles().get(2).toString(), equalTo("testA.cpp"));
     }
 
     @Test
@@ -208,21 +208,12 @@ public class TestOutput {
         String subject = out.getCompleteOutput();
         String correctOutput =
         "Files Scanned:\n"                                                          +
-        "    /home/wgs/src/cs350/DupDetector/src/test/data/test.cpp, 5\n"           +
+        "    /home/wgs/src/cs350/DupDetector/src/test/data/testA.cpp, 5\n"           +
         "\n"                                                                        +
         "Opportunity #1, 5 tokens\n"                                                +
-        "src/test/data/test.cpp:1:1\n"                                              +
+        "src/test/data/testA.cpp:1:1\n"                                              +
         "INT:1:1IDENTIFIER:1:5ASSIGN_OP:1:7CONSTANT_NUMBERS:1:9SEMI_COLON:1:10\n"   ;
 
         assertThat(subject.toString(), is(correctOutput));
     }
 }
-
-/*
-“Files Scanned:\n" +
-"    /home/wgs/src/cs350/DupDetector/src/test/data/test.cpp, 5\n" +
-"\n" +
-"Opportunity #1, 5 tokens\n" +
-"src/test/data/test.cpp:1:1\n" +
-INT:1:1IDENTIFIER:1:5ASSIGN_OP:1:7CONSTANT_NUMBERS:1:9SEMI_COLON:1:10\n”
-*/
