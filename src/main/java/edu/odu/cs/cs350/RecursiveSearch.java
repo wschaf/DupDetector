@@ -15,13 +15,13 @@ public class RecursiveSearch {
 	}
 	
 	/**
-     * searchWithProperties recursively searches a given file path using
+     * findFiles recursively searches a given file path using
      * properties loaded from a property file (.ini) and
      * check if the file path ends with a directory
      * @param startDir - the start of the absolute file path
      * @param propertiesName - the name of the .ini file
      */
-	public List<File> searchWithProperties(String startDir, List<String> extensions) throws Exception {		
+	public List<File> findFiles(String startDir, List<String> extensions) throws Exception {		
 		File dir = new File(startDir);
 		if (dir.isFile()) {
 			listofFiles.add(dir);
@@ -31,7 +31,7 @@ public class RecursiveSearch {
 				try {
 					// Check if the file is a directory
 					if (f.isDirectory()) {
-						searchWithProperties(f.getAbsolutePath(), extensions);
+						findFiles(f.getAbsolutePath(), extensions);
 					} 
 					else {      
 						for (String extension : extensions) {
@@ -48,13 +48,13 @@ public class RecursiveSearch {
     }
 
 	/**
-     * searchWithProperties recursively searches a given file path using
+     * findFiles recursively searches a given file path using
      * properties loaded from a property file (.ini) and
      * check if the file path ends with a directory
      * @param startDir - the start of the absolute file path
      * @param propertiesName - the name of the .ini file
      */
-	public List<File> searchWithProperties(String startDir) throws Exception {
+	public List<File> findFiles(String startDir) throws Exception {
 		extensions = new ArrayList<String>();
 		extensions.add(".h");
 		extensions.add(".cpp");		
@@ -67,7 +67,7 @@ public class RecursiveSearch {
 				try {
 					// Check if the file is a directory
 					if (f.isDirectory()) {
-						searchWithProperties(f.getAbsolutePath());
+						findFiles(f.getAbsolutePath());
 					} 
 					else {      
 						for (String extension : extensions) {
