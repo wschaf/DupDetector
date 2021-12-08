@@ -71,6 +71,12 @@ public class TestIntegration {
 
         assertThat(inputA.getNSuggestions(), is(5));
         assertThat(inputA.getfileExtensions(), is(expectedProperties));
+        assertThat(inputA.getFiles().size(), is(6));
+
+        assertThat(inputB.getNSuggestions(), is(5));
+        assertThat(inputB.getfileExtensions().get(0), is(expectedProperties.get(0)));
+        assertThat(inputB.getfileExtensions().get(1), is(expectedProperties.get(1)));
+        assertThat(inputB.getFiles().size(), is(6));
     }
 
     @Test
