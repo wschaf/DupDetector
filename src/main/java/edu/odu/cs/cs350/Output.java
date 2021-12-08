@@ -152,7 +152,7 @@ public class Output implements OutputInterface {
 			s2 = s2 + ":";
 			s2 = s2 + refactorings.get(i).getColumnNumber();
 			s2 = s2 + "\n";
-			s2 = s2 + String.join("",refactorings.get(i).getTokenList());
+			s2 = s2 + refactorings.get(i).getTokenList();
 			s2 = s2 + "\n";
 		}
 		return s2;

@@ -52,7 +52,7 @@ public class Recommender implements RecommenderInterface {
     Recommender(List<? extends TokenInterface> inputTokens, int min) {
         this.setTokens(inputTokens);
         this.refactorings = new ArrayList<RefactoringInterface>();
-        this.setMaxRefactoringSize(min);
+        this.setMinRefactoringSize(min);
         this.setMaxRefactoringSize();
         this.recommend();
     }
