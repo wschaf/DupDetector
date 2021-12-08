@@ -1,6 +1,5 @@
 package edu.odu.cs.cs350;
 
-import java.io.FileNotFoundException;
 import java.io.*;
 import java.util.*;
 
@@ -18,6 +17,8 @@ import edu.odu.cs.cs350.Interfaces.*;
 public class Input implements InputInterface {
 
     private int nSuggestions;
+    private int MinSequenceLength;
+    private int MaxSubstitutions;
     private List<File> files;
     private File propertiesFile;
     private List<String> fileExtensions;
@@ -32,6 +33,7 @@ public class Input implements InputInterface {
         tokenCountForFiles = new Hashtable<File, Integer>();
         propertiesFile = new File("");
         this.setFileExtensions();
+        this.setMinSequenceMaxSubs();
     }
 
     Input(String args[]) throws Exception {
@@ -50,6 +52,7 @@ public class Input implements InputInterface {
             this.propertiesFile = new File(argList.get(0));
             argList.remove(0);
             this.setFileExtensions(propertiesFile);
+            this.setMinSequenceMaxSubs(propertiesFile);
             for (var path : argList) {
                 try {
                     RecursiveSearch r = new RecursiveSearch();
@@ -61,6 +64,7 @@ public class Input implements InputInterface {
         }
         else {
             this.setFileExtensions();
+            this.setMinSequenceMaxSubs();
             for (var path : argList) {
                 try {
                     RecursiveSearch r = new RecursiveSearch();
@@ -148,6 +152,21 @@ public class Input implements InputInterface {
     }
 
     /**
+     * @return Minimum sequence length of token to be refactored.
+     */
+    public int getMinSequenceLength() {
+        return this.MinSequenceLength;
+    }
+
+    /**
+     * @return Max number of lexeme substitutions defined in the
+     * properties.ini file.
+     */
+    public int getMaxSubstitutions() {
+        return this.MaxSubstitutions;
+    }
+
+    /**
      * Sets file extension to default.
      * Default: [".h,.cpp"]
      */
@@ -168,5 +187,27 @@ public class Input implements InputInterface {
         }
         // after loading the .ini file, string are split by "," and stored in an array of extension
         fileExtensions = Arrays.asList(props.getProperty("CppExtensions").split(", "));
+    }
+
+    /**
+     * Sets properties value to default defined in the SRD.
+     */
+    public void setMinSequenceMaxSubs() {
+        this.MinSequenceLength = 10;
+        this.MaxSubstitutions = 8;
+    }
+
+    /**
+     * Sets the properties value for minimum sequence length
+     * and maxs substitution defined in the properties file.
+     * @param propertiesFile the properties file from the CLI.
+     */
+    public void setMinSequenceMaxSubs(File propertiesFile) throws Exception {
+        Properties props = new Properties();
+        try(Reader reader = new FileReader(propertiesFile)) {
+            props.load(reader);
+        }
+        MinSequenceLength = Integer.valueOf(props.getProperty("MinSequenceLength"));
+        MaxSubstitutions = Integer.valueOf(props.getProperty("MaxSubstitutions"));
     }
 }

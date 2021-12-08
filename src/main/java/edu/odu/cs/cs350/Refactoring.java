@@ -31,7 +31,9 @@ public class Refactoring implements RefactoringInterface, Comparable<Refactoring
         this.absolutePath = candidate.get(0).getAbsolutePath();
         this.lineNumber = Integer.parseInt(candidate.get(0).getLineNumber());
         this.columnNumber = Integer.parseInt(candidate.get(0).getColumnNumber());
-        this.tokenList = candidate.toString();
+        this.tokenList = "";
+        for(var s : candidate) this.tokenList += s.getLexeme() + " ";
+        // this.tokenList = candidate.toString();
         this.opportunityValue = opportunityValue;
     }
 
@@ -52,7 +54,7 @@ public class Refactoring implements RefactoringInterface, Comparable<Refactoring
 
     @Override
     public String getColumnNumber() {
-        return Integer.toString(columnNumber);
+        return Integer.toString(columnNumber-1);
     }
 
     @Override
@@ -73,7 +75,7 @@ public class Refactoring implements RefactoringInterface, Comparable<Refactoring
         result += "ABSPATH" + " ";
         result += lineNumber + " ";
         result += columnNumber + " ";
-        result += tokenList.toString() + " ";
+        result += tokenList + " ";
         result += opportunityValue;
 
         return result;

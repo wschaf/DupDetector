@@ -17,7 +17,7 @@ public class DupDetector {
     
 	public static void main(String args[]) throws Exception {
 		setInput(args);
-		setRecommender(input.getTokens());
+		setRecommender(input.getTokens(), input.getMinSequenceLength());
 		setOutput(input, recommender);
 		System.out.println(output.getCompleteOutput());
     }
@@ -27,8 +27,8 @@ public class DupDetector {
 	 * recommendations.
 	 * @param tokens a list of C++ tokens.
 	 */
-	private static void setRecommender(List<? extends TokenInterface> tokens) {
-		recommender = new Recommender(tokens);
+	private static void setRecommender(List<? extends TokenInterface> tokens, int min) {
+		recommender = new Recommender(tokens, min);
 	}
 
 	/**

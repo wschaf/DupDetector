@@ -140,6 +140,7 @@ public class Output implements OutputInterface {
 	public String getSectionTwo() {
 		String s2 = new String();
 		if (files.size() == 0) return s2;
+		if (refactorings.size() == 0) return s2;
 		for (int i = 0; i < refactoringsToPrint; i++) {
 			s2 = s2 + "Opportunity #";
 			s2 = s2 + Integer.toString(i + 1);

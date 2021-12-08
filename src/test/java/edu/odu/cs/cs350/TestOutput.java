@@ -192,7 +192,7 @@ public class TestOutput {
         Output out = new Output(input, recommender);
         String subject = out.getSectionTwo();
         int lines = subject.split("\r\n|\r|\n").length;
-        assertThat(lines, is(RefactoringsToPrint * 3));
+        assertThat(lines, is(RefactoringsToPrint * 2));
     }
 
     @Test
@@ -210,6 +210,6 @@ public class TestOutput {
         assertTrue(subject.contains("Files Scanned:\n"));
         assertTrue(subject.contains("testA.cpp, 5"));
         assertTrue(subject.contains("Opportunity #1, 5 tokens"));
-        assertTrue(subject.contains("INT:1:1IDENTIFIER:1:5ASSIGN_OP:1:7CONSTANT_NUMBERS:1:9SEMI_COLON:1:10\n"));
+        assertTrue(subject.contains("1:1\n"));
     }
 }

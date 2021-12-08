@@ -71,19 +71,27 @@ public class TestIntegration {
         expectedFiles.add(new File("src/test/data/readingList.h"));
         expectedFiles.add(new File("src/test/data/test.cpp"));
         expectedFiles.add(new File("src/test/data/testA.cpp"));
+        expectedFiles.add(new File("src/test/data/testB.cpp"));
 
         List<String> expectedProperties = new ArrayList<String>();
         expectedProperties.add(".h");
         expectedProperties.add(".cpp");
 
+        int expectedMinSequence = 10;
+        int expectedMaxSubstitutions = 8;
+
         assertThat(inputA.getNSuggestions(), is(5));
         assertThat(inputA.getfileExtensions(), is(expectedProperties));
-        assertThat(inputA.getFiles().size(), is(6));
+        assertThat(inputA.getMinSequenceLength(), is(expectedMinSequence));
+        assertThat(inputA.getMaxSubstitutions(), is(expectedMaxSubstitutions));
+        assertThat(inputA.getFiles().size(), is(7));
 
         assertThat(inputB.getNSuggestions(), is(5));
         assertThat(inputB.getfileExtensions().get(0), is(expectedProperties.get(0)));
         assertThat(inputB.getfileExtensions().get(1), is(expectedProperties.get(1)));
-        assertThat(inputB.getFiles().size(), is(6));
+        assertThat(inputB.getMinSequenceLength(), is(16));
+        assertThat(inputB.getMaxSubstitutions(), is(10));
+        assertThat(inputB.getFiles().size(), is(7));
     }
 
     @Test
@@ -103,6 +111,6 @@ public class TestIntegration {
         assertTrue(subject.contains("Files Scanned:\n"));
         assertTrue(subject.contains("testA.cpp, 10"));
         assertTrue(subject.contains("Opportunity #1, 3 tokens"));
-        assertTrue(subject.contains("[INT:1:1, IDENTIFIER:x:1:5, ASSIGN_OP:1:7, CONSTANT_NUMBERS:5:1:9, SEMI_COLON:1:10]"));
+        assertTrue(subject.contains(" 5 "));
     }
 }
