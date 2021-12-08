@@ -24,6 +24,7 @@ public class TestIntegration {
 
     private static String argsWithPropertiesFile[];
     private static String argsWithoutPropertiesFile[];
+    private static String testArg[];
 
     @BeforeEach
     public void setup() {
@@ -37,6 +38,11 @@ public class TestIntegration {
             "5",
             "/home/wgs/src/cs350/DupDetector/src/test/data/properties.ini",
             "/home/wgs/src/cs350/DupDetector/src/test/data/"
+        };
+
+        testArg = new String[] {
+            "5",
+            "src/test/data/testA.cpp"
         };
     }
 
@@ -81,17 +87,38 @@ public class TestIntegration {
 
     @Test
     public void testIntegratedRecommender() throws Exception {
-        Input input = new Input(argsWithPropertiesFile);
+        Input input = new Input(testArg);
         Recommender recommender = new Recommender(input.getTokens());
-        for (var k : recommender.getRefactorings()) {
-            System.out.print(k);
-        }
+        assertThat(recommender.getRefactorings().size(), is(6));
     }
 
     @Test
     public void testIntegratedOutput() throws Exception{
-        Input input = new Input(argsWithPropertiesFile);
+        Input input = new Input(testArg);
         Recommender recommender = new Recommender(input.getTokens());
         Output output = new Output(input, recommender);
+        System.out.println(output.getCompleteOutput());
+        String expectedOutput = 
+        "Files Scanned:\n" +
+        "    /home/wgs/src/cs350/DupDetector/src/test/data/testA.cpp, 10\n" +
+        "\n" +
+        "Opportunity #1, 3 tokens\n" +
+        "/home/wgs/src/cs350/DupDetector/src/test/data/testA.cpp:1:7\n" +
+        "[ASSIGN_OP:1:7, CONSTANT_NUMBERS:5:1:9, SEMI_COLON:1:10]\n" +
+        "Opportunity #2, 3 tokens\n" +
+        "/home/wgs/src/cs350/DupDetector/src/test/data/testA.cpp:2:7\n" +
+        "[ASSIGN_OP:2:7, CONSTANT_NUMBERS:6:2:9, SEMI_COLON:2:10]\n" +
+        "Opportunity #3, 4 tokens\n" +
+        "/home/wgs/src/cs350/DupDetector/src/test/data/testA.cpp:1:5\n" +
+        "[IDENTIFIER:x:1:5, ASSIGN_OP:1:7, CONSTANT_NUMBERS:5:1:9, SEMI_COLON:1:10]\n" +
+        "Opportunity #4, 4 tokens\n" +
+        "/home/wgs/src/cs350/DupDetector/src/test/data/testA.cpp:2:5\n" +
+        "[IDENTIFIER:y:2:5, ASSIGN_OP:2:7, CONSTANT_NUMBERS:6:2:9, SEMI_COLON:2:10]\n" +
+        "Opportunity #5, 5 tokens\n" +
+        "/home/wgs/src/cs350/DupDetector/src/test/data/testA.cpp:1:1\n" +
+        "[INT:1:1, IDENTIFIER:x:1:5, ASSIGN_OP:1:7, CONSTANT_NUMBERS:5:1:9, SEMI_COLON:1:10]\n"
+        ;
+
+        assertThat(output.getCompleteOutput(), is(expectedOutput));
     }
 }
