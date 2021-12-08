@@ -97,7 +97,6 @@ public class TestIntegration {
         Input input = new Input(testArg);
         Recommender recommender = new Recommender(input.getTokens());
         Output output = new Output(input, recommender);
-        System.out.println(output.getCompleteOutput());
         String expectedOutput = 
         "Files Scanned:\n" +
         "    /home/wgs/src/cs350/DupDetector/src/test/data/testA.cpp, 10\n" +
