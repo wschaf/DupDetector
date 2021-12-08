@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":9};
+var data = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -177,9 +177,60 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>static <a href="Input.html" title="class in edu.odu.cs.cs350">Input</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getInput()">getInput</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>static <a href="Output.html" title="class in edu.odu.cs.cs350">Output</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getOutput()">getOutput</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>static <a href="Recommender.html" title="class in edu.odu.cs.cs350">Recommender</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRecommender()">getRecommender</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#main(java.lang.String%5B%5D)">main</a></span>&#8203;(java.lang.String[]&nbsp;args)</code></th>
 <td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setInput(edu.odu.cs.cs350.Input)">setInput</a></span>&#8203;(<a href="Input.html" title="class in edu.odu.cs.cs350">Input</a>&nbsp;i)</code></th>
+<td class="colLast">
+<div class="block">Sets input to an arbitrary Input object.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setInput(java.lang.String%5B%5D)">setInput</a></span>&#8203;(java.lang.String[]&nbsp;args)</code></th>
+<td class="colLast">
+<div class="block">Uses the input constructor to produce the data from args.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setOutput(edu.odu.cs.cs350.Input,edu.odu.cs.cs350.Recommender)">setOutput</a></span>&#8203;(<a href="Input.html" title="class in edu.odu.cs.cs350">Input</a>&nbsp;input,
+         <a href="Recommender.html" title="class in edu.odu.cs.cs350">Recommender</a>&nbsp;recommender)</code></th>
+<td class="colLast">
+<div class="block">Sets output to an arbitrary Output object based on input and recommender.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setOutput(edu.odu.cs.cs350.Output)">setOutput</a></span>&#8203;(<a href="Output.html" title="class in edu.odu.cs.cs350">Output</a>&nbsp;o)</code></th>
+<td class="colLast">
+<div class="block">Sets output to an arbitrary Output object.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>static void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setRecommender(edu.odu.cs.cs350.Recommender)">setRecommender</a></span>&#8203;(<a href="Recommender.html" title="class in edu.odu.cs.cs350">Recommender</a>&nbsp;r)</code></th>
+<td class="colLast">
+<div class="block">Sets recommender to an arbitrary Recommender object.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -227,7 +278,7 @@ extends java.lang.Object</pre>
 <a id="main(java.lang.String[])">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>main</h4>
 <pre class="methodSignature">public static&nbsp;void&nbsp;main&#8203;(java.lang.String[]&nbsp;args)
@@ -235,6 +286,119 @@ extends java.lang.Object</pre>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.Exception</code></dd>
+</dl>
+</li>
+</ul>
+<a id="getInput()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getInput</h4>
+<pre class="methodSignature">public static&nbsp;<a href="Input.html" title="class in edu.odu.cs.cs350">Input</a>&nbsp;getInput()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the current Input oject.</dd>
+</dl>
+</li>
+</ul>
+<a id="setInput(edu.odu.cs.cs350.Input)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setInput</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;setInput&#8203;(<a href="Input.html" title="class in edu.odu.cs.cs350">Input</a>&nbsp;i)</pre>
+<div class="block">Sets input to an arbitrary Input object.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>i</code> - the Input object to set input to.</dd>
+</dl>
+</li>
+</ul>
+<a id="setInput(java.lang.String[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setInput</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;setInput&#8203;(java.lang.String[]&nbsp;args)
+                     throws java.lang.Exception</pre>
+<div class="block">Uses the input constructor to produce the data from args.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>args</code> - command line arguments for the program.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.Exception</code></dd>
+</dl>
+</li>
+</ul>
+<a id="getRecommender()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getRecommender</h4>
+<pre class="methodSignature">public static&nbsp;<a href="Recommender.html" title="class in edu.odu.cs.cs350">Recommender</a>&nbsp;getRecommender()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the current Recommender object.</dd>
+</dl>
+</li>
+</ul>
+<a id="setRecommender(edu.odu.cs.cs350.Recommender)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setRecommender</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;setRecommender&#8203;(<a href="Recommender.html" title="class in edu.odu.cs.cs350">Recommender</a>&nbsp;r)</pre>
+<div class="block">Sets recommender to an arbitrary Recommender object.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>r</code> - the Recommender object to set recommender to.</dd>
+</dl>
+</li>
+</ul>
+<a id="getOutput()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getOutput</h4>
+<pre class="methodSignature">public static&nbsp;<a href="Output.html" title="class in edu.odu.cs.cs350">Output</a>&nbsp;getOutput()</pre>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the current Output object.</dd>
+</dl>
+</li>
+</ul>
+<a id="setOutput(edu.odu.cs.cs350.Output)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setOutput</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;setOutput&#8203;(<a href="Output.html" title="class in edu.odu.cs.cs350">Output</a>&nbsp;o)</pre>
+<div class="block">Sets output to an arbitrary Output object.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>o</code> - the Output object to set output to.</dd>
+</dl>
+</li>
+</ul>
+<a id="setOutput(edu.odu.cs.cs350.Input,edu.odu.cs.cs350.Recommender)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>setOutput</h4>
+<pre class="methodSignature">public static&nbsp;void&nbsp;setOutput&#8203;(<a href="Input.html" title="class in edu.odu.cs.cs350">Input</a>&nbsp;input,
+                             <a href="Recommender.html" title="class in edu.odu.cs.cs350">Recommender</a>&nbsp;recommender)</pre>
+<div class="block">Sets output to an arbitrary Output object based on input and recommender.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>o</code> - the Output object to set output to.</dd>
 </dl>
 </li>
 </ul>

@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -166,10 +166,11 @@ implements <a href="Interfaces/OutputInterface.html" title="interface in edu.odu
 </td>
 </tr>
 <tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(int,java.util.List,java.util.List)">Output</a></span>&#8203;(int&nbsp;refactoringsToPrint,
-      java.util.List&lt;java.io.File&gt;&nbsp;files,
-      java.util.List&lt;? extends <a href="Interfaces/RefactoringInterface.html" title="interface in edu.odu.cs.cs350.Interfaces">RefactoringInterface</a>&gt;&nbsp;refactorings)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(edu.odu.cs.cs350.Interfaces.InputInterface,edu.odu.cs.cs350.Interfaces.RecommenderInterface)">Output</a></span>&#8203;(<a href="Interfaces/InputInterface.html" title="interface in edu.odu.cs.cs350.Interfaces">InputInterface</a>&nbsp;input,
+      <a href="Interfaces/RecommenderInterface.html" title="interface in edu.odu.cs.cs350.Interfaces">RecommenderInterface</a>&nbsp;recommender)</code></th>
+<td class="colLast">
+<div class="block">Constructs an Output object using Input and Recommender objects.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -222,11 +223,6 @@ implements <a href="Interfaces/OutputInterface.html" title="interface in edu.odu
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code>java.io.Reader</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#readFiles(java.io.File)">readFiles</a></span>&#8203;(java.io.File&nbsp;f)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setFiles(java.util.List)">setFiles</a></span>&#8203;(java.util.List&lt;java.io.File&gt;&nbsp;files)</code></th>
 <td class="colLast">
@@ -234,12 +230,12 @@ implements <a href="Interfaces/OutputInterface.html" title="interface in edu.odu
  the final output.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setRefactorings(java.util.List)">setRefactorings</a></span>&#8203;(java.util.List&lt;? extends <a href="Interfaces/RefactoringInterface.html" title="interface in edu.odu.cs.cs350.Interfaces">RefactoringInterface</a>&gt;&nbsp;refactorings)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setRefactoringsToPrint(int)">setRefactoringsToPrint</a></span>&#8203;(int&nbsp;refactoringsToPrint)</code></th>
 <td class="colLast">&nbsp;</td>
@@ -279,20 +275,21 @@ implements <a href="Interfaces/OutputInterface.html" title="interface in edu.odu
  by calling the default constructor for each data member in turn.</div>
 </li>
 </ul>
-<a id="&lt;init&gt;(int,java.util.List,java.util.List)">
+<a id="&lt;init&gt;(edu.odu.cs.cs350.Interfaces.InputInterface,edu.odu.cs.cs350.Interfaces.RecommenderInterface)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>Output</h4>
-<pre>public&nbsp;Output&#8203;(int&nbsp;refactoringsToPrint,
-              java.util.List&lt;java.io.File&gt;&nbsp;files,
-              java.util.List&lt;? extends <a href="Interfaces/RefactoringInterface.html" title="interface in edu.odu.cs.cs350.Interfaces">RefactoringInterface</a>&gt;&nbsp;refactorings)</pre>
+<pre>public&nbsp;Output&#8203;(<a href="Interfaces/InputInterface.html" title="interface in edu.odu.cs.cs350.Interfaces">InputInterface</a>&nbsp;input,
+              <a href="Interfaces/RecommenderInterface.html" title="interface in edu.odu.cs.cs350.Interfaces">RecommenderInterface</a>&nbsp;recommender)</pre>
+<div class="block">Constructs an Output object using Input and Recommender objects.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>refactoringsToPrint</code> - The number of refactoring suggestions to be printed in the final output.</dd>
-<dd><code>files</code> - The list of files that have been processed by the system.</dd>
-<dd><code>refactorings</code> - The list of suggested refactorings that resulted from processing @param files.</dd>
+<dd><code>input</code> - a completed Input object; contains all files
+ and all tokens.</dd>
+<dd><code>recommender</code> - a completed Recommender object; contains all
+ refactoring recommendations.</dd>
 </dl>
 </li>
 </ul>
@@ -306,24 +303,6 @@ implements <a href="Interfaces/OutputInterface.html" title="interface in edu.odu
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="readFiles(java.io.File)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>readFiles</h4>
-<pre class="methodSignature">public&nbsp;java.io.Reader&nbsp;readFiles&#8203;(java.io.File&nbsp;f)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Interfaces/OutputInterface.html#readFiles(java.io.File)">readFiles</a></code>&nbsp;in interface&nbsp;<code><a href="Interfaces/OutputInterface.html" title="interface in edu.odu.cs.cs350.Interfaces">OutputInterface</a></code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>f</code> - : The file given from the input, provided by the user.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>Character stream of the file that will be read
- in token analyzer</dd>
-</dl>
-</li>
-</ul>
 <a id="getRefactoringsToPrint()">
 <!--   -->
 </a>

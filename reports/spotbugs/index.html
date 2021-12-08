@@ -75,12 +75,14 @@
       <p>Code analyzed:</p>
       <ul>
          <li>/home/runner/work/DupDetector/DupDetector/build/classes/java/main/edu/odu/cs/cs350/RecursiveSearch.class</li>
+         <li>/home/runner/work/DupDetector/DupDetector/build/classes/java/main/edu/odu/cs/cs350/Input.class</li>
          <li>/home/runner/work/DupDetector/DupDetector/build/classes/java/main/edu/odu/cs/cs350/Output.class</li>
          <li>/home/runner/work/DupDetector/DupDetector/build/classes/java/main/edu/odu/cs/cs350/LexerAnalyzer.class</li>
          <li>/home/runner/work/DupDetector/DupDetector/build/classes/java/main/edu/odu/cs/cs350/Recommender.class</li>
          <li>/home/runner/work/DupDetector/DupDetector/build/classes/java/main/edu/odu/cs/cs350/Token.class</li>
          <li>/home/runner/work/DupDetector/DupDetector/build/classes/java/main/edu/odu/cs/cs350/Interfaces/RefactoringInterface.class</li>
          <li>/home/runner/work/DupDetector/DupDetector/build/classes/java/main/edu/odu/cs/cs350/Interfaces/RecommenderInterface.class</li>
+         <li>/home/runner/work/DupDetector/DupDetector/build/classes/java/main/edu/odu/cs/cs350/Interfaces/InputInterface.class</li>
          <li>/home/runner/work/DupDetector/DupDetector/build/classes/java/main/edu/odu/cs/cs350/Interfaces/TokenInterface.class</li>
          <li>/home/runner/work/DupDetector/DupDetector/build/classes/java/main/edu/odu/cs/cs350/Interfaces/OutputInterface.class</li>
          <li>/home/runner/work/DupDetector/DupDetector/build/classes/java/main/edu/odu/cs/cs350/TokenType.class</li>
@@ -93,8 +95,8 @@
          <br/>
       </p>
       <h2>Metrics</h2>
-      <p>1072 lines of code analyzed,
-	in 13 classes, 
+      <p>1221 lines of code analyzed,
+	in 15 classes, 
 	in 2 packages.</p>
       <table width="500" cellpadding="5" cellspacing="2">
          <tr class="tableheader">
@@ -105,22 +107,22 @@
          <tr class="tablerow0">
             <td>High Priority Warnings</td>
             <td align="right">2</td>
-            <td align="right">1.87</td>
+            <td align="right">1.64</td>
          </tr>
          <tr class="tablerow1">
             <td>Medium Priority Warnings</td>
-            <td align="right">26</td>
-            <td align="right">24.25</td>
+            <td align="right">39</td>
+            <td align="right">31.94</td>
          </tr>
          <tr class="$totalClass">
             <td>
                <b>Total Warnings</b>
             </td>
             <td align="right">
-               <b>28</b>
+               <b>41</b>
             </td>
             <td align="right">
-               <b>26.12</b>
+               <b>33.58</b>
             </td>
          </tr>
       </table>
@@ -165,13 +167,13 @@
             <td>
                <a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
             </td>
-            <td align="right">1</td>
+            <td align="right">2</td>
          </tr>
          <tr class="tablerow1">
             <td>
                <a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
             </td>
-            <td align="right">3</td>
+            <td align="right">2</td>
          </tr>
          <tr class="tablerow0">
             <td>
@@ -183,7 +185,7 @@
             <td>
                <a href="#Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
             </td>
-            <td align="right">6</td>
+            <td align="right">20</td>
          </tr>
          <tr class="tablerow0">
             <td>
@@ -195,14 +197,14 @@
             <td>
                <a href="#Warnings_STYLE">Dodgy code Warnings</a>
             </td>
-            <td align="right">10</td>
+            <td align="right">9</td>
          </tr>
          <tr class="tablerow0">
             <td>
                <b>Total</b>
             </td>
             <td align="right">
-               <b>28</b>
+               <b>41</b>
             </td>
          </tr>
       </table>
@@ -216,16 +218,30 @@
             <th align="left">Code</th>
             <th align="left">Warning</th>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e421');">
+         <tr class="tablerow1" onclick="toggleRow('d1e139');">
+            <td>
+               <span class="priority-2">Dm</span>
+            </td>
+            <td>new edu.odu.cs.cs350.Input(String[]) invokes System.exit(...), which shuts down the entire virtual machine</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e139" style="display: none;">
+                  <a href="#DM_EXIT">Bug type DM_EXIT (click for details)</a>
+                  <br/>In class edu.odu.cs.cs350.Input<br/>In method new edu.odu.cs.cs350.Input(String[])<br/>At Input.java:[line 41]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e637');">
             <td>
                <span class="priority-2">Eq</span>
             </td>
             <td>edu.odu.cs.cs350.Refactoring defines compareTo(Refactoring) and uses Object.equals()</td>
          </tr>
-         <tr class="detailrow1">
+         <tr class="detailrow0">
             <td/>
             <td>
-               <p id="d1e421" style="display: none;">
+               <p id="d1e637" style="display: none;">
                   <a href="#EQ_COMPARETO_USE_OBJECT_EQUALS">Bug type EQ_COMPARETO_USE_OBJECT_EQUALS (click for details)</a>
                   <br/>In class edu.odu.cs.cs350.Refactoring<br/>In method edu.odu.cs.cs350.Refactoring.compareTo(Refactoring)<br/>At Refactoring.java:[line 65]</p>
             </td>
@@ -239,7 +255,7 @@
             <th align="left">Code</th>
             <th align="left">Warning</th>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e307');">
+         <tr class="tablerow1" onclick="toggleRow('d1e506');">
             <td>
                <span class="priority-2">RCN</span>
             </td>
@@ -248,12 +264,12 @@
          <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e307" style="display: none;">
+               <p id="d1e506" style="display: none;">
                   <a href="#RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE">Bug type RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE (click for details)</a>
                   <br/>In class edu.odu.cs.cs350.Recommender<br/>In method edu.odu.cs.cs350.Recommender.getRefactorings()<br/>Value loaded from field edu.odu.cs.cs350.Recommender.refactorings<br/>At Recommender.java:[line 96]<br/>Redundant null check at Recommender.java:[line 98]</p>
             </td>
          </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e325');">
+         <tr class="tablerow0" onclick="toggleRow('d1e524');">
             <td>
                <span class="priority-2">RCN</span>
             </td>
@@ -262,23 +278,9 @@
          <tr class="detailrow0">
             <td/>
             <td>
-               <p id="d1e325" style="display: none;">
+               <p id="d1e524" style="display: none;">
                   <a href="#RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE">Bug type RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE (click for details)</a>
                   <br/>In class edu.odu.cs.cs350.Recommender<br/>In method edu.odu.cs.cs350.Recommender.setRefactorings(List)<br/>Value loaded from input<br/>At Recommender.java:[line 109]<br/>Redundant null check at Recommender.java:[line 109]</p>
-            </td>
-         </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e446');">
-            <td>
-               <span class="priority-2">UwF</span>
-            </td>
-            <td>Unwritten field: edu.odu.cs.cs350.Token.absolutePath</td>
-         </tr>
-         <tr class="detailrow1">
-            <td/>
-            <td>
-               <p id="d1e446" style="display: none;">
-                  <a href="#UWF_UNWRITTEN_FIELD">Bug type UWF_UNWRITTEN_FIELD (click for details)</a>
-                  <br/>In class edu.odu.cs.cs350.Token<br/>Field edu.odu.cs.cs350.Token.absolutePath<br/>At Token.java:[line 104]</p>
             </td>
          </tr>
       </table>
@@ -290,32 +292,32 @@
             <th align="left">Code</th>
             <th align="left">Warning</th>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e186');">
+         <tr class="tablerow1" onclick="toggleRow('d1e124');">
             <td>
                <span class="priority-1">Dm</span>
             </td>
-            <td>Found reliance on default encoding in edu.odu.cs.cs350.Output.readFiles(File): new java.util.Scanner(File)</td>
+            <td>Found reliance on default encoding in edu.odu.cs.cs350.Input.setFileExtensions(File): new java.io.FileReader(File)</td>
          </tr>
          <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e186" style="display: none;">
+               <p id="d1e124" style="display: none;">
                   <a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
-                  <br/>In class edu.odu.cs.cs350.Output<br/>In method edu.odu.cs.cs350.Output.readFiles(File)<br/>Called method new java.util.Scanner(File)<br/>At Output.java:[line 56]</p>
+                  <br/>In class edu.odu.cs.cs350.Input<br/>In method edu.odu.cs.cs350.Input.setFileExtensions(File)<br/>Called method new java.io.FileReader(File)<br/>At Input.java:[line 166]</p>
             </td>
          </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e341');">
+         <tr class="tablerow0" onclick="toggleRow('d1e649');">
             <td>
                <span class="priority-1">Dm</span>
             </td>
-            <td>Found reliance on default encoding in edu.odu.cs.cs350.RecursiveSearch.searchWithProperties(String, String): new java.io.FileReader(File)</td>
+            <td>Found reliance on default encoding in new edu.odu.cs.cs350.TokenAnalyzer(File): new java.util.Scanner(File)</td>
          </tr>
          <tr class="detailrow0">
             <td/>
             <td>
-               <p id="d1e341" style="display: none;">
+               <p id="d1e649" style="display: none;">
                   <a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
-                  <br/>In class edu.odu.cs.cs350.RecursiveSearch<br/>In method edu.odu.cs.cs350.RecursiveSearch.searchWithProperties(String, String)<br/>Called method new java.io.FileReader(File)<br/>At RecursiveSearch.java:[line 26]</p>
+                  <br/>In class edu.odu.cs.cs350.TokenAnalyzer<br/>In method new edu.odu.cs.cs350.TokenAnalyzer(File)<br/>Called method new java.util.Scanner(File)<br/>At TokenAnalyzer.java:[line 56]</p>
             </td>
          </tr>
       </table>
@@ -327,7 +329,63 @@
             <th align="left">Code</th>
             <th align="left">Warning</th>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e241');">
+         <tr class="tablerow1" onclick="toggleRow('d1e151');">
+            <td>
+               <span class="priority-2">EI</span>
+            </td>
+            <td>edu.odu.cs.cs350.Input.getFiles() may expose internal representation by returning Input.files</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e151" style="display: none;">
+                  <a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+                  <br/>In class edu.odu.cs.cs350.Input<br/>In method edu.odu.cs.cs350.Input.getFiles()<br/>Field edu.odu.cs.cs350.Input.files<br/>At Input.java:[line 100]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e167');">
+            <td>
+               <span class="priority-2">EI</span>
+            </td>
+            <td>edu.odu.cs.cs350.Input.getTokenCountForFiles() may expose internal representation by returning Input.tokenCountForFiles</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e167" style="display: none;">
+                  <a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+                  <br/>In class edu.odu.cs.cs350.Input<br/>In method edu.odu.cs.cs350.Input.getTokenCountForFiles()<br/>Field edu.odu.cs.cs350.Input.tokenCountForFiles<br/>At Input.java:[line 129]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e184');">
+            <td>
+               <span class="priority-2">EI</span>
+            </td>
+            <td>edu.odu.cs.cs350.Input.getTokens() may expose internal representation by returning Input.tokens</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e184" style="display: none;">
+                  <a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+                  <br/>In class edu.odu.cs.cs350.Input<br/>In method edu.odu.cs.cs350.Input.getTokens()<br/>Field edu.odu.cs.cs350.Input.tokens<br/>At Input.java:[line 108]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e200');">
+            <td>
+               <span class="priority-2">EI</span>
+            </td>
+            <td>edu.odu.cs.cs350.Input.getfileExtensions() may expose internal representation by returning Input.fileExtensions</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e200" style="display: none;">
+                  <a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+                  <br/>In class edu.odu.cs.cs350.Input<br/>In method edu.odu.cs.cs350.Input.getfileExtensions()<br/>Field edu.odu.cs.cs350.Input.fileExtensions<br/>At Input.java:[line 147]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e404');">
             <td>
                <span class="priority-2">EI</span>
             </td>
@@ -336,12 +394,12 @@
          <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e241" style="display: none;">
+               <p id="d1e404" style="display: none;">
                   <a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
-                  <br/>In class edu.odu.cs.cs350.Output<br/>In method edu.odu.cs.cs350.Output.getFiles()<br/>Field edu.odu.cs.cs350.Output.files<br/>At Output.java:[line 94]</p>
+                  <br/>In class edu.odu.cs.cs350.Output<br/>In method edu.odu.cs.cs350.Output.getFiles()<br/>Field edu.odu.cs.cs350.Output.files<br/>At Output.java:[line 75]</p>
             </td>
          </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e257');">
+         <tr class="tablerow0" onclick="toggleRow('d1e420');">
             <td>
                <span class="priority-2">EI</span>
             </td>
@@ -350,12 +408,12 @@
          <tr class="detailrow0">
             <td/>
             <td>
-               <p id="d1e257" style="display: none;">
+               <p id="d1e420" style="display: none;">
                   <a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
-                  <br/>In class edu.odu.cs.cs350.Output<br/>In method edu.odu.cs.cs350.Output.getRefactorings()<br/>Field edu.odu.cs.cs350.Output.refactorings<br/>At Output.java:[line 114]</p>
+                  <br/>In class edu.odu.cs.cs350.Output<br/>In method edu.odu.cs.cs350.Output.getRefactorings()<br/>Field edu.odu.cs.cs350.Output.refactorings<br/>At Output.java:[line 95]</p>
             </td>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e273');">
+         <tr class="tablerow1" onclick="toggleRow('d1e472');">
             <td>
                <span class="priority-2">EI</span>
             </td>
@@ -364,12 +422,12 @@
          <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e273" style="display: none;">
+               <p id="d1e472" style="display: none;">
                   <a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
                   <br/>In class edu.odu.cs.cs350.Recommender<br/>In method edu.odu.cs.cs350.Recommender.getRefactorings()<br/>Field edu.odu.cs.cs350.Recommender.refactorings<br/>At Recommender.java:[line 96]<br/>Another occurrence at Recommender.java:[line 99]</p>
             </td>
          </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e291');">
+         <tr class="tablerow0" onclick="toggleRow('d1e490');">
             <td>
                <span class="priority-2">EI</span>
             </td>
@@ -378,12 +436,12 @@
          <tr class="detailrow0">
             <td/>
             <td>
-               <p id="d1e291" style="display: none;">
+               <p id="d1e490" style="display: none;">
                   <a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
                   <br/>In class edu.odu.cs.cs350.Recommender<br/>In method edu.odu.cs.cs350.Recommender.getTokens()<br/>Field edu.odu.cs.cs350.Recommender.tokens<br/>At Recommender.java:[line 72]</p>
             </td>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e357');">
+         <tr class="tablerow1" onclick="toggleRow('d1e541');">
             <td>
                <span class="priority-2">EI</span>
             </td>
@@ -392,23 +450,163 @@
          <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e357" style="display: none;">
+               <p id="d1e541" style="display: none;">
                   <a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
-                  <br/>In class edu.odu.cs.cs350.RecursiveSearch<br/>In method edu.odu.cs.cs350.RecursiveSearch.searchDirectory(String)<br/>Field edu.odu.cs.cs350.RecursiveSearch.listofFiles<br/>At RecursiveSearch.java:[line 87]</p>
+                  <br/>In class edu.odu.cs.cs350.RecursiveSearch<br/>In method edu.odu.cs.cs350.RecursiveSearch.searchDirectory(String)<br/>Field edu.odu.cs.cs350.RecursiveSearch.listofFiles<br/>At RecursiveSearch.java:[line 115]</p>
             </td>
          </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e373');">
+         <tr class="tablerow0" onclick="toggleRow('d1e557');">
             <td>
                <span class="priority-2">EI</span>
             </td>
-            <td>edu.odu.cs.cs350.RecursiveSearch.searchWithProperties(String, String) may expose internal representation by returning RecursiveSearch.listofFiles</td>
+            <td>edu.odu.cs.cs350.RecursiveSearch.searchWithProperties(String) may expose internal representation by returning RecursiveSearch.listofFiles</td>
          </tr>
          <tr class="detailrow0">
             <td/>
             <td>
-               <p id="d1e373" style="display: none;">
+               <p id="d1e557" style="display: none;">
                   <a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
-                  <br/>In class edu.odu.cs.cs350.RecursiveSearch<br/>In method edu.odu.cs.cs350.RecursiveSearch.searchWithProperties(String, String)<br/>Field edu.odu.cs.cs350.RecursiveSearch.listofFiles<br/>At RecursiveSearch.java:[line 55]</p>
+                  <br/>In class edu.odu.cs.cs350.RecursiveSearch<br/>In method edu.odu.cs.cs350.RecursiveSearch.searchWithProperties(String)<br/>Field edu.odu.cs.cs350.RecursiveSearch.listofFiles<br/>At RecursiveSearch.java:[line 83]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e573');">
+            <td>
+               <span class="priority-2">EI</span>
+            </td>
+            <td>edu.odu.cs.cs350.RecursiveSearch.searchWithProperties(String, List) may expose internal representation by returning RecursiveSearch.listofFiles</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e573" style="display: none;">
+                  <a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+                  <br/>In class edu.odu.cs.cs350.RecursiveSearch<br/>In method edu.odu.cs.cs350.RecursiveSearch.searchWithProperties(String, List)<br/>Field edu.odu.cs.cs350.RecursiveSearch.listofFiles<br/>At RecursiveSearch.java:[line 47]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e664');">
+            <td>
+               <span class="priority-2">EI</span>
+            </td>
+            <td>edu.odu.cs.cs350.TokenAnalyzer.getTokens() may expose internal representation by returning TokenAnalyzer.tokensContainer</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e664" style="display: none;">
+                  <a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+                  <br/>In class edu.odu.cs.cs350.TokenAnalyzer<br/>In method edu.odu.cs.cs350.TokenAnalyzer.getTokens()<br/>Field edu.odu.cs.cs350.TokenAnalyzer.tokensContainer<br/>At TokenAnalyzer.java:[line 120]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e436');">
+            <td>
+               <span class="priority-2">EI2</span>
+            </td>
+            <td>new edu.odu.cs.cs350.Output(InputInterface, RecommenderInterface) may expose internal representation by storing an externally mutable object into Output.input</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e436" style="display: none;">
+                  <a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+                  <br/>In class edu.odu.cs.cs350.Output<br/>In method new edu.odu.cs.cs350.Output(InputInterface, RecommenderInterface)<br/>Field edu.odu.cs.cs350.Output.input<br/>Local variable named input<br/>At Output.java:[line 39]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e454');">
+            <td>
+               <span class="priority-2">EI2</span>
+            </td>
+            <td>new edu.odu.cs.cs350.Output(InputInterface, RecommenderInterface) may expose internal representation by storing an externally mutable object into Output.recommender</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e454" style="display: none;">
+                  <a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+                  <br/>In class edu.odu.cs.cs350.Output<br/>In method new edu.odu.cs.cs350.Output(InputInterface, RecommenderInterface)<br/>Field edu.odu.cs.cs350.Output.recommender<br/>Local variable named recommender<br/>At Output.java:[line 40]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e22');">
+            <td>
+               <span class="priority-2">MS</span>
+            </td>
+            <td>edu.odu.cs.cs350.DupDetector.setInput(Input) may expose internal static state by storing a mutable object into a static field edu.odu.cs.cs350.DupDetector.input</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e22" style="display: none;">
+                  <a href="#EI_EXPOSE_STATIC_REP2">Bug type EI_EXPOSE_STATIC_REP2 (click for details)</a>
+                  <br/>In class edu.odu.cs.cs350.DupDetector<br/>In method edu.odu.cs.cs350.DupDetector.setInput(Input)<br/>Field edu.odu.cs.cs350.DupDetector.input<br/>Local variable named i<br/>At DupDetector.java:[line 46]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e40');">
+            <td>
+               <span class="priority-2">MS</span>
+            </td>
+            <td>edu.odu.cs.cs350.DupDetector.setOutput(Output) may expose internal static state by storing a mutable object into a static field edu.odu.cs.cs350.DupDetector.output</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e40" style="display: none;">
+                  <a href="#EI_EXPOSE_STATIC_REP2">Bug type EI_EXPOSE_STATIC_REP2 (click for details)</a>
+                  <br/>In class edu.odu.cs.cs350.DupDetector<br/>In method edu.odu.cs.cs350.DupDetector.setOutput(Output)<br/>Field edu.odu.cs.cs350.DupDetector.output<br/>Local variable named o<br/>At DupDetector.java:[line 85]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e58');">
+            <td>
+               <span class="priority-2">MS</span>
+            </td>
+            <td>edu.odu.cs.cs350.DupDetector.setRecommender(Recommender) may expose internal static state by storing a mutable object into a static field edu.odu.cs.cs350.DupDetector.recommender</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e58" style="display: none;">
+                  <a href="#EI_EXPOSE_STATIC_REP2">Bug type EI_EXPOSE_STATIC_REP2 (click for details)</a>
+                  <br/>In class edu.odu.cs.cs350.DupDetector<br/>In method edu.odu.cs.cs350.DupDetector.setRecommender(Recommender)<br/>Field edu.odu.cs.cs350.DupDetector.recommender<br/>Local variable named r<br/>At DupDetector.java:[line 70]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e76');">
+            <td>
+               <span class="priority-2">MS</span>
+            </td>
+            <td>Public static edu.odu.cs.cs350.DupDetector.getInput() may expose internal representation by returning DupDetector.input</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e76" style="display: none;">
+                  <a href="#MS_EXPOSE_REP">Bug type MS_EXPOSE_REP (click for details)</a>
+                  <br/>In class edu.odu.cs.cs350.DupDetector<br/>In method edu.odu.cs.cs350.DupDetector.getInput()<br/>Field edu.odu.cs.cs350.DupDetector.input<br/>At DupDetector.java:[line 38]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e92');">
+            <td>
+               <span class="priority-2">MS</span>
+            </td>
+            <td>Public static edu.odu.cs.cs350.DupDetector.getOutput() may expose internal representation by returning DupDetector.output</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e92" style="display: none;">
+                  <a href="#MS_EXPOSE_REP">Bug type MS_EXPOSE_REP (click for details)</a>
+                  <br/>In class edu.odu.cs.cs350.DupDetector<br/>In method edu.odu.cs.cs350.DupDetector.getOutput()<br/>Field edu.odu.cs.cs350.DupDetector.output<br/>At DupDetector.java:[line 77]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e108');">
+            <td>
+               <span class="priority-2">MS</span>
+            </td>
+            <td>Public static edu.odu.cs.cs350.DupDetector.getRecommender() may expose internal representation by returning DupDetector.recommender</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e108" style="display: none;">
+                  <a href="#MS_EXPOSE_REP">Bug type MS_EXPOSE_REP (click for details)</a>
+                  <br/>In class edu.odu.cs.cs350.DupDetector<br/>In method edu.odu.cs.cs350.DupDetector.getRecommender()<br/>Field edu.odu.cs.cs350.DupDetector.recommender<br/>At DupDetector.java:[line 62]</p>
             </td>
          </tr>
       </table>
@@ -420,7 +618,7 @@
             <th align="left">Code</th>
             <th align="left">Warning</th>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e201');">
+         <tr class="tablerow1" onclick="toggleRow('d1e364');">
             <td>
                <span class="priority-2">Dm</span>
             </td>
@@ -429,12 +627,12 @@
          <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e201" style="display: none;">
+               <p id="d1e364" style="display: none;">
                   <a href="#DM_STRING_VOID_CTOR">Bug type DM_STRING_VOID_CTOR (click for details)</a>
-                  <br/>In class edu.odu.cs.cs350.Output<br/>In method edu.odu.cs.cs350.Output.getCompleteOutput()<br/>At Output.java:[line 189]</p>
+                  <br/>In class edu.odu.cs.cs350.Output<br/>In method edu.odu.cs.cs350.Output.getCompleteOutput()<br/>At Output.java:[line 168]</p>
             </td>
          </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e213');">
+         <tr class="tablerow0" onclick="toggleRow('d1e376');">
             <td>
                <span class="priority-2">Dm</span>
             </td>
@@ -443,12 +641,12 @@
          <tr class="detailrow0">
             <td/>
             <td>
-               <p id="d1e213" style="display: none;">
+               <p id="d1e376" style="display: none;">
                   <a href="#DM_STRING_VOID_CTOR">Bug type DM_STRING_VOID_CTOR (click for details)</a>
-                  <br/>In class edu.odu.cs.cs350.Output<br/>In method edu.odu.cs.cs350.Output.getSectionOne()<br/>At Output.java:[line 132]<br/>Another occurrence at Output.java:[line 133]<br/>Another occurrence at Output.java:[line 135]</p>
+                  <br/>In class edu.odu.cs.cs350.Output<br/>In method edu.odu.cs.cs350.Output.getSectionOne()<br/>At Output.java:[line 113]<br/>Another occurrence at Output.java:[line 114]<br/>Another occurrence at Output.java:[line 116]</p>
             </td>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e229');">
+         <tr class="tablerow1" onclick="toggleRow('d1e392');">
             <td>
                <span class="priority-2">Dm</span>
             </td>
@@ -457,12 +655,12 @@
          <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e229" style="display: none;">
+               <p id="d1e392" style="display: none;">
                   <a href="#DM_STRING_VOID_CTOR">Bug type DM_STRING_VOID_CTOR (click for details)</a>
-                  <br/>In class edu.odu.cs.cs350.Output<br/>In method edu.odu.cs.cs350.Output.getSectionTwo()<br/>At Output.java:[line 162]</p>
+                  <br/>In class edu.odu.cs.cs350.Output<br/>In method edu.odu.cs.cs350.Output.getSectionTwo()<br/>At Output.java:[line 141]</p>
             </td>
          </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e146');">
+         <tr class="tablerow0" onclick="toggleRow('d1e324');">
             <td>
                <span class="priority-2">UrF</span>
             </td>
@@ -471,12 +669,12 @@
          <tr class="detailrow0">
             <td/>
             <td>
-               <p id="d1e146" style="display: none;">
+               <p id="d1e324" style="display: none;">
                   <a href="#URF_UNREAD_FIELD">Bug type URF_UNREAD_FIELD (click for details)</a>
                   <br/>In class edu.odu.cs.cs350.LexerAnalyzer<br/>Field edu.odu.cs.cs350.LexerAnalyzer.yychar<br/>At LexerAnalyzer.java:[line 903]</p>
             </td>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e159');">
+         <tr class="tablerow1" onclick="toggleRow('d1e337');">
             <td>
                <span class="priority-2">UrF</span>
             </td>
@@ -485,12 +683,12 @@
          <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e159" style="display: none;">
+               <p id="d1e337" style="display: none;">
                   <a href="#URF_UNREAD_FIELD">Bug type URF_UNREAD_FIELD (click for details)</a>
                   <br/>In class edu.odu.cs.cs350.LexerAnalyzer<br/>Field edu.odu.cs.cs350.LexerAnalyzer.zzAtBOL<br/>At LexerAnalyzer.java:[line 750]</p>
             </td>
          </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e172');">
+         <tr class="tablerow0" onclick="toggleRow('d1e350');">
             <td>
                <span class="priority-2">UrF</span>
             </td>
@@ -499,7 +697,7 @@
          <tr class="detailrow0">
             <td/>
             <td>
-               <p id="d1e172" style="display: none;">
+               <p id="d1e350" style="display: none;">
                   <a href="#URF_UNREAD_FIELD">Bug type URF_UNREAD_FIELD (click for details)</a>
                   <br/>In class edu.odu.cs.cs350.LexerAnalyzer<br/>Field edu.odu.cs.cs350.LexerAnalyzer.zzEOFDone<br/>At LexerAnalyzer.java:[line 882]</p>
             </td>
@@ -513,144 +711,130 @@
             <th align="left">Code</th>
             <th align="left">Warning</th>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e20');">
-            <td>
-               <span class="priority-2">DLS</span>
-            </td>
-            <td>Dead store to nSuggestions in edu.odu.cs.cs350.DupDetector.main(String[])</td>
-         </tr>
-         <tr class="detailrow1">
-            <td/>
-            <td>
-               <p id="d1e20" style="display: none;">
-                  <a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
-                  <br/>In class edu.odu.cs.cs350.DupDetector<br/>In method edu.odu.cs.cs350.DupDetector.main(String[])<br/>Local variable named nSuggestions<br/>At DupDetector.java:[line 24]</p>
-            </td>
-         </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e38');">
+         <tr class="tablerow1" onclick="toggleRow('d1e216');">
             <td>
                <span class="priority-2">DLS</span>
             </td>
             <td>Dead store to offset in edu.odu.cs.cs350.LexerAnalyzer.zzUnpackAction()</td>
          </tr>
-         <tr class="detailrow0">
+         <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e38" style="display: none;">
+               <p id="d1e216" style="display: none;">
                   <a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
                   <br/>In class edu.odu.cs.cs350.LexerAnalyzer<br/>In method edu.odu.cs.cs350.LexerAnalyzer.zzUnpackAction()<br/>Local variable named offset<br/>At LexerAnalyzer.java:[line 355]</p>
             </td>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e56');">
+         <tr class="tablerow0" onclick="toggleRow('d1e234');">
             <td>
                <span class="priority-2">DLS</span>
             </td>
             <td>Dead store to offset in edu.odu.cs.cs350.LexerAnalyzer.zzUnpackAttribute()</td>
          </tr>
-         <tr class="detailrow1">
+         <tr class="detailrow0">
             <td/>
             <td>
-               <p id="d1e56" style="display: none;">
+               <p id="d1e234" style="display: none;">
                   <a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
                   <br/>In class edu.odu.cs.cs350.LexerAnalyzer<br/>In method edu.odu.cs.cs350.LexerAnalyzer.zzUnpackAttribute()<br/>Local variable named offset<br/>At LexerAnalyzer.java:[line 682]</p>
             </td>
          </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e74');">
+         <tr class="tablerow1" onclick="toggleRow('d1e252');">
             <td>
                <span class="priority-2">DLS</span>
             </td>
             <td>Dead store to offset in edu.odu.cs.cs350.LexerAnalyzer.zzUnpackRowMap()</td>
          </tr>
-         <tr class="detailrow0">
+         <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e74" style="display: none;">
+               <p id="d1e252" style="display: none;">
                   <a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
                   <br/>In class edu.odu.cs.cs350.LexerAnalyzer<br/>In method edu.odu.cs.cs350.LexerAnalyzer.zzUnpackRowMap()<br/>Local variable named offset<br/>At LexerAnalyzer.java:[line 412]</p>
             </td>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e92');">
+         <tr class="tablerow0" onclick="toggleRow('d1e270');">
             <td>
                <span class="priority-2">DLS</span>
             </td>
             <td>Dead store to offset in edu.odu.cs.cs350.LexerAnalyzer.zzUnpackTrans()</td>
          </tr>
-         <tr class="detailrow1">
+         <tr class="detailrow0">
             <td/>
             <td>
-               <p id="d1e92" style="display: none;">
+               <p id="d1e270" style="display: none;">
                   <a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
                   <br/>In class edu.odu.cs.cs350.LexerAnalyzer<br/>In method edu.odu.cs.cs350.LexerAnalyzer.zzUnpackTrans()<br/>Local variable named offset<br/>At LexerAnalyzer.java:[line 631]</p>
             </td>
          </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e110');">
+         <tr class="tablerow1" onclick="toggleRow('d1e288');">
             <td>
                <span class="priority-2">DLS</span>
             </td>
             <td>Dead store to offset in edu.odu.cs.cs350.LexerAnalyzer.zzUnpackcmap_blocks()</td>
          </tr>
-         <tr class="detailrow0">
+         <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e110" style="display: none;">
+               <p id="d1e288" style="display: none;">
                   <a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
                   <br/>In class edu.odu.cs.cs350.LexerAnalyzer<br/>In method edu.odu.cs.cs350.LexerAnalyzer.zzUnpackcmap_blocks()<br/>Local variable named offset<br/>At LexerAnalyzer.java:[line 312]</p>
             </td>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e128');">
+         <tr class="tablerow0" onclick="toggleRow('d1e306');">
             <td>
                <span class="priority-2">DLS</span>
             </td>
             <td>Dead store to offset in edu.odu.cs.cs350.LexerAnalyzer.zzUnpackcmap_top()</td>
          </tr>
-         <tr class="detailrow1">
+         <tr class="detailrow0">
             <td/>
             <td>
-               <p id="d1e128" style="display: none;">
+               <p id="d1e306" style="display: none;">
                   <a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
                   <br/>In class edu.odu.cs.cs350.LexerAnalyzer<br/>In method edu.odu.cs.cs350.LexerAnalyzer.zzUnpackcmap_top()<br/>Local variable named offset<br/>At LexerAnalyzer.java:[line 71]</p>
             </td>
          </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e389');">
+         <tr class="tablerow1" onclick="toggleRow('d1e589');">
             <td>
                <span class="priority-2">NP</span>
             </td>
             <td>Possible null pointer dereference in edu.odu.cs.cs350.RecursiveSearch.searchDirectory(String) due to return value of called method</td>
          </tr>
-         <tr class="detailrow0">
+         <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e389" style="display: none;">
+               <p id="d1e589" style="display: none;">
                   <a href="#NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE">Bug type NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE (click for details)</a>
-                  <br/>In class edu.odu.cs.cs350.RecursiveSearch<br/>In method edu.odu.cs.cs350.RecursiveSearch.searchDirectory(String)<br/>Value loaded from ?<br/>Dereferenced at RecursiveSearch.java:[line 70]<br/>Known null at RecursiveSearch.java:[line 70]</p>
+                  <br/>In class edu.odu.cs.cs350.RecursiveSearch<br/>In method edu.odu.cs.cs350.RecursiveSearch.searchDirectory(String)<br/>Value loaded from ?<br/>Dereferenced at RecursiveSearch.java:[line 98]<br/>Known null at RecursiveSearch.java:[line 98]</p>
             </td>
          </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e405');">
+         <tr class="tablerow0" onclick="toggleRow('d1e605');">
             <td>
                <span class="priority-2">NP</span>
             </td>
-            <td>Possible null pointer dereference in edu.odu.cs.cs350.RecursiveSearch.searchWithProperties(String, String) due to return value of called method</td>
+            <td>Possible null pointer dereference in edu.odu.cs.cs350.RecursiveSearch.searchWithProperties(String) due to return value of called method</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e605" style="display: none;">
+                  <a href="#NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE">Bug type NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE (click for details)</a>
+                  <br/>In class edu.odu.cs.cs350.RecursiveSearch<br/>In method edu.odu.cs.cs350.RecursiveSearch.searchWithProperties(String)<br/>Value loaded from ?<br/>Dereferenced at RecursiveSearch.java:[line 66]<br/>Known null at RecursiveSearch.java:[line 66]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e621');">
+            <td>
+               <span class="priority-2">NP</span>
+            </td>
+            <td>Possible null pointer dereference in edu.odu.cs.cs350.RecursiveSearch.searchWithProperties(String, List) due to return value of called method</td>
          </tr>
          <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e405" style="display: none;">
+               <p id="d1e621" style="display: none;">
                   <a href="#NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE">Bug type NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE (click for details)</a>
-                  <br/>In class edu.odu.cs.cs350.RecursiveSearch<br/>In method edu.odu.cs.cs350.RecursiveSearch.searchWithProperties(String, String)<br/>Value loaded from ?<br/>Dereferenced at RecursiveSearch.java:[line 37]<br/>Known null at RecursiveSearch.java:[line 37]</p>
-            </td>
-         </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e433');">
-            <td>
-               <span class="priority-2">UwF</span>
-            </td>
-            <td>Unwritten public or protected field: edu.odu.cs.cs350.Refactoring.absolutePath</td>
-         </tr>
-         <tr class="detailrow0">
-            <td/>
-            <td>
-               <p id="d1e433" style="display: none;">
-                  <a href="#UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD">Bug type UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
-                  <br/>In class edu.odu.cs.cs350.Refactoring<br/>Field edu.odu.cs.cs350.Refactoring.absolutePath<br/>At Refactoring.java:[line 45]</p>
+                  <br/>In class edu.odu.cs.cs350.RecursiveSearch<br/>In method edu.odu.cs.cs350.RecursiveSearch.searchWithProperties(String, List)<br/>Value loaded from ?<br/>Dereferenced at RecursiveSearch.java:[line 30]<br/>Known null at RecursiveSearch.java:[line 30]</p>
             </td>
          </tr>
       </table>
@@ -672,6 +856,15 @@ Note that Sun's javac compiler often generates dead stores for
 final local variables.  Because SpotBugs is a bytecode-based tool,
 there is no easy way to eliminate these false positives.
 </p>
+
+    <h2>
+         <a name="DM_EXIT">DM_EXIT: Method invokes System.exit(...)</a>
+      </h2>
+
+  <p> Invoking System.exit shuts down the entire Java virtual machine. This
+   should only been done when it is appropriate. Such calls make it
+   hard or impossible for your code to be invoked by other code.
+   Consider throwing a RuntimeException instead.</p>
 
     <h2>
          <a name="DM_STRING_VOID_CTOR">DM_STRING_VOID_CTOR: Method invokes inefficient new String() constructor</a>
@@ -703,6 +896,18 @@ there is no easy way to eliminate these false positives.
   Returning a new copy of the object is better approach in many situations.</p>
 
     <h2>
+         <a name="EI_EXPOSE_REP2">EI_EXPOSE_REP2: May expose internal representation by incorporating reference to mutable object</a>
+      </h2>
+
+  <p> This code stores a reference to an externally mutable object into the
+  internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Storing a copy of the object is better approach in many situations.</p>
+
+    <h2>
          <a name="EQ_COMPARETO_USE_OBJECT_EQUALS">EQ_COMPARETO_USE_OBJECT_EQUALS: Class defines compareTo(...) and uses Object.equals()</a>
       </h2>
 
@@ -721,6 +926,27 @@ Generally speaking, any class that implements the Comparable interface and viola
 should clearly indicate this fact. The recommended language
 is "Note: this class has a natural ordering that is inconsistent with equals."
 </blockquote></p>
+
+    <h2>
+         <a name="EI_EXPOSE_STATIC_REP2">EI_EXPOSE_STATIC_REP2: May expose internal static state by storing a mutable object into a static field</a>
+      </h2>
+
+  <p> This code stores a reference to an externally mutable object into a static
+   field.
+   If unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Storing a copy of the object is better approach in many situations.</p>
+
+    <h2>
+         <a name="MS_EXPOSE_REP">MS_EXPOSE_REP: Public static method may expose internal representation by returning array</a>
+      </h2>
+
+  <p> A public static method returns a reference to
+   an array that is part of the static state of the class.
+   Any code that calls this method can freely modify
+   the underlying array.
+   One fix is to return a copy of the array.</p>
 
     <h2>
          <a name="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE">NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE: Possible null pointer dereference due to return value of called method</a>
@@ -747,20 +973,6 @@ or the previous dereference is erroneous.</p>
       </h2>
 
   <p> This field is never read.&nbsp; Consider removing it from the class.</p>
-
-    <h2>
-         <a name="UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD: Unwritten field</a>
-      </h2>
-
-  <p> This field is never written.&nbsp; All reads of it will return the default
-value. Check for errors (should it have been initialized?), or remove it if it is useless.</p>
-
-    <h2>
-         <a name="UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD">UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD: Unwritten public or protected field</a>
-      </h2>
-
-  <p> No writes were seen to this public/protected field.&nbsp; All reads of it will return the default
-value. Check for errors (should it have been initialized?), or remove it if it is useless.</p>
 
     </body>
 </html>

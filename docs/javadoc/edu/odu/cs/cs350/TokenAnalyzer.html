@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -166,6 +166,10 @@ implements java.lang.Iterable&lt;<a href="Token.html" title="class in edu.odu.cs
 </td>
 </tr>
 <tr class="rowColor">
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.io.File)">TokenAnalyzer</a></span>&#8203;(java.io.File&nbsp;inputFile)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.io.Reader)">TokenAnalyzer</a></span>&#8203;(java.io.Reader&nbsp;input)</code></th>
 <td class="colLast">
 <div class="block">The constructor for analyzing tokens in a file given by the parameter.</div>
@@ -195,20 +199,25 @@ implements java.lang.Iterable&lt;<a href="Token.html" title="class in edu.odu.cs
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>java.util.List&lt;? extends <a href="Interfaces/TokenInterface.html" title="interface in edu.odu.cs.cs350.Interfaces">TokenInterface</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTokens()">getTokens</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>java.util.Iterator&lt;<a href="Token.html" title="class in edu.odu.cs.cs350">Token</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iterator()">iterator</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Return an iterator over the list of tokens.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#processSourceCode()">processSourceCode</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Divides source codes into tokens.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
@@ -260,7 +269,7 @@ implements java.lang.Iterable&lt;<a href="Token.html" title="class in edu.odu.cs
 <a id="&lt;init&gt;(java.io.Reader)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>TokenAnalyzer</h4>
 <pre>public&nbsp;TokenAnalyzer&#8203;(java.io.Reader&nbsp;input)</pre>
@@ -270,6 +279,15 @@ implements java.lang.Iterable&lt;<a href="Token.html" title="class in edu.odu.cs
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>input</code> - The input file to be read to determine the tokens in the file</dd>
 </dl>
+</li>
+</ul>
+<a id="&lt;init&gt;(java.io.File)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>TokenAnalyzer</h4>
+<pre>public&nbsp;TokenAnalyzer&#8203;(java.io.File&nbsp;inputFile)</pre>
 </li>
 </ul>
 </li>
@@ -324,7 +342,7 @@ implements java.lang.Iterable&lt;<a href="Token.html" title="class in edu.odu.cs
 <a id="toString()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
@@ -335,6 +353,15 @@ implements java.lang.Iterable&lt;<a href="Token.html" title="class in edu.odu.cs
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>format of tokenAnalyzer which returns the number of tokens in the file</dd>
 </dl>
+</li>
+</ul>
+<a id="getTokens()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getTokens</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;? extends <a href="Interfaces/TokenInterface.html" title="interface in edu.odu.cs.cs350.Interfaces">TokenInterface</a>&gt;&nbsp;getTokens()</pre>
 </li>
 </ul>
 </li>

@@ -255,23 +255,29 @@ public class Recommender implements RecommenderInterface {
 <span class="fc bfc" id="L255" title="All 2 branches covered.">            for (int j = 0; j &lt; this.getTokens().size(); j++) {</span>
                 try {
 <span class="fc" id="L257">                    List&lt;TokenInterface&gt; l = tokens.subList(j, ( j + i));</span>
-<span class="fc" id="L258">                    sublists.add(l);</span>
-<span class="fc" id="L259">                } catch (IndexOutOfBoundsException e) {</span>
-<span class="fc" id="L260">                    continue;</span>
-<span class="fc" id="L261">                }</span>
+                    //  Only add full statements, must end in a ';' or '}'
+<span class="pc bpc" id="L259" title="1 of 4 branches missed.">                    if (l.get(l.size() - 1).getTokenType() == TokenType.SEMI_COLON || l.get(l.size() - 1).getTokenType() == TokenType.RIGHT_BRACE) {</span>
+<span class="fc" id="L260">                        sublists.add(l);</span>
+                    }
+<span class="fc" id="L262">                } catch (IndexOutOfBoundsException e) {</span>
+<span class="fc" id="L263">                    continue;</span>
+<span class="fc" id="L264">                }</span>
             }
         }
 
+<span class="pc bpc" id="L268" title="2 of 4 branches missed.">        if (sublists == null || sublists.size() == 0) return;</span>
+
         //  Determine whether each sublist is a recommended refactoring.
-<span class="fc bfc" id="L266" title="All 2 branches covered.">        for (List&lt;TokenInterface&gt; list : sublists) {</span>
-<span class="fc" id="L267">            int occurrences = countOccurrences(list, sublists);</span>
-<span class="fc bfc" id="L268" title="All 2 branches covered.">            if (occurrences &gt; 1) {</span>
-<span class="fc" id="L269">                int opportunityValue = computeOpportunityValue(list, occurrences - 1, sublists.size());</span>
-<span class="fc" id="L270">                Refactoring r = new Refactoring(list, opportunityValue);</span>
-<span class="fc" id="L271">                this.refactorings.add(r);</span>
+<span class="fc bfc" id="L271" title="All 2 branches covered.">        for (var list : sublists) {</span>
+<span class="fc bfc" id="L272" title="All 2 branches covered.">            if (list.size() &lt;= 2) continue;</span>
+<span class="fc" id="L273">            int occurrences = countOccurrences(list, sublists);</span>
+<span class="fc bfc" id="L274" title="All 2 branches covered.">            if (occurrences &gt; 1) {</span>
+<span class="fc" id="L275">                int opportunityValue = computeOpportunityValue(list, occurrences - 1, sublists.size());</span>
+<span class="fc" id="L276">                Refactoring r = new Refactoring(list, opportunityValue);</span>
+<span class="fc" id="L277">                this.refactorings.add(r);</span>
             }
-<span class="fc" id="L273">        }</span>
-<span class="fc" id="L274">    }</span>
+<span class="fc" id="L279">        }</span>
+<span class="fc" id="L280">    }</span>
 
     /**
      * Counts the number of times candidate reoccurs in sublists.
@@ -280,11 +286,20 @@ public class Recommender implements RecommenderInterface {
      * @return the number of times candidate reoccurs in sublists (counting itself).
      */
     private int countOccurrences(List&lt;TokenInterface&gt; candidate, List&lt;List&lt;TokenInterface&gt;&gt; sublists) {
-<span class="fc" id="L283">        int result = 0;</span>
-<span class="fc bfc" id="L284" title="All 2 branches covered.">        for (List&lt;TokenInterface&gt; list : sublists) {</span>
-<span class="fc bfc" id="L285" title="All 2 branches covered.">            if (candidate.equals(list)) result++;</span>
-<span class="fc" id="L286">        }</span>
-<span class="fc" id="L287">        return result;</span>
+<span class="fc" id="L289">        int result = 0;</span>
+<span class="fc bfc" id="L290" title="All 2 branches covered.">        for (List&lt;TokenInterface&gt; list : sublists) {</span>
+<span class="fc" id="L291">            boolean equalTo = true;</span>
+<span class="fc bfc" id="L292" title="All 2 branches covered.">            if (list.size() == candidate.size()) {</span>
+<span class="fc bfc" id="L293" title="All 2 branches covered.">                for (int i = 0; i &lt; candidate.size(); i++) {</span>
+<span class="pc bpc" id="L294" title="1 of 2 branches missed.">                    if (candidate.get(i).getTokenType() != list.get(i).getTokenType()) equalTo = false;</span>
+                }
+            }
+            else {
+<span class="fc" id="L298">                equalTo = false;</span>
+            }
+<span class="fc bfc" id="L300" title="All 2 branches covered.">            if (equalTo == true) result++;</span>
+<span class="fc" id="L301">        }</span>
+<span class="fc" id="L302">        return result;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

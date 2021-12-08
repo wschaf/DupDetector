@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Input.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DupDetector</a> &gt; <a href="index.source.html" class="el_package">edu.odu.cs.cs350</a> &gt; <span class="el_source">Input.java</span></div><h1>Input.java</h1><pre class="source lang-java linenums">package edu.odu.cs.cs350;
+
+import java.io.FileNotFoundException;
+import java.io.*;
+import java.util.*;
+
+import edu.odu.cs.cs350.Interfaces.*;
+
+/**
+ * Input file will be invoked using command line arguments.
+ * args[0] is reserved for the number of suggestions the user wants
+ * to print.
+ * args[1] is an optional input to load a properties file, if no
+ * properties file is loaded, it will set to default properties.
+ * args[i] i will be any number of files supplied in the command
+ * line.
+ */
+public class Input implements InputInterface {
+
+    private int nSuggestions;
+    private List&lt;File&gt; files;
+    private File propertiesFile;
+    private List&lt;String&gt; fileExtensions;
+    /**Key: File; Value: tokenCount */
+    private Hashtable&lt;File, Integer&gt; tokenCountForFiles;
+    private List&lt;TokenInterface&gt; tokens;
+    
+<span class="nc" id="L28">    Input() {</span>
+<span class="nc" id="L29">        this.nSuggestions = 0;</span>
+<span class="nc" id="L30">        files = new ArrayList&lt;File&gt;();</span>
+<span class="nc" id="L31">        tokens = new ArrayList&lt;TokenInterface&gt;();</span>
+<span class="nc" id="L32">        tokenCountForFiles = new Hashtable&lt;File, Integer&gt;();</span>
+<span class="nc" id="L33">        propertiesFile = new File(&quot;&quot;);</span>
+<span class="nc" id="L34">        this.setFileExtensions();</span>
+<span class="nc" id="L35">    }</span>
+
+<span class="fc" id="L37">    Input(String args[]) throws Exception {</span>
+<span class="pc bpc" id="L38" title="2 of 4 branches missed.">        if (args == null || args.length == 0) {</span>
+<span class="nc" id="L39">            System.err.println(&quot;Usage: java -jar build/libs/DupDetector.jar &lt;nSuggestions&gt; &quot;</span>
+            		+ &quot;&lt;properties file&gt;[OPTIONAL] &lt;path/of/file1&gt; &lt;path/of/file2&gt;&quot;);
+<span class="nc" id="L41">            System.exit(-1);</span>
+        }
+<span class="fc" id="L43">        this.files = new ArrayList&lt;File&gt;();</span>
+<span class="fc" id="L44">        List&lt;String&gt; argList = new ArrayList&lt;String&gt;();</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        for (String string : args) argList.add(string);</span>
+<span class="fc" id="L46">        this.nSuggestions = Integer.parseInt(argList.get(0));</span>
+<span class="fc" id="L47">        argList.remove(0);</span>
+
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">        if (argList.get(0).endsWith(&quot;.ini&quot;)) {</span>
+<span class="nc" id="L50">            this.propertiesFile = new File(argList.get(0));</span>
+<span class="nc" id="L51">            argList.remove(0);</span>
+<span class="nc" id="L52">            this.setFileExtensions(propertiesFile);</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            for (var path : argList) {</span>
+                try {
+<span class="nc" id="L55">                    RecursiveSearch r = new RecursiveSearch();</span>
+<span class="nc" id="L56">                    this.files.addAll(r.searchWithProperties(path, this.getfileExtensions()));</span>
+<span class="nc" id="L57">                } catch(FileNotFoundException e) {</span>
+<span class="nc" id="L58">                    System.out.println(e.getMessage());</span>
+<span class="nc" id="L59">                }</span>
+<span class="nc" id="L60">            }</span>
+        }
+        else {
+<span class="fc" id="L63">            this.setFileExtensions();</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">            for (var path : argList) {</span>
+                try {
+<span class="fc" id="L66">                    RecursiveSearch r = new RecursiveSearch();</span>
+<span class="fc" id="L67">                    this.files.addAll(r.searchWithProperties(path));</span>
+<span class="nc" id="L68">                } catch(FileNotFoundException e) {</span>
+<span class="nc" id="L69">                    System.out.println(e.getMessage());</span>
+<span class="fc" id="L70">                }</span>
+<span class="fc" id="L71">            }</span>
+        }
+
+<span class="fc" id="L74">        this.setTokens();</span>
+<span class="fc" id="L75">    }</span>
+
+    /**
+     * Generates the token list.
+     */
+    @Override
+    public void setTokens() {
+<span class="fc" id="L82">        this.tokens = new ArrayList&lt;TokenInterface&gt;();</span>
+<span class="fc" id="L83">        this.tokenCountForFiles = new Hashtable&lt;File, Integer&gt;();</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        for (File file : this.getFiles()) {</span>
+<span class="fc" id="L85">            TokenAnalyzer t = new TokenAnalyzer(file);</span>
+<span class="fc" id="L86">            t.processSourceCode();</span>
+<span class="fc" id="L87">            tokenCountForFiles.put(file, t.getFileTokenCount());</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">            for (var token : t.getTokens()) {</span>
+<span class="fc" id="L89">                this.tokens.add(token);</span>
+<span class="fc" id="L90">            }</span>
+<span class="fc" id="L91">        }</span>
+<span class="fc" id="L92">    }</span>
+
+    /**
+     * @return the list of all files that input received as
+     * arguments.
+     */
+    @Override
+    public List&lt;File&gt; getFiles() {
+<span class="fc" id="L100">        return this.files;</span>
+    }
+
+    /**
+     * @return the list of tokens produced using the argument files.
+     */
+    @Override
+    public List&lt;? extends TokenInterface&gt; getTokens() {
+<span class="fc" id="L108">        return this.tokens;</span>
+    }
+
+    /**
+     * @return the number of suggestions for Output to print back
+     * to the user.
+     */
+    @Override
+    public int getNSuggestions() {
+<span class="fc" id="L117">        return this.nSuggestions;</span>
+    }
+
+    /**
+     * Key: a File object
+     * Value: an Integer object reprsenting the total tokens in 
+     * that File.
+     * @return a dictionary containing each file and the count of
+     * tokens in that file.
+     */
+    @Override
+    public Dictionary&lt;File, Integer&gt; getTokenCountForFiles() {
+<span class="nc" id="L129">        return this.tokenCountForFiles;</span>
+    }
+
+    /**
+     * @param file any of a list of files that was passed to input
+     * as an argument.
+     * @return the number of tokens present in that file.
+     */
+    @Override
+    public int getTokenCountForFile(File file) {
+<span class="fc" id="L139">        return this.tokenCountForFiles.get(file);</span>
+    }
+
+    /**
+     * @return a list of strings representing the file extensions
+     * to be analyzed by the program.
+     */
+    public List&lt;String&gt; getfileExtensions() {
+<span class="nc" id="L147">        return this.fileExtensions;</span>
+    }
+
+    /**
+     * Sets file extension to default.
+     * Default: [&quot;.h,.cpp&quot;]
+     */
+    public void setFileExtensions() {
+<span class="fc" id="L155">        this.fileExtensions = new ArrayList&lt;String&gt;();</span>
+<span class="fc" id="L156">        this.fileExtensions.add(&quot;.h&quot;);</span>
+<span class="fc" id="L157">        this.fileExtensions.add(&quot;.cpp&quot;);</span>
+<span class="fc" id="L158">    }</span>
+
+    /**
+     * Sets the file extension to those listed in properties.ini.
+     */
+    public void setFileExtensions(File propertiesFile) throws Exception {
+<span class="nc" id="L164">        this.fileExtensions = new ArrayList&lt;String&gt;();</span>
+<span class="nc" id="L165">        Properties props = new Properties();</span>
+<span class="nc" id="L166">        try(Reader reader = new FileReader(propertiesFile)){</span>
+<span class="nc" id="L167">            props.load(reader);</span>
+        }
+        // after loading the .ini file, string are split by &quot;,&quot; and stored in an array of extension
+<span class="nc" id="L170">        fileExtensions = Arrays.asList(props.getProperty(&quot;CppExtensions&quot;).split(&quot;, &quot;));</span>
+<span class="nc" id="L171">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

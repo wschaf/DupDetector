@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -217,6 +217,16 @@ implements <a href="Interfaces/TokenInterface.html" title="interface in edu.odu.
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#printToken()">printToken</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setAbsolutePath(java.lang.String)">setAbsolutePath</a></span>&#8203;(java.lang.String&nbsp;absolutePath)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Representation of the token in two format
@@ -301,6 +311,8 @@ implements <a href="Interfaces/TokenInterface.html" title="interface in edu.odu.
 <h4>getTokenType</h4>
 <pre class="methodSignature">public&nbsp;<a href="TokenType.html" title="enum in edu.odu.cs.cs350">TokenType</a>&nbsp;getTokenType()</pre>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Interfaces/TokenInterface.html#getTokenType()">getTokenType</a></code>&nbsp;in interface&nbsp;<code><a href="Interfaces/TokenInterface.html" title="interface in edu.odu.cs.cs350.Interfaces">TokenInterface</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the token type of this current token.</dd>
 </dl>
@@ -374,13 +386,35 @@ implements <a href="Interfaces/TokenInterface.html" title="interface in edu.odu.
 <a id="getAbsolutePath()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getAbsolutePath</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getAbsolutePath()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Interfaces/TokenInterface.html#getAbsolutePath()">getAbsolutePath</a></code>&nbsp;in interface&nbsp;<code><a href="Interfaces/TokenInterface.html" title="interface in edu.odu.cs.cs350.Interfaces">TokenInterface</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="setAbsolutePath(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setAbsolutePath</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setAbsolutePath&#8203;(java.lang.String&nbsp;absolutePath)</pre>
+</li>
+</ul>
+<a id="printToken()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>printToken</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;printToken()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="Interfaces/TokenInterface.html#printToken()">printToken</a></code>&nbsp;in interface&nbsp;<code><a href="Interfaces/TokenInterface.html" title="interface in edu.odu.cs.cs350.Interfaces">TokenInterface</a></code></dd>
 </dl>
 </li>
 </ul>

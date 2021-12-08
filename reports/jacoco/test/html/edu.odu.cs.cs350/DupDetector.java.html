@@ -1,53 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DupDetector.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">DupDetector</a> &gt; <a href="index.source.html" class="el_package">edu.odu.cs.cs350</a> &gt; <span class="el_source">DupDetector.java</span></div><h1>DupDetector.java</h1><pre class="source lang-java linenums">package edu.odu.cs.cs350;
 
-import java.io.FileNotFoundException;
+import edu.odu.cs.cs350.Interfaces.*;
+
+import java.util.List;
+
 /**
  * DupDetector is the main class for the system. It will call
  * each subsystem of the program, passing input/output between
  * them.
  */
-<span class="nc" id="L9">public class DupDetector {</span>
+<span class="nc" id="L12">public class DupDetector {</span>
+
+	private static Input input;
+	private static Recommender recommender;
+	private static Output output;
     
 	public static void main(String args[]) throws Exception {
-    	/**
-    	 * input file will be invoked using command line arguments
-    	 * args[0] is reserved for the number of suggestions the user wants to print
-    	 * args[1] is an optional input to load a properties file, if no properties 
-    	 * file is loaded, it will set to default properties
-    	 * args[i] i will be any number of files supplied in the command line
-    	 */
-<span class="nc bnc" id="L19" title="All 2 branches missed.">    	if (args.length == 0) {</span>
-<span class="nc" id="L20">            System.err.println (&quot;Usage: java -jar build/libs/DupDetector.jar &lt;nSuggestions&gt; &quot;</span>
-            		+ &quot;&lt;properties file&gt;[OPTIONAL] &lt;path/of/file1&gt; &lt;path/of/file2&gt;&quot;);
-<span class="nc" id="L22">            System.exit(-1);</span>
-        }
-<span class="nc" id="L24">    	int nSuggestions = Integer.parseInt(args[0]);</span>
-<span class="nc bnc" id="L25" title="All 2 branches missed.">    	if(args[1].endsWith(&quot;.ini&quot;)) {</span>
-<span class="nc bnc" id="L26" title="All 2 branches missed.">    		for (int i = 2; i &lt; args.length; i++) {	</span>
-    			try {
-<span class="nc" id="L28">    				String startDir = args[i];</span>
-<span class="nc" id="L29">    				RecursiveSearch r = new RecursiveSearch();</span>
-<span class="nc" id="L30">					Output out = new Output();</span>
-<span class="nc" id="L31">					out.setFiles(r.searchWithProperties(startDir, args[1]));</span>
-<span class="nc" id="L32">					System.out.println(out.getSectionOne());</span>
-<span class="nc" id="L33">    			} catch(FileNotFoundException e) {</span>
-<span class="nc" id="L34">    				System.out.println(e.getMessage());</span>
-<span class="nc" id="L35">    			}</span>
-    		}
-		}
-    	else {
-<span class="nc bnc" id="L39" title="All 2 branches missed.">    		for (int i = 1; i &lt; args.length; i++) {</span>
-        		try {
-<span class="nc" id="L41">                    String startDir = args[i];</span>
-<span class="nc" id="L42">                    RecursiveSearch r = new RecursiveSearch();</span>
-<span class="nc" id="L43">                    Output out = new Output();</span>
-<span class="nc" id="L44">					out.setFiles(r.searchDirectory(startDir));</span>
-<span class="nc" id="L45">					System.out.println(out.getSectionOne());</span>
-<span class="nc" id="L46">                } catch(FileNotFoundException e) {</span>
-<span class="nc" id="L47">                    System.out.println(e.getMessage());</span>
-<span class="nc" id="L48">                }</span>
-    		}
-    	}
-<span class="nc" id="L51">    }</span>
+<span class="nc" id="L19">		setInput(args);</span>
+<span class="nc" id="L20">		setRecommender(input.getTokens());</span>
+<span class="nc" id="L21">		setOutput(input, recommender);</span>
+<span class="nc" id="L22">		System.out.println(output.getCompleteOutput());</span>
+<span class="nc" id="L23">    }</span>
+
+	/**
+	 * Uses the Recommender constructor produce the refactoring
+	 * recommendations.
+	 * @param tokens a list of C++ tokens.
+	 */
+	private static void setRecommender(List&lt;? extends TokenInterface&gt; tokens) {
+<span class="nc" id="L31">		recommender = new Recommender(tokens);</span>
+<span class="nc" id="L32">	}</span>
+
+	/**
+	 * @return the current Input oject.
+	 */
+	public static Input getInput() {
+<span class="nc" id="L38">		return input;</span>
+	}
+
+	/**
+	 * Sets input to an arbitrary Input object.
+	 * @param i the Input object to set input to.
+	 */
+	public static void setInput(Input i) {
+<span class="nc" id="L46">		input = i;</span>
+<span class="nc" id="L47">	}</span>
+
+	/**
+	 * Uses the input constructor to produce the data from args.
+	 * @param args command line arguments for the program.
+	 * @throws Exception
+	 */
+	public static void setInput(String args[]) throws Exception {
+<span class="nc" id="L55">		input = new Input(args);</span>
+<span class="nc" id="L56">	}</span>
+
+	/**
+	 * @return the current Recommender object.
+	 */
+	public static Recommender getRecommender() {
+<span class="nc" id="L62">		return recommender;</span>
+	}
+
+	/**
+	 * Sets recommender to an arbitrary Recommender object.
+	 * @param r the Recommender object to set recommender to.
+	 */
+	public static void setRecommender(Recommender r) {
+<span class="nc" id="L70">		recommender = r;</span>
+<span class="nc" id="L71">	}</span>
+
+	/**
+	 * @return the current Output object.
+	 */
+	public static Output getOutput() {
+<span class="nc" id="L77">		return output;</span>
+	}
+
+	/**
+	 * Sets output to an arbitrary Output object.
+	 * @param o the Output object to set output to.
+	 */
+	public static void setOutput(Output o) {
+<span class="nc" id="L85">		output = o;</span>
+<span class="nc" id="L86">	}</span>
+
+	/**
+	 * Sets output to an arbitrary Output object based on input and recommender.
+	 * @param o the Output object to set output to.
+	 */
+	public static void setOutput(Input input, Recommender recommender) {
+<span class="nc" id="L93">		output = new Output(input, recommender);</span>
+<span class="nc" id="L94">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

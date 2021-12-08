@@ -7,10 +7,12 @@ import java.util.*;
 public class RecursiveSearch {
 	
 	private List&lt;File&gt; listofFiles;
+	private List&lt;String&gt; extensions;
 	
-<span class="fc" id="L11">	public RecursiveSearch() {</span>
-<span class="fc" id="L12">		listofFiles = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L13">	}</span>
+<span class="fc" id="L12">	public RecursiveSearch() {</span>
+<span class="fc" id="L13">		listofFiles = new ArrayList&lt;File&gt;();</span>
+<span class="fc" id="L14">		extensions = new ArrayList&lt;String&gt;();</span>
+<span class="fc" id="L15">	}</span>
 	
 	/**
      * searchWithProperties recursively searches a given file path using
@@ -19,40 +21,66 @@ public class RecursiveSearch {
      * @param startDir - the start of the absolute file path
      * @param propertiesName - the name of the .ini file
      */
-	public List&lt;File&gt; searchWithProperties(String startDir, String propertiesName) throws Exception {
-    	
-<span class="fc" id="L24">		File properties = new File(propertiesName);</span>
-<span class="fc" id="L25">		Properties props = new Properties();</span>
-<span class="fc" id="L26">		try(Reader reader = new FileReader(properties)){</span>
-<span class="fc" id="L27">    		props.load(reader);</span>
-    	}
-		// after loading the .ini file, string are split by &quot;,&quot; and stored in an array of extension
-<span class="fc" id="L30">		String[] extensions = props.getProperty(&quot;CppExtensions&quot;).split(&quot;, &quot;);</span>
-		
-<span class="fc" id="L32">        File dir = new File(startDir);</span>
-<span class="fc bfc" id="L33" title="All 2 branches covered.">        if (dir.isFile()) {</span>
-<span class="fc" id="L34">        	listofFiles.add(dir);</span>
-        }
-        else { 
-<span class="fc bfc" id="L37" title="All 2 branches covered.">        	for (File f : dir.listFiles()) {	</span>
-        		try {
-        			// Check if the file is a directory
-<span class="fc bfc" id="L40" title="All 2 branches covered.">        			if (f.isDirectory()) {</span>
-<span class="fc" id="L41">        				searchWithProperties(f.getAbsolutePath(), propertiesName);</span>
-        			} 
-        			else {      
-            		// check if files extension matches any of the properties defined by the .ini
-<span class="fc bfc" id="L45" title="All 2 branches covered.">        				if(Arrays.stream(extensions).anyMatch(entry -&gt; f.getName().endsWith(entry))) {</span>
-<span class="fc" id="L46">        					listofFiles.add(f); </span>
-        				}
-        			} 
-        		}
-<span class="nc" id="L50">            	catch(FileNotFoundException e) {</span>
-<span class="nc" id="L51">                   System.out.println(e.getMessage());</span>
-<span class="fc" id="L52">            	}</span>
-        	}
-        }
-<span class="fc" id="L55">        return listofFiles;</span>
+	public List&lt;File&gt; searchWithProperties(String startDir, List&lt;String&gt; extensions) throws Exception {		
+<span class="fc" id="L25">		File dir = new File(startDir);</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">		if (dir.isFile()) {</span>
+<span class="fc" id="L27">			listofFiles.add(dir);</span>
+		}
+		else { 
+<span class="fc bfc" id="L30" title="All 2 branches covered.">			for (File f : dir.listFiles()) {</span>
+				try {
+					// Check if the file is a directory
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">					if (f.isDirectory()) {</span>
+<span class="nc" id="L34">						searchWithProperties(f.getAbsolutePath(), extensions);</span>
+					} 
+					else {      
+<span class="fc bfc" id="L37" title="All 2 branches covered.">						for (String extension : extensions) {</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">							if (f.getName().endsWith(extension)) listofFiles.add(f);</span>
+<span class="fc" id="L39">						}</span>
+					} 
+				}
+<span class="nc" id="L42">				catch(FileNotFoundException e) {</span>
+<span class="nc" id="L43">				System.out.println(e.getMessage());</span>
+<span class="fc" id="L44">				}</span>
+			}
+		}
+<span class="fc" id="L47">        return listofFiles;</span>
+    }
+
+	/**
+     * searchWithProperties recursively searches a given file path using
+     * properties loaded from a property file (.ini) and
+     * check if the file path ends with a directory
+     * @param startDir - the start of the absolute file path
+     * @param propertiesName - the name of the .ini file
+     */
+	public List&lt;File&gt; searchWithProperties(String startDir) throws Exception {
+<span class="fc" id="L58">		extensions = new ArrayList&lt;String&gt;();</span>
+<span class="fc" id="L59">		extensions.add(&quot;.h&quot;);</span>
+<span class="fc" id="L60">		extensions.add(&quot;.cpp&quot;);		</span>
+<span class="fc" id="L61">		File dir = new File(startDir);</span>
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">		if (dir.isFile()) {</span>
+<span class="fc" id="L63">			listofFiles.add(dir);</span>
+		}
+		else { 
+<span class="nc bnc" id="L66" title="All 2 branches missed.">			for (File f : dir.listFiles()) {</span>
+				try {
+					// Check if the file is a directory
+<span class="nc bnc" id="L69" title="All 2 branches missed.">					if (f.isDirectory()) {</span>
+<span class="nc" id="L70">						searchWithProperties(f.getAbsolutePath());</span>
+					} 
+					else {      
+<span class="nc bnc" id="L73" title="All 2 branches missed.">						for (String extension : extensions) {</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">							if (f.getName().endsWith(extension)) listofFiles.add(f);</span>
+<span class="nc" id="L75">						}</span>
+					} 
+				}
+<span class="nc" id="L78">				catch(FileNotFoundException e) {</span>
+<span class="nc" id="L79">				System.out.println(e.getMessage());</span>
+<span class="nc" id="L80">				}</span>
+			}
+		}
+<span class="fc" id="L83">        return listofFiles;</span>
     }
 	
 	/**
@@ -62,29 +90,29 @@ public class RecursiveSearch {
      */
 	public List&lt;File&gt; searchDirectory(String startDir) throws Exception {
     	
-<span class="fc" id="L65">        File dir = new File(startDir);  </span>
-<span class="pc bpc" id="L66" title="1 of 2 branches missed.">        if (dir.isFile()) {</span>
-<span class="nc" id="L67">        	listofFiles.add(dir);</span>
+<span class="fc" id="L93">        File dir = new File(startDir);  </span>
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">        if (dir.isFile()) {</span>
+<span class="nc" id="L95">        	listofFiles.add(dir);</span>
         }
         else { 
-<span class="fc bfc" id="L70" title="All 2 branches covered.">        	for (File f : dir.listFiles()) {</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        	for (File f : dir.listFiles()) {</span>
         		try {
         			// Check if the file is a directory
-<span class="fc bfc" id="L73" title="All 2 branches covered.">        			if (f.isDirectory()) {</span>
-<span class="fc" id="L74">        				searchDirectory(f.getAbsolutePath());</span>
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">        			if (f.isDirectory()) {</span>
+<span class="nc" id="L102">        				searchDirectory(f.getAbsolutePath());</span>
         			} 
         			else {      
-<span class="fc bfc" id="L77" title="All 4 branches covered.">        				if(f.getName().endsWith(&quot;.cpp&quot;) || f.getName().endsWith(&quot;.h&quot;)) {</span>
-<span class="fc" id="L78">        					listofFiles.add(f);</span>
+<span class="fc bfc" id="L105" title="All 4 branches covered.">        				if(f.getName().endsWith(&quot;.cpp&quot;) || f.getName().endsWith(&quot;.h&quot;)) {</span>
+<span class="fc" id="L106">        					listofFiles.add(f);</span>
         				}
         			} 
         		}
-<span class="nc" id="L82">        		catch(FileNotFoundException e) {</span>
-<span class="nc" id="L83">                   System.out.println(e.getMessage());</span>
-<span class="fc" id="L84">        		}</span>
+<span class="nc" id="L110">        		catch(FileNotFoundException e) {</span>
+<span class="nc" id="L111">                   System.out.println(e.getMessage());</span>
+<span class="fc" id="L112">        		}</span>
         	}
          }
-<span class="fc" id="L87">         return listofFiles;   </span>
+<span class="fc" id="L115">         return listofFiles;   </span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
