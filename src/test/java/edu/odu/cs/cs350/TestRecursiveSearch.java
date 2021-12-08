@@ -33,9 +33,10 @@ public class TestRecursiveSearch {
         File file4 = new File("src/test/data/readingList.h");
         File file5 = new File("src/test/data/test.cpp");
 		File file6 = new File("src/test/data/testA.cpp");
-        assertThat(actual, containsInAnyOrder(file1, file2, file3, file4, file5, file6));
+		File file7 = new File("src/test/data/testB.cpp");
+        assertThat(actual, containsInAnyOrder(file1, file2, file3, file4, file5, file6, file7));
       
-        assertThat(actual.size(), is(6));
+        assertThat(actual.size(), is(7));
         assertThat(actual, not(IsEmptyCollection.empty()));
         assertThat(new ArrayList<>(), IsEmptyCollection.empty());
     }
@@ -53,9 +54,10 @@ public class TestRecursiveSearch {
         File file4 = new File("src/test/data/readingList.h");
         File file5 = new File("src/test/data/test.cpp");
 		File file6 = new File("src/test/data/testA.cpp");
+		File file7 = new File("src/test/data/testB.cpp");
 
-        assertThat(actual, containsInAnyOrder(file1, file2, file3, file4, file5, file6));
-        assertThat(actual.size(), is(6));
+        assertThat(actual, containsInAnyOrder(file1, file2, file3, file4, file5, file6, file7));
+        assertThat(actual.size(), is(7));
         assertThat(actual, not(IsEmptyCollection.empty()));
         assertThat(new ArrayList<>(), IsEmptyCollection.empty());
     }

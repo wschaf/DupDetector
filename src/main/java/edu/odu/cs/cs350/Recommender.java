@@ -49,6 +49,14 @@ public class Recommender implements RecommenderInterface {
         this.setMaxRefactoringSize();
     }
 
+    Recommender(List<? extends TokenInterface> inputTokens, int min) {
+        this.setTokens(inputTokens);
+        this.refactorings = new ArrayList<RefactoringInterface>();
+        this.setMaxRefactoringSize(min);
+        this.setMaxRefactoringSize();
+        this.recommend();
+    }
+
     /**
      * Parameter constructor, with tokens and min and max size of refactorings parameters.
      * @param inputTokensa list of tokens produced from lexical

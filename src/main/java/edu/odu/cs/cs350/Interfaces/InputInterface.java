@@ -59,4 +59,27 @@ public interface InputInterface {
      * Sets the file extension to those listed in properties.ini.
      */
     public void setFileExtensions(File propertiesFile) throws Exception;
+
+    /**
+     * @return Minimum sequence length of token to be refactored.
+     */
+    public int getMinSequenceLength();
+
+    /**
+     * @return Max number of lexeme substitutions defined in the
+     * properties.ini file.
+     */
+    public int getMaxSubstitutions();
+
+    /**
+     * Sets properties value to default defined in the SRD.
+     */
+    public void setMinSequenceMaxSubs();
+
+    /**
+     * Sets the properties value for minimum sequence length
+     * and maxs substitution defined in the properties file.
+     * @param propertiesFile the properties file from the CLI.
+     */
+    public void setMinSequenceMaxSubs(File propertiesFile) throws Exception;
 }

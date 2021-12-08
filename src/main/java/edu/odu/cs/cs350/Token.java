@@ -88,16 +88,7 @@ public class Token implements TokenInterface {
      */
     @Override
     public String toString() {
-        if (getLexeme().length() > 0) {
-            return getTokenType().toString() + ":" + 
-                   getLexeme() + ":" + 
-                   getLineNumber() + ":" + 
-                   getColumnNumber();
-        } else {
-            return getTokenType().toString() + ":" + 
-                   getLineNumber() + ":" + 
-                   getColumnNumber();
-        }
+        return getLexeme();
     }
 
     @Override

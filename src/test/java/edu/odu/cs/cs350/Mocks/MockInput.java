@@ -8,6 +8,8 @@ import edu.odu.cs.cs350.Interfaces.*;
 public class MockInput implements InputInterface {
 
     private int nSuggestions;
+    private int MinSequenceLength;
+    private int MaxSubstitutions;
     private List<File> files;
     /**Key: File; Value: tokenCount */
     private Hashtable<File, Integer> tokenCountForFiles;
@@ -83,6 +85,28 @@ public class MockInput implements InputInterface {
         this.fileExtensions = new ArrayList<String>();
         this.fileExtensions.add(".h");
         this.fileExtensions.add(".cpp");
+    }
+
+    @Override
+    public int getMaxSubstitutions() {
+        return this.MaxSubstitutions;
+    }
+
+    @Override
+    public int getMinSequenceLength() {
+        return this.MinSequenceLength;
+    }
+
+    @Override
+    public void setMinSequenceMaxSubs() {
+        this.MinSequenceLength = 10;
+        this.MaxSubstitutions = 8;
+        }
+
+    @Override
+    public void setMinSequenceMaxSubs(File propertiesFile) throws Exception {
+        this.MinSequenceLength = 10;
+        this.MaxSubstitutions = 8;
     }
     
 }
