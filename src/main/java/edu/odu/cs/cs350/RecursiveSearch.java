@@ -61,6 +61,42 @@ public class RecursiveSearch {
 		}
         return listofFiles;
     }
+
+	/**
+     * searchWithProperties recursively searches a given file path using
+     * properties loaded from a property file (.ini) and
+     * check if the file path ends with a directory
+     * @param startDir - the start of the absolute file path
+     * @param propertiesName - the name of the .ini file
+     */
+	public List<File> searchWithProperties(String startDir) throws Exception {
+		extensions = new ArrayList<String>();
+		extensions.add(".h");
+		extensions.add(".cpp");		
+		File dir = new File(startDir);
+		if (dir.isFile()) {
+			listofFiles.add(dir);
+		}
+		else { 
+			for (File f : dir.listFiles()) {
+				try {
+					// Check if the file is a directory
+					if (f.isDirectory()) {
+						searchWithProperties(f.getAbsolutePath());
+					} 
+					else {      
+						for (String extension : extensions) {
+							if (f.getName().endsWith(extension)) listofFiles.add(f);
+						}
+					} 
+				}
+				catch(FileNotFoundException e) {
+				System.out.println(e.getMessage());
+				}
+			}
+		}
+        return listofFiles;
+    }
 	
 	/**
      * searchDirectory recursively searches a given file and

@@ -88,13 +88,25 @@ public class TestIntegration {
         expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/test.cpp"));
         expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/testA.cpp"));
 
-        for (File file : input.getFiles()) {
-            assertTrue(expectedFiles.contains(file));
-        }
+        assertThat(input.getNSuggestions(), is(5));
+        for (File file : input.getFiles()) assertTrue(expectedFiles.contains(file));
     }
 
     @Test
     public void testInputWithPropertiesFile() throws Exception{
+        input = new Input(argsWithPropertiesFile);
+
+        List<File> expectedFiles = new ArrayList<File>();
+        expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/properties.ini"));
+        expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/Point.cpp"));
+        expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/Point.h"));
+        expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/readingList.cpp"));
+        expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/readingList.h"));
+        expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/test.cpp"));
+        expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/testA.cpp"));
+
+        assertThat(input.getNSuggestions(), is(5));
+        for (File file : input.getFiles()) assertTrue(expectedFiles.contains(file));
     }
 
     @Test

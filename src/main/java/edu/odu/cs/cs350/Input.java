@@ -47,13 +47,23 @@ public class Input implements InputInterface {
         if (argList.get(0).endsWith(".ini")) {
             this.propertiesFile = new File(argList.get(0));
             argList.remove(0);
+            for (var path : argList) {
+                try {
+                    RecursiveSearch r = new RecursiveSearch();
+                    this.files.addAll(r.searchWithProperties(path, propertiesFile));
+                } catch(FileNotFoundException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
         }
-        for (var path : argList) {
-            try {
-                RecursiveSearch r = new RecursiveSearch();
-                this.files.addAll(r.searchWithProperties(path, propertiesFile));
-            } catch(FileNotFoundException e) {
-                System.out.println(e.getMessage());
+        else {
+            for (var path : argList) {
+                try {
+                    RecursiveSearch r = new RecursiveSearch();
+                    this.files.addAll(r.searchWithProperties(path));
+                } catch(FileNotFoundException e) {
+                    System.out.println(e.getMessage());
+                }
             }
         }
 
