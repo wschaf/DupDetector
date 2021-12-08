@@ -25,6 +25,7 @@ public class TestIntegration {
 
     private static String argsWithPropertiesFile[];
     private static String argsWithoutPropertiesFile[];
+    private static String recursiveArgs[];
     private static Input input;
     // private static Recommender recommender;
     // private static Output output;
@@ -51,6 +52,12 @@ public class TestIntegration {
             "/home/wgs/src/cs350/DupDetector/src/test/data/readingList.h",
             "/home/wgs/src/cs350/DupDetector/src/test/data/test.cpp",
             "/home/wgs/src/cs350/DupDetector/src/test/data/testA.cpp"
+        };
+
+        recursiveArgs = new String[] {
+            "5",
+            "/home/wgs/src/cs350/DupDetector/src/test/data/properties.ini",
+            "/home/wgs/src/cs350/DupDetector/src/test/data/"
         };
     }
 
@@ -110,11 +117,25 @@ public class TestIntegration {
     }
 
     @Test
-    public void testRecursiveInputWithPropertiesFile() throws Exception{
+    public void testRecursiveInputWithPropertiesFile() throws Exception {
+        input = new Input(recursiveArgs);
+
+        List<File> expectedFiles = new ArrayList<File>();
+        expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/properties.ini"));
+        expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/Point.cpp"));
+        expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/Point.h"));
+        expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/readingList.cpp"));
+        expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/readingList.h"));
+        expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/test.cpp"));
+        expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/testA.cpp"));
+
+        assertThat(input.getNSuggestions(), is(5));
+        for (File file : input.getFiles()) assertTrue(expectedFiles.contains(file));
     }
 
     @Test
-    public void testRecommendations() throws Exception{
+    public void testRecommendations() throws Exception {
+        
     }
 
     @Test
