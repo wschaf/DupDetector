@@ -19,15 +19,15 @@ import java.io.*;
 import org.junit.jupiter.api.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestIntegration {
 
     private static String argsWithPropertiesFile[];
     private static String argsWithoutPropertiesFile[];
     private static Input input;
-    private static Recommender recommender;
-    private static Output output;
+    // private static Recommender recommender;
+    // private static Output output;
 
     @BeforeEach
     public void setup() {
@@ -87,20 +87,25 @@ public class TestIntegration {
         expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/readingList.h"));
         expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/test.cpp"));
         expectedFiles.add(new File("/home/wgs/src/cs350/DupDetector/src/test/data/testA.cpp"));
+
+        for (File file : input.getFiles()) {
+            assertTrue(expectedFiles.contains(file));
+        }
     }
 
     @Test
     public void testInputWithPropertiesFile() throws Exception{
-        input = new Input(argsWithPropertiesFile);
+    }
 
-        List<File> expectedFiles = new ArrayList<File>();
-        expectedFiles.add(new File("src/test/data/properties.ini"));
-        expectedFiles.add(new File("src/test/data/Point.cpp"));
-        expectedFiles.add(new File("src/test/data/Point.h"));
-        expectedFiles.add(new File("src/test/data/readingList.cpp"));
-        expectedFiles.add(new File("src/test/data/readingList.h"));
-        expectedFiles.add(new File("src/test/data/test.cpp"));
+    @Test
+    public void testRecursiveInputWithPropertiesFile() throws Exception{
+    }
 
-        assertThat(input.getFiles(), is(expectedFiles));
+    @Test
+    public void testRecommendations() throws Exception{
+    }
+
+    @Test
+    public void testCompleteOutput() throws Exception{
     }
 }

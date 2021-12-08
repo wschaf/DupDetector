@@ -38,6 +38,7 @@ public class Input implements InputInterface {
             		+ "<properties file>[OPTIONAL] <path/of/file1> <path/of/file2>");
             System.exit(-1);
         }
+        this.files = new ArrayList<File>();
         List<String> argList = new ArrayList<String>();
         for (String string : args) argList.add(string);
         this.nSuggestions = Integer.parseInt(argList.get(0));
@@ -49,9 +50,8 @@ public class Input implements InputInterface {
         }
         for (var path : argList) {
             try {
-                String startDir = path;
                 RecursiveSearch r = new RecursiveSearch();
-                this.files = r.searchWithProperties(startDir, propertiesFile);
+                this.files.addAll(r.searchWithProperties(path, propertiesFile));
             } catch(FileNotFoundException e) {
                 System.out.println(e.getMessage());
             }

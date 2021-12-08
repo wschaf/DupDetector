@@ -22,7 +22,6 @@ public class TestRecursiveSearch {
 		
 		RecursiveSearch search = new RecursiveSearch();
 		String directory = "src/test/data";
-		String properties = "properties.ini";
 		File propertiesFile = new File("properties.ini");
 
         actual = new ArrayList<>(search.searchWithProperties(directory, propertiesFile));
@@ -65,7 +64,6 @@ public class TestRecursiveSearch {
 		
 		RecursiveSearch search = new RecursiveSearch();
 		String directory = "src/test/data/test.cpp";
-		String properties = "properties.ini";
 		File propertiesFile = new File("properties.ini");
 
         actual = new ArrayList<>(search.searchWithProperties(directory, propertiesFile));
@@ -84,7 +82,6 @@ public class TestRecursiveSearch {
 		
 		RecursiveSearch search = new RecursiveSearch();
 		String directory = "src/test/data/test.cpp";
-		String properties = "properties.ini";
 		File propertiesFile = new File("properties.ini");
 
         actual = new ArrayList<>(search.searchWithProperties(directory, propertiesFile));

@@ -10,7 +10,8 @@ public class RecursiveSearch {
 	private List<String> extensions;
 	
 	public RecursiveSearch() {
-		listofFiles = new ArrayList<>();
+		listofFiles = new ArrayList<File>();
+		extensions = new ArrayList<String>();
 	}
 	
 	/**
