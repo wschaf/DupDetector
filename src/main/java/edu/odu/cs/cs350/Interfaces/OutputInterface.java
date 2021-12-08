@@ -2,7 +2,6 @@ package edu.odu.cs.cs350.Interfaces;
 
 import java.util.*;
 import java.io.File;
-import java.io.Reader;
 
 /**
  * Output contains all of the functionality to format and print to the console
@@ -14,8 +13,6 @@ public abstract interface OutputInterface {
 	public int getRefactoringsToPrint();
 
 	public void setRefactoringsToPrint(int refactoringsToPrint);
-
-	public Reader readFiles(File f);
 
 	public List<File> getFiles();
 

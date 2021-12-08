@@ -50,6 +50,7 @@ public class Token implements TokenInterface {
     /**
      * @return the token type of this current token.
      */
+    @Override
     public TokenType getTokenType() {
         return this.tokenType;
     }
@@ -102,5 +103,14 @@ public class Token implements TokenInterface {
     @Override
     public String getAbsolutePath() {
         return this.absolutePath;
+    }
+
+    public void setAbsolutePath(String absolutePath) {
+        this.absolutePath = absolutePath;
+    }
+
+    @Override
+    public String printToken() {
+        return this.tokenType.toString();
     }
 }

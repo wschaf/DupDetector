@@ -1,16 +1,11 @@
 package edu.odu.cs.cs350;
 
-import java.util.*;
-
-import org.hamcrest.core.IsNot;
-import org.junit.jupiter.api.*;
-
-import edu.odu.cs.cs350.Interfaces.RefactoringInterface;
 import edu.odu.cs.cs350.Interfaces.TokenInterface;
 
+import java.util.*;
+import org.junit.jupiter.api.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @see Recommender
@@ -31,11 +26,11 @@ public class TestRecommender {
          * int x = 5;
         */
         basicTokens = Arrays.asList (
-            (new Token(TokenType.INT, 2, 1)),
-            (new Token(TokenType.IDENTIFIER, 2, 5)),
-            (new Token(TokenType.ASSIGN_OP, 2, 7)),
-            (new Token(TokenType.CONSTANT_NUMBERS, 2, 9)),
-            (new Token(TokenType.SEMI_COLON, 2, 10))
+            (new Token(TokenType.INT, 1, 1)),
+            (new Token(TokenType.IDENTIFIER, 1, 5)),
+            (new Token(TokenType.ASSIGN_OP, 1, 7)),
+            (new Token(TokenType.CONSTANT_NUMBERS, 1, 9)),
+            (new Token(TokenType.SEMI_COLON, 1, 10))
         );
 
         /** The same C++ statement twice, should produce one candidate refacoring.
@@ -43,17 +38,17 @@ public class TestRecommender {
          * int y = 6;
         */
         oneRefactoring = Arrays.asList (
+            (new Token(TokenType.INT, 1, 1)),
+            (new Token(TokenType.IDENTIFIER, 1, 5)),
+            (new Token(TokenType.ASSIGN_OP, 1, 7)),
+            (new Token(TokenType.CONSTANT_NUMBERS, 1, 9)),
+            (new Token(TokenType.SEMI_COLON, 1, 10)),
+
             (new Token(TokenType.INT, 2, 1)),
             (new Token(TokenType.IDENTIFIER, 2, 5)),
             (new Token(TokenType.ASSIGN_OP, 2, 7)),
             (new Token(TokenType.CONSTANT_NUMBERS, 2, 9)),
-            (new Token(TokenType.SEMI_COLON, 2, 10)),
-
-            (new Token(TokenType.INT, 3, 1)),
-            (new Token(TokenType.IDENTIFIER, 3, 5)),
-            (new Token(TokenType.ASSIGN_OP, 3, 7)),
-            (new Token(TokenType.CONSTANT_NUMBERS, 3, 9)),
-            (new Token(TokenType.SEMI_COLON, 3, 10))
+            (new Token(TokenType.SEMI_COLON, 2, 10))
         );
     }
 
@@ -101,8 +96,8 @@ public class TestRecommender {
         Recommender subject = new Recommender(basicTokens);
 
         assertThat(subject.getTokens().size(), is(5));
-        assertThat(subject.getTokens().get(0).toString(), equalTo(new Token(TokenType.INT, 2, 1).toString()));
-        assertThat(subject.getTokens().get(4).toString(), equalTo(new Token(TokenType.SEMI_COLON, 2, 10).toString()));
+        assertThat(subject.getTokens().get(0).toString(), equalTo(new Token(TokenType.INT, 1, 1).toString()));
+        assertThat(subject.getTokens().get(4).toString(), equalTo(new Token(TokenType.SEMI_COLON, 1, 10).toString()));
     }
 
     @Test
@@ -111,8 +106,8 @@ public class TestRecommender {
         subject.setTokens(basicTokens);
 
         assertThat(subject.getTokens().size(), is(5));
-        assertThat(subject.getTokens().get(0).toString(), equalTo(new Token(TokenType.INT, 2, 1).toString()));
-        assertThat(subject.getTokens().get(4).toString(), equalTo(new Token(TokenType.SEMI_COLON, 2, 10).toString()));
+        assertThat(subject.getTokens().get(0).toString(), equalTo(new Token(TokenType.INT, 1, 1).toString()));
+        assertThat(subject.getTokens().get(4).toString(), equalTo(new Token(TokenType.SEMI_COLON, 1, 10).toString()));
     }
 
     @Test
@@ -131,11 +126,7 @@ public class TestRecommender {
         assertThat(subjectB.getRefactorings().size(), is(0));
 
         Recommender subjectC = new Recommender(oneRefactoring);
-        for (var r : subjectC.getRefactorings()) {
-            System.out.println(r.toString());
-        }
-
-        assertThat(subjectC.getRefactorings().size(), is(10));
+        assertThat(subjectC.getRefactorings().size(), is(6));
     }
 
     @Test

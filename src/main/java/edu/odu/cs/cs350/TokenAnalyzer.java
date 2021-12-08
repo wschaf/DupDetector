@@ -3,9 +3,13 @@ package edu.odu.cs.cs350;
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
+import java.io.StringReader;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Iterator;
+import java.util.Scanner;
+
+import edu.odu.cs.cs350.Interfaces.TokenInterface;
 
 /**
  * TokenAnalyzer analyzes each lexemes in the given file
@@ -23,7 +27,7 @@ public class TokenAnalyzer implements Iterable<Token> {
     /** Token object found in the file. Contains necessary metadata defined in Token class. */
     private Token token;
 
-    private File file;
+    private File inputFile;
     
     /**
      * The default constructor for token analyzer.
@@ -45,10 +49,22 @@ public class TokenAnalyzer implements Iterable<Token> {
         scanner = new LexerAnalyzer(input);
     }
 
-    public TokenAnalyzer(File file) {
-        tokensContainer = new LinkedList<Token>();
-        this.file = file;
-        scanner = new LexerAnalyzer(input);
+    public TokenAnalyzer(File inputFile) {
+        Scanner scanner;
+        this.inputFile = inputFile;
+        try {
+            scanner = new Scanner(inputFile);
+            String source = "";
+            while(scanner.hasNext()) source += scanner.nextLine() + "\n";
+            scanner.close();
+            Reader input = new StringReader(source);
+            this.tokensContainer = new LinkedList<Token>();
+            this.scanner = new LexerAnalyzer(input);
+        } catch (Exception e) {
+            System.err.println("TokenAnalyzer error: unable to read file " +
+                inputFile.getAbsolutePath()
+            );
+        }
     }
 
     /**
@@ -60,6 +76,12 @@ public class TokenAnalyzer implements Iterable<Token> {
         try {
             token = scanner.yylex();
             while (token != null && token.getTokenType() != TokenType.EOF) {
+                if (this.inputFile == null || !this.inputFile.exists()) {
+                    token.setAbsolutePath("");
+                }
+                else {
+                    token.setAbsolutePath(this.inputFile.getAbsolutePath());
+                }
                 tokensContainer.add(token);
                 token = scanner.yylex();
             }
@@ -94,7 +116,7 @@ public class TokenAnalyzer implements Iterable<Token> {
         return Integer.toString(getFileTokenCount());
     }
 
-	public Token getTokens() {
-		return null;
+	public List<? extends TokenInterface> getTokens() {
+		return this.tokensContainer;
 	}
 }

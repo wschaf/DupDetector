@@ -255,15 +255,21 @@ public class Recommender implements RecommenderInterface {
             for (int j = 0; j < this.getTokens().size(); j++) {
                 try {
                     List<TokenInterface> l = tokens.subList(j, ( j + i));
-                    sublists.add(l);
+                    //  Only add full statements, must end in a ';' or '}'
+                    if (l.get(l.size() - 1).getTokenType() == TokenType.SEMI_COLON || l.get(l.size() - 1).getTokenType() == TokenType.RIGHT_BRACE) {
+                        sublists.add(l);
+                    }
                 } catch (IndexOutOfBoundsException e) {
                     continue;
                 }
             }
         }
 
+        if (sublists == null || sublists.size() == 0) return;
+
         //  Determine whether each sublist is a recommended refactoring.
-        for (List<TokenInterface> list : sublists) {
+        for (var list : sublists) {
+            if (list.size() <= 2) continue;
             int occurrences = countOccurrences(list, sublists);
             if (occurrences > 1) {
                 int opportunityValue = computeOpportunityValue(list, occurrences - 1, sublists.size());
@@ -282,7 +288,16 @@ public class Recommender implements RecommenderInterface {
     private int countOccurrences(List<TokenInterface> candidate, List<List<TokenInterface>> sublists) {
         int result = 0;
         for (List<TokenInterface> list : sublists) {
-            if (candidate.equals(list)) result++;
+            boolean equalTo = true;
+            if (list.size() == candidate.size()) {
+                for (int i = 0; i < candidate.size(); i++) {
+                    if (candidate.get(i).getTokenType() != list.get(i).getTokenType()) equalTo = false;
+                }
+            }
+            else {
+                equalTo = false;
+            }
+            if (equalTo == true) result++;
         }
         return result;
     }
