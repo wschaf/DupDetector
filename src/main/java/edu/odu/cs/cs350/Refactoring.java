@@ -23,12 +23,7 @@ public class Refactoring implements RefactoringInterface, Comparable<Refactoring
         absolutePath = current.get(0).getAbsolutePath();
         lineNumber = Integer.parseInt(current.get(0).getLineNumber());
         columnNumber = Integer.parseInt(current.get(0).getColumnNumber());
-        // tokenList = current.toString();
-        for(var s : current) {
-            if(s.getTokenType() == null) return;
-            else
-                this.tokenList += s.getLexeme() + " ";
-        }
+        tokenList = current.toString();
     }
 
     public Refactoring(List<? extends TokenInterface> candidate, int opportunityValue) {
@@ -36,6 +31,7 @@ public class Refactoring implements RefactoringInterface, Comparable<Refactoring
         this.absolutePath = candidate.get(0).getAbsolutePath();
         this.lineNumber = Integer.parseInt(candidate.get(0).getLineNumber());
         this.columnNumber = Integer.parseInt(candidate.get(0).getColumnNumber());
+        this.tokenList = "";
         for(var s : candidate) this.tokenList += s.getLexeme() + " ";
         // this.tokenList = candidate.toString();
         this.opportunityValue = opportunityValue;

@@ -111,6 +111,6 @@ public class TestIntegration {
         assertTrue(subject.contains("Files Scanned:\n"));
         assertTrue(subject.contains("testA.cpp, 10"));
         assertTrue(subject.contains("Opportunity #1, 3 tokens"));
-        assertTrue(subject.contains("[, x, , 5, ]"));
+        assertTrue(subject.contains(" 5 "));
     }
 }
