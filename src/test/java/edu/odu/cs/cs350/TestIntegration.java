@@ -90,7 +90,7 @@ public class TestIntegration {
         assertThat(inputB.getfileExtensions().get(0), is(expectedProperties.get(0)));
         assertThat(inputB.getfileExtensions().get(1), is(expectedProperties.get(1)));
         assertThat(inputB.getMinSequenceLength(), is(16));
-        assertThat(inputB.getMaxSubstitutions(), is(10));
+        assertThat(inputB.getMaxSubstitutions(), is(20));
         assertThat(inputB.getFiles().size(), is(7));
     }
 
